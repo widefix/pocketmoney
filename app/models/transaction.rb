@@ -4,6 +4,6 @@ class Transaction < ApplicationRecord
   validates :from_account, presence: true
 
   def to_s
-    "#{from_account} -> #{to_account}: #{amount}"
+    "#{created_at.to_date} #{from_account} -> #{to_account}: #{amount}"
   end
 end

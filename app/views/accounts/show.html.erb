@@ -1,1 +1,14 @@
-Balance: <%= Account.new(account).balance %>
+<% stats = Account.new(account) %>
+
+Balance: <%= stats.balance %>
+
+<div>Incomes:</div>
+<% stats.income_transactions.each do |transaction| %>
+  <div><%= transaction.to_s %></div>
+<% end %>
+
+<div>Outcomes:</div>
+
+<% stats.outcome_transactions.each do |transaction| %>
+  <div><%= transaction.to_s %></div>
+<% end %>

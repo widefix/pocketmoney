@@ -5,7 +5,14 @@ class Account
   param :name
 
   memoize def balance
-    Transaction.where(to_account: name).sum(:amount) -
-      Transaction.where(from_account: name).sum(:amount)
+    income_transactions.sum(:amount) - outcome_transactions.sum(:amount)
+  end
+
+  memoize def income_transactions
+    Transaction.where(to_account: name)
+  end
+
+  memoize def outcome_transactions
+    Transaction.where(from_account: name)
   end
 end

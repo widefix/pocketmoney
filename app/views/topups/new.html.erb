@@ -1,3 +1,4 @@
+Topup account: <%= account %>
 <%= form_tag(account_topup_path(account), method: :post) do |f| %>
   <%= text_field_tag :amount %>
   <%= submit_tag 'save' %>

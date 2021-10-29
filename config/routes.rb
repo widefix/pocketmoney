@@ -4,5 +4,6 @@ Rails.application.routes.draw do
 
   resources :accounts, only: :show do
     resource :topup, only: [:new, :create]
+    resource :spend, only: [:new, :create]
   end
 end

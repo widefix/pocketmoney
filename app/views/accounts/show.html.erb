@@ -9,12 +9,9 @@ Balance: <%= stats.balance %>
 <%= link_to '-', new_account_spend_path(account) %>
 
 <div>Incomes:</div>
-<% stats.income_transactions.each do |transaction| %>
-  <div><%= transaction.to_s %></div>
-<% end %>
+
+<%= render partial: 'transaction', collection: stats.income_transactions %>
 
 <div>Outcomes:</div>
 
-<% stats.outcome_transactions.each do |transaction| %>
-  <div><%= transaction.to_s %></div>
-<% end %>
+<%= render partial: 'transaction', collection: stats.outcome_transactions %>

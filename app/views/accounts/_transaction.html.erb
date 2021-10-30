@@ -1,0 +1,4 @@
+<div>
+  <%= transaction.to_s %>
+  <%= link_to :x, transaction_path(transaction), method: :delete, data: {confirm: 'Delete this transaction?'} %>
+</div>

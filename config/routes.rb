@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     resource :topup, only: [:new, :create]
     resource :spend, only: [:new, :create]
   end
+  resources :transactions, only: [:destroy]
 end

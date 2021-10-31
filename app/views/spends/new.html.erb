@@ -1,4 +1,7 @@
-Spend from account: <%= account %>
+Spend from account: <%= link_to account, account_path(account) %>
+<br>
+Account balance: <%= Account.new(account).balance %>
+<br>
 
 <%= form_tag(account_spend_path(account), method: :post) do |f| %>
   <%= text_field_tag :amount %>

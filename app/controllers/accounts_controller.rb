@@ -13,6 +13,8 @@ class AccountsController < ApplicationController
   private
 
   helper_method memoize def account
-    Account.find(params.fetch(:id))
+    Account
+      .where(id: [current_user.account_id] + current_user.account.children_ids)
+      .find(params.fetch(:id))
   end
 end

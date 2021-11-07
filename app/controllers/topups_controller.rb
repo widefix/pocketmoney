@@ -4,7 +4,7 @@ class TopupsController < ApplicationController
 
   def create
     Transaction.create!(
-      from_account: 'andrei',
+      from_account: Account.find_by!(name: 'andrei'),
       to_account: account,
       amount: params.fetch(:amount)
     )
@@ -14,6 +14,6 @@ class TopupsController < ApplicationController
   private
 
   helper_method memoize def account
-    params.fetch(:account_id)
+    Account.find(params.fetch(:account_id))
   end
 end

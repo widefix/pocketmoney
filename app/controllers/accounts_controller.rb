@@ -5,6 +5,6 @@ class AccountsController < ApplicationController
   private
 
   helper_method memoize def account
-    params.fetch(:id)
+    Account.find(params.fetch(:id))
   end
 end

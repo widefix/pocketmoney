@@ -1,8 +1,6 @@
-<h1><%= account %></h1>
+<h1><%= account.name %></h1>
 
-<% stats = Account.new(account) %>
-
-Balance: <%= stats.balance %>
+Balance: <%= account.balance %>
 
 <%= link_to '+', new_account_topup_path(account) %>
 
@@ -10,8 +8,8 @@ Balance: <%= stats.balance %>
 
 <div>Incomes:</div>
 
-<%= render partial: 'transaction', collection: stats.income_transactions %>
+<%= render partial: 'transaction', collection: account.income_transactions %>
 
 <div>Outcomes:</div>
 
-<%= render partial: 'transaction', collection: stats.outcome_transactions %>
+<%= render partial: 'transaction', collection: account.outcome_transactions %>

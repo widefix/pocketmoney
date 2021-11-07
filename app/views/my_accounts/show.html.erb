@@ -1,0 +1,14 @@
+<%= account.name %>
+<br>
+Account balance: <%= account.balance %>
+<br>
+
+<% account.children.each do |child| %>
+  <%= link_to child.name, account_path(child) %>
+  <%= child.balance %>
+  <%= link_to '+', new_account_topup_path(child) %>
+  <%= link_to '-', new_account_spend_path(child) %>
+  <br>
+<% end %>
+
+<%= link_to 'add account', new_account_path %>

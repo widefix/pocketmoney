@@ -10,27 +10,35 @@
   </head>
 
   <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-          <%= link_to 'Home', root_path %>
-        </a>
-      </div>
-
-      <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="buttons">
+    <header class="header">
+      <div class="container">
+        <nav class="level">
+          <div class="level-left">
+            <div class="level-item">
+              <%= link_to 'Pocketmoney', root_path %>
+            </div>
+          </div>
+          <div class="level-right">
+            <p class="level-item">
               <% if user_signed_in? %>
                 <%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'button is-light' %>
               <% else %>
                 <%= link_to 'login/register', new_user_session_path, class: 'button is-primary' %>
               <% end %>
-            </div>
+            </p>
           </div>
-        </div>
+        </nav>
       </div>
-    </nav>
-    <%= yield %>
+    </header>
+    <section class="section">
+      <div class="container">
+        <%= yield %>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="container">
+        Copyright © 2021 WideFix. All rights reserved.
+      </div>
+    </footer>
   </body>
 </html>

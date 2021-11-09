@@ -10,14 +10,27 @@
   </head>
 
   <body>
-    <header>
-      <%= link_to 'home', root_path %>
-      <% if user_signed_in? %>
-        <%= link_to 'logout', destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to 'login/register', new_user_session_path %>
-      <% end %>
-    </header>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+          <%= link_to 'Home', root_path %>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <% if user_signed_in? %>
+                <%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'button is-light' %>
+              <% else %>
+                <%= link_to 'login/register', new_user_session_path, class: 'button is-primary' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>

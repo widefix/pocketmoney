@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_07_232724) do
+ActiveRecord::Schema.define(version: 2021_11_11_224146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_automatic_topup_configs", force: :cascade do |t|
+    t.decimal "amount", precision: 10, scale: 2, null: false
+    t.bigint "from_account_id", null: false
+    t.bigint "to_account_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["from_account_id"], name: "index_account_automatic_topup_configs_on_from_account_id"
+    t.index ["to_account_id"], name: "index_account_automatic_topup_configs_on_to_account_id"
+  end
 
   create_table "accounts", force: :cascade do |t|
     t.string "name", null: false
@@ -47,6 +57,8 @@ ActiveRecord::Schema.define(version: 2021_11_07_232724) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "account_automatic_topup_configs", "accounts", column: "from_account_id"
+  add_foreign_key "account_automatic_topup_configs", "accounts", column: "to_account_id"
   add_foreign_key "accounts", "accounts", column: "parent_id"
   add_foreign_key "transactions", "accounts", column: "from_account_id"
   add_foreign_key "transactions", "accounts", column: "to_account_id"

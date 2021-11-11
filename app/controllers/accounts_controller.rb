@@ -6,15 +6,13 @@ class AccountsController < ApplicationController
   end
 
   def create
-    Account.create!(parent: current_user.account, **params.permit(:name).slice(:name))
+    Account.create!(parent: current_user.account, **params.slice(:name))
     redirect_to my_account_path
   end
 
   private
 
   helper_method memoize def account
-    Account
-      .where(id: [current_user.account_id] + current_user.account.child_ids)
-      .find(params.fetch(:id))
+    Account.visible_for(current_user).find(params.fetch(:id))
   end
 end

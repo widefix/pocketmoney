@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resource :my_account, only: :show
 
   resources :accounts, only: [:show, :new, :create] do
+    resources :account_automatic_topup_configs, only: [:new, :create]
     resource :topup, only: [:new, :create]
     resource :spend, only: [:new, :create]
   end

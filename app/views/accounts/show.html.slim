@@ -18,7 +18,7 @@ h2.title
     .card
       .card-header
         .card-header-title.is-centered
-          h3.title Incomes
+          h3.title Transactions
       .card-content
         table.table.is-fullwidth.is-striped
           thead
@@ -28,22 +28,7 @@ h2.title
               th To
               th Amount
               th Actions
-          = render partial: 'transaction', collection: account.income_transactions
-  .column
-    .card
-      .card-header
-        .card-header-title.is-centered
-          h3.title Outcomes
-      .card-content
-        table.table.is-fullwidth.is-striped
-          thead
-            tr
-              th Date
-              th From
-              th To
-              th Amount
-              th Actions
-          = render partial: 'transaction', collection: account.outcome_transactions
+          = render partial: 'transaction', collection: account.transactions, account: account
 
 .columns
   .column

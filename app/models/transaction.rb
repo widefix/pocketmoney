@@ -11,4 +11,9 @@ class Transaction < ApplicationRecord
   def date
     created_at.to_date
   end
+
+  def signed_amount(account)
+    sign = from_account == account ? '-' : '+'
+    "#{sign}#{amount}"
+  end
 end

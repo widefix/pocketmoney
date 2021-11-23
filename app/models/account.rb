@@ -14,4 +14,8 @@ class Account < ApplicationRecord
   memoize def balance
     income_transactions.sum(:amount) - outcome_transactions.sum(:amount)
   end
+
+  def transactions
+    Transaction.where(to_account: self).or(Transaction.where(from_account: self))
+  end
 end

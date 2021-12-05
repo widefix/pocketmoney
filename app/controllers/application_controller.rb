@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   extend Memoist
 
-  def params
+  def ps
     request.params
   end
 end

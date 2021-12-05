@@ -6,7 +6,7 @@ class SpendsController < ApplicationController
     Transaction.create!(
       from_account: account,
       to_account: Account.find_or_create_by!(name: 'store'),
-      amount: params.fetch(:amount)
+      amount: ps.fetch(:amount)
     )
     redirect_to account_path(account)
   end
@@ -14,6 +14,6 @@ class SpendsController < ApplicationController
   private
 
   helper_method memoize def account
-    Account.find(params.fetch(:account_id))
+    Account.find(ps.fetch(:account_id))
   end
 end

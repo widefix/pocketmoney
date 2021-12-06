@@ -113,13 +113,13 @@ class BulmaFormBuilder < ActionView::Helpers::FormBuilder
 
   def email_icon
     @template.content_tag(:span, class: 'icon is-left') do
-      @template.content_tag(:i, "", class: 'fas fa-envelope')
+      @template.content_tag(:i, "", class: 'fa fa-envelope')
     end
   end
 
   def password_icon
     @template.content_tag(:span, class: 'icon is-left') do
-      @template.content_tag(:i, "", class: 'fas fa-lock')
+      @template.content_tag(:i, "", class: 'fa fa-lock')
     end
   end
 end

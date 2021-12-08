@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Pocketmoney</title>
+    <title>Moneybox</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,29 +10,37 @@
   </head>
 
   <body>
-    <header class="header">
-      <div class="container">
-        <nav class="level">
-          <div class="level-left">
-            <div class="level-item">
-              <%= link_to 'Pocketmoney', root_path %>
-            </div>
-            <div class="level-item">
-              <%= link_to('my account', my_account_path) %>
-            </div>
-          </div>
-          <div class="level-right">
-            <p class="level-item">
-              <% if user_signed_in? %>
-                <%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'button is-light' %>
-              <% else %>
-                <%= link_to 'login/register', new_user_session_path, class: 'button is-primary' %>
-              <% end %>
-            </p>
-          </div>
-        </nav>
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <%= link_to root_path, class: "navbar-item" do %>
+          <%= image_tag 'logo.svg', width: 112, height: 28 %>
+        <% end %>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
       </div>
-    </header>
+
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+
+              <% if user_signed_in? %>
+                <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'button is-danger' %>
+              <% else %>
+                <%= link_to 'Sign up', new_user_registration_path, class: 'button is-primary' %>
+                <%= link_to 'Log in', new_user_session_path, class: 'button is-light' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
     <section class="section">
       <div class="container">
         <%= yield %>

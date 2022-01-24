@@ -4,7 +4,7 @@ class TopupsController < ApplicationController
 
   def create
     Transaction.create!(
-      from_account: Account.find_by!(name: 'andrei'),
+      from_account: current_user.account,
       to_account: account,
       amount: ps.fetch(:amount)
     )

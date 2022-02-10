@@ -4,6 +4,13 @@ Account balance: <%= account.balance %>
 <br>
 
 <%= form_tag(account_topup_path(account), method: :post) do |f| %>
-  <%= text_field_tag :amount %>
+  <label>
+    Amount
+    <%= text_field_tag :amount %>
+  </label>
+  <label>
+    Description
+    <%= text_field_tag :description %>
+  </label>
   <%= submit_tag 'save' %>
 <% end %>

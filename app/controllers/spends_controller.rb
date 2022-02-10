@@ -6,6 +6,7 @@ class SpendsController < ApplicationController
     Transaction.create!(
       from_account: account,
       to_account: Account.find_or_create_by!(name: 'store'),
+      description: params[:description],
       amount: ps.fetch(:amount)
     )
     redirect_to account_path(account)

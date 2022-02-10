@@ -3,4 +3,5 @@ tr
   td= transaction.from_account.name
   td= transaction.to_account.name
   td= transaction.signed_amount(account)
+  td= transaction.description
   td= link_to :delete, transaction_path(transaction), method: :delete, data: {confirm: 'Delete this transaction?'}

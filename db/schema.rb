@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_10_141234) do
+ActiveRecord::Schema.define(version: 2022_04_11_214825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 2022_02_10_141234) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "parent_id"
     t.index ["parent_id"], name: "index_accounts_on_parent_id"
+  end
+
+  create_table "objectives", force: :cascade do |t|
+    t.string "name", null: false
+    t.decimal "amount", precision: 10, scale: 2, null: false
+    t.bigint "account_id"
+    t.string "image_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_objectives_on_account_id"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -61,6 +71,7 @@ ActiveRecord::Schema.define(version: 2022_02_10_141234) do
   add_foreign_key "account_automatic_topup_configs", "accounts", column: "from_account_id"
   add_foreign_key "account_automatic_topup_configs", "accounts", column: "to_account_id"
   add_foreign_key "accounts", "accounts", column: "parent_id"
+  add_foreign_key "objectives", "accounts"
   add_foreign_key "transactions", "accounts", column: "from_account_id"
   add_foreign_key "transactions", "accounts", column: "to_account_id"
   add_foreign_key "users", "accounts"

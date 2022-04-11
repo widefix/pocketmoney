@@ -11,4 +11,5 @@ Rails.application.routes.draw do
     resource :spend, only: [:new, :create]
   end
   resources :transactions, only: [:destroy]
+  resources :objectives, only: [:destroy]
 end

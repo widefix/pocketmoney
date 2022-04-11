@@ -1,0 +1,6 @@
+tr
+  td= objective.name
+  td= objective.amount
+  td= number_to_percentage(account.balance / objective.amount * 100, precision: 0)
+  td= image_tag objective.image_url
+  td= link_to :delete, objective_path(objective), method: :delete, data: {confirm: 'Delete this objective?'}

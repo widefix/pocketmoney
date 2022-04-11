@@ -35,6 +35,23 @@ h2.title
   .column
     .card
       .card-header
+        .card-header-title.is-centered
+          h3.title Objectives
+      .card-content
+        table.table.is-fullwidth.is-striped
+          thead
+            tr
+              th Name
+              th Amount
+              th Progress
+              th Image
+              th Actions
+          = render partial: 'objective', collection: account.objectives, account: account
+
+.columns
+  .column
+    .card
+      .card-header
         .card-header-title
           .title Weekly Automatic Topups
       .card-content

@@ -15,6 +15,6 @@ class SpendsController < ApplicationController
   private
 
   helper_method memoize def account
-    Account.find(ps.fetch(:account_id))
+    Account.visible_for(current_user).find(ps.fetch(:account_id))
   end
 end

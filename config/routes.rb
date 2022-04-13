@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :account_automatic_topup_configs, only: [:new, :create]
     resource :topup, only: [:new, :create]
     resource :spend, only: [:new, :create]
+    resources :objectives, only: [:new, :create]
   end
   resources :transactions, only: [:destroy]
   resources :objectives, only: [:destroy]

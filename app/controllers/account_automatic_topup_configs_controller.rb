@@ -8,10 +8,4 @@ class AccountAutomaticTopupConfigsController < ApplicationController
     )
     redirect_to account_path(account)
   end
-
-  private
-
-  helper_method memoize def account
-    Account.visible_for(current_user).find(ps.fetch(:account_id))
-  end
 end

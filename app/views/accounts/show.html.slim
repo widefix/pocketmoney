@@ -47,6 +47,8 @@ h2.title
               th Image
               th Actions
           = render partial: 'objective', collection: account.objectives, account: account
+      .card-footer
+        = link_to '+Add', new_account_objective_path(account), class: 'card-footer-item'
 
 .columns
   .column

@@ -1,24 +1,53 @@
-# README
+# POCKETMONEY
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Track pocket money of your kids. Allow them buying what they want. Save nerves. Save your budget and time.
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+- postgresql
+- ruby 2.7.4
+- rails 6.1.4
 
-* System dependencies
+## Installation
 
-* Configuration
+- clone [repository](https://bitbucket.org/ka8725/pocketmoney)
+- create config for **database.yml**
+- `bundle install`
+- `bundle exec rake db:create`
+- `bundle exec rake db:migrate`
+- `bundle exec rake db:seed`
 
-* Database creation
+## Database configuration
 
-* Database initialization
+Create configuration file `database.yml` in `/config` folder and insert this code.
 
-* How to run the test suite
+```
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  port: 5432
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
 
-* Services (job queues, cache servers, search engines, etc.)
+development:
+  <<: *default
+  database: pocketmoney_development
 
-* Deployment instructions
+test:
+  <<: *default
+  database: pocketmoney_test
 
-* ...
+production:
+  <<: *default
+  database: pocketmoney_production
+```
+
+## Run app
+
+To run app, you need to start a web server on your development machine. You can do this by running the following command in the blog directory:
+
+```
+bin/rails server
+```
+
+To see application, open a browser window and navigate to http://localhost:3000.

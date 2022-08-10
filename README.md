@@ -1,6 +1,6 @@
 # POCKETMONEY
 
-Track pocket money of your kids. Allow them buying what they want. Save nerves. Save your budget and time.
+It's a debt management app that creates a formalised record of debts between you and your friends.
 
 ## Requirements
 
@@ -19,28 +19,12 @@ Track pocket money of your kids. Allow them buying what they want. Save nerves. 
 
 ## Database configuration
 
-Create configuration file `database.yml` in `/config` folder and insert this code.
+Execute this command to configure database:
 
+```bash
+$ cp config/database.yml.example config/database.yml
 ```
-default: &default
-  adapter: postgresql
-  encoding: unicode
-  port: 5432
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
 
-development:
-  <<: *default
-  database: pocketmoney_development
-
-test:
-  <<: *default
-  database: pocketmoney_test
-
-production:
-  <<: *default
-  database: pocketmoney_production
-```
 
 ## Run app
 

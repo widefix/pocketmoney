@@ -42,6 +42,8 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'factory_bot_rails', '~> 6.2'
   gem 'database_cleaner' 
+  gem 'pry'
+  gem 'ffaker'
 end
 
 group :development do

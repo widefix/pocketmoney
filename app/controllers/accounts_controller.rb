@@ -5,6 +5,17 @@ class AccountsController < ApplicationController
   def new
   end
 
+  def edit
+  end
+
+  def update
+    if account.update(ps[:account])
+      redirect_to account_path
+    else
+      render :edit
+    end    
+  end
+
   def create
     Account.create!(parent: current_user.account, **ps.slice(:name))
     redirect_to my_account_path

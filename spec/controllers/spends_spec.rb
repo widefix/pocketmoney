@@ -19,9 +19,7 @@ RSpec.describe SpendsController, type: :controller do
 
     subject { post :create, params: { account_id: user.account.id, amount: amount, description: description } }
 
-    before(:each) do
-      sign_in user
-    end
+    before { sign_in user }
 
     it { is_expected.to redirect_to(account_path(user.account)) }
     it { is_expected.to have_http_status(:redirect)}

@@ -11,6 +11,8 @@ class Account < ApplicationRecord
 
   belongs_to :parent, class_name: 'Account', optional: true
 
+  validates :name, presence: true
+
   scope :visible_for, -> (current_user) {
     where(id: [current_user.account_id] + current_user.account.child_ids)
   }

@@ -23,7 +23,7 @@ RSpec.describe TopupsController, type: :controller do
 
     it { is_expected.to redirect_to(account_path(user.account)) }
     it { is_expected.to have_http_status(:redirect)}
-    it { expect { subject}.to change { Transaction.count }.by(1) }
-    it { expect{ subject }.to change { Transaction.count }.by(1) }
+    it { expect { subject }.to change { Transaction.count }.by(1) }
+    it { expect { subject }.to change { Transaction.count }.by(1) }
   end
 end

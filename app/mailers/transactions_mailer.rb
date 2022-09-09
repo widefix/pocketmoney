@@ -7,4 +7,9 @@ class TransactionsMailer < ApplicationMailer
 
     mail to: @user.email, title: "Automatic top up account - #{@to_account.name}"
   end
+
+  def transaction_notification(account)
+    @transaction = Transaction.last
+    mail to: account.email, subject: "Success! Transaction added." 
+  end
 end

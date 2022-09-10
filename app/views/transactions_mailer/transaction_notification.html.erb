@@ -1,10 +1,39 @@
-<h1>Transaction edded</h1>
+<h1>Dear <%= @account.name%>, transaction added!</h1>
 
-About transation:
+<h3>About transation:</h3>
 
+<p>From:</p>
+<%= @transaction.from_account.name %>
+<p>To:</p>
+<%= @transaction.to_account.name %>
 <p>Amount:</p>
 <%= @transaction.amount %>
 <p>Description:</p>
 <%= @transaction.description %>
 
-<%= link_to 'Approve', '#' %>
+<br>
+
+<p>Click to link for approve transaction </p><%= link_to 'Approve', '#' %>
+
+<h3> Last 5 transactions: </h3>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Amount</th>
+    <th>Description</th>
+  </tr>
+  <% @account.transactions.limit(5).each do |transaction|%>
+    <tr>
+      <th><%= transaction.date %></th>
+      <th><%= transaction.from_account.name %></th>
+      <th><%= transaction.to_account.name %></th>
+      <th><%= transaction.signed_amount(@account) %></th>
+      <th><%= transaction.description %></th>
+    </tr>
+  <% end %>
+</table>
+  
+

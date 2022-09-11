@@ -11,7 +11,7 @@ class TransactionsMailer < ApplicationMailer
   def transaction_notification(account)
     @account = account
     @transaction = Transaction.last
-    
-    mail to: @account.email, subject: "Success! Transaction added." 
+
+    mail to: @account.email, subject: "Transaction added." 
   end
 end

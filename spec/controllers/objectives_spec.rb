@@ -4,7 +4,7 @@ RSpec.describe ObjectivesController, type: :controller do
   describe '#new' do
     let(:account) { create(:account, :parent) }
 
-    subject(:new) { get :new, params: { account_id: account.id } }
+    subject(:new) { get :new, params: { account_id: account } }
 
     it { is_expected.to have_http_status(:success) }
     it { is_expected.to render_template(:new) }    
@@ -14,7 +14,7 @@ RSpec.describe ObjectivesController, type: :controller do
   describe '#create' do
     let(:account) { create(:account, :parent) }
 
-    subject(:create) { post :create, params: { account_id: account.id, } }
+    subject(:create) { post :create, params: { account_id: account } }
 
     it { expect(response).to have_http_status(:success) }
   end

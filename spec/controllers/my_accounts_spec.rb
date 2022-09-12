@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe MyAccountsController, type: :controller do
   describe '#show' do
     let(:account) { create(:account, :parent) }
-    let(:user) { create(:user, account_id: account.id) }
+    let(:user) { create(:user, account: account) }
 
     subject(:show) { get :show }
 

@@ -4,7 +4,7 @@ RSpec.describe AccountsController, type: :controller do
   describe '#show' do
     let(:account) { create(:account, :parent) }
 
-    subject(:show) { get :show, params: {id: account.id } }
+    subject(:show) { get :show, params: {id: account } }
 
     it { is_expected.to have_http_status(:success) }
     it { is_expected.to render_template(:show) }
@@ -21,7 +21,7 @@ RSpec.describe AccountsController, type: :controller do
 
   describe '#create' do
     let(:parent) { create(:account, :parent) }
-    let(:user) { create(:user, account_id: parent.id) }
+    let(:user) { create(:user, account: parent) }
 
     subject { post :create, params: { parent: parent, name: parent.name } }
 
@@ -35,9 +35,9 @@ RSpec.describe AccountsController, type: :controller do
 
   describe '#edit' do
     let(:account) { create(:account, :parent) }
-    let(:user) { create(:user, account_id: account.id) }
+    let(:user) { create(:user, account: account) }
 
-    subject(:edit) { get :edit, params: { id: account.id }}
+    subject(:edit) { get :edit, params: { id: account }}
 
     before { sign_in user }
     
@@ -48,12 +48,12 @@ RSpec.describe AccountsController, type: :controller do
 
   describe '#update' do
     let(:account) { create(:account, :parent) }
-    let(:user) { create(:user, account_id: account.id) }
+    let(:user) { create(:user, account: account) }
     let(:name) { FFaker::Name.first_name }
     let(:old_name) { old_name = account.name }
 
-    subject(:bad_update) { patch :update, params: { id: user.account.id, account: { name: nil }} }
-    subject(:update) { patch :update, params: { id: user.account.id, account: { name: name }} }
+    subject(:bad_update) { patch :update, params: { id: user.account, account: { name: nil }} }
+    subject(:update) { patch :update, params: { id: user.account, account: { name: name }} }
 
     before { sign_in user }
     

@@ -11,7 +11,8 @@ class TransactionsMailer < ApplicationMailer
   def transaction_notification(account)
     @account = account
     @transaction = Transaction.last
-
+    @transactions = @account.transactions.order(created_at: :desc).limit(5)
+    
     mail to: @account.email, subject: "Transaction added." 
   end
 end

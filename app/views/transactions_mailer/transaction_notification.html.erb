@@ -25,7 +25,7 @@
     <th>Amount</th>
     <th>Description</th>
   </tr>
-  <% @account.transactions.limit(5).each do |transaction|%>
+  <% @transactions.each do |transaction|%>
     <tr>
       <th><%= transaction.date %></th>
       <th><%= transaction.from_account.name %></th>

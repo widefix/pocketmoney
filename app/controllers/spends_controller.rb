@@ -9,6 +9,11 @@ class SpendsController < ApplicationController
       description: params[:description],
       amount: ps.fetch(:amount)
     )
+
+    if account.notification?
+      TransactionsMailer.transaction_notification(account).deliver
+    end
+    
     redirect_to account_path(account)
   end
 end

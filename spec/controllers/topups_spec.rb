@@ -14,12 +14,13 @@ RSpec.describe TopupsController, type: :controller do
   describe '#create' do
     let(:account) { create(:account, :with_notify) }
     let(:user) { create(:user, account: account) }
-    let!(:notify_true) do
-      user.account.notification = true
-      user.account.save
-    end
     let(:amount) { FFaker::Number.number }
     let(:description) { FFaker::Lorem.phrase }
+    let!(:notify_true) do
+      user.account.notification = true
+      user.account.email = user.email
+      user.account.save
+    end   
 
     subject { post :create, params: { account_id: user.account, amount: amount, description: description } }
 

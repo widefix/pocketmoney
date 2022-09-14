@@ -11,6 +11,6 @@ class User < ApplicationRecord
   private
 
   def create_account
-    update!(account: Account.find_or_create_by!(name: email))
+    update!(account: Account.find_or_create_by!(name: email, email: email))
   end
 end

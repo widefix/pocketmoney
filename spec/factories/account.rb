@@ -1,5 +1,11 @@
 FactoryBot.define do
   factory :account do
+    trait :with_notify do
+      name { FFaker::Name.first_name }
+      email { FFaker::Internet.email }
+      notification { true }
+    end
+
     trait :parent do
       name { FFaker::Name.first_name }
       email { FFaker::Internet.email }

@@ -3,6 +3,7 @@ class TopupsController < ApplicationController
   end
 
   def create
+
     Transaction.create!(
       from_account: current_user.account,
       to_account: account,

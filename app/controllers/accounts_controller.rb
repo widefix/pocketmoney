@@ -13,7 +13,7 @@ class AccountsController < ApplicationController
       redirect_to account_path
     else
       render :edit
-    end    
+    end
   end
 
   def create

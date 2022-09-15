@@ -1,7 +1,5 @@
 <h1>Dear <%= @account.name%>, transaction added!</h1>
-
 <h3>About transation:</h3>
-
 <p>From:</p>
 <%= @transaction.from_account.name %>
 <p>To:</p>
@@ -10,13 +8,9 @@
 <%= @transaction.amount %>
 <p>Description:</p>
 <%= @transaction.description %>
-
 <br>
-
 <p>Click to link for approve transaction </p><%= link_to 'Approve', '#' %>
-
 <h3> Last 5 transactions: </h3>
-
 <table>
   <tr>
     <th>Date</th>

@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   private
 
   helper_method memoize def account
+
     Account.visible_for(current_user).find(ps.fetch(:account_id))
   end
 end

@@ -7,13 +7,14 @@ RSpec.describe TopupsController, type: :controller do
     subject(:new) { get :new, params: { account_id: account } }
 
     it { is_expected.to have_http_status(:success) }
-    it { is_expected.to render_template(:new) }    
+    it { is_expected.to render_template(:new) }
     it { is_expected.to_not render_template('home/index') }
   end
 
   describe '#create' do
-    let(:user) { create(:user) }
-    let(:child) { create(:account, :with_notify, parent: user.account ) }    
+    let(:user) { create(:user, account: account) }
+    let(:account) { create(:account, :with_notify)}
+    let(:child) { create(:account, :with_notify, parent: user.account ) }
     let(:amount) { FFaker::Number.number }
     let(:description) { FFaker::Lorem.phrase }
 
@@ -28,8 +29,8 @@ RSpec.describe TopupsController, type: :controller do
       expect(find_mail_to(child.email).to).to eq([child.email])
     end
 
-    it 'subject must be correct' do 
-      subject  
+    it 'subject must be correct' do
+      subject
       expect(find_mail_to(child.email).subject).to eq("Transaction added.")
     end
 

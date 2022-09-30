@@ -8,7 +8,8 @@ class SpendsController < ApplicationController
       to_account: Account.find_or_create_by!(name: 'store'),
       description: params[:description],
       amount: ps.fetch(:amount),
-      originator: current_user
+      originator: current_user,
+      access_token: Devise.friendly_token
     )
 
     if account.notification?

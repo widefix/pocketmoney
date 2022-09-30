@@ -40,6 +40,10 @@ RSpec.describe TopupsController, type: :controller do
       expect(created_transaction.originator).to eq(user)
     end
 
+    it 'access token not be nil' do
+      subject
+      expect(created_transaction.access_token).not_to be_nil
+    end
 
     it { is_expected.to redirect_to(account_path(child)) }
     it { is_expected.to have_http_status(:redirect)}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_28_084040) do
+ActiveRecord::Schema.define(version: 2022_09_30_125639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2022_09_28_084040) do
     t.bigint "from_account_id"
     t.string "description"
     t.bigint "originator_id"
+    t.string "access_token"
     t.index ["from_account_id"], name: "index_transactions_on_from_account_id"
     t.index ["originator_id"], name: "index_transactions_on_originator_id"
     t.index ["to_account_id"], name: "index_transactions_on_to_account_id"

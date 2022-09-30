@@ -15,6 +15,7 @@ RSpec.describe SpendsController, type: :controller do
     let(:user) { create(:user, account: account) }
     let(:account) { create(:account, :with_notify)}
     let(:child) { create(:account, :with_notify, parent: user.account ) }
+    let(:created_transaction) { Transaction.find_by(from_account: child)}
     let(:amount) { FFaker::Number.number }
     let(:description) { FFaker::Lorem.phrase }
 
@@ -32,6 +33,11 @@ RSpec.describe SpendsController, type: :controller do
     it 'subject must be correct' do
       subject
       expect(find_mail_to(child.email).subject).to eq("Transaction added.")
+    end
+
+    it 'originator must be correct' do
+      subject
+      expect(created_transaction.originator).to eq(user)
     end
 
     it { is_expected.to redirect_to(account_path(child)) }

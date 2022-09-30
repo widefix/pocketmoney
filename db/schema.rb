@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_06_080039) do
+ActiveRecord::Schema.define(version: 2022_09_28_084040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,9 @@ ActiveRecord::Schema.define(version: 2022_09_06_080039) do
     t.bigint "to_account_id"
     t.bigint "from_account_id"
     t.string "description"
+    t.bigint "originator_id"
     t.index ["from_account_id"], name: "index_transactions_on_from_account_id"
+    t.index ["originator_id"], name: "index_transactions_on_originator_id"
     t.index ["to_account_id"], name: "index_transactions_on_to_account_id"
   end
 
@@ -76,5 +78,6 @@ ActiveRecord::Schema.define(version: 2022_09_06_080039) do
   add_foreign_key "objectives", "accounts"
   add_foreign_key "transactions", "accounts", column: "from_account_id"
   add_foreign_key "transactions", "accounts", column: "to_account_id"
+  add_foreign_key "transactions", "users", column: "originator_id"
   add_foreign_key "users", "accounts"
 end

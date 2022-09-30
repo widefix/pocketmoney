@@ -7,7 +7,8 @@ class TopupsController < ApplicationController
       from_account: current_user.account,
       to_account: account,
       description: params[:description],
-      amount: ps.fetch(:amount)
+      amount: ps.fetch(:amount),
+      originator: current_user
     )
 
     if account.notification?

@@ -1,8 +1,15 @@
 {
+  "name": "Money app",
+  "description": "The best evet financial helper in your pocket.",
   "cron": [
     {
       "command": "rake top_up_accounts",
       "schedule": "14 0 * * *"
     }
-  ]
+  ],
+  "scripts": {
+    "dokku": {
+       "postdeploy": "rake db:migrate"
+     }
+  }
 }

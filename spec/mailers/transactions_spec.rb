@@ -9,7 +9,6 @@ RSpec.describe TransactionsMailer, type: :mailer do
     subject(:mail) { TransactionsMailer.transaction_notification(child).deliver }
 
     it { expect(mail.to).to eq([child.email]) }
-    it { expect(mail.from).to eq(["no-reply@widefix.com"]) }
     it { expect(mail.subject).to eq("Transaction added.") }
     it { expect(mail.body.encoded).to match(child.name) }
   end

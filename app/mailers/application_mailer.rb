@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "\"Pocketmoney\" <no-reply@widefix.com>"
+  default from: ENV.fetch('SMTP_DEFAULT_FROM', "Andrei Kaleshka at Money <andrei.kaleshka@widefix.com>")
   layout 'mailer'
 
   private

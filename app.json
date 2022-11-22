@@ -1,0 +1,8 @@
+{
+  "cron": [
+    {
+      "command": "rake top_up_accounts",
+      "schedule": "14 0 * * *"
+    }
+  ]
+}

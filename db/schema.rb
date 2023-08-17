@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_30_125639) do
+ActiveRecord::Schema.define(version: 2023_08_16_140637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,20 @@ ActiveRecord::Schema.define(version: 2022_09_30_125639) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["from_account_id"], name: "index_account_automatic_topup_configs_on_from_account_id"
     t.index ["to_account_id"], name: "index_account_automatic_topup_configs_on_to_account_id"
+  end
+
+  create_table "account_invitation", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "email"
+    t.string "name"
+    t.string "token"
+    t.bigint "account_id", null: false
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_account_invitation_on_account_id"
+    t.index ["token"], name: "index_account_invitation_on_token"
+    t.index ["user_id"], name: "index_account_invitation_on_user_id"
   end
 
   create_table "accounts", force: :cascade do |t|
@@ -75,6 +89,8 @@ ActiveRecord::Schema.define(version: 2022_09_30_125639) do
 
   add_foreign_key "account_automatic_topup_configs", "accounts", column: "from_account_id"
   add_foreign_key "account_automatic_topup_configs", "accounts", column: "to_account_id"
+  add_foreign_key "account_invitation", "accounts"
+  add_foreign_key "account_invitation", "users"
   add_foreign_key "accounts", "accounts", column: "parent_id"
   add_foreign_key "objectives", "accounts"
   add_foreign_key "transactions", "accounts", column: "from_account_id"

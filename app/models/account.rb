@@ -2,8 +2,9 @@ class Account < ApplicationRecord
   has_many :income_transactions, class_name: 'Transaction', foreign_key: :to_account_id
   has_many :outcome_transactions, class_name: 'Transaction', foreign_key: :from_account_id
   has_many :children, class_name: 'Account', foreign_key: :parent_id
-  has_many :account_invitation, foreign_key: :invitee_id
+  has_many :account_invitations, foreign_key: :user_id
 
+  # an account has user optionally
   has_one :user
 
   has_many :automatic_topup_configs, class_name: 'AccountAutomaticTopupConfig', foreign_key: :to_account_id

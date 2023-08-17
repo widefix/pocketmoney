@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_17_114842) do
+ActiveRecord::Schema.define(version: 2023_08_17_120303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,9 +34,6 @@ ActiveRecord::Schema.define(version: 2023_08_17_114842) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "accepted_at"
-    t.index ["account_id"], name: "index_account_invitations_on_account_id"
-    t.index ["token"], name: "index_account_invitations_on_token"
-    t.index ["user_id"], name: "index_account_invitations_on_user_id"
   end
 
   create_table "accounts", force: :cascade do |t|
@@ -89,8 +86,6 @@ ActiveRecord::Schema.define(version: 2023_08_17_114842) do
 
   add_foreign_key "account_automatic_topup_configs", "accounts", column: "from_account_id"
   add_foreign_key "account_automatic_topup_configs", "accounts", column: "to_account_id"
-  add_foreign_key "account_invitations", "accounts"
-  add_foreign_key "account_invitations", "users"
   add_foreign_key "accounts", "accounts", column: "parent_id"
   add_foreign_key "objectives", "accounts"
   add_foreign_key "transactions", "accounts", column: "from_account_id"

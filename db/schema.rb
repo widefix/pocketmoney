@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_30_125639) do
+ActiveRecord::Schema.define(version: 2023_08_17_120303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 2022_09_30_125639) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["from_account_id"], name: "index_account_automatic_topup_configs_on_from_account_id"
     t.index ["to_account_id"], name: "index_account_automatic_topup_configs_on_to_account_id"
+  end
+
+  create_table "account_invitations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "email"
+    t.string "name"
+    t.string "token"
+    t.bigint "account_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "accepted_at"
   end
 
   create_table "accounts", force: :cascade do |t|

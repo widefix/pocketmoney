@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_17_120303) do
+ActiveRecord::Schema.define(version: 2023_08_18_090609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,8 @@ ActiveRecord::Schema.define(version: 2023_08_17_120303) do
 
   add_foreign_key "account_automatic_topup_configs", "accounts", column: "from_account_id"
   add_foreign_key "account_automatic_topup_configs", "accounts", column: "to_account_id"
+  add_foreign_key "account_invitations", "accounts", on_delete: :cascade
+  add_foreign_key "account_invitations", "users", on_delete: :cascade
   add_foreign_key "accounts", "accounts", column: "parent_id"
   add_foreign_key "objectives", "accounts"
   add_foreign_key "transactions", "accounts", column: "from_account_id"

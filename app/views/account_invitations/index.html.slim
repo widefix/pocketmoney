@@ -1,0 +1,20 @@
+h2.title
+  | Account invitations
+  = link_to 'New invitation', new_account_invitation_path, class: 'button is-light'
+
+<br>
+
+.columns
+  .column
+    .card
+      .card-content
+        table.table.is-fullwidth.is-striped
+          thead
+            tr
+              th Name
+              th Email
+              th Account
+              th Created
+              th Accepted
+              th Actions
+          = render partial: 'account_invitation', collection: @account_invitations

@@ -1,8 +1,14 @@
-<%= account.name %>
-<br>
-Account balance: <%= account.balance %>
-<br>
-
+<div class="columns">
+  <div class="column is-three-quarters">
+    <%= account.name %>
+    <br>
+    Account balance: <%= account.balance %>
+    <br>
+  </div>
+  <div class="column is-flex is-justify-content-flex-end">
+    <%= link_to 'Account invitations', account_invitations_path(account), class: 'button is-light'%>
+  </div>
+</div>
 <% account.children.each do |child| %>
   <div class="card box">
     <div class="card-content">
@@ -19,5 +25,4 @@ Account balance: <%= account.balance %>
     </footer>
   </div>
 <% end %>
-
 <%= link_to 'add account', new_account_path %>

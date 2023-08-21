@@ -5,20 +5,12 @@
   <div class="column is-flex is-justify-content-flex-end">
   </div>
 </div>
-<%= form_with model: @account_invitation do |form| %>
+<%= form_with model: @account_invitation, url: account_invitations_path(account)  do |form| %>
   <div class="column is-one-third">
     <%= form.label :name %>
     <%= form.text_field :name, type:"text", class: 'input'%>
     <%= form.label :email %>
     <%= form.email_field :email,  type: "email"%>
-    <div class="field">
-      <%= form.label :account_id %>
-      <div class="control">
-        <div class="select is-normal", style: width: 100%;>
-          <%= form.collection_select :account_id, current_user_accounts, :id, :name, { include_blank: '' }%>
-        </div>
-      </div>
-    </div>
   </div>
   <%= form.submit :Create, class: 'button is-light' %>
 <% end %>

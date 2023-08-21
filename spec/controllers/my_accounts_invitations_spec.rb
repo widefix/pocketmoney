@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe AccountInvitationsController, type: :controller do
+RSpec.describe MyAccountsInvitationsController, type: :controller do
   describe '#index' do
     let(:account) { create(:account, :parent) }
     let(:user) { create(:user, account: account) }
 
-    subject(:index) { get :index, params: { account_id: account.id } }
+    subject(:index) { get :index }
 
     before { sign_in user }
 
@@ -17,7 +17,7 @@ RSpec.describe AccountInvitationsController, type: :controller do
     let(:account) { create(:account, :parent) }
     let(:user) { create(:user, account: account) }
 
-    subject(:new) { get :new, params: { account_id: account.id } }
+    subject(:new) { get :new }
 
     before { sign_in user }
 
@@ -33,13 +33,14 @@ RSpec.describe AccountInvitationsController, type: :controller do
       post :create, params: { account_invitation: {
         name: FFaker::Name.first_name,
         email: FFaker::Internet.email,
-        token: FFaker::Lorem.sentence
-      }, account_id: account.id }
+        token: FFaker::Lorem.sentence,
+        account_id: controller.send(:current_user_accounts)[0].id
+      } }
     end
 
     before { sign_in user }
 
-    it { is_expected.to redirect_to(account_invitations_path) }
+    it { is_expected.to redirect_to(my_accounts_invitations_path) }
     it { is_expected.to have_http_status(302) }
     it { expect { subject }.to change { AccountInvitation.where(user_id: user.id).count }.by(1) }
     it { expect { subject }.to change { AccountInvitation.count }.by(1) }
@@ -51,7 +52,7 @@ RSpec.describe AccountInvitationsController, type: :controller do
 
     let!(:account_invitation) { create(:account_invitation, user: user, account: account) }
 
-    subject { delete :destroy, params: { account_id: account.id, id: account_invitation } }
+    subject { delete :destroy, params: { id: account_invitation } }
     before { sign_in user }
     it { expect { subject }.to change { AccountInvitation.count }.from(1).to(0) }
   end

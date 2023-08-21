@@ -1,0 +1,7 @@
+tr
+  td= link_to my_accounts_invitation.account.name, account_path(my_accounts_invitation.account_id)
+  td= my_accounts_invitation.name
+  td= my_accounts_invitation.email
+  td= my_accounts_invitation.created_at.to_formatted_s(:short)
+  td= my_accounts_invitation.accepted_at&.to_formatted_s(:short)
+  td= link_to :delete, my_accounts_invitation_path(my_accounts_invitation), method: :delete, data: {confirm: 'Delete this invitation?'}

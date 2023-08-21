@@ -1,7 +1,6 @@
 h2.title
-  | Invitations to&nbsp;
-  = link_to account.name, account_path(account)
-  = link_to 'New invitation', new_account_invitation_path, class: 'button is-light'
+  | Invitations of my accounts
+  = link_to 'New invitation', new_my_accounts_invitation_path, class: 'button is-light'
 
 <br>
 
@@ -12,9 +11,10 @@ h2.title
         table.table.is-fullwidth.is-striped
           thead
             tr
+              th Account
               th Name
               th Email
               th Created
               th Accepted
               th Actions
-          = render partial: 'account_invitation', collection: @account_invitations
+          = render partial: 'my_accounts_invitation', collection: @my_accounts_invitations

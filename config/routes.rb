@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resource :my_account, only: :show
-  resources :my_accounts_invitations, only: %i[index new create destroy]
 
   resources :accounts, only: %i[show new create edit update] do
     resources :account_automatic_topup_configs, only: %i[new create]

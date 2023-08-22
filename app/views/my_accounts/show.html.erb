@@ -1,14 +1,7 @@
-<div class="columns">
-  <div class="column is-three-quarters">
-    <%= account.name %>
-    <br>
-    Account balance: <%= account.balance %>
-    <br>
-  </div>
-  <div class="column is-flex is-justify-content-flex-end">
-    <%= link_to 'Invitations of my accounts', my_accounts_invitations_path(account), class: 'button is-light'%>
-  </div>
-</div>
+<%= account.name %>
+<br>
+Account balance: <%= account.balance %>
+<br>
 <% account.children.each do |child| %>
   <div class="card box">
     <div class="card-content">

@@ -4,13 +4,13 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resource :my_account, only: :show
-  resources :account_invitations, only: %i[index new create destroy]
 
   resources :accounts, only: %i[show new create edit update] do
     resources :account_automatic_topup_configs, only: %i[new create]
     resource :topup, only: %i[new create]
     resource :spend, only: %i[new create]
     resources :objectives, only: %i[new create]
+    resources :invitations, only: %i[index new create destroy], controller: 'account_invitations'
   end
   resources :transactions, only: [:destroy]
   resources :objectives, only: [:destroy]

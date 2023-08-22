@@ -1,6 +1,10 @@
-h2.title
-  | Account details
-  = link_to 'Edit', edit_account_path(account), class: 'button is-light'  
+.columns
+  .column.is-three-quarters
+    h2.title
+      | Account details
+      = link_to 'Edit', edit_account_path(account), class: 'button is-light'
+  .column.is-flex.is-justify-content-flex-end
+    = link_to 'Account invitations', account_invitations_path(account), class: 'button is-light'
 
 .columns
   .column

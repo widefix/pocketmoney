@@ -44,6 +44,7 @@ group :development, :test do
   gem 'database_cleaner' 
   gem 'pry'
   gem 'ffaker'
+  gem 'rubocop'
 end
 
 group :development do

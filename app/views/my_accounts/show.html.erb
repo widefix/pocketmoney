@@ -2,19 +2,22 @@
 <br>
 Account balance: <%= account.balance %>
 <br>
-<% account.children.each do |child| %>
-  <div class="card box">
+<% accounts.each do |account| %>
+  <div class="card box ">
     <div class="card-content">
       <div class="media">
         <div class="media-content">
-          <p class="title is-4"><%= link_to child.name, account_path(child) %></p>
-          <p class="subtitle is-6"><%= child.balance %></p>
+          <% if account.user_id != current_user.id %>
+            <p class="title is-6"><%= "Owner: #{account.user_email}" %></p>
+          <% end %>
+          <p class="title is-4"><%= link_to account.name, account_path(account) %></p>
+          <p class="subtitle is-6"><%= account.balance %></p>
         </div>
       </div>
     </div>
     <footer class="card-footer">
-      <%= link_to '+ Add', new_account_topup_path(child), class: 'card-footer-item' %>
-      <%= link_to '- Spend', new_account_spend_path(child), class: 'card-footer-item' %>
+      <%= link_to '+ Add', new_account_topup_path(account), class: 'card-footer-item' %>
+      <%= link_to '- Spend', new_account_spend_path(account), class: 'card-footer-item' %>
     </footer>
   </div>
 <% end %>

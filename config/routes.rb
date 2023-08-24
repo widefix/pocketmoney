@@ -13,9 +13,7 @@ Rails.application.routes.draw do
     resources :invitations, only: %i[index new create destroy], controller: 'account_invitations'
   end
 
-  get 'account_invitation/:invitation_id', to: 'account_invitations#accept_invitation', as: :visit_by_account_invitation
-  post 'account_invitation/:invitation_id', to: 'account_invitations#accept', as: :accept_account_invitation
-
+  resources :accept_account_invitations, param: :token, only: %i[show update]
   resources :transactions, only: [:destroy]
   resources :objectives, only: [:destroy]
 end

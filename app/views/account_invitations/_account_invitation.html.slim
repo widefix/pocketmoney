@@ -3,5 +3,5 @@ tr
   td= account_invitation.email
   td= account_invitation.created_at.to_formatted_s(:short)
   td= account_invitation.accepted_at&.to_formatted_s(:short)
-  td= link_to 'link', visit_by_account_invitation_url(account_invitation.id,token: account_invitation.token)
+  td= link_to 'link', accept_account_invitation_url(token: account_invitation.token)
   td= link_to :delete, account_invitation_path(account, account_invitation), method: :delete, data: {confirm: 'Delete this invitation?'}

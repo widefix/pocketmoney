@@ -3,9 +3,7 @@
 class AcceptAccountInvitationsController < ApplicationController
   before_action :authenticate_user!
 
-  def show
-    received_invitation
-  end
+  def show; end
 
   def update
     received_invitation.update!(accepted_at: Time.current)
@@ -15,6 +13,6 @@ class AcceptAccountInvitationsController < ApplicationController
   private
 
   helper_method memoize def received_invitation
-    AccountInvitation.unaccepted_for(current_user).find_by!(token: ps.fetch(:token))
+    AccountInvitation.unaccepted.for(current_user).find_by!(token: ps.fetch(:token))
   end
 end

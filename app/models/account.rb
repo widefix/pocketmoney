@@ -15,14 +15,7 @@ class Account < ApplicationRecord
   validates :name, presence: true
 
   scope :visible_for, lambda { |current_user|
-    where(id: [current_user.account_id] +
-               current_user.account.child_ids +
-               AccountInvitation.accepted_by(current_user).pluck(:account_id))
-  }
-
-  scope :children_and_invitees, lambda { |current_user|
-    where(id: current_user.account.child_ids +
-              AccountInvitation.accepted_by(current_user).pluck(:account_id))
+    where(id: [current_user.account_id] + current_user.account.child_ids)
   }
 
   memoize def balance

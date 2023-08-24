@@ -6,10 +6,6 @@ class ApplicationController < ActionController::Base
     request.params
   end
 
-  def not_found
-    render file: "#{Rails.root}/public/404.html", layout: false, status: :not_found
-  end
-
   private
 
   helper_method memoize def account

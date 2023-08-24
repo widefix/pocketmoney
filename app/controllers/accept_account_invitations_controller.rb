@@ -1,30 +1,20 @@
+# frozen_string_literal: true
+
 class AcceptAccountInvitationsController < ApplicationController
+  before_action :authenticate_user!
+
   def show
-    not_found unless received_invitation &&
-                     invitation_belongs_to_current_user? &&
-                     not_accepted_invitation?
+    received_invitation
   end
 
   def update
-    received_invitation.update!(accepted_at: Time.now)
-    redirect_to account_path received_invitation.account_id
+    received_invitation.update!(accepted_at: Time.current)
+    redirect_to account_path(received_invitation.account_id)
   end
 
   private
 
   helper_method memoize def received_invitation
-    AccountInvitation.find_by(token: ps.fetch(:token))
-  end
-
-  def invitation_belongs_to_current_user?
-    current_user&.email == received_invitation.email
-  end
-
-  def token_valid?
-    received_invitation.token == ps.fetch(:token)
-  end
-
-  def not_accepted_invitation?
-    received_invitation.accepted_at.nil?
+    AccountInvitation.unaccepted_for(current_user).find_by!(token: ps.fetch(:token))
   end
 end

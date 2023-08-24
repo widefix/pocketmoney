@@ -1,5 +1,5 @@
 class AccountInvitationsController < ApplicationController
-  before_action :authenticate_user!, except: :accept_invitation
+  before_action :authenticate_user!
 
   def index; end
 

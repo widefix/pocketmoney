@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :objectives, only: %i[new create]
     resources :invitations, only: %i[index new create destroy], controller: 'account_invitations'
   end
+
+  resources :accept_account_invitations, param: :token, only: %i[show update]
   resources :transactions, only: [:destroy]
   resources :objectives, only: [:destroy]
 end

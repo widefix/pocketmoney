@@ -16,5 +16,6 @@ h2.title
               th Email
               th Created
               th Accepted
+              th Link
               th Actions
           = render partial: 'account_invitation', collection: account.account_invitations.order(created_at: :desc)

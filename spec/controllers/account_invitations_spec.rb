@@ -33,7 +33,7 @@ RSpec.describe AccountInvitationsController, type: :controller do
       post :create, params: { account_invitation: {
         name: FFaker::Name.first_name,
         email: FFaker::Internet.email,
-        token: FFaker::Lorem.sentence
+        token: SecureRandom.urlsafe_base64(32)
       }, account_id: account.id }
     end
 
@@ -48,8 +48,8 @@ RSpec.describe AccountInvitationsController, type: :controller do
   describe '#destroy' do
     let(:account) { create(:account, :parent) }
     let(:user) { create(:user, account: account) }
-
-    let!(:account_invitation) { create(:account_invitation, user: user, account: account) }
+    let(:second_user) { create(:user) }
+    let!(:account_invitation) { create(:account_invitation, user: user, account: account, email: second_user.email) }
 
     subject { delete :destroy, params: { account_id: account.id, id: account_invitation } }
     before { sign_in user }

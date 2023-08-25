@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Account < ApplicationRecord
   has_many :income_transactions, class_name: 'Transaction', foreign_key: :to_account_id
   has_many :outcome_transactions, class_name: 'Transaction', foreign_key: :from_account_id
@@ -20,9 +22,8 @@ class Account < ApplicationRecord
                AccountInvitation.accepted.for(current_user).pluck(:account_id))
   }
 
-  scope :children_and_invitees, lambda { |current_user|
-    where(id: current_user.account.child_ids +
-              AccountInvitation.accepted.for(current_user).pluck(:account_id))
+  scope :invitees, lambda { |current_user|
+    where(id: AccountInvitation.accepted.for(current_user).pluck(:account_id))
   }
 
   memoize def balance

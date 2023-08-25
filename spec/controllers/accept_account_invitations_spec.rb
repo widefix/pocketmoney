@@ -14,10 +14,19 @@ RSpec.describe AcceptAccountInvitationsController, type: :controller do
       get :show, params: { token: account_invitation.token }
     end
 
-    before { sign_in second_user }
+    context 'when the user not signed in' do
+      it 'redirects to new user session url with email' do
+        subject
+        expect(response).to redirect_to(new_user_session_url(email: account_invitation.email))
+      end
+    end
 
-    it { is_expected.to have_http_status(:success) }
-    it { is_expected.to render_template(:show) }
+    context 'when the user signed in' do
+      before { sign_in second_user }
+
+      it { is_expected.to have_http_status(:success) }
+      it { is_expected.to render_template(:show) }
+    end
   end
 
   describe '#update' do

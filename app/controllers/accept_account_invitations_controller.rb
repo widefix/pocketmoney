@@ -4,8 +4,15 @@ class AcceptAccountInvitationsController < ApplicationController
   def show
     return if user_signed_in?
 
-    session[:after_sign_in_url] = request.fullpath
-    redirect_to new_user_session_url(email: AccountInvitation.find_by!(token: ps.fetch(:token)).email)
+    session[:after_authentication_url] = request.fullpath
+
+    invitee_email = AccountInvitation.find_by!(token: ps[:token]).email
+    user = User.find_by(email: invitee_email)
+    if user.present?
+      redirect_to new_user_session_url(email: invitee_email)
+    else
+      redirect_to new_user_registration_url(email: invitee_email)
+    end
   end
 
   def update
@@ -16,6 +23,6 @@ class AcceptAccountInvitationsController < ApplicationController
   private
 
   helper_method memoize def received_invitation
-    AccountInvitation.unaccepted.for(current_user).find_by!(token: ps.fetch(:token))
+    AccountInvitation.unaccepted.for(current_user).find_by!(token: ps[:token])
   end
 end

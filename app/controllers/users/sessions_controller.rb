@@ -10,11 +10,11 @@ module Users
       end
     end
 
-    protected
+    private
 
     def after_sign_in_path_for(_resource)
-      if (token = session.delete(:token)).present?
-        return accept_account_invitation_path(token: token)
+      if (after_sign_in_url = session.delete(:after_sign_in_url)).present?
+        return after_sign_in_url
       end
 
       super

@@ -46,6 +46,7 @@ RSpec.describe AcceptAccountInvitationsController, type: :controller do
       subject
       expect(AccountInvitation.find(account_invitation.id).accepted_at).not_to be_nil
     end
-    it { is_expected.to have_http_status(204) }
+    it { is_expected.to have_http_status(302) }
+    it { is_expected.to redirect_to(account_path(account_invitation.account_id)) }
   end
 end

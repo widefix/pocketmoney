@@ -4,7 +4,7 @@ class AcceptAccountInvitationsController < ApplicationController
   def show
     return if user_signed_in?
 
-    session[:after_authentication_url] = request.fullpath
+    session[:after_sign_in_url] = request.fullpath
 
     invitee_email = AccountInvitation.find_by!(token: ps.fetch(:token)).email
     user = User.find_by(email: invitee_email)

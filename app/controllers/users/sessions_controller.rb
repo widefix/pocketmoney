@@ -13,8 +13,8 @@ module Users
     private
 
     def after_sign_in_path_for(_resource)
-      after_authentication_url = session.delete(:after_authentication_url)
-      return after_authentication_url if after_authentication_url.present?
+      after_sign_in_url = session.delete(:after_sign_in_url)
+      return after_sign_in_url if after_sign_in_url.present?
 
       super
     end

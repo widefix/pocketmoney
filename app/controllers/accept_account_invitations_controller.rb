@@ -5,7 +5,12 @@ class AcceptAccountInvitationsController < ApplicationController
     return if user_signed_in?
 
     session[:after_sign_in_url] = request.fullpath
-    redirect_to new_user_session_url(email: AccountInvitation.find_by!(token: ps.fetch(:token)).email)
+
+    invitee_email = AccountInvitation.find_by!(token: ps.fetch(:token)).email
+    user = User.find_by(email: invitee_email)
+    redirect_url = user ? new_user_session_url(email: invitee_email) : new_user_registration_url(email: invitee_email)
+
+    redirect_to redirect_url
   end
 
   def update

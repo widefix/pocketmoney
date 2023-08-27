@@ -6,7 +6,7 @@ RSpec.describe AcceptAccountInvitationsController, type: :controller do
   describe '#show' do
     let(:account) { create(:account, :parent) }
     let(:user) { create(:user, account: account) }
-    let(:second_user) { create(:user, account: account) }
+    let(:second_user) { create(:user) }
 
     let!(:account_invitation) { create(:account_invitation, user: user, account: account, email: second_user.email) }
 
@@ -18,6 +18,15 @@ RSpec.describe AcceptAccountInvitationsController, type: :controller do
       it 'redirects to new user session url with email' do
         subject
         expect(response).to redirect_to(new_user_session_url(email: account_invitation.email))
+      end
+    end
+
+    context 'when the user not signed up' do
+      let(:account_invitation) { create(:account_invitation, user: user, account: account) }
+
+      it 'redirects to registration url with email' do
+        subject
+        expect(response).to redirect_to(new_user_registration_url(email: account_invitation.email))
       end
     end
 

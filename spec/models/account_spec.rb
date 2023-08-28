@@ -10,7 +10,7 @@ RSpec.describe Account, type: :model do
     let!(:second_transaction) { create(:transaction, to_account: child, from_account: parent, amount: 50, created_at: Time.current) }
 
     it 'calculates accumulative balance data' do
-      expect(parent.accumulative_balance_data).to eq({ first_transaction.created_at.to_date => 100, second_transaction.created_at.to_date => 50 })
+      expect(parent.accumulative_balance_data).to eq({ first_transaction.created_at.to_date => 100, second_transaction.created_at.to_date => 150 })
     end
   end
 end

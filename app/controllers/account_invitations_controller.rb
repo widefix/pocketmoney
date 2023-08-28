@@ -6,10 +6,11 @@ class AccountInvitationsController < ApplicationController
   def new; end
 
   def create
-    AccountInvitation.create!(user_id: current_user.id,
-                              account_id: account.id,
-                              token: SecureRandom.urlsafe_base64(32),
-                              **account_invitation_params)
+    account_invitation = AccountInvitation.create!(user_id: current_user.id,
+                                                   account_id: account.id,
+                                                   token: SecureRandom.urlsafe_base64(32),
+                                                   **account_invitation_params)
+    InvitationMailer.account_invitation(account_invitation).deliver
     redirect_to account_invitations_path account
   end
 

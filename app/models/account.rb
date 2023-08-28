@@ -31,4 +31,8 @@ class Account < ApplicationRecord
   def transactions
     Transaction.where(to_account: self).or(Transaction.where(from_account: self))
   end
+
+  def accumulative_balance_data
+    transactions.group_by_day(:created_at).sum(:amount)
+  end
 end

@@ -19,12 +19,10 @@ class Account < ApplicationRecord
   scope :visible_for, lambda { |current_user|
     where(id: [current_user.account_id] +
                current_user.account.child_ids +
-               AccountInvitation.accepted.for(current_user).pluck(:account_id))
+               invitees(current_user).pluck(:id))
   }
 
-  scope :invitees, lambda { |current_user|
-    where(id: AccountInvitation.accepted.for(current_user).pluck(:account_id))
-  }
+  scope :invitees, ->(user) { where(id: AccountInvitation.accepted.for(user).pluck(:account_id)) }
 
   memoize def balance
     income_transactions.sum(:amount) - outcome_transactions.sum(:amount)

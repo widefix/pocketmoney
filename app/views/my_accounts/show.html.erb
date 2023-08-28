@@ -21,12 +21,12 @@ Account balance: <%= account.balance %>
 <%= link_to 'add account', new_account_path %>
 <br>
 Shared accounts
-<% accounts.each do |account| %>
+<% shared_accounts.each do |account| %>
   <div class="card box">
     <div class="card-content">
       <div class="media">
         <div class="media-content">
-          <p class="title is-6"><%= "Owner: #{account.user_email}" %></p>
+          <p class="title is-6"><%= "Owner: #{account.parent.email}" %></p>
           <p class="title is-4"><%= link_to account.name, account_path(account) %></p>
           <p class="subtitle is-6"><%= account.balance %></p>
         </div>

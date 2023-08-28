@@ -11,9 +11,7 @@ class MyAccountsController < ApplicationController
     current_user.account
   end
 
-  helper_method def accounts
-    Account.select('accounts.*, users.email as user_email, users.id as user_id')
-           .invitees(current_user)
-           .joins('INNER JOIN users ON users.account_id = accounts.parent_id')
+  helper_method memoize def shared_accounts
+    Account.invitees(current_user)
   end
 end

@@ -75,3 +75,5 @@
 
       .card-footer
         = link_to '+ Add', new_account_account_automatic_topup_config_path(account), class: 'card-footer-item'
+= line_chart account.accumulative_balance_data, xtitle: 'Date', ytitle: 'Accumulative Balance'
+

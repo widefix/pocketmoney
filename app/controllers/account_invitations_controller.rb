@@ -10,7 +10,7 @@ class AccountInvitationsController < ApplicationController
                                                    account_id: account.id,
                                                    token: SecureRandom.urlsafe_base64(32),
                                                    **account_invitation_params)
-    InvitationMailer.account_invitation(account_invitation).deliver
+    InvitationMailer.account_invitation(account_invitation, current_user).deliver
     redirect_to account_invitations_path account
   end
 

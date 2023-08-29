@@ -1,7 +1,6 @@
-<h2>Dear <%= @account_invitation.name%>, welcome to managing my account!</h2>
+<h2>Dear <%= @account_invitation.name %>, welcome to managing my account!</h2>
 <br>
 <p>Click the link to approve the invitation</p>
 <%= link_to 'Go and approve the invitation', accept_account_invitation_url(token: @account_invitation.token) %>
 <br>
-<!-- TODO: add curent user name -->
-<p>Sincerely, </p>
+<p>Sincerely, <%= @current_user.name %> </p>

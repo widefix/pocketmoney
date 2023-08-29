@@ -33,15 +33,26 @@ class Account < ApplicationRecord
   end
 
   def accumulative_balance_data
-    transactions_grouped_by_day = transactions.group_by { |t| t.created_at.to_date }
-    balance = 0
-    accumulative_balance_by_day = {}
+    result = ActiveRecord::Base.connection.execute(balance_sql)
+    result.to_h { |transaction| [transaction['date'], transaction['sum']] }
+  end
 
-    transactions_grouped_by_day.each do |date, transactions|
-      balance += transactions.sum { |transaction| transaction.from_account_id == id ? -transaction.amount : transaction.amount }
-      accumulative_balance_by_day[date] = balance
-    end
+  private
 
-    accumulative_balance_by_day
+  def balance_sql
+    <<-SQL
+      WITH trs AS (
+        SELECT
+          id,
+          created_at::date AS date,
+          CASE WHEN to_account_id = #{id} THEN amount ELSE -amount END AS amount
+        FROM transactions
+        WHERE to_account_id = #{id} OR from_account_id = #{id}
+        ORDER BY created_at::date
+      )
+      SELECT date, SUM(amount) OVER (ORDER BY date)
+      FROM trs
+      ORDER BY date;
+    SQL
   end
 end

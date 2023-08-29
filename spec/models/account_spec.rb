@@ -10,12 +10,14 @@ RSpec.describe Account, type: :model do
     let!(:second_transaction) { create(:transaction, to_account: child, from_account: parent, amount: 70.0, created_at: 1.day.ago) }
     let!(:third_transaction) { create(:transaction, to_account: parent, from_account: child, amount: 50.0, created_at: Time.current) }
 
-    it 'calculates accumulative balance data' do
-      expect(parent.accumulative_balance_data).to eq({
-                                                       first_transaction.created_at.to_date => 100.0,
-                                                       second_transaction.created_at.to_date => 30.0,
-                                                       third_transaction.created_at.to_date => 80.0
-                                                     })
+    context 'with positive and negative transactions' do
+      it do
+        expect(parent.accumulative_balance_data).to eq({
+                                                         first_transaction.created_at.to_date.strftime('%Y-%m-%d') => 100.0,
+                                                         second_transaction.created_at.to_date.strftime('%Y-%m-%d') => 30.0,
+                                                         third_transaction.created_at.to_date.strftime('%Y-%m-%d') => 80.0
+                                                       })
+      end
     end
   end
 end

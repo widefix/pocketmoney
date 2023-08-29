@@ -25,7 +25,6 @@ gem "bulma-rails", "~> 0.9.2"
 gem 'slim'
 gem "font-awesome-rails"
 gem 'chartkick'
-gem 'groupdate'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

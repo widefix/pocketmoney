@@ -33,12 +33,12 @@ class Account < ApplicationRecord
   end
 
   def accumulative_balance_data
-    transactions_grouped_by_day = transactions.group_by_day(:created_at).sum(:amount)
+    transactions_grouped_by_day = transactions.group_by { |t| t.created_at.to_date }
     balance = 0
     accumulative_balance_by_day = {}
 
-    transactions_grouped_by_day.each do |date, transaction|
-      balance += BigDecimal(transaction.to_s)
+    transactions_grouped_by_day.each do |date, transactions|
+      balance += transactions.sum { |transaction| transaction.from_account_id == id ? -transaction.amount : transaction.amount }
       accumulative_balance_by_day[date] = balance
     end
 

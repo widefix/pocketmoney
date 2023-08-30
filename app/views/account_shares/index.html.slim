@@ -1,6 +1,6 @@
 h2.title
-  | Account invitations
-  = link_to 'New invitation', new_account_invitation_path, class: 'button is-light'
+  | Account shares
+  = link_to 'New share', new_account_share_path, class: 'button is-light'
 
 .columns
   .column
@@ -18,4 +18,4 @@ h2.title
               th Accepted
               th Link
               th Actions
-          = render partial: 'account_invitation', collection: account.account_invitations.order(created_at: :desc)
+          = render partial: 'account_share', collection: account.account_shares.order(created_at: :desc)

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe AccountInvitationsController, type: :controller do
+RSpec.describe AccountSharesController, type: :controller do
   describe '#index' do
     let(:account) { create(:account, :parent) }
     let(:user) { create(:user, account: account) }
@@ -30,7 +32,7 @@ RSpec.describe AccountInvitationsController, type: :controller do
     let(:user) { create(:user, account: account) }
 
     subject do
-      post :create, params: { account_invitation: {
+      post :create, params: { account_share: {
         name: FFaker::Name.first_name,
         email: FFaker::Internet.email,
         token: SecureRandom.urlsafe_base64(32)
@@ -39,20 +41,20 @@ RSpec.describe AccountInvitationsController, type: :controller do
 
     before { sign_in user }
 
-    it { is_expected.to redirect_to(account_invitations_path) }
+    it { is_expected.to redirect_to(account_shares_path) }
     it { is_expected.to have_http_status(302) }
-    it { expect { subject }.to change { AccountInvitation.where(user_id: user.id).count }.by(1) }
-    it { expect { subject }.to change { AccountInvitation.count }.by(1) }
+    it { expect { subject }.to change { AccountShare.where(user_id: user.id).count }.by(1) }
+    it { expect { subject }.to change { AccountShare.count }.by(1) }
   end
 
   describe '#destroy' do
     let(:account) { create(:account, :parent) }
     let(:user) { create(:user, account: account) }
     let(:second_user) { create(:user) }
-    let!(:account_invitation) { create(:account_invitation, user: user, account: account, email: second_user.email) }
+    let!(:account_share) { create(:account_share, user: user, account: account, email: second_user.email) }
 
-    subject { delete :destroy, params: { account_id: account.id, id: account_invitation } }
+    subject { delete :destroy, params: { account_id: account.id, id: account_share } }
     before { sign_in user }
-    it { expect { subject }.to change { AccountInvitation.count }.from(1).to(0) }
+    it { expect { subject }.to change { AccountShare.count }.from(1).to(0) }
   end
 end

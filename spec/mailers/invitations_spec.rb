@@ -12,7 +12,7 @@ RSpec.describe InvitationMailer, type: :mailer do
     subject(:mail) { InvitationMailer.account_invitation(account_invitation, user).deliver }
 
     it { expect(mail.to).to eq([invitee_user.email]) }
-    it { expect(mail.subject).to eq("Invitation to manage an account from #{user.name}") }
+    it { expect(mail.subject).to eq("Invitation to manage an account from #{user.name || "#{user.email} owner"}") }
     it { expect(mail.body.encoded).to match(account_invitation.name) }
   end
 end

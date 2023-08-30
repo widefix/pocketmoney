@@ -12,6 +12,6 @@ class MyAccountsController < ApplicationController
   end
 
   helper_method memoize def shared_accounts
-    Account.shares(current_user)
+    Account.access_recipients(current_user)
   end
 end

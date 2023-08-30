@@ -1,0 +1,20 @@
+.columns.is-centered
+  .column.is-one-third
+    h2.title.is-4.has-text-centered = t('.sign_up')
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = render "devise/shared/error_messages", resource: resource
+      .field
+        = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email"
+      .field
+        = f.password_field :password, autocomplete: "new-password", placeholder: "password"
+        - if @minimum_password_length
+          p.help
+            | (#{@minimum_password_length} characters minimum)
+      .field
+        = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "password confirmation"
+      .actions
+        .columns
+          .column.is-three-quarters
+            = f.submit 'Sign up',  class: "button is-primary"
+          .column.is-flex.is-justify-content-flex-end
+            = link_to 'Log in', new_user_session_path, class: 'button is-light'

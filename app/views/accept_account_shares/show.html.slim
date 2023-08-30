@@ -1,13 +1,13 @@
 div.columns.is-centered.is-vcentered
   div.column.is-two-third
     h4.subtitle.has-text-centered
-      | Dear #{received_invitation.name}
+      | Dear #{received_share.name}
     h6.subtitle.has-text-centered
-      | I am delighted to invite you to manage the account
+      | You've been shared access to manage the account
     br
     br
     div.buttons.is-centered
-      = link_to 'Accept', accept_account_invitation_path, method: :patch, class: 'button is-success is-medium'
+      = link_to 'Accept', accept_account_share_path, method: :patch, class: 'button is-success is-medium'
       span.has-text-grey-light
 
       = link_to 'Cancel', root_path, class: 'button is-light is-medium'

@@ -1,0 +1,16 @@
+<div class="columns">
+  <div class="column is-three-quarters">
+    <%= link_to 'Back', account_shares_path, class: 'button is-light' %>
+  </div>
+  <div class="column is-flex is-justify-content-flex-end">
+  </div>
+</div>
+<%= form_with url: account_shares_path, method: :post do |form| %>
+  <div class="column is-one-third">
+    <%= form.label :name %>
+    <%= form.text_field :name, name: 'account_share[name]', type:"text", class: 'input'%>
+    <%= form.label :email %>
+    <%= form.email_field :email, name: 'account_share[email]',  type: "email"%>
+  </div>
+  <%= form.submit :Create, class: 'button is-light' %>
+<% end %>

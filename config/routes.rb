@@ -9,10 +9,10 @@ Rails.application.routes.draw do
     resource :topup, only: %i[new create]
     resource :spend, only: %i[new create]
     resources :objectives, only: %i[new create]
-    resources :invitations, only: %i[index new create destroy], controller: 'account_invitations'
+    resources :shares, only: %i[index new create destroy], controller: 'account_shares'
   end
 
-  resources :accept_account_invitations, param: :token, only: %i[show update]
+  resources :accept_account_shares, param: :token, only: %i[show update]
   resources :transactions, only: [:destroy]
   resources :objectives, only: [:destroy]
 end

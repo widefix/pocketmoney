@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AccountInvitation < ApplicationRecord
+class AccountShare < ApplicationRecord
   belongs_to :user
   belongs_to :account
 

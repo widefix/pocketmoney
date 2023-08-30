@@ -1,4 +1,4 @@
-<%= "#{current_user.name} #{account.email}"%>
+<%= [current_user.name, account.email].select(&:present?).join(" ") %>
 <br>
 Account balance: <%= account.balance %>
 <br>

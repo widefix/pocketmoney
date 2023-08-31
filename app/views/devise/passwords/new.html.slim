@@ -1,0 +1,17 @@
+.columns.is-centered
+  .column.is-one-third
+    h2.title.is-4.has-text-centered Forgot your password?
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+      = render "devise/shared/error_messages", resource: resource
+      .field
+        = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email"
+      br
+      .actions
+        div.is-fullwidth
+          = f.submit 'Send me reset password instructions',  class: "button is-info is-fullwidth"
+      br
+      .columns
+        .column.is-one-quarters
+         = link_to t(".sign_in"), new_session_path(resource_name)
+        .column.is-flex.is-justify-content-flex-end
+         = link_to t(".sign_up"), new_registration_path(resource_name)

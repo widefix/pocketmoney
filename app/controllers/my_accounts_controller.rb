@@ -14,4 +14,8 @@ class MyAccountsController < ApplicationController
   helper_method memoize def shared_accounts
     Account.shared_for(current_user)
   end
+
+  helper_method memoize def unaccepted_shares
+    AccountShare.unaccepted.for(current_user)
+  end
 end

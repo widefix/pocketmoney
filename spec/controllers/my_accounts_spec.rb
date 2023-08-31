@@ -25,11 +25,27 @@ RSpec.describe MyAccountsController, type: :controller do
     end
     context 'when account share accepted' do
       let(:accepted_at) { Time.current }
-      it { expect(controller.send(:shared_accounts, shared_user)).to include(account) }
+      it { expect(controller.send(:shared_accounts)).to include(account) }
     end
     context 'when account share unaccepted' do
       let(:accepted_at) { nil }
-      it { expect(controller.send(:shared_accounts, shared_user)).to be_empty }
+      it { expect(controller.send(:shared_accounts)).to be_empty }
+    end
+  end
+
+  describe '#unaccepted_shares' do
+    let(:shared_user) { create(:user) }
+    let!(:account_share) { create(:account_share, user: user, account: account, email: shared_user.email, accepted_at: accepted_at) }
+
+    before { sign_in shared_user }
+
+    context 'when account share accepted' do
+      let(:accepted_at) { Time.current }
+      it { expect(controller.send(:unaccepted_shares)).to be_empty }
+    end
+    context 'when account share unaccepted' do
+      let(:accepted_at) { nil }
+      it { expect(controller.send(:unaccepted_shares)).to include(account_share) }
     end
   end
 end

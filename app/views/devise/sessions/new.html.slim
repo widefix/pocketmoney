@@ -1,0 +1,23 @@
+.columns.is-centered
+  .column.is-one-third
+    h2.title.is-4.has-text-centered = t('.sign_up')
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .field
+        = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email"
+      .field
+        = f.password_field :password, autocomplete: "current-password", placeholder: "password"
+      - if devise_mapping.rememberable?
+        .field
+          = f.check_box :remember_me
+          |  &nbsp;
+          = f.label :remember_me
+      br
+      .actions
+        div.is-fullwidth
+          = f.submit 'Log in',  class: "button is-light is-fullwidth"
+      br
+      .columns
+        .column.is-one-quarters
+          = link_to t(".sign_up"), new_registration_path(resource_name)
+        .column.is-flex.is-justify-content-flex-end
+          = link_to "Forgot your password?", new_password_path(resource_name)

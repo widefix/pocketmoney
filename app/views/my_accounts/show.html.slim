@@ -29,17 +29,17 @@ br
       = link_to '- Spend', new_account_spend_path(shared_account), class: 'card-footer-item'
 
 - if unaccepted_shares.present?
-	h2.title
-		| Unaccepted shares
-	.columns
-		.column
-			.card
-				.card-content
-					table.table.is-fullwidth.is-striped
-						thead
-							tr
-								th Account
-								th From
-								th Created
-								th Link
-						= render partial: 'account_share', collection: unaccepted_shares.order(created_at: :desc)
+  h2.title
+    | Unaccepted shares
+  .columns
+    .column
+      .card
+        .card-content
+          table.table.is-fullwidth.is-striped
+	          thead
+              tr
+                th Account
+                th From
+                th Created
+                th Link
+              = render partial: 'account_share', collection: unaccepted_shares.order(created_at: :desc)

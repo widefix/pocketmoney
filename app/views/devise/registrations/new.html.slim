@@ -12,9 +12,11 @@
             | (#{@minimum_password_length} characters minimum)
       .field
         = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "password confirmation"
-      .actions
-        .columns
-          .column.is-three-quarters
-            = f.submit 'Sign up',  class: "button is-primary"
-          .column.is-flex.is-justify-content-flex-end
-            = link_to 'Log in', new_user_session_path, class: 'button is-light'
+      br
+      .actions.is-flex.is-flex-direction-column.is-align-items-end
+      div.is-fullwidth
+        = f.submit 'Sign up',  class: "button is-primary is-fullwidth"
+      br
+      .is-flex.is-justify-content-center
+        | Already have an account? &nbsp;
+        = link_to 'Login now', new_user_session_path

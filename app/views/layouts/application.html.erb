@@ -30,6 +30,7 @@
             <div class="buttons">
 
               <% if user_signed_in? %>
+                <%= link_to 'My profile', edit_user_registration_path, class: 'button is-light' %>
                 <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'button is-danger' %>
               <% else %>
                 <%= link_to 'Sign up', new_user_registration_path, class: 'button is-primary' %>

@@ -1,0 +1,23 @@
+.columns.is-centered
+  .column.is-one-third
+    h2.title.is-4.has-text-centered My profile
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+      = render "devise/shared/error_messages", resource: resource
+      .field
+        = f.text_field :name, autofocus: true, type: "text", class: 'input', placeholder: "your name or nick name"
+      .field
+        = f.email_field :email, autocomplete: "email", placeholder: "email"
+      .field
+        = f.password_field :password, autocomplete: "new-password", placeholder: "password (leave blank if you don't want to change it)"
+        - if @minimum_password_length
+          p.help
+            | (#{@minimum_password_length} characters minimum)
+      .field
+        = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "password confirmation"
+      .field
+        = f.password_field :current_password, autocomplete: "current-password", placeholder: "current password"
+        p.help
+          | (we need your current password to confirm your changes)
+      .actions.is-flex.is-justify-content-flex-end
+        = link_to 'Back', request.referer.present? && request.referer != edit_user_registration_path ? request.referer : root_path, class: 'button is-link mr-2'
+        = f.submit "Update",  class: "button is-primary"

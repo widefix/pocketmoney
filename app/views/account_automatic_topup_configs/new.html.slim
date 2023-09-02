@@ -1,0 +1,6 @@
+= form_for [account, new_automatic_topup_config], method: :post do |f|
+  .field
+    = f.label :weekly_amount
+    = f.text_field :amount
+  .actions
+    = f.submit 'Create', class: 'button is-primary'

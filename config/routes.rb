@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resource :my_account, only: :show
 
   resources :accounts, only: %i[show new create edit update] do
-    resources :account_automatic_topup_configs, only: %i[new create]
+    resources :account_automatic_topup_configs, only: %i[new create edit update destroy]
     resource :topup, only: %i[new create]
     resource :spend, only: %i[new create]
     resources :objectives, only: %i[new create]

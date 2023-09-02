@@ -1,9 +1,0 @@
-<%= form_for [@account, @automatic_topup_config], method: :patch do |f| %>
-  <div class="field">
-    <%= f.label :amount %>
-    <%= f.text_field :amount %>
-  </div>
-  <div class="actions">
-    <%= f.submit 'Update', class: 'button is-primary' %>
-  </div>
-<% end %>

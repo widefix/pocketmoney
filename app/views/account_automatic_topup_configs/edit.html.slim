@@ -1,0 +1,6 @@
+= form_for [account, automatic_topup_config], method: :patch do |f|
+  .field
+    = f.label :weekly_amount
+    = f.text_field :amount
+  .actions
+    = f.submit 'Update', class: 'button is-primary'

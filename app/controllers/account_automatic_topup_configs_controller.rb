@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class AccountAutomaticTopupConfigsController < ApplicationController
-  def new
-    @automatic_topup_config = AccountAutomaticTopupConfig.new
-  end
+  def new; end
 
   def edit; end
 
@@ -26,6 +24,10 @@ class AccountAutomaticTopupConfigsController < ApplicationController
 
   helper_method memoize def automatic_topup_config
     account.automatic_topup_configs.find(params[:id])
+  end
+
+  helper_method memoize def new_automatic_topup_config
+    AccountAutomaticTopupConfig.new
   end
 
   def amount

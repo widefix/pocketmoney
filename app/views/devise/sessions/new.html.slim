@@ -1,6 +1,6 @@
 .columns.is-centered
   .column.is-one-third
-    h2.title.is-4.has-text-centered = t('.sign_up')
+    h2.title.is-4.has-text-centered = t('.log_in')
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .field
         = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email"

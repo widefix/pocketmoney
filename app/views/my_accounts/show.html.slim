@@ -1,45 +1,61 @@
-= [current_user.name, account.email].select(&:present?).join(" ")
-br
-| Account balance: #{account.balance}
-br
-- account.children.each do |child|
-  .card.box
-    .card-content
-      .media
-        .media-content
-          p.title.is-4= link_to child.name, account_path(child)
-          p.subtitle.is-6= child.balance
-    footer.card-footer
-      = link_to '+ Add', new_account_topup_path(child), class: 'card-footer-item'
-      = link_to '- Spend', new_account_spend_path(child), class: 'card-footer-item'
+.columns
+  .column.is-3
+    = [current_user.name, account.email].select(&:present?).join(" ")
+    br
+    | Account balance: #{account.balance}
+    br
+  .column.is-flex.is-justify-content-flex-end
+    - if account.children.present? || shared_accounts.present?
+      = link_to 'Add account', new_account_path, class: 'button is-primary'
 
-= link_to 'add account', new_account_path
-br
-| Shared accounts
-- shared_accounts.each do |shared_account|
-  .card.box
-    .card-content
-      .media
-        .media-content
-          p.title.is-6 Owner: #{shared_account.parent.email}
-          p.title.is-4= link_to shared_account.name, account_path(shared_account)
-          p.subtitle.is-6= shared_account.balance
-    footer.card-footer
-      = link_to '+ Add', new_account_topup_path(shared_account), class: 'card-footer-item'
-      = link_to '- Spend', new_account_spend_path(shared_account), class: 'card-footer-item'
-
-- if unaccepted_shares.present?
-  h2.title
-    | Unaccepted shares
-  .columns
-    .column
-      .card
+- if account.children.present? || shared_accounts.present?
+  - account.children.each do |child|
+    .card.box
+      .card-content
+        .media
+          .media-content
+            p.title.is-4= link_to child.name, account_path(child)
+            p.subtitle.is-6= child.balance
+      footer.card-footer
+        = link_to '+ Add', new_account_topup_path(child), class: 'card-footer-item'
+        = link_to '- Spend', new_account_spend_path(child), class: 'card-footer-item'
+  br
+  - if shared_accounts.present?
+    | Shared accounts
+    - shared_accounts.each do |shared_account|
+      .card.box
         .card-content
-          table.table.is-fullwidth.is-striped
-	          thead
-              tr
-                th Account
-                th From
-                th Created
-                th Link
-              = render partial: 'account_share', collection: unaccepted_shares.order(created_at: :desc)
+          .media
+            .media-content
+              p.title.is-6 Owner: #{shared_account.parent.email}
+              p.title.is-4= link_to shared_account.name, account_path(shared_account)
+              p.subtitle.is-6= shared_account.balance
+        footer.card-footer
+          = link_to '+ Add', new_account_topup_path(shared_account), class: 'card-footer-item'
+          = link_to '- Spend', new_account_spend_path(shared_account), class: 'card-footer-item'
+
+  - if unaccepted_shares.present?
+    h2.title
+      | Unaccepted shares
+    .columns
+      .column
+        .card
+          .card-content
+            table.table.is-fullwidth.is-striped
+              thead
+                tr
+                  th Account
+                  th From
+                  th Created
+                  th Link
+                = render partial: 'account_share', collection: unaccepted_shares.order(created_at: :desc)
+- else
+    .hero.is-medium.has-text-centered
+      .hero-body
+        .container
+          .columns.is-centered
+            div.column.is-8
+              h1.title.titled.is-5.mb-6
+                p Welcome to our app!
+                p We invite you to embark on your journey by creating your first account
+              = link_to 'Add account', new_account_path, class: 'button is-primary'

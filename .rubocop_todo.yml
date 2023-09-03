@@ -95,7 +95,6 @@ Layout/SpaceInsideParens:
 Layout/TrailingEmptyLines:
   Exclude:
     - '.pryrc'
-    - 'app/controllers/users/registrations_controller.rb'
     - 'config/initializers/bulma_form_builder.rb'
     - 'spec/controllers/account_automatic_topup_configs_spec.rb'
     - 'spec/controllers/accounts_spec.rb'
@@ -104,10 +103,8 @@ Layout/TrailingEmptyLines:
     - 'spec/controllers/spends_spec.rb'
     - 'spec/controllers/topups_spec.rb'
     - 'spec/controllers/transactions_spec.rb'
-    - 'spec/controllers/users/registrations_spec.rb'
     - 'spec/factories/account.rb'
     - 'spec/factories/transaction.rb'
-    - 'spec/factories/user.rb'
 
 # Offense count: 13
 # This cop supports safe autocorrection (--autocorrect).
@@ -174,7 +171,6 @@ Style/BlockComments:
 # SupportedStyles: nested, compact
 Style/ClassAndModuleChildren:
   Exclude:
-    - 'app/controllers/users/registrations_controller.rb'
 
 # Offense count: 8
 # This cop supports safe autocorrection (--autocorrect).
@@ -233,7 +229,6 @@ Style/FrozenStringLiteralComment:
     - 'app/controllers/spends_controller.rb'
     - 'app/controllers/topups_controller.rb'
     - 'app/controllers/transactions_controller.rb'
-    - 'app/controllers/users/registrations_controller.rb'
     - 'app/helpers/accounts_helper.rb'
     - 'app/helpers/application_helper.rb'
     - 'app/helpers/home_helper.rb'
@@ -244,7 +239,6 @@ Style/FrozenStringLiteralComment:
     - 'app/models/application_record.rb'
     - 'app/models/objective.rb'
     - 'app/models/transaction.rb'
-    - 'app/models/user.rb'
     - 'bin/rails'
     - 'bin/rake'
     - 'bin/setup'
@@ -301,11 +295,9 @@ Style/FrozenStringLiteralComment:
     - 'spec/controllers/spends_spec.rb'
     - 'spec/controllers/topups_spec.rb'
     - 'spec/controllers/transactions_spec.rb'
-    - 'spec/controllers/users/registrations_spec.rb'
     - 'spec/factories/account.rb'
     - 'spec/factories/account_invitations.rb'
     - 'spec/factories/transaction.rb'
-    - 'spec/factories/user.rb'
     - 'spec/mailers/transactions_spec.rb'
     - 'spec/rails_helper.rb'
     - 'spec/spec_helper.rb'
@@ -371,7 +363,6 @@ Style/RedundantFetchBlock:
 # Configuration parameters: AllowAsExpressionSeparator.
 Style/Semicolon:
   Exclude:
-    - 'spec/controllers/users/registrations_spec.rb'
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).

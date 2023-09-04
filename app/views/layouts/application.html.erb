@@ -6,34 +6,40 @@
     <%= csp_meta_tag %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <%= link_to root_path, class: "navbar-item" do %>
           <%= image_tag 'logo.svg', width: 112, height: 28 %>
         <% end %>
-
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
       </div>
-
       <div id="navbarMenu" class="navbar-menu">
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-
               <% if user_signed_in? %>
-                <%= link_to 'My profile', edit_user_registration_path, class: 'button is-light' %>
-                <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'button is-danger' %>
+                <div class="navbar-item has-dropdown is-hoverable">
+                  <a class="button is-primary is-outlined">
+                    <span class="icon">
+                      <i class="fa fa-user"></i>
+                    </span>
+                  </a>
+                  <div class="navbar-dropdown is-right is-boxed">
+                    <%= link_to 'My profile', edit_user_registration_path, class: "navbar-item" %>
+                    <hr class="navbar-divider">
+                    <%= link_to 'Log out', destroy_user_session_path, method: :delete, class:"navbar-item"%>
+                  </div>
+                </div>
               <% else %>
                 <%= link_to 'Sign up', new_user_registration_path, class: 'button is-primary' %>
                 <%= link_to 'Log in', new_user_session_path, class: 'button is-light' %>

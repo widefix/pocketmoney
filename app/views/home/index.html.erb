@@ -1,0 +1,115 @@
+<section class="hero is-white is-halfheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-vcentered reverse-columns">
+        <div class="column
+                    is-10-mobile is-offset-1-mobile
+                    is-10-tablet is-offset-1-tablet
+                    is-5-desktop is-offset-1-desktop
+                    is-5-widescreen is-offset-1-widescreen
+                    is-5-fullhd is-offset-1-fullhd">
+          <h1 class="title titled is-1 mb-6">
+            Children wallet
+          </h1>
+          <div class="column is-half">
+            <div class="buttons">
+              <%= link_to 'Go!', my_account_path, class: 'button is-primary is-fullwidth' %>
+            </div>
+          </div>
+        </div>
+        <div class="column
+                    is-10-mobile is-offset-1-mobile
+                    is-10-tablet is-offset-1-tablet
+                    is-4-desktop is-offset-1-desktop
+                    is-4-widescreen is-offset-1-widescreen
+                    is-4-fullhd is-offset-1-fullhd">
+          <figure class="image">
+            <%= image_tag('hero.jpg', alt: 'Children wallet') %>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<% @pocket_money_reasons.each_slice(2) do |reason| %>
+  <section class="hero is-white is-halfheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-vcentered reverse-columns">
+          <div class="column
+                      is-10-mobile is-offset-1-mobile
+                      is-10-tablet is-offset-1-tablet
+                      is-4-desktop is-offset-1-desktop
+                      is-4-widescreen is-offset-1-widescreen
+                      is-4-fullhd is-offset-1-fullhd">
+            <figure class="image">
+              <%= image_tag(reason[0]['image'], alt: reason[0]['name']) %>
+            </figure>
+          </div>
+          <div class="column
+                      is-10-mobile is-offset-1-mobile
+                      is-10-tablet is-offset-1-tablet
+                      is-5-desktop is-offset-1-desktop
+                      is-5-widescreen is-offset-1-widescreen
+                      is-5-fullhd is-offset-1-fullhd">
+            <h1 class="titled title is-2 mb-6">
+              <%= reason[0]['name']%>
+            </h1>
+            <h2 class="subtitled subtitle">  <%= reason[0]['explanation']%></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="hero is-white is-halfheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-vcentered reverse-columns">
+          <div class="column
+                      is-10-mobile is-offset-1-mobile
+                      is-10-tablet is-offset-1-tablet
+                      is-5-desktop is-offset-1-desktop
+                      is-5-widescreen is-offset-1-widescreen
+                      is-5-fullhd is-offset-1-fullhd">
+            <h1 class="title titled is-2 mb-6">
+              <%= reason[1]['name']%>
+            </h1>
+            <h2 class="subtitled subtitle">  <%= reason[1]['explanation']%></h2>
+          </div>
+          <div class="column
+                      is-10-mobile is-offset-1-mobile
+                      is-10-tablet is-offset-1-tablet
+                      is-4-desktop is-offset-1-desktop
+                      is-4-widescreen is-offset-1-widescreen
+                      is-4-fullhd is-offset-1-fullhd">
+            <figure class="image">
+              <%= image_tag(reason[1]['image'], alt: reason[1]['name']) %>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>
+<section class="hero is-white is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column
+                        is-10-mobile is-offset-1-mobile
+                        is-10-tablet is-offset-1-tablet
+                        is-4-desktop is-offset-1-desktop
+                        is-4-widescreen is-offset-1-widescreen
+                        is-3-fullhd is-offset-1-fullhd">
+              <div class="buttons">
+                <%= link_to "Let's go!", my_account_path, class: 'button is-primary is-fullwidth' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

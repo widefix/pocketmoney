@@ -21,3 +21,10 @@
  .navbar {
   background-color: lightyellow;
  }
+
+ @media (max-width: 1024px) {
+    .reverse-columns {
+      flex-direction: column-reverse;
+      display: flex;
+    }
+ }

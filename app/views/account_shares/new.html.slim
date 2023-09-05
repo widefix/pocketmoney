@@ -1,0 +1,15 @@
+.columns.is-centered
+  .column.is-one-third
+    h1.title.is-5.has-text-centered
+      | Share account:
+    .subtitle.is-5.has-text-centered
+      = link_to account.name, account_path(account)
+    = form_with url: account_shares_path, method: :post do |f|
+      .field
+        = f.text_field :name, name: 'account_share[name]', autofocus: true, class: "input", placeholder: "Name"
+      .field
+        = f.email_field :email, name: 'account_share[email]', type: "email"
+      br
+      div.buttons.is-flex.is-justify-content-flex-end
+        = link_to 'Back', account_shares_path, class: 'button is-light'
+        = f.submit "Send invitation", class: 'button is-primary'

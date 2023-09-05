@@ -3,5 +3,4 @@
 <p>Click the link to approve the share</p>
 <%= link_to 'Go and approve the share', accept_account_share_url(token: @account_share.token) %>
 <br>
-<!-- TODO: add curent user name -->
-<p>Sincerely, </p>
+<p>Sincerely, <%= [@account_share.user.name, @account_share.user.email].compact.reject(&:empty?).first %> </p>

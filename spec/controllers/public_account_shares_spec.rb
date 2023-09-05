@@ -19,10 +19,7 @@ RSpec.describe PublicAccountSharesController, type: :controller do
     let(:account) { create(:account, :parent) }
     let(:user) { create(:user, account: account) }
 
-    subject do
-      post :create, params: { account_share: {
-      }, account_id: account.id }
-    end
+    subject { post :create, params: { account_id: account.id } }
 
     before { sign_in user }
 

@@ -47,7 +47,7 @@
                   th Account
                   th From
                   th Created
-                  th Link
+                  th Actions
                 = render partial: 'account_share', collection: unaccepted_shares.order(created_at: :desc)
 - else
     .hero.is-medium.has-text-centered

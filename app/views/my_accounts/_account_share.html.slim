@@ -2,4 +2,4 @@ tr
   td= account_share.account.name
   td= account_share.account.parent.email
   td= account_share.created_at.to_formatted_s(:short)
-  td= link_to 'link', accept_account_share_url(token: account_share.token)
+  td= link_to 'accept', accept_account_share_url(token: account_share.token)

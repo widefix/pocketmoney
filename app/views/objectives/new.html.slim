@@ -1,0 +1,13 @@
+.columns.is-centered
+  .column.is-one-third
+    h2.title.is-4.has-text-centered Adding new objective
+    = form_with url:account_objectives_path(account), method: :post do |f|
+      .field
+        = f.text_field :name, autofocus: true, class: "input", placeholder: "Name"
+      .field
+        = f.text_field :amount, class: "input", placeholder: "Amount"
+      .field
+        = f.text_field :image_url, class: "input", placeholder: "Image URL"
+      div.buttons.is-flex.is-justify-content-flex-end
+        = link_to 'Back', account_path(account), class: 'button is-light'
+        = f.submit 'Save', class: 'button is-primary'

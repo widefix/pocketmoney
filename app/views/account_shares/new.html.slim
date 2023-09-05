@@ -2,7 +2,7 @@
   .column.is-one-third
     h1.title.is-5.has-text-centered
       | Share account:
-    div.subtitle.is-5.has-text-centered
+    .subtitle.is-5.has-text-centered
       = link_to account.name, account_path(account)
     = form_with url: account_shares_path, method: :post do |f|
       .field

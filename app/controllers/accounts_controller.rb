@@ -26,4 +26,11 @@ class AccountsController < ApplicationController
   helper_method memoize def account
     Account.visible_for(current_user).find(ps.fetch(:id))
   end
+
+  helper_method memoize def read_only?(id)
+    return false if current_user.account.id == account.parent.id ||
+                    AccountShare.accepted.for(current_user).pluck(:account_id).include?(id)
+
+    AccountShare.accepted.for_public.pluck(:account_id).include?(id)
+  end
 end

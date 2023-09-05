@@ -2,9 +2,11 @@
   .column.is-three-quarters
     h2.title
       | Account details
-      = link_to 'Edit', edit_account_path(account), class: 'button is-light'
-  .column.is-flex.is-justify-content-flex-end
-    = link_to 'Account shares', account_shares_path(account), class: 'button is-light'
+      - unless read_only?(account.id)
+        = link_to 'Edit', edit_account_path(account), class: 'button is-light'
+  - unless read_only?(account.id)
+    .column.is-flex.is-justify-content-flex-end
+      = link_to 'Account shares', account_shares_path(account), class: 'button is-light'
 
 .columns
   .column
@@ -15,9 +17,10 @@
       .card-content
         .title.has-text-centered
           | Balance: #{account.balance}
-      .card-footer
-        = link_to '+Add', new_account_topup_path(account), class: 'card-footer-item'
-        = link_to '-Spend', new_account_spend_path(account), class: 'card-footer-item'
+      - unless read_only?(account.id)
+        .card-footer
+          = link_to '+Add', new_account_topup_path(account), class: 'card-footer-item'
+          = link_to '-Spend', new_account_spend_path(account), class: 'card-footer-item'
 .columns
   .column
     .card
@@ -33,7 +36,8 @@
               th To
               th Amount
               th Description
-              th Actions
+              - unless read_only?(account.id)
+                th Actions
           = render partial: 'transaction', collection: account.transactions, account: account
 
 .columns
@@ -51,10 +55,12 @@
               th Progress
               th Weeks # to goal
               th Image
-              th Actions
+              - unless read_only?(account.id)
+                th Actions
           = render partial: 'objective', collection: account.objectives, account: account
-      .card-footer
-        = link_to '+Add', new_account_objective_path(account), class: 'card-footer-item'
+      - unless read_only?(account.id)
+        .card-footer
+          = link_to '+Add', new_account_objective_path(account), class: 'card-footer-item'
 
 .columns
   .column
@@ -68,17 +74,19 @@
             tr
               th From
               th Amount
-              th Actions
+              - unless read_only?(account.id)
+                th Actions
           - account.automatic_topup_configs.each do |config|
             tr
               td= config.from_account.name
               td= config.amount
-              td
-                = link_to 'edit', edit_account_account_automatic_topup_config_path(account, config)
-                | &nbsp;
-                = link_to 'delete', account_account_automatic_topup_config_path(account, config), method: :delete, data: { confirm: 'Are you sure?' }
-
-      .card-footer
-        = link_to '+ Add', new_account_account_automatic_topup_config_path(account), class: 'card-footer-item'
-= line_chart account.accumulative_balance_data, xtitle: 'Date', ytitle: 'Accumulative Balance'
-
+              - unless read_only?(account.id)
+                td
+                  = link_to 'edit', edit_account_account_automatic_topup_config_path(account, config)
+                  | &nbsp;
+                  = link_to 'delete', account_account_automatic_topup_config_path(account, config), method: :delete, data: { confirm: 'Are you sure?' }
+      - unless read_only?(account.id)
+        .card-footer
+          = link_to '+ Add', new_account_account_automatic_topup_config_path(account), class: 'card-footer-item'
+- if account.accumulative_balance_data.present?
+  = line_chart account.accumulative_balance_data, xtitle: 'Date', ytitle: 'Accumulative Balance'

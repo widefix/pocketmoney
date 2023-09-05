@@ -1,6 +1,8 @@
 h2.title
   | Account shares
-  = link_to 'New share', new_account_share_path, class: 'button is-light'
+  .buttons.mt-4
+    = link_to 'New private share', new_account_share_path, class: 'button is-light mr-4' 
+    = link_to 'New public share', new_account_public_account_share_path, class: 'button is-light'
 
 .columns
   .column
@@ -11,11 +13,10 @@ h2.title
       .card-content
         table.table.is-fullwidth.is-striped
           thead
-            tr
+            tr.has-text-centered
               th Name
               th Email
               th Created
               th Accepted
-              th Link
               th Actions
           = render partial: 'account_share', collection: account.account_shares.order(created_at: :desc)

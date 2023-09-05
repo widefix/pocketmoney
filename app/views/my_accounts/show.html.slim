@@ -33,6 +33,17 @@
         footer.card-footer
           = link_to '+ Add', new_account_topup_path(shared_account), class: 'card-footer-item'
           = link_to '- Spend', new_account_spend_path(shared_account), class: 'card-footer-item'
+  br
+  - if public_shared_accounts.present?
+    | Public shared accounts
+    - public_shared_accounts.each do |shared_account|
+      .card.box
+        .card-content
+          .media
+            .media-content
+              p.title.is-6 Owner: #{shared_account.parent.email}
+              p.title.is-4= link_to shared_account.name, account_path(shared_account)
+              p.subtitle.is-6= shared_account.balance
 
   - if unaccepted_shares.present?
     h2.title

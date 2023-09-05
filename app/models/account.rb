@@ -19,10 +19,12 @@ class Account < ApplicationRecord
   scope :visible_for, lambda { |current_user|
     where(id: [current_user.account_id] +
                current_user.account.child_ids +
-               shared_for(current_user).pluck(:id))
+               shared_for(current_user).pluck(:id) +
+               shared_for_public.pluck(:id))
   }
 
   scope :shared_for, ->(user) { where(id: AccountShare.accepted.for(user).pluck(:account_id)) }
+  scope :shared_for_public, -> { where(id: AccountShare.accepted.for_public.pluck(:account_id)) }
 
   memoize def balance
     income_transactions.sum(:amount) - outcome_transactions.sum(:amount)

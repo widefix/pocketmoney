@@ -1,9 +1,11 @@
-tr.has-text-centered
+tr
   td= account_share.name
   td= account_share.email
   td= account_share.created_at.to_formatted_s(:short)
   td= account_share.accepted_at&.to_formatted_s(:short)
-  td
-    - if account_share.token.present?
-      = link_to 'activate', accept_account_share_url(token: account_share.token), class: 'button is-small mr-2'
-    = link_to :delete, account_share_path(account, account_share), method: :delete, data: {confirm: 'Delete this share?'}, class: 'button is-small'
+  - if account_share.token.present?
+    td= link_to 'link', accept_account_share_url(token: account_share.token)
+  - else
+    td= 'public'
+  td= link_to :delete, account_share_path(account, account_share), method: :delete, data: {confirm: 'Delete this share?'}
+  

@@ -3,9 +3,9 @@
     h2.title.is-4.has-text-centered Edit account
     = form_with model: account do |f|
       .field
-        = f.text_field :name, autofocus: true, class: "input",placeholder: "Name"
+        = f.text_field :name, autofocus: true, class: "input", placeholder: "Name"
       .field
-        = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email"
+        = f.email_field :email, autocomplete: "email", placeholder: "email"
       .field
         = f.check_box :notification, class: "checkbox"
         |  &nbsp;

@@ -6,5 +6,5 @@ tr
   td= image_tag objective.image_url
   - if public_share?(account)
     td= ''
-  -else
-    td= link_to :delete, objective_path(objective), method: :delete, data: {confirm: 'Delete this objective?'}
+  - else
+    td= link_to 'Delete', objective_path(objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button is-small is-light'

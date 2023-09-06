@@ -6,5 +6,5 @@ tr
   td= transaction.description
   - if public_share?(account)
     td= ''
-  -else
-    td= link_to :delete, transaction_path(transaction), method: :delete, data: {confirm: 'Delete this transaction?'}
+  - else
+    td= link_to 'Cancel', transaction_path(transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-small is-light'

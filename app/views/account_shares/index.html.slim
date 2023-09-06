@@ -1,23 +1,24 @@
-h2.title
+h2.title.is-4
   | Account shares
-  .buttons.mt-4
-    = link_to 'New private share', new_account_share_path, class: 'button is-light mr-4' 
-    = link_to 'New public share', new_account_public_account_share_path, class: 'button is-light'
-
+.buttons.mt-4
+  = link_to 'Back', account_path(account), class: 'button is-light'
+  = link_to 'New private share', new_account_share_path, class: 'button is-light mr-4'
+  = link_to 'New public share', new_account_public_account_share_path, class: 'button is-light'
 .columns
   .column
     .card
       .card-header
       .card-header-title.is-centered
-        h3.title= account.name
-      .card-content
-        table.table.is-fullwidth.is-striped
-          thead
-            tr
-              th Name
-              th Email
-              th Created
-              th Accepted
-              th Link
-              th Actions
-          = render partial: 'account_share', collection: account.account_shares.order(created_at: :desc)
+        h3.title.is-4= account.name
+      .card-content.px-1
+        div.table-container
+          table.table.is-fullwidth.is-striped
+            thead
+              tr
+                th Name
+                th Email
+                th Created
+                th Accepted
+                th Link
+                th Actions
+            = render partial: 'account_share', collection: account.account_shares.order(created_at: :desc)

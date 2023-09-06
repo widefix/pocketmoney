@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resource :spend, only: %i[new create]
     resources :objectives, only: %i[new create]
     resources :shares, only: %i[index new create destroy], controller: 'account_shares'
+    resources :public_account_shares, only: %i[new create]
   end
 
   resources :accept_account_shares, param: :token, only: %i[show update]

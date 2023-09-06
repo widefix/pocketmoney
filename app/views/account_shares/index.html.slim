@@ -1,6 +1,8 @@
 h2.title
   | Account shares
-  = link_to 'New share', new_account_share_path, class: 'button is-light'
+  .buttons.mt-4
+    = link_to 'New private share', new_account_share_path, class: 'button is-light mr-4' 
+    = link_to 'New public share', new_account_public_account_share_path, class: 'button is-light'
 
 .columns
   .column

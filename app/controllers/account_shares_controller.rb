@@ -2,6 +2,7 @@
 
 class AccountSharesController < ApplicationController
   before_action :authenticate_user!
+  before_action :account_share, only: [:destroy]
 
   def index; end
 
@@ -17,8 +18,9 @@ class AccountSharesController < ApplicationController
   end
 
   def destroy
-    personal_account_share = AccountShare.find(ps.fetch(:id))
-    personal_account_share.destroy
+    return unless accessible?
+
+    account_share.destroy
     respond_to do |format|
       format.html { redirect_to account_shares_url, notice: 'Account share was successfully destroyed.' }
     end
@@ -28,5 +30,13 @@ class AccountSharesController < ApplicationController
 
   def account_share_params
     params.require(:account_share).permit(:name, :email)
+  end
+
+  memoize def account_share
+    AccountShare.find(params.fetch(:id))
+  end
+
+  def accessible?
+    current_user.id == account_share.user_id || current_user.email == account_share.email
   end
 end

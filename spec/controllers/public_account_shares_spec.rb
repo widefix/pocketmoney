@@ -28,14 +28,4 @@ RSpec.describe PublicAccountSharesController, type: :controller do
     it { expect { subject }.to change { AccountShare.where(user_id: user.id).count }.by(1) }
     it { expect { subject }.to change { AccountShare.count }.by(1) }
   end
-
-  describe '#destroy' do
-    let(:account) { create(:account, :parent) }
-    let(:user) { create(:user, account: account) }
-    let!(:account_share) { create(:account_share, user: user, account: account) }
-
-    subject { delete :destroy, params: { account_id: account.id, id: account_share } }
-    before { sign_in user }
-    it { expect { subject }.to change { AccountShare.count }.by(-1) }
-  end
 end

@@ -3,8 +3,8 @@ tr
   td= account_share.email
   td= account_share.created_at.to_formatted_s(:short)
   td= account_share.accepted_at&.to_formatted_s(:short)
-  - if account_share.token.present?
-    td= link_to 'link', accept_account_share_url(token: account_share.token)
+  - if account_share.public?
+     td= ''
   - else
-    td= 'public'
+    td= link_to 'link', accept_account_share_url(token: account_share.token)
   td= link_to :delete, account_share_path(account, account_share), method: :delete, data: {confirm: 'Delete this share?'}

@@ -35,6 +35,9 @@ class AccountsController < ApplicationController
     Account.visible_for(current_user).find(ps.fetch(:id))
   end
 
+  # An account isn't considered publicly shared if it's privately shared with the user
+  # or it's the child account of the current user.
+
   helper_method def public_share?(account)
     return false if current_user.account_id == account.parent_id ||
                     private_shared_accounts.include?(account.id)

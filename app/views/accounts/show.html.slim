@@ -4,7 +4,6 @@ h2.title.is-4
   = link_to 'Back', my_account_path, class: 'button is-light'
   - unless public_share?(account)
     = link_to 'Edit', edit_account_path(account), class: 'button is-light'
-  - unless public_share?(account)
     = link_to 'Account shares', account_shares_path(account), class: 'button is-light'
 .columns
   .column
@@ -29,7 +28,7 @@ h2.title.is-4
         .card-header-title.is-centered
           h3.title.is-4 History
       .card-content.px-1
-        div.table-container
+        .table-container
           table.table.is-fullwidth.is-striped
             thead
               tr
@@ -48,7 +47,7 @@ h2.title.is-4
         .card-header-title.is-centered
           h3.title.is-4 Objectives
       .card-content.px-1
-        div.table-container
+        .table-container
           table.table.is-fullwidth.is-striped
             thead
               tr
@@ -70,7 +69,7 @@ h2.title.is-4
         .card-header-title.is-centered
           .title.is-4 Weekly Automatic Topups
       .card-content.px-1
-        div.table-container
+        .table-container
           table.table.is-fullwidth.is-striped
             thead
               tr

@@ -23,14 +23,15 @@ class AccountsController < ApplicationController
 
   private
 
-  helper_method memoize def account
-    Account.visible_for(current_user).find(ps.fetch(:id))
+  memoize def public_shared_accounts
+    Set.new(AccountShare.accepted.for_public.pluck(:account_id))
   end
 
-  helper_method memoize def read_only?(id)
-    return false if current_user.account.id == account.parent.id ||
-                    AccountShare.accepted.for(current_user).pluck(:account_id).include?(id)
+  helper_method memoize def public_share?(account)
+    public_shared_accounts.include?(account.id)
+  end
 
-    AccountShare.accepted.for_public.pluck(:account_id).include?(id)
+  helper_method memoize def account
+    Account.visible_for(current_user).find(ps.fetch(:id))
   end
 end

@@ -4,5 +4,7 @@ tr
   td= number_to_percentage(account.balance / objective.amount * 100, precision: 0)
   td= ([objective.amount - account.balance, 0].max / account.automatic_topup_configs.sum(:amount).+(0.1)).round(2)
   td= image_tag objective.image_url
-  - unless read_only?(account.id)
+  - if public_share?(account)
+    td= ''
+  -else
     td= link_to :delete, objective_path(objective), method: :delete, data: {confirm: 'Delete this objective?'}

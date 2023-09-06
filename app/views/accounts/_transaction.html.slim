@@ -4,5 +4,7 @@ tr
   td= transaction.to_account.name
   td= transaction.signed_amount(account)
   td= transaction.description
-  - unless read_only?(account.id)
+  - if public_share?(account)
+    td= ''
+  -else
     td= link_to :delete, transaction_path(transaction), method: :delete, data: {confirm: 'Delete this transaction?'}

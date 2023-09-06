@@ -2,9 +2,9 @@
   .column.is-three-quarters
     h2.title
       | Account details
-      - unless read_only?(account.id)
+      - unless public_share?(account)
         = link_to 'Edit', edit_account_path(account), class: 'button is-light'
-  - unless read_only?(account.id)
+  - unless public_share?(account)
     .column.is-flex.is-justify-content-flex-end
       = link_to 'Account shares', account_shares_path(account), class: 'button is-light'
 
@@ -17,7 +17,7 @@
       .card-content
         .title.has-text-centered
           | Balance: #{account.balance}
-      - unless read_only?(account.id)
+      - unless public_share?(account)
         .card-footer
           = link_to '+Add', new_account_topup_path(account), class: 'card-footer-item'
           = link_to '-Spend', new_account_spend_path(account), class: 'card-footer-item'
@@ -36,8 +36,7 @@
               th To
               th Amount
               th Description
-              - unless read_only?(account.id)
-                th Actions
+              th Actions
           = render partial: 'transaction', collection: account.transactions, account: account
 
 .columns
@@ -55,10 +54,9 @@
               th Progress
               th Weeks # to goal
               th Image
-              - unless read_only?(account.id)
-                th Actions
+              th Actions
           = render partial: 'objective', collection: account.objectives, account: account
-      - unless read_only?(account.id)
+      - unless public_share?(account)
         .card-footer
           = link_to '+Add', new_account_objective_path(account), class: 'card-footer-item'
 
@@ -74,18 +72,18 @@
             tr
               th From
               th Amount
-              - unless read_only?(account.id)
+              - unless public_share?(account)
                 th Actions
           - account.automatic_topup_configs.each do |config|
             tr
               td= config.from_account.name
               td= config.amount
-              - unless read_only?(account.id)
+              - unless public_share?(account)
                 td
                   = link_to 'edit', edit_account_account_automatic_topup_config_path(account, config)
                   | &nbsp;
                   = link_to 'delete', account_account_automatic_topup_config_path(account, config), method: :delete, data: { confirm: 'Are you sure?' }
-      - unless read_only?(account.id)
+      - unless public_share?(account)
         .card-footer
           = link_to '+ Add', new_account_account_automatic_topup_config_path(account), class: 'card-footer-item'
 - if account.accumulative_balance_data.present?

@@ -36,7 +36,7 @@ class AccountsController < ApplicationController
   end
 
   helper_method def public_share?(account)
-    return false if current_user.account.id == account.parent.id ||
+    return false if current_user.account_id == account.parent_id ||
                     private_shared_accounts.include?(account.id)
 
     public_shared_accounts.include?(account.id)

@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   resources :accept_account_shares, param: :token, only: %i[show update]
   resources :transactions, only: [:destroy]
   resources :objectives, only: [:destroy]
+  resources :public_accounts, param: :token, only: :show, controller: 'public_account_shares'
 end

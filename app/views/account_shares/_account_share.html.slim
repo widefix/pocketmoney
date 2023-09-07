@@ -1,10 +1,14 @@
 tr
-  td= account_share.name
-  td= account_share.email
+  - if account_share.public?
+    td= 'public'
+    td= 'public'
+  - else
+    td= account_share.name
+    td= account_share.email
   td= account_share.created_at.to_formatted_s(:short)
   td= account_share.accepted_at&.to_formatted_s(:short)
   - if account_share.public?
-     td= ''
+     td= link_to 'link', public_account_path(token: account_share.token)
   - else
     td= link_to 'link', accept_account_share_url(token: account_share.token)
-    td= link_to 'Cancel', account_share_path(account, account_share), method: :delete, data: {confirm: 'Cancel this share?'}, class: 'button is-small is-light'
+  td= link_to 'Cancel', account_share_path(account, account_share), method: :delete, data: {confirm: 'Cancel this share?'}, class: 'button is-small is-light'

@@ -6,9 +6,19 @@ RSpec.describe PublicAccountSharesController, type: :controller do
   let(:account) { create(:account, :parent) }
   let(:user) { create(:user, account: account) }
 
-  before { sign_in user }
+  describe '#show' do
+    let!(:account_share) { create(:account_share, user: user, account: account) }
+
+    subject(:show) { get :show, params: { token: account_share.token } }
+
+    it { is_expected.to have_http_status(:success) }
+    it { is_expected.to render_template(:show) }
+    it { is_expected.to_not render_template('home/index') }
+  end
 
   describe '#new' do
+    before { sign_in user }
+
     subject(:new) { get :new, params: { account_id: account.id } }
 
     it { is_expected.to have_http_status(:success) }
@@ -16,6 +26,8 @@ RSpec.describe PublicAccountSharesController, type: :controller do
   end
 
   describe '#create' do
+    before { sign_in user }
+
     subject { post :create, params: { account_id: account.id } }
 
     it { is_expected.to redirect_to(account_shares_path) }

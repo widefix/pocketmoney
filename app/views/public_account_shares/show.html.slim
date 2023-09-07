@@ -2,23 +2,18 @@ h2.title.is-4
   | Account details
 .buttons
   = link_to 'Back', my_account_path, class: 'button is-light'
-  = link_to 'Edit', edit_account_path(account), class: 'button is-light'
-  = link_to 'Account shares', account_shares_path(account), class: 'button is-light'
 .columns
   .column
     .card
       .card-header
         .card-header-title.is-centered
-          h3.title.is-4= account.name
+          h3.title.is-4= public_account.name
       .card-content
         nav.level
           div.level-item.has-text-centered
             div
               p.heading Balance
-              p.title #{account.balance}
-      .card-footer
-        = link_to '+Add', new_account_topup_path(account), class: 'card-footer-item'
-        = link_to '-Spend', new_account_spend_path(account), class: 'card-footer-item'
+              p.title #{public_account.balance}
 .columns
   .column
     .card
@@ -37,7 +32,7 @@ h2.title.is-4
                 th Description
                 th Actions
             tbody
-              = render partial: 'transaction', collection: account.transactions, account: account
+              = render partial: 'transaction', collection: public_account.transactions, public_account: public_account
 .columns
   .column
     .card
@@ -56,9 +51,7 @@ h2.title.is-4
                 th Image
                 th Actions
             tbody
-              = render partial: 'objective', collection: account.objectives, account: account
-        .card-footer
-          = link_to '+Add', new_account_objective_path(account), class: 'card-footer-item'
+              = render partial: 'objective', collection: public_account.objectives, public_account: public_account
 .columns
   .column
     .card
@@ -73,15 +66,10 @@ h2.title.is-4
                 th From
                 th Amount
                 th Actions
-            - account.automatic_topup_configs.each do |config|
+            - public_account.automatic_topup_configs.each do |config|
               tr
                 td= config.from_account.name
                 td= config.amount
-                td
-                  = link_to 'Edit', edit_account_account_automatic_topup_config_path(account, config), class: 'button is-small is-light'
-                  | &nbsp;
-                  = link_to 'Cancel', account_account_automatic_topup_config_path(account, config), method: :delete, data: { confirm: 'Cancel this top up?' }, class: 'button is-small is-light'
-        .card-footer
-          = link_to '+Add', new_account_account_automatic_topup_config_path(account), class: 'card-footer-item'
-- if account.accumulative_balance_data.present?
-  = line_chart account.accumulative_balance_data, xtitle: 'Date', ytitle: 'Accumulative Balance'
+                td ''
+- if public_account.accumulative_balance_data.present?
+  = line_chart public_account.accumulative_balance_data, xtitle: 'Date', ytitle: 'Accumulative Balance'

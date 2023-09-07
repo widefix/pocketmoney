@@ -1,0 +1,75 @@
+h2.title.is-4
+  | Account details
+.buttons
+  = link_to 'Back', my_account_path, class: 'button is-light'
+.columns
+  .column
+    .card
+      .card-header
+        .card-header-title.is-centered
+          h3.title.is-4= public_account.name
+      .card-content
+        nav.level
+          div.level-item.has-text-centered
+            div
+              p.heading Balance
+              p.title #{public_account.balance}
+.columns
+  .column
+    .card
+      .card-header
+        .card-header-title.is-centered
+          h3.title.is-4 History
+      .card-content.px-1
+        .table-container
+          table.table.is-fullwidth.is-striped
+            thead
+              tr
+                th Date
+                th From
+                th To
+                th Amount
+                th Description
+                th Actions
+            tbody
+              = render partial: 'transaction', collection: public_account.transactions, public_account: public_account
+.columns
+  .column
+    .card
+      .card-header
+        .card-header-title.is-centered
+          h3.title.is-4 Objectives
+      .card-content.px-1
+        .table-container
+          table.table.is-fullwidth.is-striped
+            thead
+              tr
+                th Name
+                th Amount
+                th Progress
+                th Weeks # to goal
+                th Image
+                th Actions
+            tbody
+              = render partial: 'objective', collection: public_account.objectives, public_account: public_account
+.columns
+  .column
+    .card
+      .card-header
+        .card-header-title.is-centered
+          .title.is-4 Weekly Automatic Topups
+      .card-content.px-1
+        .table-container
+          table.table.is-fullwidth.is-striped
+            thead
+              tr
+                th From
+                th Amount
+                th Actions
+            - public_account.automatic_topup_configs.each do |config|
+              tr
+                td= config.from_account.name
+                td= config.amount
+                td ''
+- if public_account.accumulative_balance_data.present?
+  = line_chart public_account.accumulative_balance_data, xtitle: 'Date', ytitle: 'Accumulative Balance'

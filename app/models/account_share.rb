@@ -10,6 +10,6 @@ class AccountShare < ApplicationRecord
   scope :unaccepted, -> { where(accepted_at: nil) }
 
   memoize def public?
-    email.nil? && name.nil? && token.nil?
+    email.nil? && name.nil?
   end
 end

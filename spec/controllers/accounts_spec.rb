@@ -1,9 +1,14 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe AccountsController, type: :controller do
-  describe '#show' do
-    let(:account) { create(:account, :parent) }
+  let(:account) { create(:account, :parent) }
+  let(:user) { create(:user, account: account) }
 
+  before { sign_in user }
+  
+  describe '#show' do
     subject(:show) { get :show, params: {id: account } }
 
     it { is_expected.to have_http_status(:success) }
@@ -20,26 +25,16 @@ RSpec.describe AccountsController, type: :controller do
   end
 
   describe '#create' do
-    let(:parent) { create(:account, :parent) }
-    let(:user) { create(:user, account: parent) }
-
-    subject { post :create, params: { parent: parent, name: parent.name } }
-
-    before { sign_in user }
+    subject { post :create, params: { parent: account, name: account.name } }
 
     it { is_expected.to redirect_to(my_account_path) }
     it { is_expected.to have_http_status(302) }
-    it { expect { subject }.to change { Account.where(name: parent.name).count }.by(1) }
+    it { expect { subject }.to change { Account.where(name: account.name).count }.by(1) }
     it { expect { subject }.to change { Account.count }.by(1) }
   end
 
   describe '#edit' do
-    let(:account) { create(:account, :parent) }
-    let(:user) { create(:user, account: account) }
-
     subject(:edit) { get :edit, params: { id: account }}
-
-    before { sign_in user }
     
     it { is_expected.to have_http_status(:success) }
     it { is_expected.to render_template(:edit) }
@@ -47,15 +42,11 @@ RSpec.describe AccountsController, type: :controller do
   end
 
   describe '#update' do
-    let(:account) { create(:account, :parent) }
-    let(:user) { create(:user, account: account) }
     let(:name) { FFaker::Name.first_name }
     let(:old_name) { old_name = account.name }
 
     subject(:bad_update) { patch :update, params: { id: user.account, account: { name: nil }} }
     subject(:update) { patch :update, params: { id: user.account, account: { name: name }} }
-
-    before { sign_in user }
     
     it { is_expected.to have_http_status(:redirect) }    
     it { expect(bad_update).not_to be_redirect }    

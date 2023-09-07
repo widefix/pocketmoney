@@ -1,30 +1,28 @@
-<section class="hero is-white is-halfheight">
+<section class="hero is-small is-white is-halfheight">
   <div class="hero-body">
     <div class="container">
       <div class="columns is-vcentered reverse-columns">
         <div class="column
-                    is-10-mobile is-offset-1-mobile
+                    is-10-mobile is-offset-0-mobile
                     is-10-tablet is-offset-1-tablet
                     is-5-desktop is-offset-1-desktop
                     is-5-widescreen is-offset-1-widescreen
-                    is-5-fullhd is-offset-1-fullhd">
-          <h1 class="title titled is-1 mb-6">
-            Children wallet
+                    is-5-fullhd ml-6-pmoney-fullhd">
+          <h1 class="title titled is-1 mb-6 has-text-pmoney-color is-size-3-mobile">
+            Spend less on kids's toys and save the family budget
           </h1>
-          <div class="column is-half">
-            <div class="buttons">
-              <%= link_to 'Go!', my_account_path, class: 'button is-primary is-fullwidth' %>
-            </div>
+          <div class="buttons">
+            <%= link_to 'Go!', my_account_path, class: 'button is-large is-fullwidth has-text-weight-bold is-pmoney-primary ' %>
           </div>
         </div>
         <div class="column
-                    is-10-mobile is-offset-1-mobile
+                    is-10-mobile is-offset-0-mobile
                     is-10-tablet is-offset-1-tablet
                     is-4-desktop is-offset-1-desktop
                     is-4-widescreen is-offset-1-widescreen
-                    is-4-fullhd is-offset-1-fullhd">
+                    is-4-fullhd is-offset-2-fullhd">
           <figure class="image">
-            <%= image_tag('hero.jpg', alt: 'Children wallet') %>
+            <%= image_tag('pmoney_landing_1.png', alt: 'Children wallet') %>
           </figure>
         </div>
       </div>
@@ -52,10 +50,10 @@
                       is-5-desktop is-offset-1-desktop
                       is-5-widescreen is-offset-1-widescreen
                       is-5-fullhd is-offset-1-fullhd">
-            <h1 class="titled title is-2 mb-6">
+            <h1 class="titled title is-2 mb-6 has-text-pmoney-color is-size-3-mobile">
               <%= reason[0]['name']%>
             </h1>
-            <h2 class="subtitled subtitle">  <%= reason[0]['explanation']%></h2>
+            <h2 class="subtitled subtitle has-text-pmoney-color">  <%= reason[0]['explanation']%></h2>
           </div>
         </div>
       </div>
@@ -71,10 +69,10 @@
                       is-5-desktop is-offset-1-desktop
                       is-5-widescreen is-offset-1-widescreen
                       is-5-fullhd is-offset-1-fullhd">
-            <h1 class="title titled is-2 mb-6">
+            <h1 class="title titled is-2 mb-6 has-text-pmoney-color is-size-3-mobile">
               <%= reason[1]['name']%>
             </h1>
-            <h2 class="subtitled subtitle">  <%= reason[1]['explanation']%></h2>
+            <h2 class="subtitled subtitle has-text-pmoney-color">  <%= reason[1]['explanation']%></h2>
           </div>
           <div class="column
                       is-10-mobile is-offset-1-mobile
@@ -91,25 +89,3 @@
     </div>
   </section>
 <% end %>
-<section class="hero is-white is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div class="hero-body">
-        <div class="container">
-          <div class="columns is-centered">
-            <div class="column
-                        is-10-mobile is-offset-1-mobile
-                        is-10-tablet is-offset-1-tablet
-                        is-4-desktop is-offset-1-desktop
-                        is-4-widescreen is-offset-1-widescreen
-                        is-3-fullhd is-offset-1-fullhd">
-              <div class="buttons">
-                <%= link_to "Let's go!", my_account_path, class: 'button is-primary is-fullwidth' %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>

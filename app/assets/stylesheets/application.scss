@@ -19,7 +19,7 @@
 
 
  .navbar {
-  background-color: lightyellow;
+  background-color: white;
  }
 
  @media (max-width: 1024px) {
@@ -28,3 +28,22 @@
       display: flex;
     }
  }
+
+@media (min-width: 1408px) {
+  .ml-6-pmoney-fullhd  {
+    margin-left: 3rem !important;
+  }
+}
+
+.is-pmoney-primary {
+  background-color: rgb(102, 51, 153);
+  color: white;
+}
+
+.is-pmoney-primary:hover {
+  color: white;
+}
+
+.has-text-pmoney-color {
+  color: rgb(102, 51, 153) !important;
+}

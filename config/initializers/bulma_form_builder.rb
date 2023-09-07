@@ -78,7 +78,7 @@ class BulmaFormBuilder < ActionView::Helpers::FormBuilder
 
   # Submit button with the primary colour for most forms
   def submit_primary(value = nil, options = {})
-    submit(value, merge_class(options, 'is-primary'))
+    submit(value, merge_class(options, 'is-pmoney-primary'))
   end
 
   private

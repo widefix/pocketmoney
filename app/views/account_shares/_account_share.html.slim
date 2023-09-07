@@ -8,7 +8,7 @@ tr
   td= account_share.created_at.to_formatted_s(:short)
   td= account_share.accepted_at&.to_formatted_s(:short)
   - if account_share.public?
-     td= link_to 'Link', account_path(account)
+     td= link_to 'link', account_path(account)
   - else
     td= link_to 'link', accept_account_share_url(token: account_share.token)
   td= link_to 'Cancel', account_share_path(account, account_share), method: :delete, data: {confirm: 'Cancel this share?'}, class: 'button is-small is-light'

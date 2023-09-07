@@ -14,36 +14,35 @@
  *= require_self
  */
 
- @import "bulma";
- @import "font-awesome";
+$text: hsl(270, 50%, 29%);
+$text-light: hsl(270, 50%, 48%);
+$text-strong: hsl(270, 50%, 21%);
 
+@import "bulma";
+@import "font-awesome";
 
- .navbar {
+.navbar {
   background-color: white;
- }
+}
 
- @media (max-width: 1024px) {
-    .reverse-columns {
-      flex-direction: column-reverse;
-      display: flex;
-    }
- }
+@media (max-width: 1024px) {
+  .stacked-elements {
+    flex-direction: column;
+    display: flex;
+  }
+}
 
 @media (min-width: 1408px) {
-  .ml-6-pmoney-fullhd  {
+  .ml-6-pmoney-fullhd {
     margin-left: 3rem !important;
   }
 }
 
-.is-pmoney-primary {
-  background-color: rgb(102, 51, 153);
-  color: white;
+.is-primary {
+  background-color: rgb(102, 51, 153) !important ;
+  color: rgb(102, 51, 153);
 }
 
-.is-pmoney-primary:hover {
-  color: white;
-}
-
-.has-text-pmoney-color {
-  color: rgb(102, 51, 153) !important;
+.is-light {
+  color: $text-light !important ;
 }

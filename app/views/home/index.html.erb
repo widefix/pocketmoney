@@ -1,18 +1,18 @@
-<section class="hero is-small is-white is-halfheight">
+<section class="hero is-small is-halfheight">
   <div class="hero-body">
     <div class="container">
-      <div class="columns is-vcentered reverse-columns">
+      <div class="columns is-vcentered stacked-elements">
         <div class="column
                     is-10-mobile is-offset-0-mobile
                     is-10-tablet is-offset-1-tablet
                     is-5-desktop is-offset-1-desktop
                     is-5-widescreen is-offset-1-widescreen
                     is-5-fullhd ml-6-pmoney-fullhd">
-          <h1 class="title titled is-1 mb-6 has-text-pmoney-color is-size-3-mobile">
+          <h1 class="title titled is-1 mb-6 is-size-3-mobile">
             Spend less on kids's toys and save the family budget
           </h1>
           <div class="buttons">
-            <%= link_to 'Go!', my_account_path, class: 'button is-large is-fullwidth has-text-weight-bold is-pmoney-primary ' %>
+            <%= link_to 'Go!', my_account_path, class: 'button is-large is-fullwidth has-text-weight-bold is-primary ' %>
           </div>
         </div>
         <div class="column
@@ -30,10 +30,10 @@
   </div>
 </section>
 <% @pocket_money_reasons.each_slice(2) do |reason| %>
-  <section class="hero is-white is-halfheight">
+  <section class="hero is-halfheight">
     <div class="hero-body">
       <div class="container">
-        <div class="columns is-vcentered reverse-columns">
+        <div class="columns is-vcentered stacked-elements">
           <div class="column
                       is-10-mobile is-offset-1-mobile
                       is-10-tablet is-offset-1-tablet
@@ -50,29 +50,29 @@
                       is-5-desktop is-offset-1-desktop
                       is-5-widescreen is-offset-1-widescreen
                       is-5-fullhd is-offset-1-fullhd">
-            <h1 class="titled title is-2 mb-6 has-text-pmoney-color is-size-3-mobile">
+            <h1 class="titled title is-2 mb-6 is-size-3-mobile">
               <%= reason[0]['name']%>
             </h1>
-            <h2 class="subtitled subtitle has-text-pmoney-color">  <%= reason[0]['explanation']%></h2>
+            <h2 class="subtitled subtitle">  <%= reason[0]['explanation']%></h2>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <section class="hero is-white is-halfheight">
+  <section class="hero is-halfheight">
     <div class="hero-body">
       <div class="container">
-        <div class="columns is-vcentered reverse-columns">
+        <div class="columns is-vcentered stacked-elements">
           <div class="column
                       is-10-mobile is-offset-1-mobile
                       is-10-tablet is-offset-1-tablet
                       is-5-desktop is-offset-1-desktop
                       is-5-widescreen is-offset-1-widescreen
                       is-5-fullhd is-offset-1-fullhd">
-            <h1 class="title titled is-2 mb-6 has-text-pmoney-color is-size-3-mobile">
+            <h1 class="title titled is-2 mb-6 is-size-3-mobile">
               <%= reason[1]['name']%>
             </h1>
-            <h2 class="subtitled subtitle has-text-pmoney-color">  <%= reason[1]['explanation']%></h2>
+            <h2 class="subtitled subtitle">  <%= reason[1]['explanation']%></h2>
           </div>
           <div class="column
                       is-10-mobile is-offset-1-mobile

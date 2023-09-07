@@ -30,7 +30,7 @@
               <div class="buttons">
                 <% if user_signed_in? %>
                   <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="button is-pmoney-primary">
+                    <a class="button is-primary">
                       <span class="icon">
                         <i class="fa fa-user"></i>
                       </span>
@@ -42,7 +42,7 @@
                     </div>
                   </div>
                 <% else %>
-                  <%= link_to 'Sign up', new_user_registration_path, class: 'button is-pmoney-primary' %>
+                  <%= link_to 'Sign up', new_user_registration_path, class: 'button is-primary' %>
                   <%= link_to 'Log in', new_user_session_path, class: 'button is-light' %>
                 <% end %>
               </div>

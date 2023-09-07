@@ -1,7 +1,7 @@
 .columns
   .column.is-flex.is-justify-content-flex-end
     - if account.children.present? || shared_accounts.present?
-      = link_to 'Add account', new_account_path, class: 'button is-pmoney-primary'
+      = link_to 'Add account', new_account_path, class: 'button is-primary'
 
 - if account.children.present? || shared_accounts.present?
   - account.children.each do |child|
@@ -66,4 +66,4 @@
               h1.title.titled.is-5.mb-6
                 p Welcome to our app!
                 p We invite you to embark on your journey by creating your first account
-              = link_to 'Add account', new_account_path, class: 'button is-pmoney-primary'
+              = link_to 'Add account', new_account_path, class: 'button is-primary'

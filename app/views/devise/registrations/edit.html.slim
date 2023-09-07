@@ -20,4 +20,4 @@
           | (we need your current password to confirm your changes)
       div.buttons.is-flex.is-justify-content-flex-end
         = link_to 'Back', request.referer.present? && request.referer != edit_user_registration_path ? request.referer : root_path, class: 'button is-light'
-        = f.submit "Update",  class: "button is-pmoney-primary"
+        = f.submit "Update",  class: "button is-primary"

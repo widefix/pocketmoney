@@ -1,24 +1,28 @@
 reasons:
+  - name: Get rid of the clutter
+    explanation: Uncontrollable toy purchases lead to chaos at home. Does that make you feel uncomfortable? Take control of toy purchases with our application. Prevent toys from cluttering your space
+    image: pmoney_landing_1.jpg
+
   - name: Convenience
     explanation: An allowance app makes it easy for parents to manage their children's allowances from their smartphones, without having to carry cash or remember to make payments manually
-    image: pmoney_landing_1.png
+    image: pmoney_landing_0.png
 
   - name: Tracking
     explanation: A kids' allowance app allows parents to track how much money their children receive and spend, helping them to monitor their kids' spending habits and teach them financial responsibility
-    image: pmoney_landing_1.png
+    image: pmoney_landing_0.png
 
   - name: Budgeting
     explanation: Parents can use an allowance app to set up a budget for their children, which can help kids learn how to manage money and make wise spending decisions
-    image: pmoney_landing_1.png
+    image: pmoney_landing_0.png
 
   - name: Teaching financial literacy
     explanation: An allowance app can be a useful tool for parents to teach their children about money management and financial literacy
-    image: pmoney_landing_1.png
+    image: pmoney_landing_0.png
 
   - name: Encouraging responsibility
     explanation: By using an allowance app, parents can encourage their children to take responsibility for their own spending and saving, which can help kids develop important life skills
-    image: pmoney_landing_1.png
+    image: pmoney_landing_0.png
 
   - name: Overall
     explanation: A kids' allowance app can be a useful tool for parents to help their children learn about money and develop good financial habits that will serve them well in the future
-    image: pmoney_landing_1.png
+    image: pmoney_landing_0.png

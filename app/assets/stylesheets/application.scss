@@ -14,6 +14,7 @@
  *= require_self
  */
 
+// bulma variables
 $text: hsl(270, 50%, 29%);
 $text-light: hsl(270, 50%, 48%);
 $text-strong: hsl(270, 50%, 21%);
@@ -21,13 +22,23 @@ $text-strong: hsl(270, 50%, 21%);
 @import "bulma";
 @import "font-awesome";
 
+// pocket-money variables
+$primary-pocket-money-color: hsl(270, 50%, 40%);
+
 .navbar {
   background-color: white;
 }
 
 @media (max-width: 1024px) {
-  .stacked-elements {
+  .normal-columns {
     flex-direction: column;
+    display: flex;
+  }
+}
+
+@media (max-width: 1024px) {
+  .reverse-columns {
+    flex-direction: column-reverse;
     display: flex;
   }
 }
@@ -39,8 +50,12 @@ $text-strong: hsl(270, 50%, 21%);
 }
 
 .is-primary {
-  background-color: hsl(270, 50%, 40%) !important ;
-  color: hsl(270, 50%, 40%);
+  background-color: $primary-pocket-money-color !important ;
+  color: $primary-pocket-money-color;
+}
+
+.text-has-pmoney-color {
+  color: $primary-pocket-money-color;
 }
 
 .is-light {

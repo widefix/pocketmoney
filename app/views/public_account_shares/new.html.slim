@@ -1,7 +1,10 @@
-.column
-  = link_to 'Back', account_shares_path, class: 'button is-light'
-.column
-  p Create a new Public Account Share
-
-= form_with(url: account_public_account_shares_path, method: :post) do |form|
-  = form.submit 'Create', class: 'button is-primary'
+.columns.is-centered
+  .column.is-one-third
+    h1.title.is-5.has-text-centered
+      | Create a new Public Account Share for:
+    .subtitle.is-5.has-text-centered
+      = link_to account.name, account_path(account)
+    = form_with(url: account_public_account_shares_path, method: :post) do |form|
+      .buttons.is-centered
+        = link_to 'Back', account_shares_path(account), class: 'button is-light'
+        = form.submit 'Create', class: 'button is-primary'

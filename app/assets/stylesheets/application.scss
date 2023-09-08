@@ -39,10 +39,15 @@ $text-strong: hsl(270, 50%, 21%);
 }
 
 .is-primary {
-  background-color: rgb(102, 51, 153) !important ;
-  color: rgb(102, 51, 153);
+  background-color: hsl(270, 50%, 40%) !important ;
+  color: hsl(270, 50%, 40%);
 }
 
 .is-light {
   color: $text-light !important ;
+}
+
+html,
+body {
+  height: 100vh;
 }

@@ -12,8 +12,8 @@
   </head>
 
   <body>
-    <nav class="navbar is-spaced" role="navigation" aria-label="main navigation">
-      <div class="container">
+    <div class="container hero is-fullheight">
+      <nav class="navbar is-spaced" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <%= link_to root_path, class: "navbar-item" do %>
             <%= image_tag 'logo.svg', width: 112, height: 28 %>
@@ -49,18 +49,15 @@
             </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
 
-    <section class="section">
-      <div class="container">
+      <section class="section is-fullheight">
         <%= yield %>
-      </div>
-    </section>
-    <footer class="footer">
-      <div class="container">
-        Copyright © 2021 WideFix. All rights reserved.
-      </div>
-    </footer>
+      </section>
+
+      <footer class="footer is-flex-align-items-flex-end mt-auto">
+        <%= "Copyright © #{Time.current.year} WideFix. All rights reserved." %>
+      </footer>
+    </div>
   </body>
 </html>

@@ -11,10 +11,7 @@ class TopupsController < ApplicationController
       originator: current_user,
       access_token: Devise.friendly_token
     )
-
-    if account.notification?
-      TransactionsMailer.transaction_notification(account).deliver
-    end
+    SendNotification.call(account)
 
     redirect_to account_path(account)
   end

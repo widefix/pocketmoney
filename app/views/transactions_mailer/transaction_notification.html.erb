@@ -1,15 +1,11 @@
-<h1>Dear <%= @account.name%>, transaction added!</h1>
+<h1>New transaction was added in <%= @account.name %>!</h1>
 <h3>About transation:</h3>
-<p>From:</p>
-<%= @transaction.from_account.name %>
-<p>To:</p>
-<%= @transaction.to_account.name %>
-<p>Amount:</p>
-<%= @transaction.amount %>
-<p>Description:</p>
-<%= @transaction.description %>
+<p>From: <%= @transaction.from_account.name %> </p>
+<p>To: <%= @transaction.to_account.name %> </p>
+<p>Amount: <%= @transaction.signed_amount(@account) %> </p>
+<p>Description: <%= @transaction.description %> </p>
+<p>Current balance: <%= @account.balance %> </p>
 <br>
-<p>Click to link for approve transaction </p><%= link_to 'Approve', '#' %>
 <h3> Last 5 transactions: </h3>
 <table>
   <tr>
@@ -29,5 +25,3 @@
     </tr>
   <% end %>
 </table>
-  
-

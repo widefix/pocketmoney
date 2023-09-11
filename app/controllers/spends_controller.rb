@@ -14,6 +14,9 @@ class SpendsController < ApplicationController
 
     if account.notification?
       TransactionsMailer.transaction_notification(account).deliver
+      account.account_shares.accepted.each do |account_share|
+        TransactionsMailer.transaction_notification(account, account_share).deliver
+      end
     end
 
     redirect_to account_path(account)

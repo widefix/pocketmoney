@@ -8,11 +8,11 @@ class TransactionsMailer < ApplicationMailer
     mail to: @user.email, title: "Automatic top up account - #{@to_account.name}"
   end
 
-  def transaction_notification(account)
+  def transaction_notification(account, account_share = nil)
     @account = account
     @transaction = Transaction.last
     @transactions = @account.transactions.order(created_at: :desc).limit(5)
-    
-    mail to: @account.email, subject: "Transaction added." 
+
+    mail to: account_share&.email || @account.email, subject: "Transaction added."
   end
 end

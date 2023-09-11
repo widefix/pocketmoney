@@ -10,4 +10,4 @@ div.columns.is-centered.is-vcentered
       = link_to 'Accept', accept_account_share_path, method: :patch, class: 'button is-success is-medium'
       span.has-text-grey-light
 
-      = link_to 'Cancel', root_path, class: 'button is-light is-medium'
+      = link_to 'Cancel', request.referer.present? ? request.referer : root_path, class: 'button is-light is-medium'

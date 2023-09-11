@@ -4,5 +4,24 @@
 <p>To: <%= @transaction.to_account.name %> </p>
 <p>Amount: <%= @transaction.signed_amount(@account) %> </p>
 <p>Description: <%= @transaction.description %> </p>
-<br>
 <p>Current balance: <%= @account.balance %> </p>
+<br>
+<h3> Last 5 transactions: </h3>
+<table>
+  <tr>
+    <th>Date</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Amount</th>
+    <th>Description</th>
+  </tr>
+  <% @transactions.each do |transaction|%>
+    <tr>
+      <th><%= transaction.date %></th>
+      <th><%= transaction.from_account.name %></th>
+      <th><%= transaction.to_account.name %></th>
+      <th><%= transaction.signed_amount(@account) %></th>
+      <th><%= transaction.description %></th>
+    </tr>
+  <% end %>
+</table>

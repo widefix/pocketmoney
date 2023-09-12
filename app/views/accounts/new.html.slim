@@ -7,6 +7,7 @@
         .field
         = f.fields_for :automatic_topup_configs do |auto_topup_form|
           = auto_topup_form.text_field :amount, class: "input", placeholder: "Weekly amount (optional)"
+          = auto_topup_form.hidden_field :from_account_id
           .notification.is-light
             | This amount will be automatically added to the account every week. You will receive an email notification about that
         .buttons.is-flex.is-justify-content-flex-end

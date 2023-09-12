@@ -8,7 +8,7 @@ class AccountsController < ApplicationController
 
   def new
     @account = Account.new
-    @account.automatic_topup_configs.build(from_account_id: current_user.account.id)
+    @account.automatic_topup_configs.build
   end
 
   def edit

@@ -1,9 +1,11 @@
 import { WebView } from 'react-native-webview';
+import Config from './config';
 
 export default function App() {
   return (
     <WebView
-      source={{ uri: 'https://money.dokku.widefix.com/' }} 
+      style={{ marginTop: 25 }}
+      source={{ uri: Config.apiUrl }} 
     />
   );
 }

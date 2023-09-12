@@ -10,6 +10,8 @@ class Account < ApplicationRecord
   has_one :user
 
   has_many :automatic_topup_configs, class_name: 'AccountAutomaticTopupConfig', foreign_key: :to_account_id
+  accepts_nested_attributes_for :automatic_topup_configs, reject_if: ->(attributes) { attributes['amount'].blank? }
+
   has_many :objectives
 
   belongs_to :parent, class_name: 'Account', optional: true

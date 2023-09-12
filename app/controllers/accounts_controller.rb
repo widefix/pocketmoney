@@ -23,7 +23,6 @@ class AccountsController < ApplicationController
   end
 
   def create
-    params[:account][:automatic_topup_configs_attributes]['0'][:from_account_id] = current_user.account.id
     Account.create!(parent: current_user.account, **account_params)
     redirect_to my_account_path
   end

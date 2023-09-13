@@ -31,6 +31,8 @@ jobs:
         run: cp config/database.yml.ci config/database.yml
       - name: Set up database schema
         run: bin/rails db:schema:load
+      - name: Compile assets
+        run: bin/rails assets:compile
       - name: Run tests
         run: bin/rake
 

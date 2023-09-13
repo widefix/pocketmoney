@@ -183,7 +183,6 @@ Style/ClassAndModuleChildren:
 Style/EmptyMethod:
   Exclude:
     - 'app/controllers/account_automatic_topup_configs_controller.rb'
-    - 'app/controllers/accounts_controller.rb'
     - 'app/controllers/home_controller.rb'
     - 'app/controllers/objectives_controller.rb'
     - 'app/controllers/spends_controller.rb'

@@ -26,11 +26,9 @@ RSpec.describe AccountsController, type: :controller do
 
   describe '#create' do
     let(:valid_params) do
-      { account: { parent: account, name: account.name,
-                   automatic_topup_configs_attributes: {
-                     '0': {amount: 10, from_account_id: user.account.id }
-                   }}}
+      { name: account.name, automatic_topup: {amount: 10 }}
     end
+
     subject { post :create, params: valid_params}
 
     it { is_expected.to redirect_to(my_account_path) }

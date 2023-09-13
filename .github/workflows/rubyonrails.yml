@@ -32,7 +32,7 @@ jobs:
       - name: Set up database schema
         run: bin/rails db:schema:load
       - name: Compile assets
-        run: bin/rails assets:compile
+        run: bin/rails assets:precompile
       - name: Run tests
         run: bin/rake
 

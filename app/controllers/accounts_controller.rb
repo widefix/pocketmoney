@@ -3,14 +3,11 @@
 class AccountsController < ApplicationController
   before_action :authenticate_user!
 
-  def show
-  end
+  def show; end
 
-  def new
-  end
+  def new; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if account.update(ps[:account])
@@ -21,7 +18,16 @@ class AccountsController < ApplicationController
   end
 
   def create
-    Account.create!(parent: current_user.account, **ps.slice(:name))
+    ActiveRecord::Base.transaction do
+      account = Account.create!(parent: current_user.account, **ps.slice(:name))
+
+      automatic_topup_amount = ps[:automatic_topup].fetch(:amount)
+      if automatic_topup_amount.present?
+        AccountAutomaticTopupConfig.create!(from_account: current_user.account,
+                                            to_account: account,
+                                            amount: automatic_topup_amount)
+      end
+    end
     redirect_to my_account_path
   end
 

@@ -10,6 +10,7 @@ class Account < ApplicationRecord
   has_one :user
 
   has_many :automatic_topup_configs, class_name: 'AccountAutomaticTopupConfig', foreign_key: :to_account_id
+
   has_many :objectives
 
   belongs_to :parent, class_name: 'Account', optional: true

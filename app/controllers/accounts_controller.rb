@@ -36,4 +36,21 @@ class AccountsController < ApplicationController
   helper_method memoize def account
     Account.visible_for(current_user).find(ps.fetch(:id))
   end
+
+  helper_method def weeks_to_goal(goal_amount, account)
+    # y = f(x) = a*x + b, where y is the account balance in x days
+    return unless approximation_coefficients(account).present?
+
+    a, b = approximation_coefficients(account)
+    days = (goal_amount - b) / a
+    ((days - day_passed(account)) / 7).ceil
+  end
+
+  def approximation_coefficients(account)
+    @approximation_coefficients ||= BalanceChangeApproximation.call(account)
+  end
+
+  def day_passed(account)
+    @day_passed ||= (Time.current.to_date - account.created_at.to_date).to_i + 1
+  end
 end

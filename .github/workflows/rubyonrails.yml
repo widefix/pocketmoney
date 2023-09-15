@@ -31,8 +31,10 @@ jobs:
         run: cp config/database.yml.ci config/database.yml
       - name: Set up database schema
         run: bin/rails db:schema:load
-      - name: Export node options
-        run: export NODE_OPTIONS=--openssl-legacy-provider
+      - name: Specify Node Version
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.17.1
       - name: Compile assets
         run: bin/rails assets:precompile
       - name: Run tests

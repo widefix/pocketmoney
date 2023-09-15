@@ -34,7 +34,7 @@ jobs:
       - name: Specify Node Version
         uses: actions/setup-node@v3
         with:
-          node-version: 18.17.1
+          node-version: 16
       - name: Compile assets
         run: bin/rails assets:precompile
       - name: Run tests

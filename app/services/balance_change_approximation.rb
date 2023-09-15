@@ -66,11 +66,11 @@ class BalanceChangeApproximation
     @day_passed ||= (Time.current.to_date - @account.created_at.to_date).to_i + 1
   end
 
-  def sum_of_progression(n)
-    (n * (n + 1)) / 2
+  def sum_of_progression(number)
+    (number * (number + 1)) / 2
   end
 
-  def sum_of_squares_of_progression(n)
-    (n * (n + 1) * ((2 * n) + 1)) / 6
+  def sum_of_squares_of_progression(number)
+    (number * (number + 1) * ((2 * number) + 1)) / 6
   end
 end

@@ -7,27 +7,44 @@
   - account.children.each do |child|
     .card.box
       .card-content
-        .media
-          .media-content
+        .columns
+          .column
             p.title.is-4= link_to child.name, account_path(child)
-            p.subtitle.is-6= child.balance
+          .column
+            nav.level
+              .level-item.has-text-centered
+                div
+                  p.heading Balance
+                  p.title #{child.balance}
+          .column
+
       footer.card-footer
-        = link_to '+ Add', new_account_topup_path(child), class: 'card-footer-item'
-        = link_to '- Spend', new_account_spend_path(child), class: 'card-footer-item'
+        = link_to '<i class="fa fa-plus-circle fa-2x"></i>'.html_safe, new_account_topup_path(child), class: 'card-footer-item is-plus-color'
+        = link_to '<i class="fa fa-minus-circle fa-2x"></i>'.html_safe, new_account_spend_path(child), class: 'card-footer-item is-minus-color'
+
   br
   - if shared_accounts.present?
     | Shared accounts
     - shared_accounts.each do |shared_account|
       .card.box
         .card-content
-          .media
-            .media-content
+          .columns
+            .column
               p.title.is-6 Owner: #{shared_account.parent.email}
               p.title.is-4= link_to shared_account.name, account_path(shared_account)
-              p.subtitle.is-6= shared_account.balance
+            .column
+              nav.level
+                .level-item.has-text-centered
+                  div
+                    p.heading Balance
+                    p.title #{shared_account.balance}
+            .column
+
+
+
         footer.card-footer
-          = link_to '+ Add', new_account_topup_path(shared_account), class: 'card-footer-item'
-          = link_to '- Spend', new_account_spend_path(shared_account), class: 'card-footer-item'
+          = link_to '<i class="fa fa-plus-circle fa-2x"></i>'.html_safe, new_account_topup_path(shared_account), class: 'card-footer-item is-plus-color'
+          = link_to '<i class="fa fa-minus-circle fa-2x"></i>'.html_safe, new_account_spend_path(shared_account), class: 'card-footer-item is-minus-color'
   br
   - if unaccepted_shares.present?
     h2.title

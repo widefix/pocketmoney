@@ -17,8 +17,8 @@ h2.title.is-4
               p.heading Balance
               p.title #{account.balance}
       .card-footer
-        = link_to '+Add', new_account_topup_path(account), class: 'card-footer-item'
-        = link_to '-Spend', new_account_spend_path(account), class: 'card-footer-item'
+        = link_to '<i class="fa fa-plus-circle fa-2x"></i>'.html_safe, new_account_topup_path(account), class: 'card-footer-item is-plus-color'
+        = link_to '<i class="fa fa-minus-circle fa-2x"></i>'.html_safe, new_account_spend_path(account), class: 'card-footer-item is-minus-color'
 .columns
   .column
     .card

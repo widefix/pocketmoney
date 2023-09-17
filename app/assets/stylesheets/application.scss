@@ -25,6 +25,7 @@ $footer-background-color: white;
 
 // pocket-money variables
 $primary-pocket-money-color: hsl(270, 50%, 40%);
+$primary-pocket-money-background-color: hsl(270, 95%, 98%);
 
 .navbar {
   background-color: white;
@@ -61,6 +62,24 @@ $primary-pocket-money-color: hsl(270, 50%, 40%);
 
 .is-light {
   color: $text-light !important ;
+}
+
+.is-plus-color {
+  color: hsl(120, 50%, 48%);
+}
+
+.is-plus-color:hover {
+  color: hsl(120, 65%, 48%);
+  background-color: $primary-pocket-money-background-color !important ;
+}
+
+.is-minus-color {
+  color: hsl(0, 50%, 48%);
+}
+
+.is-minus-color:hover {
+  color: hsl(0, 65%, 48%);
+  background-color: $primary-pocket-money-background-color !important ;
 }
 
 html,

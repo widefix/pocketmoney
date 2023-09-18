@@ -1,5 +1,5 @@
 {
-  "name": "pocketmoney",
+  "name": "budgetingkid",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",

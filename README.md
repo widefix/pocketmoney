@@ -1,4 +1,4 @@
-# POCKETMONEY
+# BUDGETINGkid
 
 It's a debt management app that creates a formalised record of debts between you and your friends.
 

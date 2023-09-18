@@ -12,7 +12,7 @@ RSpec.describe AccountShareMailer, type: :mailer do
     subject(:mail) { AccountShareMailer.account_share(account_share).deliver }
 
     it { expect(mail.to).to eq([shared_user.email]) }
-    it { expect(mail.subject).to eq('Share to manage an account!') }
+    it { expect(mail.subject).to eq('Get access to account') }
     it { expect(mail.body.encoded).to match(account_share.name) }
   end
 end

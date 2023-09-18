@@ -1,6 +1,7 @@
-<h2>Dear <%= @account_share.name%>, welcome to managing my account!</h2>
+<h2>Hi <%= @account_share.name || @account_share.email%></h2>
 <br>
-<p>Click the link to approve the share</p>
-<%= link_to 'Go and approve the share', accept_account_share_url(token: @account_share.token) %>
+<p> <%= @account_share.user.name || @account_share.user.email%> is inviting you to manage his child account <account name>.</p>
+<p>Please follow the link below to get the access:</p>
+<%= link_to 'Approve link', accept_account_share_url(token: @account_share.token) %>
 <br>
-<p>Sincerely, <%= [@account_share.user.name, @account_share.user.email].compact.reject(&:empty?).first %> </p>
+<p>Sincerely, BudgetingKid team.</p>

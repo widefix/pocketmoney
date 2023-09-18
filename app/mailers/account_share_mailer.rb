@@ -4,6 +4,6 @@ class AccountShareMailer < ApplicationMailer
   def account_share(account_share)
     @account_share = account_share
 
-    mail to: account_share.email, subject: 'Share to manage an account!'
+    mail to: account_share.email, subject: 'Get access to account'
   end
 end

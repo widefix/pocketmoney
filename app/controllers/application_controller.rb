@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
+
+  helper_method memoize def goal_percentage(account, objective)
+    ActionController::Base.helpers.number_to_percentage(account.balance / objective.amount * 100, precision: 0)
+  end
 end

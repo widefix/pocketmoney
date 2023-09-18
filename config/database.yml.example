@@ -7,12 +7,12 @@ default: &default
 
 development:
   <<: *default
-  database: pocketmoney_development
+  database: budgetingkid_development
 
 test:
   <<: *default
-  database: pocketmoney_test
+  database: budgetingkid_test
 
 production:
   <<: *default
-  database: pocketmoney_production
+  database: budgetingkid_production

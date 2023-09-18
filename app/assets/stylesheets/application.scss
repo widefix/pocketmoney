@@ -19,13 +19,22 @@ $text: hsl(270, 50%, 29%);
 $text-light: hsl(270, 50%, 48%);
 $text-strong: hsl(270, 50%, 21%);
 $footer-background-color: white;
+$navbar-item-img-max-height: 40px;
+$navbar-item-hover-color: $text;
 
 @import "bulma";
 @import "font-awesome";
+@import url("https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap");
 
-// pocket-money variables
-$primary-pocket-money-color: hsl(270, 50%, 40%);
-$primary-pocket-money-background-color: hsl(270, 95%, 98%);
+// BudgetingKid variables
+$primary-budgeting-kid-color: hsl(270, 50%, 40%);
+$primary-budgeting-kid-background-color: hsl(270, 95%, 98%);
+
+.budgeting-kid-logo-font {
+  font-family: "Reenie Beanie", sans-serif;
+  font-size: 40px;
+  color: $primary-budgeting-kid-color;
+}
 
 .navbar {
   background-color: white;
@@ -52,12 +61,12 @@ $primary-pocket-money-background-color: hsl(270, 95%, 98%);
 }
 
 .is-primary {
-  background-color: $primary-pocket-money-color !important ;
-  color: $primary-pocket-money-color;
+  background-color: $primary-budgeting-kid-color !important ;
+  color: $primary-budgeting-kid-color;
 }
 
 .text-has-pmoney-color {
-  color: $primary-pocket-money-color;
+  color: $primary-budgeting-kid-color;
 }
 
 .is-light {
@@ -70,7 +79,7 @@ $primary-pocket-money-background-color: hsl(270, 95%, 98%);
 
 .is-plus-color:hover {
   color: hsl(120, 65%, 48%);
-  background-color: $primary-pocket-money-background-color !important ;
+  background-color: $primary-budgeting-kid-background-color !important ;
 }
 
 .is-minus-color {
@@ -79,7 +88,7 @@ $primary-pocket-money-background-color: hsl(270, 95%, 98%);
 
 .is-minus-color:hover {
   color: hsl(0, 65%, 48%);
-  background-color: $primary-pocket-money-background-color !important ;
+  background-color: $primary-budgeting-kid-background-color !important ;
 }
 
 html,

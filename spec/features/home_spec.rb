@@ -6,7 +6,7 @@ RSpec.feature 'Home Page', type: :feature do
   scenario 'User visits the home page' do
     visit root_path
 
-    sections_data = YAML.load_file(Rails.root.join('config', 'pocket_money_reasons.yml'))['reasons']
+    sections_data = YAML.load_file(Rails.root.join('config', 'budgeting_kid_reasons.yml'))['reasons']
 
     sections_data.each do |section|
       expect(page).to have_content(section['name'])

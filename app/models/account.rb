@@ -30,7 +30,7 @@ class Account < ApplicationRecord
   end
 
   def transactions
-    Transaction.where(to_account: self).or(Transaction.where(from_account: self))
+    Transaction.where(to_account: self).or(Transaction.where(from_account: self)).order(created_at: :desc)
   end
 
   def accumulative_balance_data

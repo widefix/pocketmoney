@@ -269,7 +269,6 @@ Style/FrozenStringLiteralComment:
     - 'config/initializers/mime_types.rb'
     - 'config/initializers/wrap_parameters.rb'
     - 'config/puma.rb'
-    - 'config/routes.rb'
     - 'config/spring.rb'
     - 'db/migrate/20211017205435_create_transactions.rb'
     - 'db/migrate/20211107223918_create_accounts.rb'

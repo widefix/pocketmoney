@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'home#index'
@@ -17,4 +19,5 @@ Rails.application.routes.draw do
   resources :transactions, only: [:destroy]
   resources :objectives, only: [:destroy]
   resources :public_accounts, param: :token, only: :show, controller: 'public_account_shares'
+  resources :feedbacks, only: [:new, :create]
 end

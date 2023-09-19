@@ -38,6 +38,7 @@
                     </a>
                     <div class="navbar-dropdown is-right is-boxed">
                       <%= link_to 'My profile', edit_user_registration_path, class: "navbar-item" %>
+                      <%= link_to 'Feedback', new_feedback_path, class: "navbar-item" %>
                       <hr class="navbar-divider">
                       <%= link_to 'Log out', destroy_user_session_path, method: :delete, class:"navbar-item"%>
                     </div>

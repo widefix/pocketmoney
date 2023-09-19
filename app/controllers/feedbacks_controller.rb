@@ -4,8 +4,8 @@ class FeedbacksController < ApplicationController
   before_action :authenticate_user!
 
   GRATITUDE = <<-TEXT
-    Thank you for providing us with your feedback. We greatly appreciate your input,
-    and it helps us in our ongoing efforts to improve our application.
+    Thank you for providing us with your feedback. We appreciate your input.
+    It helps us in our ongoing efforts to improve the application.
     If you have any further suggestions or comments, please feel free to share them.
   TEXT
 
@@ -14,7 +14,7 @@ class FeedbacksController < ApplicationController
   end
 
   def create
-    feedback = current_user.feedbacks.new(user: current_user, **ps.slice(:description))
+    feedback = current_user.feedbacks.new(**ps.slice(:description))
     return unless feedback.save
 
     flash.now.notice = GRATITUDE

@@ -3,8 +3,8 @@ class ObjectivesController < ApplicationController
   end
 
   def create
-    account.objectives.create!(ps.slice(:name, :amount, :image_url))
-    redirect_back(fallback_location: account_path(account))
+    account.objectives.create!(ps.slice(:name, :amount))
+    redirect_to account_path(account)
   end
 
   def destroy

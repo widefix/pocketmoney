@@ -1,7 +1,12 @@
 tr
   td= objective.name
-  td= objective.amount
-  td= number_to_percentage(public_account.balance / objective.amount * 100, precision: 0)
-  td= ([objective.amount - public_account.balance, 0].max / public_account.automatic_topup_configs.sum(:amount).+(0.1)).round(2)
-  td= image_tag objective.image_url
+  td
+    = objective.amount
+    br
+    = "it takes #{([objective.amount, 0].max / account.automatic_topup_configs.sum(:amount).+(0.1)).ceil} weeks"
+  td.has-text-centered
+    =
+    | #{goal_percentage(account, objective)}
+    progress.progress.is-small(value="#{goal_percentage(account, objective).chomp('%')}" max="100") #{goal_percentage(account, objective)}
+  td= ([objective.amount - public_account.balance, 0].max / public_account.automatic_topup_configs.sum(:amount).+(0.1)).ceil
   td= ''

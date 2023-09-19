@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   resources :transactions, only: [:destroy]
   resources :objectives, only: [:destroy]
   resources :public_accounts, param: :token, only: :show, controller: 'public_account_shares'
+  resources :feedbacks, only: [:new, :create]
 end

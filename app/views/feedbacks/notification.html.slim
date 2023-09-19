@@ -1,0 +1,8 @@
+.columns.is-centered
+  .column.is-one-third
+    - if flash[:notice]
+      .notification.is-light
+        | #{flash[:notice]}
+      .field
+        .buttons.is-flex.is-justify-content-flex-end
+          = link_to 'Ok', session.delete(:current_url) , class: "button is-primary"

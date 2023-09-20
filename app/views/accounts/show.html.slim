@@ -43,34 +43,6 @@ h2.title.is-4
           .card-footer
             = link_to "Show all", "#", id: "toggle-button", class: 'card-footer-item'
 
-javascript:
-  document.addEventListener('DOMContentLoaded', function() {
-    var toggleButton = document.getElementById('toggle-button');
-    var tbody = document.querySelector('tbody.transactions');
-    var transactionsHidden = true;
-    var tbodyRows = Array.from(tbody.querySelectorAll('tr'));
-
-    function toggleRows() {
-      for (var i = 10; i < tbodyRows.length; i++) {
-        var row = tbodyRows[i];
-        row.style.display = (row.style.display === 'none') ? '' : 'none';
-      }
-    };
-
-    toggleButton.addEventListener('click', function(e) {
-      e.preventDefault();
-      toggleRows();
-
-      toggleButton.textContent = transactionsHidden ? 'Hide' : 'Show all'; 
-      transactionsHidden = !transactionsHidden;
-    });
-
-    if (tbodyRows.length > 10) {
-      toggleRows();
-    }
-  });
-
-
 .columns
   .column
     .card

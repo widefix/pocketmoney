@@ -1,6 +1,6 @@
 tr
   td= transaction.date
-  td= transaction.from_account.name
+  td= transaction.from_account.name || transaction.from_account.email
   td= transaction.to_account.name
   td= transaction.signed_amount(account)
   td= transaction.description

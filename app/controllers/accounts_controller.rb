@@ -31,9 +31,28 @@ class AccountsController < ApplicationController
     redirect_to my_account_path
   end
 
+  def archive
+    unless accessed?
+      flash.now.notice = 'Access denied!.'
+      return render :notification
+    end
+
+    account.update!(archived_at: Time.current)
+    AccountShare.where(account_id: account).delete_all
+    AccountAutomaticTopupConfig.where(to_account: account).delete_all
+
+    redirect_to my_account_path
+  end
+
   private
 
   helper_method memoize def account
     Account.visible_for(current_user).find(ps.fetch(:id))
+  end
+
+  def accessed?
+    current_user.id == (account.user ? account.user.id : account.parent.user.id)
+  rescue ActiveRecord::RecordNotFound
+    false
   end
 end

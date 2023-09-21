@@ -58,4 +58,32 @@ RSpec.describe AccountsController, type: :controller do
       expect(Account.where(id: account.id).name).not_to eq(old_name)
     end
   end
+
+  describe '#archive' do
+    let!(:account_share) { create(:account_share, user: user, account: account) }
+    let!(:automatic_topup_config) { create(:account_automatic_topup_config, from_account: account, to_account: account) }
+
+    subject(:archive) { get :archive, params: { id: account } }
+
+    context 'when the current user owns the account' do
+      it { is_expected.to have_http_status(:redirect) }
+      it { is_expected.to redirect_to(my_account_path) }
+      it { expect { subject }.not_to(change { Account.count }) }
+      it { expect { subject }.to change { account.reload.archived_at }.from(nil) }
+      it { expect { subject }.to change { AccountShare.count }.by(-1) }
+      it { expect { subject }.to change { AccountAutomaticTopupConfig.count }.by(-1) }
+    end
+
+    context 'when the current user does not own the account' do
+      let(:other_account) { create(:account, :parent) }
+      let(:other_user) { create(:user, account: other_account) }
+
+      before { sign_in other_user }
+
+      it { expect { subject }.not_to(change { AccountShare.count }) }
+      it { expect { subject }.not_to(change { Account.count }) }
+      it { is_expected.to have_http_status(:success) }
+      it { is_expected.to render_template(:notification) }
+    end
+  end
 end

@@ -37,7 +37,23 @@ $primary-budgeting-kid-background-color: hsl(270, 95%, 98%);
 }
 
 .navbar {
-  background-color: white;
+  position: sticky;
+  top: 0;
+  transition: transform 0.5s ease;
+}
+
+.is-navbar-white-color {
+  background-color: white !important ;
+}
+
+.navbar-footer {
+  @extend .footer;
+  transition: opacity 0.8s ease;
+  border-top: 1px solid hsl(0, 0%, 90%);
+  position: sticky;
+  bottom: 0;
+  padding: 10px;
+  background-color: hsl(0, 0%, 96%);
 }
 
 @media (max-width: 1024px) {
@@ -45,12 +61,18 @@ $primary-budgeting-kid-background-color: hsl(270, 95%, 98%);
     flex-direction: column;
     display: flex;
   }
-}
-
-@media (max-width: 1024px) {
+  .is-hide-for-mobile {
+    display: none;
+  }
   .reverse-columns {
     flex-direction: column-reverse;
     display: flex;
+  }
+}
+
+@media (min-width: 1024px) {
+  .is-hide-for-desktop {
+    display: none;
   }
 }
 
@@ -71,6 +93,11 @@ $primary-budgeting-kid-background-color: hsl(270, 95%, 98%);
 
 .is-light {
   color: $text-light !important ;
+}
+
+.is-footer-light {
+  @extend .is-light;
+  color: $text !important ;
 }
 
 .is-plus-color {

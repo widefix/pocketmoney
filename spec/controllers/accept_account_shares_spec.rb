@@ -36,6 +36,23 @@ RSpec.describe AcceptAccountSharesController, type: :controller do
       it { is_expected.to have_http_status(:success) }
       it { is_expected.to render_template(:show) }
     end
+
+    context 'when the user is the owner of the account' do
+      before { sign_in user }
+
+      it { is_expected.to have_http_status(:success) }
+      it { is_expected.to render_template(:notification) }
+    end
+
+    context 'when the account share is already accepted' do
+      before do
+        sign_in user
+        account_share.update!(accepted_at: Time.current)
+      end
+
+      it { is_expected.to have_http_status(:success) }
+      it { is_expected.to render_template(:notification) }
+    end
   end
 
   describe '#update' do

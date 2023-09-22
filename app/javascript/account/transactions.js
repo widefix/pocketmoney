@@ -1,5 +1,8 @@
 document.addEventListener('turbolinks:load', function() {
   var toggleButton = document.getElementById('toggle-button');
+  if (!toggleButton) {
+    return
+  }
   var transactionsHidden = true;
   var tbodyRows = Array.from(document.querySelectorAll('tbody.transactions tr'));
 

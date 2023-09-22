@@ -79,7 +79,7 @@
         <p> Copyright © <%= Time.current.year %> <%= link_to("WideFix", "https://widefix.com/")%>. All rights reserved. </p>
       </footer>
 
-      <footer class="navbar-footer is-flex-align-items-flex-end is-hide-for-desktop">
+      <nav class="navbar-footer is-fixed-bottom is-flex-align-items-flex-end is-hide-for-desktop">
         <div class="columns is-mobile is-gapless">
           <div class="column">
             <%= button_to my_account_path, method: :get, class:'button is-footer-light is-fullwidth' do %>
@@ -99,7 +99,7 @@
             <% end %>
           </div>
         </div>
-      </footer>
+      </nav>
     </div>
   </body>
 </html>

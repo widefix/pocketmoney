@@ -47,7 +47,6 @@ $primary-budgeting-kid-background-color: hsl(270, 95%, 98%);
 }
 
 .navbar-footer {
-  @extend .footer;
   transition: opacity 0.8s ease;
   border-top: 1px solid hsl(0, 0%, 90%);
   position: sticky;

@@ -1,17 +1,14 @@
 # frozen_string_literal: true
 
 class AcceptAccountSharesController < ApplicationController
-  def show
-    if user_signed_in?
-      return render_notification("You can't accept, because you are the owner") if user_is_owner?
-      return render_notification('Already accepted') if received_share.accepted_at.present?
+  before_action :received_share, only: [:show], if: -> { user_signed_in? }
 
-      return
-    end
+  def show
+    return if user_signed_in?
 
     session[:after_sign_in_url] = request.fullpath
 
-    shared_email = received_share.email
+    shared_email = AccountShare.unaccepted.find_by!(token: ps.fetch(:token)).email
     user = User.find_by(email: shared_email)
     redirect_url = user ? new_user_session_url(email: shared_email) : new_user_registration_url(email: shared_email)
 
@@ -26,15 +23,6 @@ class AcceptAccountSharesController < ApplicationController
   private
 
   helper_method memoize def received_share
-    AccountShare.find_by!(token: ps.fetch(:token))
-  end
-
-  def render_notification(message)
-    flash.now.notice = message
-    render :notification
-  end
-
-  def user_is_owner?
-    current_user.id == received_share.user_id
+    AccountShare.unaccepted.for(current_user).find_by!(token: ps.fetch(:token))
   end
 end

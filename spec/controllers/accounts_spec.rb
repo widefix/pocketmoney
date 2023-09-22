@@ -71,7 +71,6 @@ RSpec.describe AccountsController, type: :controller do
       it { expect { subject }.not_to(change { Account.count }) }
       it { expect { subject }.to change { account.reload.archived_at }.from(nil) }
       it { expect { subject }.to change { AccountShare.count }.by(-1) }
-      it { expect { subject }.to change { AccountAutomaticTopupConfig.count }.by(-1) }
     end
 
     context 'when the current user does not own the account' do
@@ -80,10 +79,24 @@ RSpec.describe AccountsController, type: :controller do
 
       before { sign_in other_user }
 
-      it { expect { subject }.not_to(change { AccountShare.count }) }
+      it 'raises ActiveRecord::RecordNotFound' do
+        expect { subject }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    context 'when the current user is received share' do
+      let(:other_account) { create(:account, :parent) }
+      let(:other_user) { create(:user, account: other_account) }
+      let!(:account_share) do
+        create(:account_share, user: user, account: account, email: other_user.email, accepted_at: Time.current)
+      end
+
+      before { sign_in other_user }
+
       it { expect { subject }.not_to(change { Account.count }) }
-      it { is_expected.to have_http_status(:success) }
-      it { is_expected.to render_template(:notification) }
+      it { expect { subject }.not_to(change { account.reload.archived_at }) }
+      it { expect { subject }.not_to(change { AccountShare.count }) }
+      it { is_expected.to redirect_to(account_path) }
     end
   end
 end

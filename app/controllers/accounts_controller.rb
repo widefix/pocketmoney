@@ -2,6 +2,7 @@
 
 class AccountsController < ApplicationController
   before_action :authenticate_user!
+  before_action :accessed?, only: [:archive]
 
   def show; end
 
@@ -32,14 +33,10 @@ class AccountsController < ApplicationController
   end
 
   def archive
-    unless accessed?
-      flash.now.notice = 'Access denied!.'
-      return render :notification
-    end
+    return redirect_to account_path unless accessed?
 
     account.update!(archived_at: Time.current)
     AccountShare.where(account_id: account).delete_all
-    AccountAutomaticTopupConfig.where(to_account: account).delete_all
 
     redirect_to my_account_path
   end
@@ -47,12 +44,10 @@ class AccountsController < ApplicationController
   private
 
   helper_method memoize def account
-    Account.visible_for(current_user).find(ps.fetch(:id))
+    Account.visible_for(current_user).unarchived.find(ps.fetch(:id))
   end
 
   def accessed?
     current_user.id == (account.user ? account.user.id : account.parent.user.id)
-  rescue ActiveRecord::RecordNotFound
-    false
   end
 end

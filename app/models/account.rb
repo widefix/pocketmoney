@@ -3,7 +3,7 @@
 class Account < ApplicationRecord
   has_many :income_transactions, class_name: 'Transaction', foreign_key: :to_account_id
   has_many :outcome_transactions, class_name: 'Transaction', foreign_key: :from_account_id
-  has_many :children, -> { where(archived_at: nil) }, class_name: 'Account', foreign_key: :parent_id
+  has_many :children, class_name: 'Account', foreign_key: :parent_id
   has_many :account_shares
 
   # an account has user optionally
@@ -17,10 +17,12 @@ class Account < ApplicationRecord
 
   validates :name, presence: true
 
+  scope :unarchived, -> { where(archived_at: nil) }
+
   scope :visible_for, lambda { |current_user|
     where(id: [current_user.account_id] +
                current_user.account.child_ids +
-               shared_for(current_user).pluck(:id)).where(archived_at: nil)
+               shared_for(current_user).pluck(:id))
   }
 
   scope :shared_for, ->(user) { where(id: AccountShare.accepted.for(user).pluck(:account_id)) }

@@ -9,6 +9,17 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= favicon_link_tag 'favicons/favicon.ico'%>
+    <%= favicon_link_tag 'favicons/favicon.svg'%>
+
+    <% %w(16 32 48 96 144 192 256 384 512 70 150 310).each do |s| %>
+      <%= favicon_link_tag "favicons/favicon_#{s}.png",sizes: "#{s}x#{s}" %>
+    <% end %>
+
+    <% %w(32 76 120 152 167 180).each do |s| %>
+      <%= favicon_link_tag "favicons/favicon_#{s}.png",sizes: "#{s}x#{s}", rel: 'apple-touch-icon', type: 'image/png' %>
+    <% end %>
   </head>
 
   <body>

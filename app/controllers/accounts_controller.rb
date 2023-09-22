@@ -2,8 +2,6 @@
 
 class AccountsController < ApplicationController
   before_action :authenticate_user!
-  before_action :accessed?, only: [:archive]
-
   def show; end
 
   def new; end

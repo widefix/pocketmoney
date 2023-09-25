@@ -31,6 +31,13 @@ RSpec.describe MyAccountsController, type: :controller do
       let(:accepted_at) { nil }
       it { expect(controller.send(:shared_accounts)).to be_empty }
     end
+
+    context 'when account archived' do
+      let!(:account) { create(:account, :parent, archived_at: Time.current) }
+
+      let(:accepted_at) { nil }
+      it { expect(controller.send(:shared_accounts)).to be_empty }
+    end
   end
 
   describe '#unaccepted_shares' do
@@ -43,9 +50,17 @@ RSpec.describe MyAccountsController, type: :controller do
       let(:accepted_at) { Time.current }
       it { expect(controller.send(:unaccepted_shares)).to be_empty }
     end
+
     context 'when account share unaccepted' do
       let(:accepted_at) { nil }
       it { expect(controller.send(:unaccepted_shares)).to include(account_share) }
+    end
+
+    context 'when account archived' do
+      let!(:account) { create(:account, :parent, archived_at: Time.current) }
+
+      let(:accepted_at) { nil }
+      it { expect(controller.send(:unaccepted_shares)).to be_empty }
     end
   end
 end

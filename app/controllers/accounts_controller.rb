@@ -35,8 +35,6 @@ class AccountsController < ApplicationController
     return redirect_to account_path unless accessed?
 
     account.update!(archived_at: Time.current)
-    AccountShare.where(account_id: account).delete_all
-
     redirect_to my_account_path
   end
 

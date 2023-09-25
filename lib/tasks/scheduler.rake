@@ -1,7 +1,7 @@
 desc 'Top up accounts automatically'
 task top_up_accounts: :environment do
   if Date.current.friday?
-    AccountAutomaticTopupConfig.find_each do |config|
+    AccountAutomaticTopupConfig.active.find_each do |config|
       AutomaticTopupAction.new(
         from: config.from_account,
         to: config.to_account,

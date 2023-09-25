@@ -12,10 +12,10 @@ class MyAccountsController < ApplicationController
   end
 
   helper_method memoize def shared_accounts
-    Account.shared_for(current_user)
+    Account.unarchived.shared_for(current_user)
   end
 
   helper_method memoize def unaccepted_shares
-    AccountShare.unaccepted.for(current_user)
+    AccountShare.active.unaccepted.for(current_user)
   end
 end

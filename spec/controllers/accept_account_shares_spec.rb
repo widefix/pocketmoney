@@ -43,7 +43,7 @@ RSpec.describe AcceptAccountSharesController, type: :controller do
       it { expect { subject }.to raise_error(ActiveRecord::RecordNotFound) }
     end
 
-    context 'when the user is the owner' do
+    context 'when the account share is accepted' do
       let!(:account_share) do
         create(:account_share, user: user, account: account, email: second_user.email, accepted_at: Time.current)
       end

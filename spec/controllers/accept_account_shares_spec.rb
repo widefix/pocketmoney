@@ -36,6 +36,21 @@ RSpec.describe AcceptAccountSharesController, type: :controller do
       it { is_expected.to have_http_status(:success) }
       it { is_expected.to render_template(:show) }
     end
+
+    context 'when the user is the owner' do
+      before { sign_in user }
+
+      it { expect { subject }.to raise_error(ActiveRecord::RecordNotFound) }
+    end
+
+    context 'when the user is the owner' do
+      let!(:account_share) do
+        create(:account_share, user: user, account: account, email: second_user.email, accepted_at: Time.current)
+      end
+      before { sign_in second_user }
+
+      it { expect { subject }.to raise_error(ActiveRecord::RecordNotFound) }
+    end
   end
 
   describe '#update' do

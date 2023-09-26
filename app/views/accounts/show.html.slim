@@ -37,7 +37,7 @@ h2.title.is-4
                 th Amount
                 th Description
                 th Actions
-            tbody.transactions
+            tbody.toggleable
               - transactions = account.transactions
               = render partial: 'transaction', collection: transactions, account: account
         - if transactions.count > 10

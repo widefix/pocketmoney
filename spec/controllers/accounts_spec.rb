@@ -58,4 +58,36 @@ RSpec.describe AccountsController, type: :controller do
       expect(Account.where(id: account.id).name).not_to eq(old_name)
     end
   end
+
+  describe '#archive' do
+    subject(:archive) { get :archive, params: { id: account } }
+
+    context 'when the current user owns the account' do
+      it { is_expected.to have_http_status(:redirect) }
+      it { is_expected.to redirect_to(my_account_path) }
+      it { expect { subject }.not_to(change { Account.count }) }
+      it { expect { subject }.to change { account.reload.archived_at }.from(nil) }
+    end
+
+    context 'when the current user does not own the account' do
+      let(:other_account) { create(:account, :parent) }
+      let(:other_user) { create(:user, account: other_account) }
+
+      before { sign_in other_user }
+
+      it { expect { subject }.to raise_error(ActiveRecord::RecordNotFound) }
+    end
+
+    context 'when the current user is received share' do
+      let(:other_account) { create(:account, :parent) }
+      let(:other_user) { create(:user, account: other_account) }
+
+      before do
+        create(:account_share, user: user, account: account, email: other_user.email, accepted_at: Time.current)
+        sign_in other_user
+      end
+
+      it { expect { subject }.to raise_error(ActiveRecord::RecordNotFound) }
+    end
+  end
 end

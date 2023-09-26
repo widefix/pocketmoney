@@ -17,10 +17,16 @@ class Account < ApplicationRecord
 
   validates :name, presence: true
 
+  scope :unarchived, -> { where(archived_at: nil) }
+
   scope :visible_for, lambda { |current_user|
     where(id: [current_user.account_id] +
                current_user.account.child_ids +
                shared_for(current_user).pluck(:id))
+  }
+
+  scope :visible_for_owner, lambda { |current_user|
+    where(id: [current_user.account_id] + current_user.account.child_ids)
   }
 
   scope :shared_for, ->(user) { where(id: AccountShare.accepted.for(user).pluck(:account_id)) }

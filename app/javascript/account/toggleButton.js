@@ -3,8 +3,8 @@ document.addEventListener('turbolinks:load', function() {
   if (!toggleButton) {
     return
   }
-  var transactionsHidden = true;
-  var tbodyRows = Array.from(document.querySelectorAll('tbody.transactions tr'));
+  var elementsHidden = true;
+  var tbodyRows = Array.from(document.querySelectorAll('tbody.toggleable tr'));
 
   if (tbodyRows.length > 10) {
     toggleRows();
@@ -21,7 +21,7 @@ document.addEventListener('turbolinks:load', function() {
     e.preventDefault();
     toggleRows();
 
-    toggleButton.textContent = transactionsHidden ? 'Hide' : 'Show all'; 
-    transactionsHidden = !transactionsHidden;
+    toggleButton.textContent = elementsHidden ? 'Hide' : 'Show all'; 
+    elementsHidden = !elementsHidden;
   });
 });

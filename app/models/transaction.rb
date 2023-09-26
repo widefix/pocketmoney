@@ -10,7 +10,7 @@ class Transaction < ApplicationRecord
   end
 
   def date
-    created_at.to_date
+    created_at.strftime('%b %d, %y')
   end
 
   def signed_amount(account)

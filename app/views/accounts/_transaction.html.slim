@@ -1,7 +1,18 @@
 tr
   td= transaction.date
-  td= transaction.from_account.name || transaction.from_account.email
-  td= transaction.to_account.name
+  td.is-hide-for-mobile= transaction.from_account.name || transaction.from_account.email
+  td.is-hide-for-mobile= transaction.to_account.name
   td= transaction.signed_amount(account)
   td= transaction.description
-  td= link_to 'Cancel', transaction_path(transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-small is-light'
+  td.is-hide-for-mobile= link_to 'Cancel', transaction_path(transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-small is-light'
+  td.is-hide-for-desktop
+    div.dropdown.is-right dropdown-id="dropdown-#{transaction.id}"
+      .dropdown-trigger
+        button.button aria-haspopup="true" aria-controls="dropdown-menu"
+          span.icon.is-small
+            i.fa.fa-ellipsis-h aria-hidden="true"
+      .dropdown-menu#dropdown-menu role="menu"
+        .dropdown-content
+          = link_to transaction_path(id: transaction, account_id: account), class: "dropdown-item" do
+            | view details ...
+

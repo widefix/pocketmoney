@@ -31,11 +31,12 @@ h2.title.is-4
             thead
               tr
                 th Date
-                th From
-                th To
+                th.is-hide-for-mobile From
+                th.is-hide-for-mobile To
                 th Amount
                 th Description
-                th Actions
+                th.is-hide-for-mobile Actions
+                th.is-hide-for-desktop &nbsp;
             tbody.transactions
               - transactions = account.transactions
               = render partial: 'transaction', collection: transactions, account: account

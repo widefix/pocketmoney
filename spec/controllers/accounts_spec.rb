@@ -87,9 +87,7 @@ RSpec.describe AccountsController, type: :controller do
         sign_in other_user
       end
 
-      it { expect { subject }.not_to(change { Account.count }) }
-      it { expect { subject }.not_to(change { account.reload.archived_at }) }
-      it { is_expected.to redirect_to(account_path) }
+      it { expect { subject }.to raise_error(ActiveRecord::RecordNotFound) }
     end
   end
 end

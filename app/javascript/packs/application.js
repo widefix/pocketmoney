@@ -11,7 +11,6 @@ require("@rails/activestorage").start()
 require("channels")
 require("menu/navbar")
 require("menu/dropdowns")
-require("account/transactions")
 require("account/toggleButton")
 
 // Uncomment to copy all static images under ../images to the output folder and reference

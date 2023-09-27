@@ -21,4 +21,9 @@ h2.title.is-4
                 th Accepted
                 th Link
                 th Actions
-            = render partial: 'account_share', collection: account.account_shares.order(created_at: :desc)
+            tbody.toggleable
+              - account_shares = account.account_shares.order(created_at: :desc)
+              = render partial: 'account_share', collection: account_shares
+        - if account_shares.count > 10
+          .card-footer
+            = link_to "Show all", "#", id: "toggle-button", class: 'card-footer-item'

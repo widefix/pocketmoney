@@ -4,6 +4,7 @@ h2.title.is-4
   = link_to 'Back', my_account_path, class: 'button is-light'
   = link_to 'Edit', edit_account_path(account), class: 'button is-light'
   = link_to 'Account shares', account_shares_path(account), class: 'button is-light'
+  = link_to 'Archive', archive_account_path(account), data: {confirm: 'Archive this account?'}, class: 'button is-danger'
 .columns
   .column
     .card
@@ -37,7 +38,7 @@ h2.title.is-4
                 th Description
                 th.for-desktop Actions
                 th.for-mobile &nbsp;
-            tbody.transactions
+            tbody.toggleable
               - transactions = account.transactions
               = render partial: 'transaction', collection: transactions, account: account
         - if transactions.count > 10

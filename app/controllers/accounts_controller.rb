@@ -31,9 +31,15 @@ class AccountsController < ApplicationController
     redirect_to my_account_path
   end
 
+  def archive
+    account = Account.visible_for_owner(current_user).unarchived.find(ps.fetch(:id))
+    account.update!(archived_at: Time.current)
+    redirect_to my_account_path
+  end
+
   private
 
   helper_method memoize def account
-    Account.visible_for(current_user).find(ps.fetch(:id))
+    Account.visible_for(current_user).unarchived.find(ps.fetch(:id))
   end
 end

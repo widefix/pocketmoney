@@ -18,6 +18,6 @@ class PublicAccountSharesController < ApplicationController
   private
 
   helper_method memoize def public_account
-    AccountShare.find_by(token: params[:token]).account
+    AccountShare.visible.find_by!(token: params[:token]).account
   end
 end

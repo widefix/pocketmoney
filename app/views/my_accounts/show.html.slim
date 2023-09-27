@@ -1,10 +1,10 @@
 .columns
   .column.is-flex.is-justify-content-flex-end
-    - if account.children.present? || shared_accounts.present?
+    - if account.children.unarchived.present? || shared_accounts.present?
       = link_to 'Add account', new_account_path, class: 'button is-primary'
 
-- if account.children.present? || shared_accounts.present?
-  - account.children.each do |child|
+- if account.children.unarchived.present? || shared_accounts.present?
+  - account.children.unarchived.each do |child|
     .card.box
       .card-content
         .columns

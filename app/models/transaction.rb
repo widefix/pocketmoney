@@ -13,6 +13,14 @@ class Transaction < ApplicationRecord
     created_at.strftime('%b %d, %y')
   end
 
+  def short_date
+    created_at.strftime('%b %d')
+  end
+
+  def time
+    created_at.strftime('%R %b %d, %y')
+  end
+
   def signed_amount(account)
     sign = from_account == account ? '-' : '+'
     "#{sign}#{amount}"

@@ -25,18 +25,18 @@ h2.title.is-4
       .card-header
         .card-header-title.is-centered
           h3.title.is-4 History
-      .card-content.px-1
+      .card-content.card-content-overflow.px-1
         .table-container
           table.table.is-fullwidth.is-striped
             thead
               tr
                 th Date
-                th.is-hide-for-mobile From
-                th.is-hide-for-mobile To
+                th.for-desktop From
+                th.for-desktop To
                 th Amount
                 th Description
-                th.is-hide-for-mobile Actions
-                th.is-hide-for-desktop &nbsp;
+                th.for-desktop Actions
+                th.for-mobile &nbsp;
             tbody.transactions
               - transactions = account.transactions
               = render partial: 'transaction', collection: transactions, account: account

@@ -6,8 +6,8 @@ div.content
     thead
     tbody
       tr
-        td= 'Date'
-        td= transaction.date
+        td= 'Time'
+        td= transaction.time
       tr
         td= 'From'
         td= transaction.from_account.name || transaction.from_account.email
@@ -16,7 +16,10 @@ div.content
         td= transaction.to_account.name
       tr
         td= 'Amount'
-        td= transaction.amount
+        - if transaction.from_account == account
+          td.is-minus-color= transaction.signed_amount(account)
+        - else
+          td.is-plus-color= transaction.signed_amount(account)
       tr
         td= 'Description '
         td= transaction.description

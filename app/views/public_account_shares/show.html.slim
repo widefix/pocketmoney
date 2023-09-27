@@ -31,8 +31,12 @@ h2.title.is-4
                 th Amount
                 th Description
                 th Actions
-            tbody
-              = render partial: 'transaction', collection: public_account.transactions, public_account: public_account
+            tbody.toggleable
+              - transactions = public_account.transactions
+              = render partial: 'transaction', collection: transactions, public_account: public_account
+        - if transactions.count > 10
+        .card-footer
+          = link_to "Show all", "#", id: "toggle-button", class: 'card-footer-item'
 .columns
   .column
     .card

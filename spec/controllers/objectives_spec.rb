@@ -18,4 +18,15 @@ RSpec.describe ObjectivesController, type: :controller do
 
     it { expect(response).to have_http_status(:success) }
   end
+
+  describe '#destroy' do
+    let!(:account) { create(:account, :parent) }
+    let!(:objective) { create(:objective, account: account) }
+
+    subject(:destroy) { delete :destroy, params: { id: objective.id } }
+
+    it { is_expected.to have_http_status(:redirect) }
+    it { is_expected.to redirect_to(account_path(account)) }
+    it { expect { subject }.to change { Objective.count }.by(-1) }
+  end
 end

@@ -8,7 +8,11 @@ tr
   - else
     td.is-plus-color= transaction.signed_amount(account)
   td= transaction.description
-  td.for-desktop= link_to 'Cancel', transaction_path(transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-small is-light'
+  td.for-desktop
+    = link_to transaction_path(transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-small is-light' do
+      span.icon
+        i.fa.fa-undo
+      | &nbsp; Cancel
   td.for-mobile.px-0
     div.dropdown.is-right dropdown-id="dropdown-transaction-#{transaction.id}"
       .dropdown-trigger
@@ -18,6 +22,11 @@ tr
       .dropdown-menu.cover#dropdown-menu role="menu"
         .dropdown-content.cover
           = link_to transaction_path(id: transaction, account_id: account), class: "button is-small is-white is-fullwidth" do
-            | View details
+            span.icon
+              i.fa.fa-list-ul
+            | &nbsp; View details
           = link_to transaction_path(id: transaction, account_id: account), method: :delete, data: { confirm: 'Cancel this transaction?' }, class: 'button is-danger is-small is-fullwidth' do
-            | Cancel transaction
+            span.icon
+              i.fa.fa-undo
+            | &nbsp; Cancel transaction
+

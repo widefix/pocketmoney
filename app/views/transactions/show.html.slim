@@ -24,5 +24,11 @@ div.content
         td= 'Description '
         td= transaction.description
 div.buttons.is-flex.is-justify-content-flex-end
-  = link_to 'Cancel transaction', transaction_path(id: transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-danger'
-  = link_to 'Back', account_path(account), class: 'button is-light'
+  = link_to transaction_path(id: transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-danger' do
+    span.icon
+      i.fa.fa-undo
+    | &nbsp; Cancel transaction
+  = link_to account_path(account), class: 'button is-light' do
+    span.icon
+      i.fa.fa-chevron-left
+    | &nbsp; Back

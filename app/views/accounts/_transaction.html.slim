@@ -1,7 +1,23 @@
 tr
-  td= transaction.date
-  td= transaction.from_account.name || transaction.from_account.email
-  td= transaction.to_account.name
-  td= transaction.signed_amount(account)
+  td.for-desktop= transaction.date
+  td.for-mobile.no-wrap= transaction.short_date
+  td.for-desktop= transaction.from_account.name || transaction.from_account.email
+  td.for-desktop= transaction.to_account.name
+  - if transaction.from_account == account
+    td.is-minus-color= transaction.signed_amount(account)
+  - else
+    td.is-plus-color= transaction.signed_amount(account)
   td= transaction.description
-  td= link_to 'Cancel', transaction_path(transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-small is-light'
+  td.for-desktop= link_to 'Cancel', transaction_path(transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-small is-light'
+  td.for-mobile.px-0
+    div.dropdown.is-right dropdown-id="dropdown-transaction-#{transaction.id}"
+      .dropdown-trigger
+        button.button.is-small.is-white.is-striped-button aria-haspopup="true" aria-controls="dropdown-menu"
+          span.icon
+            i.fa.fa-ellipsis-h aria-hidden="true"
+      .dropdown-menu.cover#dropdown-menu role="menu"
+        .dropdown-content.cover
+          = link_to transaction_path(id: transaction, account_id: account), class: "button is-small is-white is-fullwidth" do
+            | View details
+          = link_to transaction_path(id: transaction, account_id: account), method: :delete, data: { confirm: 'Cancel this transaction?' }, class: 'button is-danger is-small is-fullwidth' do
+            | Cancel transaction

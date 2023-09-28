@@ -1,0 +1,28 @@
+.columns.is-centered
+  .column.is-one-third
+    h2.title.is-4.has-text-centered Transaction details
+div.content
+  table
+    thead
+    tbody
+      tr
+        td= 'Time'
+        td= transaction.time
+      tr
+        td= 'From'
+        td= transaction.from_account.name || transaction.from_account.email
+      tr
+        td= 'To'
+        td= transaction.to_account.name
+      tr
+        td= 'Amount'
+        - if transaction.from_account == account
+          td.is-minus-color= transaction.signed_amount(account)
+        - else
+          td.is-plus-color= transaction.signed_amount(account)
+      tr
+        td= 'Description '
+        td= transaction.description
+div.buttons.is-flex.is-justify-content-flex-end
+  = link_to 'Cancel transaction', transaction_path(id: transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-danger'
+  = link_to 'Back', account_path(account), class: 'button is-light'

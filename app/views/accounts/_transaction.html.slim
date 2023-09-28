@@ -1,8 +1,6 @@
 tr
   td.for-desktop= transaction.date
   td.for-mobile.no-wrap= transaction.short_date
-  td.for-desktop= transaction.from_account.name || transaction.from_account.email
-  td.for-desktop= transaction.to_account.name
   - if transaction.from_account == account
     td.is-minus-color= transaction.signed_amount(account)
   - else

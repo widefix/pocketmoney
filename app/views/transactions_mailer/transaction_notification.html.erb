@@ -1,7 +1,5 @@
 <h1>New transaction was added in <%= @account.name %>!</h1>
 <h3>About transation:</h3>
-<p>From: <%= @transaction.from_account.name %> </p>
-<p>To: <%= @transaction.to_account.name %> </p>
 <p>Amount: <%= @transaction.signed_amount(@account) %> </p>
 <p>Description: <%= @transaction.description %> </p>
 <p>Current balance: <%= @account.balance %> </p>
@@ -10,16 +8,12 @@
 <table>
   <tr>
     <th>Date</th>
-    <th>From</th>
-    <th>To</th>
     <th>Amount</th>
     <th>Description</th>
   </tr>
   <% @transactions.each do |transaction|%>
     <tr>
       <th><%= transaction.date %></th>
-      <th><%= transaction.from_account.name %></th>
-      <th><%= transaction.to_account.name %></th>
       <th><%= transaction.signed_amount(@account) %></th>
       <th><%= transaction.description %></th>
     </tr>

@@ -9,12 +9,6 @@ div.content
         td= 'Time'
         td= transaction.time
       tr
-        td= 'From'
-        td= transaction.from_account.name || transaction.from_account.email
-      tr
-        td= 'To'
-        td= transaction.to_account.name
-      tr
         td= 'Amount'
         - if transaction.from_account == account
           td.is-minus-color= transaction.signed_amount(account)

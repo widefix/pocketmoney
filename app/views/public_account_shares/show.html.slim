@@ -1,7 +1,10 @@
 h2.title.is-4
   | Account details
 .buttons
-  = link_to 'Back', my_account_path, class: 'button is-light'
+  = link_to my_account_path, class: 'button is-light' do
+    span.icon
+      i.fa.fa-chevron-left
+    | &nbsp; Back
 .columns
   .column
     .card

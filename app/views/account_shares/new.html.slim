@@ -8,8 +8,14 @@
       .field
         = f.text_field :name, name: 'account_share[name]', autofocus: true, class: "input", placeholder: "Name"
       .field
-        = f.email_field :email, name: 'account_share[email]', type: "email"
+        = f.email_field :email, name: 'account_share[email]', type: "email", placeholder: "email"
       br
       div.buttons.is-flex.is-justify-content-flex-end
-        = link_to 'Back', account_shares_path(account), class: 'button is-light'
-        = f.submit "Send invitation", class: 'button is-primary'
+        = link_to account_shares_path(account), class: 'button is-light' do
+          span.icon
+            i.fa.fa-chevron-left
+          | &nbsp; Back
+        = button_to account_shares_path, class: 'button is-primary' do
+          span.icon
+            i.fa.fa-paper-plane
+          | &nbsp; Send invitation

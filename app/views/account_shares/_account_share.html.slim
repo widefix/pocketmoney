@@ -11,4 +11,8 @@ tr
      td= link_to 'link', public_account_path(token: account_share.token)
   - else
     td= link_to 'link', accept_account_share_url(token: account_share.token)
-  td= link_to 'Cancel', account_share_path(account, account_share), method: :delete, data: {confirm: 'Cancel this share?'}, class: 'button is-small is-light'
+  td
+    =link_to account_share_path(account, account_share), method: :delete, data: {confirm: 'Cancel this share?'}, class: 'button is-small is-light' do
+      span.icon
+        i.fa.fa-undo
+      | &nbsp; Cancel

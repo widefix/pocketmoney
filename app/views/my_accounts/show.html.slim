@@ -1,7 +1,10 @@
 .columns
   .column.is-flex.is-justify-content-flex-end
     - if account.children.unarchived.present? || shared_accounts.present?
-      = link_to 'Add account', new_account_path, class: 'button is-primary'
+      = button_to new_account_path, method: :get, class: 'button is-primary' do
+        span.icon
+          i.fa.fa-plus
+        | &nbsp; Add account
 
 - if account.children.unarchived.present? || shared_accounts.present?
   - account.children.unarchived.each do |child|

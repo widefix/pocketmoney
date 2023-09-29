@@ -22,7 +22,7 @@ RSpec.feature 'MyAccount', type: :feature do
     expect(page).to have_http_status(:success)
     expect(page).to have_button('Add account')
     accounts_block = find('.card.box.accounts')
-    expect(accounts_block).to have_content(child.name)
+    expect(accounts_block).to have_link(child.name, href: account_path(child))
     expect(accounts_block).to have_content('Balance')
     expect(accounts_block).to have_content(child.balance)
     expect(accounts_block).to have_link(nil, href: new_account_topup_path(child))
@@ -31,7 +31,8 @@ RSpec.feature 'MyAccount', type: :feature do
     expect(page).to have_content('Shared accounts')
 
     shared_accounts_block = find('.card.box.shared-accounts')
-    expect(shared_accounts_block).to have_content(accepted_share.account.name)
+    expect(shared_accounts_block).to have_content("Owner: #{accepted_share.account.parent.email}")
+    expect(shared_accounts_block).to have_link(accepted_share.account.name, href: account_path(accepted_share.account))
     expect(shared_accounts_block).to have_content('Balance')
     expect(shared_accounts_block).to have_content(accepted_share.account.balance)
     expect(shared_accounts_block).to have_link(nil, href: new_account_topup_path(accepted_share.account))
@@ -44,6 +45,7 @@ RSpec.feature 'MyAccount', type: :feature do
     expect(unaccepted_shares_block).to have_content(unaccepted_share.account.name)
     expect(unaccepted_shares_block).to have_content(unaccepted_share.account.parent.email)
     expect(unaccepted_shares_block).to have_content(unaccepted_share.created_at.to_formatted_s(:short))
-    expect(unaccepted_shares_block).to have_link('accept', href: accept_account_share_url(token: unaccepted_share.token))
+    expect(unaccepted_shares_block).
+      to have_link('accept', href: accept_account_share_url(token: unaccepted_share.token))
   end
 end

@@ -15,17 +15,14 @@
     <meta name="title" content="<%= title %>">
     <meta name="description" content="<%= description.squish %>">
 
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:image" content="<%= image_url 'budgeting_kid_twitter.png' %>">
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="http://budgetingkid.com/">
     <meta property="og:title" content="<%= title %>">
     <meta property="og:description" content="<%= description.squish %>">
     <meta property="og:image" itemprop="image" content="<%= image_url 'budgeting_kid_facebook.png'%>">
-
-    <meta property="twitter:card" content='summary_large_image'>
-    <meta property="twitter:url" content="http://budgetingkid.com/">
-    <meta property="twitter:title" content="<%= title %>">
-    <meta property="twitter:description" content="<%= description.squish %>">
-    <meta property="twitter:image" content="<%= image_url 'budgeting_kid_twitter.png' %>">
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>

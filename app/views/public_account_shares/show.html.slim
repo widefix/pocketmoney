@@ -17,7 +17,7 @@ h2.title.is-4
             div
               p.heading Balance
               p.title #{public_account.balance}
-.columns
+.columns.transactions
   .column
     .card
       .card-header
@@ -38,7 +38,7 @@ h2.title.is-4
         - if transactions.count > 10
         .card-footer
           = link_to "Show all", "#", id: "toggle-button", class: 'card-footer-item'
-.columns
+.columns.objectives
   .column
     .card
       .card-header
@@ -56,7 +56,7 @@ h2.title.is-4
                 th Actions
             tbody
               = render partial: 'objective', collection: public_account.objectives, public_account: public_account
-.columns
+.columns.automatic-topup-configs
   .column
     .card
       .card-header
@@ -71,9 +71,10 @@ h2.title.is-4
                 th Amount
                 th Actions
             - public_account.automatic_topup_configs.each do |config|
-              tr
-                td= config.from_account.name
-                td= config.amount
-                td ''
+              tbody
+                tr
+                  td= config.from_account.name
+                  td= config.amount
+                  td ''
 - if public_account.accumulative_balance_data.present?
   = line_chart public_account.accumulative_balance_data, xtitle: 'Date', ytitle: 'Accumulative Balance'

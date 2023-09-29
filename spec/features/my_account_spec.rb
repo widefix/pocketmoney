@@ -45,7 +45,7 @@ RSpec.feature 'MyAccount', type: :feature do
     expect(unaccepted_shares_block).to have_content(unaccepted_share.account.name)
     expect(unaccepted_shares_block).to have_content(unaccepted_share.account.parent.email)
     expect(unaccepted_shares_block).to have_content(unaccepted_share.created_at.to_formatted_s(:short))
-    expect(unaccepted_shares_block).
-      to have_link('accept', href: accept_account_share_url(token: unaccepted_share.token))
+    expect(unaccepted_shares_block)
+      .to have_link('accept', href: accept_account_share_url(token: unaccepted_share.token))
   end
 end

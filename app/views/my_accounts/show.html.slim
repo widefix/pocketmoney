@@ -8,7 +8,7 @@
 
 - if account.children.unarchived.present? || shared_accounts.present?
   - account.children.unarchived.each do |child|
-    .card.box
+    .card.box.accounts
       .card-content
         .columns
           .column
@@ -29,7 +29,7 @@
   - if shared_accounts.present?
     | Shared accounts
     - shared_accounts.each do |shared_account|
-      .card.box
+      .card.box.shared-accounts
         .card-content
           .columns
             .column
@@ -52,7 +52,7 @@
   - if unaccepted_shares.present?
     h2.title
       | Unaccepted shares
-    .columns
+    .columns.unaccepted-shares
       .column
         .card
           .card-content.px-1

@@ -14,9 +14,15 @@
         = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "password confirmation"
       br
       .actions.is-flex.is-flex-direction-column.is-align-items-end
-      div.is-fullwidth
+      .field.is-fullwidth
         = f.submit 'Sign up',  class: "button is-primary is-fullwidth"
       br
       .is-flex.is-justify-content-center
         | Already have an account? &nbsp;
         = link_to 'Login now', new_user_session_path
+      br
+      .field.is-fullwidth
+         = link_to user_google_oauth2_omniauth_authorize_path, class: 'button is-primary is-fullwidth' do
+          span.icon
+            i.fa.fa-google
+          | &nbsp; Sign up with Google

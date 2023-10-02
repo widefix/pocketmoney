@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AutomaticTopupAction < ApplicationAction
   option :from
   option :to
@@ -9,7 +11,8 @@ class AutomaticTopupAction < ApplicationAction
     transaction = Transaction.create!(
       from_account: from,
       to_account: to,
-      amount: amount
+      amount: amount,
+      description: 'Automatic Top-up'
     )
     TransactionsMailer.automatic_top_up_done(transaction).deliver_now
   end

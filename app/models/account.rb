@@ -18,6 +18,7 @@ class Account < ApplicationRecord
   validates :name, presence: true
 
   scope :unarchived, -> { where(archived_at: nil) }
+  scope :archived, -> { where.not(archived_at: nil) }
 
   scope :visible_for, lambda { |current_user|
     where(id: [current_user.account_id] +

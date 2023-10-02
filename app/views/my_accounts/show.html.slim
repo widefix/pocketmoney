@@ -27,7 +27,8 @@
 
   br
   - if shared_accounts.present?
-    | Shared accounts
+    .box.has-text-centered
+      p.title.is-4 Shared accounts
     - shared_accounts.each do |shared_account|
       .card.box.shared-accounts
         .card-content
@@ -50,8 +51,8 @@
           = link_to '<i class="fa fa-minus-circle fa-2x"></i>'.html_safe, new_account_spend_path(shared_account), class: 'card-footer-item is-minus-color'
   br
   - if unaccepted_shares.present?
-    h2.title
-      | Unaccepted shares
+    .box.has-text-centered
+      p.title.is-4 Unaccepted shares
     .columns.unaccepted-shares
       .column
         .card

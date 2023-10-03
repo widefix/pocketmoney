@@ -2,6 +2,7 @@
 <br>
 <p> <%= @account_share.user.name || @account_share.user.email%> is inviting you to manage his child account <account name>.</p>
 <p>Please follow the link below to get the access:</p>
-<%= link_to 'Approve link', accept_account_share_url(token: @account_share.token) %>
+<a clicktracking=off href="<%= accept_account_share_url(token: @account_share.token)%>">Approve link</a>
+
 <br>
 <p>Sincerely, BudgetingKid team.</p>

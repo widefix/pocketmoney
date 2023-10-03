@@ -70,3 +70,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "newrelic_rpm", "~> 9.5"
+
+gem "rollbar", "~> 3.4"

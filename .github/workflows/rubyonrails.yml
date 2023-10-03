@@ -19,7 +19,8 @@ jobs:
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
-      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+      GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+      GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -28,8 +29,6 @@ jobs:
         with:
           ruby-version: '2.7.4'
           bundler-cache: true
-      - name: Debug RAILS_MASTER_KEY
-        run: echo 'RAILS_MASTER_KEY ROR:' $RAILS_MASTER_KEY
       - name: Copy config
         run: cp config/database.yml.ci config/database.yml
       - name: Set up database schema

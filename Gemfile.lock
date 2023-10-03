@@ -98,6 +98,10 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.5.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     dry-initializer (3.0.4)
     erubi (1.10.0)
     factory_bot (6.2.1)
@@ -341,6 +345,7 @@ DEPENDENCIES
   chartkick
   database_cleaner
   devise
+  dotenv-rails
   dry-initializer
   factory_bot_rails (~> 6.2)
   ffaker

@@ -28,6 +28,8 @@ jobs:
         with:
           ruby-version: '2.7.4'
           bundler-cache: true
+      - name: Debug RAILS_MASTER_KEY
+        run: echo 'RAILS_MASTER_KEY:' $RAILS_MASTER_KEY
       - name: Copy config
         run: cp config/database.yml.ci config/database.yml
       - name: Set up database schema

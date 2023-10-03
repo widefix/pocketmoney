@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 return unless ENV['ROLLBAR_ACCESS_TOKEN']
 
 Rollbar.configure do |config|

@@ -1,10 +1,12 @@
 .columns
   .column.is-flex.is-justify-content-flex-end
     - if account&.children&.unarchived.present? || shared_accounts.present?
-      = button_to new_account_path, method: :get, class: 'button is-primary' do
+      = button_to new_account_path, method: :get, class: 'button is-primary mr-2' do
         span.icon
           i.fa.fa-plus
         | &nbsp; Add account
+      = link_to archived_accounts_path, method: :get, class: 'button is-primary' do
+        | &nbsp; Archived accounts
 
 - if account&.children&.unarchived.present? || shared_accounts.present?
   - account.children.unarchived.each do |child|
@@ -27,7 +29,8 @@
 
   br
   - if shared_accounts.present?
-    | Shared accounts
+    .box.has-text-centered
+      p.title.is-4 Shared accounts
     - shared_accounts.each do |shared_account|
       .card.box.shared-accounts
         .card-content
@@ -50,8 +53,8 @@
           = link_to '<i class="fa fa-minus-circle fa-2x"></i>'.html_safe, new_account_spend_path(shared_account), class: 'card-footer-item is-minus-color'
   br
   - if unaccepted_shares.present?
-    h2.title
-      | Unaccepted shares
+    .box.has-text-centered
+      p.title.is-4 Unaccepted shares
     .columns.unaccepted-shares
       .column
         .card

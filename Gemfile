@@ -46,8 +46,6 @@ group :development, :test do
   gem 'pry'
   gem 'ffaker'
   gem 'rubocop'
-  # Load environment variables from .env into ENV
-  gem 'dotenv-rails'
 end
 
 group :development do

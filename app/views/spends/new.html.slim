@@ -2,22 +2,26 @@
   .column.is-one-third
     h1.title.is-5.has-text-centered
       | Spend from account:
-    div.subtitle.is-5.has-text-centered
+    .subtitle.is-5.has-text-centered
       = link_to account.name, account_path(account)
-    div.subtitle.is-6.has-text-centered
+    .subtitle.is-6.has-text-centered
       | Account balance: &nbsp;
       = account.balance
     = form_with url: account_spend_path(account), method: :post do |f|
       .field
-        = f.text_field :amount, autofocus: true, class: "input", placeholder: "Amount"
+        = f.text_field :amount, autofocus: true, class: 'input amount', placeholder: "Amount"
       .field
-        = f.text_field :description, class: "input", placeholder: "Description"
-      div.buttons.is-flex.is-justify-content-flex-end
-        = link_to request.referer, class: 'button is-light' do
-          span.icon
-            i.fa.fa-chevron-left
-          | &nbsp; Back
-        = button_to account_spend_path(account), class: 'button is-primary' do
-          span.icon
-            i.fa.fa-hdd-o
-          | &nbsp; Save
+        = f.text_field :description, class: 'input decscription', placeholder: "Description"
+      p.help.mb-2
+        | (To spend the entire balance, click the "All Balance")
+      .buttons.is-flex.is-justify-content-space-between
+        = link_to 'All Balance', '#', class: 'button is-light all-balance-button', data: { balance: account.balance }
+        div
+          = link_to request.referer, class: 'button is-light' do
+            span.icon
+              i.fa.fa-chevron-left
+            | &nbsp; Back
+          = button_to account_spend_path(account), class: 'button is-primary' do
+            span.icon
+              i.fa.fa-hdd-o
+            | &nbsp; Save

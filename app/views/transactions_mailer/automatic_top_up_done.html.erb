@@ -1,4 +1,5 @@
 <div>
-  Automatically added <%= @amount %> to the <%= link_to @to_account.name, account_url(@to_account) %> account.
+  Automatically added <%= @amount %> to the <a clicktracking=off href="<%= account_url(@to_account)%>"><%= @to_account.name %></a> account.
   Your current balance is <%= @balance %>
 </div>
+ 

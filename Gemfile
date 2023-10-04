@@ -75,3 +75,5 @@ gem "newrelic_rpm", "~> 9.5"
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
+
+gem "rollbar", "~> 3.4"

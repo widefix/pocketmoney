@@ -8,8 +8,6 @@ document.addEventListener('turbolinks:load', function() {
 
       const amountInput = document.querySelector('.field .amount');
       amountInput.value = balance;
-      const descriptionInput = document.querySelector('.field .decscription');
-      descriptionInput.value = 'Spend all balance';
       window.history.pushState({}, document.title, window.location.href);
     });
   }

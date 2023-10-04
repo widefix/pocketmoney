@@ -10,15 +10,30 @@ class User < ApplicationRecord
 
   def self.from_omniauth(access_token)
     data = access_token.info
-    user = User.find_by(email: data['email']) ||
-           User.create(
-             name: data['name'] || data['nickname'],
-             email: data['email'],
-             avatar_url: data['image'],
-             password: Devise.friendly_token[0, 20],
-             provider: access_token.provider
-           )
-    user.create_account(name: user.name, email: user.email)
+    user = find_me_by(data['email'])
+
+    if user.nil?
+      user = create_user_from_omniauth(data, access_token)
+      user.create_user_account
+    end
     user
+  end
+
+  def create_user_account
+    create_account(name: name, email: email)
+  end
+
+  def self.find_me_by(email)
+    User.find_by(email: email)
+  end
+
+  def self.create_user_from_omniauth(data, access_token)
+    User.create(
+      name: data['name'] || data['nickname'],
+      email: data['email'],
+      avatar_url: data['image'],
+      password: Devise.friendly_token[0, 20],
+      provider: access_token.provider
+    )
   end
 end

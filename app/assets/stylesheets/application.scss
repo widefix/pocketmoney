@@ -42,6 +42,12 @@ $primary-budgeting-kid-background-color: hsl(270, 95%, 98%);
   transition: transform 0.5s ease;
 }
 
+.all-balance-button {
+  position: absolute;
+  right: 5px;
+  top: 5px; 
+}
+
 .is-navbar-white-color {
   background-color: white !important ;
 }

@@ -10,6 +10,7 @@ document.addEventListener('turbolinks:load', function() {
       amountInput.value = balance;
       const descriptionInput = document.querySelector('.field .decscription');
       descriptionInput.value = 'Spend all balance';
+      window.history.pushState({}, document.title, window.location.href);
     });
   }
 });

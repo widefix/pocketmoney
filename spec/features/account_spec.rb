@@ -49,6 +49,15 @@ RSpec.feature 'Account', type: :feature do
     expect(automatic_topup_config_block)
       .to have_link('Cancel', href: account_account_automatic_topup_config_path(account, automatic_topup_config))
     expect(automatic_topup_config_block)
+      .not_to have_link('+Add', href: new_account_account_automatic_topup_config_path(account))
+  end
+
+  scenario 'User views the account page without automatic_topup_config' do
+    automatic_topup_config.destroy
+    visit account_path(account)
+
+    automatic_topup_config_block = find('.columns.automatic-topup-configs')
+    expect(automatic_topup_config_block)
       .to have_link('+Add', href: new_account_account_automatic_topup_config_path(account))
   end
 end

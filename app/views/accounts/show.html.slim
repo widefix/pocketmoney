@@ -96,7 +96,10 @@ h2.title.is-4
     .card
       .card-header
         .card-header-title.is-centered
-          .title.is-4 Weekly Automatic Topups
+          div
+            p.title.is-4.has-text-centered Weekly Automatic Topups
+            p.subtitle.is-6.is-light.has-text-centered
+              | This amount will be automatically added to the account every week on Fridays at 14:00
       .card-content.px-1
         .table-container
           table.table.is-fullwidth.is-striped
@@ -119,7 +122,8 @@ h2.title.is-4
                       span.icon
                         i.fa.fa-undo
                       | &nbsp; Cancel
-        .card-footer
-          = link_to '+Add', new_account_account_automatic_topup_config_path(account), class: 'card-footer-item'
+        - unless account.automatic_topup_configs.any?
+          .card-footer
+            = link_to '+Add', new_account_account_automatic_topup_config_path(account), class: 'card-footer-item'
 - if account.accumulative_balance_data.present?
   = line_chart account.accumulative_balance_data, xtitle: 'Date', ytitle: 'Accumulative Balance'

@@ -6,6 +6,15 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
   resource :my_account, only: :show
 
+  resource :wizard, only: [] do
+    get 'new_account', on: :member
+    post 'create_account', on: :member
+    get 'new_automatic_topup', on: :member
+    post 'create_automatic_topup', on: :member
+    get 'new_objective', on: :member
+    post 'create_objective', on: :member
+  end
+
   resources :accounts, only: %i[show new create edit update] do
     resources :account_automatic_topup_configs, only: %i[new create edit update destroy]
     resource :topup, only: %i[new create]

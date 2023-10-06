@@ -1,0 +1,21 @@
+.columns.is-centered
+  .column.is-one-third
+    h2.title.is-4.has-text-centered Step 2
+    h2.title.is-5.has-text-centered
+      | Set Up Automatic Top-up
+    .notification.is-light
+        | Automatic top-up is a convenient way to ensure that your child's account is regularly funded. 
+        | Every Friday, the specified amount will be automatically transferred from your parent account to your child's account. 
+        br
+        br
+        | Please specify the amount you want to set for automatic top-up. 
+        br
+        br
+        | However, if you prefer to skip this step for now, you can always set it up later.
+    = form_with url: create_automatic_topup_wizard_path, method: :post, local: true do |form|
+      .field
+        = form.text_field :amount, autofocus: true, class: "input", placeholder: "Amount", required: true
+      .field
+        .buttons.is-flex.is-justify-content-flex-end
+          = link_to "Skip", new_objective_wizard_path, class: "button is-light"
+          = form.submit "Next", class: "button is-primary"

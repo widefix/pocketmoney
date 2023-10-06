@@ -1,0 +1,24 @@
+.columns.is-centered
+  .column.is-one-third
+    h2.title.is-4.has-text-centered Step 3
+    h2.title.is-5.has-text-centered
+      | Set Up Objectives 
+    .notification.is-light
+      | Setting up objectives for your child's account helps them learn about saving and budgeting. 
+      br
+      | You can create different objectives.
+      br
+      br
+      | Please specify the name and amount for your child's first objective.
+      br
+      br
+      | However, if you prefer to skip this step for now, you can always set it up later.
+    = form_with url: create_objective_wizard_path, method: :post, local: true do |form|
+      .field
+        = form.text_field :name, autofocus: true, class: "input", placeholder: "Name", required: true
+      .field
+        = form.text_field :amount, class: "input", placeholder: "Amount", required: true
+      .field
+        .buttons.is-flex.is-justify-content-flex-end
+          = link_to "Skip Step", my_account_path, class: "button is-light"
+          = form.submit "Save", class: "button is-primary"

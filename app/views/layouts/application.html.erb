@@ -11,7 +11,7 @@
           description
     %>
 
-    <link rel="canonical" href="http://budgetingkid.com/">
+    <link rel="canonical" href=<%= request.original_url %>>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="title" content="<%= title %>">
@@ -21,7 +21,7 @@
     <meta property="twitter:image" content="<%= image_url 'budgeting_kid_twitter.png' %>">
 
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://budgetingkid.com/">
+    <meta property="og:url" content="https://budgetingkid.com/">
     <meta property="og:title" content="<%= title %>">
     <meta property="og:description" content="<%= description.squish %>">
     <meta property="og:image" itemprop="image" content="<%= image_url 'budgeting_kid_facebook.png'%>">

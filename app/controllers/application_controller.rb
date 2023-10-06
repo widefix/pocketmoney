@@ -20,4 +20,8 @@ class ApplicationController < ActionController::Base
   helper_method memoize def goal_percentage(account, objective)
     ActionController::Base.helpers.number_to_percentage(account.balance / objective.amount * 100, precision: 0)
   end
+
+  helper_method def canonical_url
+    (url_for(only_path: true) if [:home, :policy].include?(params[:controller])) || ''
+  end
 end

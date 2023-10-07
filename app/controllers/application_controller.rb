@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     ActionController::Base.helpers.number_to_percentage(account.balance / objective.amount * 100, precision: 0)
   end
 
-  helper_method def canonical_path
-    (url_for(only_path: true) if [:home, :policy].include?(params[:controller])) || ''
+  helper_method def current_url
+    "https://budgetingkid.com#{request.path}"
   end
 end

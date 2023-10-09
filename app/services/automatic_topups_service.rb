@@ -8,6 +8,8 @@ class AutomaticTopupsService
         to: config.to_account,
         amount: config.amount
       ).perform
+    rescue ActiveRecord::RecordInvalid => e
+      Rails.logger.error(e)
     end
   end
 end

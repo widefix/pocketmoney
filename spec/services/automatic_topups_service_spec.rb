@@ -4,15 +4,9 @@ require 'rails_helper'
 
 RSpec.describe AutomaticTopupsService, type: :service do
   let(:account) { create(:account, :parent) }
-  let!(:first_config) do
-    create(:account_automatic_topup_config, params)
-  end
-  let!(:second_config) do
-    create(:account_automatic_topup_config, params)
-  end
-  let!(:thirst_config) do
-    create(:account_automatic_topup_config, params)
-  end
+  let!(:first_config) { create(:account_automatic_topup_config, params) }
+  let!(:second_config) { create(:account_automatic_topup_config, params) }
+  let!(:thirst_config) { create(:account_automatic_topup_config, params) }
   let(:params) { { from_account: account, to_account: account, amount: 10 } }
 
   subject(:service) { described_class.new }

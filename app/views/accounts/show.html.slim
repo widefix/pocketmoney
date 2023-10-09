@@ -99,21 +99,19 @@ h2.title.is-4
           div
             p.title.is-4.has-text-centered Weekly Automatic Topups
             p.subtitle.is-6.is-light.has-text-centered
-              | This amount will be automatically added to the account every week on Fridays at 14:00
+              | This amount will be automatically added to the account every week on Fridays at #{top_up_time}
       .card-content.px-1
         .table-container
           table.table.is-fullwidth.is-striped
             thead
               tr
-                th From
                 th Amount
                 th Actions
             tbody
               - account.automatic_topup_configs.each do |config|
                 tr
-                  td= config.from_account.name || config.from_account.email
                   td= config.amount
-                  td
+                  td.buttons
                     = link_to edit_account_account_automatic_topup_config_path(account, config), class: 'button is-small is-light' do
                       span.icon
                         i.fa.fa-pencil

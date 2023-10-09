@@ -4,7 +4,7 @@
   "cron": [
     {
       "command": "rake top_up_accounts",
-      "schedule": "14 0 * * *"
+      "schedule": "00 14 * * *"
     }
   ],
   "scripts": {

@@ -23,11 +23,9 @@ class ApplicationController < ActionController::Base
     ActionController::Base.helpers.number_to_percentage(account.balance / objective.amount * 100, precision: 0)
   end
 
-  helper_method memoize def top_up_time
-    zone_name = ActiveSupport::TimeZone[Time.now.gmt_offset].name
+  helper_method memoize def topup_utc_time
     schedule = top_up_schedule
-    top_up_utc_time = Time.now.utc.change(hour: schedule[:hour], min: schedule[:min])
-    top_up_utc_time.in_time_zone(zone_name).strftime('%H:%M')
+    Time.now.utc.change(hour: schedule[:hour], min: schedule[:min])
   end
 
   def top_up_schedule

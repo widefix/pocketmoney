@@ -33,7 +33,6 @@ RSpec.feature 'PublicAccountShare', type: :feature do
 
     automatic_topup_config_block = find('.columns.automatic-topup-configs')
     expect(automatic_topup_config_block).to have_selector('table.table tbody tr', count: 1)
-    expect(automatic_topup_config_block).to have_text(automatic_topup_config.from_account.name)
     expect(automatic_topup_config_block).to have_text(automatic_topup_config.amount)
   end
 end

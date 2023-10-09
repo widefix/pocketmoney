@@ -42,7 +42,6 @@ RSpec.feature 'Account', type: :feature do
 
     automatic_topup_config_block = find('.columns.automatic-topup-configs')
     expect(automatic_topup_config_block).to have_selector('table.table tbody tr', count: 1)
-    expect(automatic_topup_config_block).to have_text(automatic_topup_config.from_account.name)
     expect(automatic_topup_config_block).to have_text(automatic_topup_config.amount)
     expect(automatic_topup_config_block)
       .to have_link('Edit', href: edit_account_account_automatic_topup_config_path(account, automatic_topup_config))

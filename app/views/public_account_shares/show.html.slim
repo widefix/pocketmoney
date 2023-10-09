@@ -1,3 +1,4 @@
+#topup-utc-time data-utc-time= topup_utc_time
 h2.title.is-4
   | Account details
 .buttons
@@ -64,7 +65,8 @@ h2.title.is-4
           div
             p.title.is-4.has-text-centered Weekly Automatic Topups
             p.subtitle.is-6.is-light.has-text-centered
-              | This amount will be automatically added to the account every week on Fridays at #{top_up_time}
+              | This amount will be automatically added to the account every week on Fridays at&nbsp;
+              span#formatted-time
       .card-content.px-1
         .table-container
           table.table.is-fullwidth.is-striped

@@ -4,13 +4,18 @@ require 'rails_helper'
 
 RSpec.describe AutomaticTopupsService, type: :service do
   let(:account) { create(:account, :parent) }
-  let!(:config) { create(:account_automatic_topup_config, from_account: account, to_account: account, amount: 100) }
+  let!(:first_config) { create(:account_automatic_topup_config, params) }
+  let!(:second_config) { create(:account_automatic_topup_config, params) }
+  let!(:thirst_config) { create(:account_automatic_topup_config, params) }
+  let(:params) { { from_account: account, to_account: account, amount: 10 } }
 
   subject(:service) { described_class.new }
 
   describe '#perform' do
     context "when account isn't archived" do
-      it { expect { service.perform }.to change { Transaction.count }.by(1) }
+      before { second_config.update_attribute(:amount, -10) }
+
+      it { expect { service.perform }.to change { Transaction.count }.by(2) }
     end
 
     context 'when account is archived' do

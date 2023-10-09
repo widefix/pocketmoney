@@ -14,6 +14,7 @@ class AutomaticTopupAction < ApplicationAction
       amount: amount,
       description: 'Automatic Top-up'
     )
+
     TransactionsMailer.automatic_top_up_done(transaction).deliver_now
   end
 end

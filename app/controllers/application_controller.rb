@@ -24,18 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method memoize def topup_utc_time
-    schedule = top_up_schedule
-    Time.now.utc.change(hour: schedule[:hour], min: schedule[:min])
-  end
-
-  def top_up_schedule
-    config = JSON.parse(File.read(Rails.root.join('app.json')))
-    cron_index = config['cron'].find_index { |cron| cron['command'] == 'rake top_up_accounts' }
-    raise IndexError, 'The top up accounts schedule not found' unless cron_index
-
-    min, hour = config['cron'][cron_index]['schedule'].split[0..1]
-
-    { hour: hour.to_i, min: min.to_i }
+    Time.now.utc.change(hour: 14, min: 0)
   end
 
   helper_method def current_url

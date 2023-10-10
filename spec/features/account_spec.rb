@@ -42,12 +42,20 @@ RSpec.feature 'Account', type: :feature do
 
     automatic_topup_config_block = find('.columns.automatic-topup-configs')
     expect(automatic_topup_config_block).to have_selector('table.table tbody tr', count: 1)
-    expect(automatic_topup_config_block).to have_text(automatic_topup_config.from_account.name)
     expect(automatic_topup_config_block).to have_text(automatic_topup_config.amount)
     expect(automatic_topup_config_block)
       .to have_link('Edit', href: edit_account_account_automatic_topup_config_path(account, automatic_topup_config))
     expect(automatic_topup_config_block)
       .to have_link('Cancel', href: account_account_automatic_topup_config_path(account, automatic_topup_config))
+    expect(automatic_topup_config_block)
+      .not_to have_link('+Add', href: new_account_account_automatic_topup_config_path(account))
+  end
+
+  scenario 'User views the account page without automatic_topup_config' do
+    automatic_topup_config.destroy
+    visit account_path(account)
+
+    automatic_topup_config_block = find('.columns.automatic-topup-configs')
     expect(automatic_topup_config_block)
       .to have_link('+Add', href: new_account_account_automatic_topup_config_path(account))
   end

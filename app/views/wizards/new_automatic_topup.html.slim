@@ -1,21 +1,22 @@
 .columns.is-centered
   .column.is-one-third
-    h2.title.is-4.has-text-centered Step 2
-    h2.title.is-5.has-text-centered
-      | Set Up Automatic Top-up
+    h2.title.is-3.has-text-centered Step 2
+    h2.title.is-4.has-text-centered Set Up Recurring Payments
     .notification.is-light
-        | Automatic top-up is a convenient way to ensure that your child's account is regularly funded. 
-        | Every Friday, the specified amount will be automatically transferred from your parent account to your child's account. 
+        | Specify the weekly allowance for your child. 
+        | Feel free to use alternative terms in conversations if your child is too young to grasp the concept of money. 
+        | For instance, you can use terms like 'stars', 'likes', or 'points' - just be creative and think about what resonates with your child.
         br
         br
-        | Please specify the amount you want to set for automatic top-up. 
-        br
-        br
-        | However, if you prefer to skip this step for now, you can always set it up later.
+        | This amount wil be deposites weekly into the kid's account every Friday. 
+        | You can adjust it later as needed. 
     = form_with url: create_automatic_topup_wizard_path, method: :post, local: true do |form|
       .field
         = form.text_field :amount, autofocus: true, class: "input", placeholder: "Amount", required: true
       .field
-        .buttons.is-flex.is-justify-content-flex-end
-          = link_to "Skip", new_objective_wizard_path, class: "button is-light"
-          = form.submit "Next", class: "button is-primary"
+        .buttons.is-flex.is-justify-content-space-between
+          .notification.is-light
+            | Progress: 2 out of 3
+          .is-flex.is-justify-content-flex-end
+            = link_to "Skip", new_objective_wizard_path, class: "button is-light"
+            = form.submit "Next", class: "button is-primary"

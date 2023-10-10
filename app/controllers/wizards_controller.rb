@@ -24,7 +24,7 @@ class WizardsController < ApplicationController
   def create_objective
     account.objectives.create!(ps.slice(:name, :amount))
 
-    redirect_to my_account_path
+    redirect_to account_path(account)
   end
 
   private

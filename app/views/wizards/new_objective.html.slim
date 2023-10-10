@@ -2,23 +2,25 @@
   .column.is-one-third
     h2.title.is-4.has-text-centered Step 3
     h2.title.is-5.has-text-centered
-      | Set Up Objectives 
+      | Set Up Goals
     .notification.is-light
-      | Setting up objectives for your child's account helps them learn about saving and budgeting. 
+      | Note down your child's dream saving goal here with it's price. 
+      | It could be anything, but it's usualy a toy, a computer game, or a ticket an entertainment event.
       br
-      | You can create different objectives.
+      | For now, just add one goal or feel to skip this step. 
+      | You can add goals later at any time.
       br
       br
-      | Please specify the name and amount for your child's first objective.
-      br
-      br
-      | However, if you prefer to skip this step for now, you can always set it up later.
+      | If you avoid using the term 'money' with your child, consider using a 1:1 exchange rate to your local currency for easier balance conversion.
     = form_with url: create_objective_wizard_path, method: :post, local: true do |form|
       .field
         = form.text_field :name, autofocus: true, class: "input", placeholder: "Name", required: true
       .field
-        = form.text_field :amount, class: "input", placeholder: "Amount", required: true
+        = form.text_field :amount, class: "input", placeholder: "Price", required: true
       .field
-        .buttons.is-flex.is-justify-content-flex-end
-          = link_to "Skip", my_account_path, class: "button is-light"
-          = form.submit "Save", class: "button is-primary"
+        .buttons.is-flex.is-justify-content-space-between
+          .notification.is-light
+            | Progress: 3 out of 3
+          .is-flex.is-justify-content-flex-end
+            = link_to "Skip", my_account_path, class: "button is-light"
+            = form.submit "Save", class: "button is-primary"

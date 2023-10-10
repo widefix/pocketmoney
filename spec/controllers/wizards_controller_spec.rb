@@ -53,6 +53,6 @@ RSpec.describe WizardsController, type: :controller do
     end
 
     it { expect { subject }.to change { Objective.count }.by(1) }
-    it { is_expected.to redirect_to(my_account_path) }
+    it { is_expected.to redirect_to(account_path(child)) }
   end
 end

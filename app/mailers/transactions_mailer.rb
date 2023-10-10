@@ -5,7 +5,7 @@ class TransactionsMailer < ApplicationMailer
     @to_account = transaction.to_account
     @amount = transaction.amount
     @user = transaction.from_account.user
-    @balance = transaction.from_account.balance
+    @balance = transaction.to_account.balance
     prevent_delivery and return unless @user
 
     mail to: @user.email, title: "Automatic top up account - #{@to_account.name}"

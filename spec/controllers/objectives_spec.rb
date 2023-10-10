@@ -15,10 +15,26 @@ RSpec.describe ObjectivesController, type: :controller do
 
   describe '#create' do
     let(:account) { create(:account, :parent) }
+    let(:user) { create(:user, account: account) }
 
-    subject(:create) { post :create, params: { account_id: account } }
+    before { sign_in user }
 
-    it { expect(response).to have_http_status(:success) }
+    subject { post :create, params: { name: name, amount: amount, account_id: account } }
+
+    context 'when params is valid' do
+      let(:amount) { FFaker::Number.number }
+      let(:name) { FFaker::Book.title }
+
+      it { is_expected.to have_http_status(302) }
+      it { expect { subject }.to change { Objective.count }.by(1) }
+    end
+
+    context 'when params is not valind' do
+      let(:amount) { '' }
+      let(:name) { '' }
+
+      it { expect { subject }.to raise_error(ActiveRecord::RecordInvalid) }
+    end
   end
 
   describe '#destroy' do

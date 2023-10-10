@@ -3,9 +3,9 @@
     h2.title.is-4.has-text-centered Add new objective
     = form_with url:account_objectives_path(account), method: :post do |f|
       .field
-        = f.text_field :name, autofocus: true, class: "input", placeholder: "Name"
+        = f.text_field :name, autofocus: true, class: "input", placeholder: "Name", required: true
       .field
-        = f.text_field :amount, class: "input", placeholder: "Amount"
+        = f.text_field :amount, class: "input", placeholder: "Amount", required: true
       div.buttons.is-flex.is-justify-content-flex-end
         = link_to account_path(account), class: 'button is-light' do
           span.icon

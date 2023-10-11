@@ -29,6 +29,13 @@ RSpec.describe WizardsController, type: :controller do
     it { is_expected.to render_template(:new_objective) }
   end
 
+  describe '#new_share_account' do
+    subject(:new_share_account) { get :new_share_account }
+
+    it { is_expected.to have_http_status(:success) }
+    it { is_expected.to render_template(:new_share_account) }
+  end
+
   describe '#create_account' do
     subject(:create_account) { post :create_account, params: { name: FFaker::Name.first_name } }
 
@@ -53,6 +60,17 @@ RSpec.describe WizardsController, type: :controller do
     end
 
     it { expect { subject }.to change { Objective.count }.by(1) }
+    it { is_expected.to redirect_to(new_share_account_wizard_path) }
+  end
+
+  describe '#create_share_account' do
+    let!(:child) { create(:account, :children, parent: account) }
+
+    subject(:create_share_account) do
+      post :create_share_account, params: { name: FFaker::Book.title, email: FFaker::Internet.email }
+    end
+
+    it { expect { subject }.to change { AccountShare.count }.by(1) }
     it { is_expected.to redirect_to(account_path(child)) }
   end
 end

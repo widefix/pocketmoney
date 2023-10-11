@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     post 'create_automatic_topup', on: :member
     get 'new_objective', on: :member
     post 'create_objective', on: :member
+    get 'new_share_account', on: :member
+    post 'create_share_account', on: :member
   end
 
   resources :accounts, only: %i[show new create edit update] do

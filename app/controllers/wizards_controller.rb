@@ -7,6 +7,8 @@ class WizardsController < ApplicationController
 
   def new_objective; end
 
+  def new_share_account; end
+
   def create_account
     Account.create!(parent: current_user.account, **ps.slice(:name))
 
@@ -23,6 +25,17 @@ class WizardsController < ApplicationController
 
   def create_objective
     account.objectives.create!(ps.slice(:name, :amount))
+
+    redirect_to new_share_account_wizard_path
+  end
+
+  def create_share_account
+    account_share = AccountShare.create!(user_id: current_user.id,
+                                         account_id: account.id,
+                                         token: SecureRandom.urlsafe_base64(32),
+                                         **ps.slice(:name, :email))
+
+    AccountShareMailer.account_share(account_share).deliver
 
     redirect_to account_path(account)
   end

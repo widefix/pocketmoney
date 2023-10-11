@@ -1,0 +1,25 @@
+.columns.is-centered
+  .column.is-one-third
+    h1.title.is-3.has-text-centered Create an account for your child
+    h2.title.is-4.has-text-centered Share Account Access
+    p.has-text-centered Step 4 out of 4
+    progress.progress value="100" max="100"
+    .notification.is-light
+        | Time to involve the whole family!
+        br
+        | Share your kid's account access with one family member for now, 
+        | like grandparents, aunts, uncles, or a trusted friend. 
+        br
+        | It helps manage goals, recurring payments, and stay updated on your kid's finance.
+        br
+        br
+        | You can skip this step for now and easily share the account with other family members whenever you prefer.
+    = form_with url: create_share_account_wizard_path, method: :post, local: true do |form|
+      .field
+        = form.text_field :name, autofocus: true, class: "input", placeholder: "Name", required: true
+      .field
+        = form.text_field :email, class: "input", placeholder: "Email", required: true
+      .field
+        .buttons.is-flex.is-justify-content-flex-end
+          = link_to "Skip", account_path(account), class: "button is-light"
+          = form.submit "Finish", class: "button is-primary"

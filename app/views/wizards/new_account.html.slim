@@ -1,16 +1,15 @@
 .columns.is-centered
   .column.is-one-third
     h1.title.is-3.has-text-centered Create an account for your child
-    br
-    h2.title.is-4.has-text-centered Step 1: Create Your Kid's Account
+    h2.title.is-4.has-text-centered Create Your Kid's Account
+    p.has-text-centered Step 1 out of 4
+    progress.progress value="25" max="100"
     .notification.is-light
       | Please enter the name you'd like to assign to your kid's account.
     = form_with url: create_account_wizard_path, method: :post, local: true do |form|
       .field
         = form.text_field :name, autofocus: true, class: "input", placeholder: "Name", required: true
       .field
-        .buttons.is-flex.is-justify-content-space-between
-          .notification.is-light
-            | Progress: 1 out of 3
+        .buttons.is-flex.is-justify-content-flex-end
           = form.submit "Next", class: "button is-primary"
         

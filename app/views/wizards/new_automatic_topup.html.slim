@@ -1,0 +1,21 @@
+.columns.is-centered
+  .column.is-one-third
+    h1.title.is-3.has-text-centered Create an account for your kid
+    p.is-size-5.has-text-centered Step 2 out of 4: Set Up Recurring Payments
+    progress.progress value="50" max="100"
+    .notification.is-light
+        | Specify the weekly allowance for your kid. 
+        | Feel free to use alternative terms in conversations if your kid is too young to grasp the concept of money. 
+        | For instance, you can use terms like 'stars', 'likes' or 'points' - 
+        | just be creative and think about what resonates with your kid.
+        br
+        br
+        | This amount will be deposited weekly into the kid's account every Friday. 
+        | You can adjust it later as needed.
+    = form_with url: create_automatic_topup_wizard_path, method: :post, local: true do |form|
+      .field
+        = form.text_field :amount, autofocus: true, class: "input", placeholder: "Amount", required: true
+      .field
+        .buttons.is-flex.is-justify-content-flex-end
+          = link_to "Skip", new_objective_wizard_path, class: "button is-light"
+          = form.submit "Next", class: "button is-primary"

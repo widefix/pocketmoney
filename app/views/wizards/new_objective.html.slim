@@ -1,17 +1,17 @@
 .columns.is-centered
   .column.is-one-third
-    h1.title.is-3.has-text-centered Create an account for your child
+    h1.title.is-3.has-text-centered Create an account for your kid
     p.is-size-5.has-text-centered Step 3 out of 4: Set Up Goals
     progress.progress value="75" max="100"
     .notification.is-light
-      | Note down your child's dream savings goal here with it's price. 
+      | Note down your kid's dream savings goal here with it's price. 
       | It could be anything, but it's usually a toy, a computer game, or a ticket to an entertainment event.
       br
       | For now, just add one goal or feel free to skip this step. 
       | You can add goals at any time.
       br
       br
-      | If you avoid using the term 'money' with your child, 
+      | If you avoid using the term 'money' with your kid, 
       | consider using a 1:1 exchange rate to your local currency for easier balance conversion.
     = form_with url: create_objective_wizard_path, method: :post, local: true do |form|
       .field

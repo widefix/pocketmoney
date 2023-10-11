@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method memoize def topup_utc_time
-    Time.now.utc.change(hour: 14, min: 0)
+    Time.now.utc.change(hour: 14, min: 0).iso8601
   end
 
   helper_method def current_url

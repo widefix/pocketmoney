@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class GetUserFromOmniauthAction < ApplicationAction
+class OmniauthAuthenticateAction < ApplicationAction
   option :access_token
 
   private
@@ -9,10 +9,10 @@ class GetUserFromOmniauthAction < ApplicationAction
     data = access_token.info
     user = User.find_by(email: data['email'])
 
-    ActiveRecord::Base.transaction do
-      if user.nil?
+    if user.nil?
+      ActiveRecord::Base.transaction do
         user = create_user(data)
-        user.create_account!(name: user.name, email: user.email)
+        create_account_for(user)
       end
     end
 

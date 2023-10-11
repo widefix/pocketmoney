@@ -9,7 +9,7 @@ module Users
     private
 
     def user
-      User.from_omniauth(request.env['omniauth.auth'])
+      OmniauthAuthenticateAction.new(access_token: request.env['omniauth.auth']).perform
     end
   end
 end

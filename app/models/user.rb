@@ -9,8 +9,4 @@ class User < ApplicationRecord
   has_many :feedbacks
 
   validates :name, allow_blank: true, length: { minimum: 2, maximum: 20 }
-
-  def self.from_omniauth(access_token)
-    GetUserFromOmniauthAction.new(access_token: access_token).perform
-  end
 end

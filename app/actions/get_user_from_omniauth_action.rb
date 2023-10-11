@@ -9,15 +9,18 @@ class GetUserFromOmniauthAction < ApplicationAction
     data = access_token.info
     user = User.find_by(email: data['email'])
 
-    if user.nil?
-      user = create_user(data)
-      create_account_for(user)
+    ActiveRecord::Base.transaction do
+      if user.nil?
+        user = create_user(data)
+        user.create_account!(name: user.name, email: user.email)
+      end
     end
+
     user
   end
 
   def create_user(data)
-    User.create(
+    User.create!(
       name: data['name'] || data['nickname'],
       email: data['email'],
       avatar_url: data['image'],
@@ -27,6 +30,6 @@ class GetUserFromOmniauthAction < ApplicationAction
   end
 
   def create_account_for(user)
-    user.create_account(name: user.name, email: user.email)
+    user.create_account!(name: user.name, email: user.email)
   end
 end

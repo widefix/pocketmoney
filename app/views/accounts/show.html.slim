@@ -55,21 +55,26 @@ h2.title.is-4
         .card-header-title.is-centered
           h3.title.is-4 History
       .card-content.card-content-overflow.px-1
-        .table-container
-          table.table.is-fullwidth.is-striped
-            thead
-              tr
-                th Date
-                th Amount
-                th Description
-                th.for-desktop Actions
-                th.for-mobile &nbsp;
-            tbody.toggleable
-              - transactions = account.transactions
-              = render partial: 'transaction', collection: transactions, account: account
-        - if transactions.count > 10
-          .card-footer
-            = link_to "Show all", "#", id: "toggle-button", class: 'card-footer-item'
+        - transactions = account.transactions
+        -if transactions.empty?
+          .has-text-centered
+            i.fa.fa-calendar-times-o.fa-4x
+            p.mt-2 No transactions yet.
+        - else
+          .table-container
+            table.table.is-fullwidth.is-striped
+              thead
+                tr
+                  th Date
+                  th Amount
+                  th Description
+                  th.for-desktop Actions
+                  th.for-mobile &nbsp;
+              tbody.toggleable
+                = render partial: 'transaction', collection: transactions, account: account
+          - if transactions.count > 10
+            .card-footer
+              = link_to "Show all", "#", id: "toggle-button", class: 'card-footer-item'
 
 .columns.objectives
   .column
@@ -78,17 +83,23 @@ h2.title.is-4
         .card-header-title.is-centered
           h3.title.is-4 Objectives
       .card-content.px-1
-        .table-container
-          table.table.is-fullwidth.is-striped
-            thead
-              tr
-                th Name
-                th Amount
-                th Progress
-                th Weeks to goal
-                th Actions
-            tbody
-              = render partial: 'objective', collection: account.objectives, account: account
+        - objectives = account.objectives
+        -if objectives.empty?
+          .has-text-centered
+            i.fa.fa-calendar-times-o.fa-4x
+            p.mt-2.mb-2 No objectives yet.
+        - else
+          .table-container
+            table.table.is-fullwidth.is-striped
+              thead
+                tr
+                  th Name
+                  th Amount
+                  th Progress
+                  th Weeks to goal
+                  th Actions
+              tbody
+                = render partial: 'objective', collection: objectives, account: account
         .card-footer
           = link_to '+Add', new_account_objective_path(account), class: 'card-footer-item'
 .columns.automatic-topup-configs
@@ -102,25 +113,31 @@ h2.title.is-4
               | This amount will be automatically added to the account every week on Fridays at&nbsp;
               span#formatted-time
       .card-content.px-1
-        .table-container
-          table.table.is-fullwidth.is-striped
-            thead
-              tr
-                th Amount
-                th Actions
-            tbody
-              - account.automatic_topup_configs.each do |config|
+        - automatic_topup_configs = account.automatic_topup_configs
+        -if automatic_topup_configs.empty?
+          .has-text-centered
+            i.fa.fa-calendar-times-o.fa-4x
+            p.mt-2.mb-2 No weekly automatic topups yet.
+        - else
+          .table-container
+            table.table.is-fullwidth.is-striped
+              thead
                 tr
-                  td= config.amount
-                  td.buttons
-                    = link_to edit_account_account_automatic_topup_config_path(account, config), class: 'button is-small is-light' do
-                      span.icon
-                        i.fa.fa-pencil
-                      | &nbsp; Edit
-                    = link_to account_account_automatic_topup_config_path(account, config), method: :delete, data: { confirm: 'Cancel this top up?' }, class: 'button is-small is-light' do
-                      span.icon
-                        i.fa.fa-undo
-                      | &nbsp; Cancel
+                  th Amount
+                  th Actions
+              tbody
+                - automatic_topup_configs.each do |config|
+                  tr
+                    td= config.amount
+                    td.buttons
+                      = link_to edit_account_account_automatic_topup_config_path(account, config), class: 'button is-small is-light' do
+                        span.icon
+                          i.fa.fa-pencil
+                        | &nbsp; Edit
+                      = link_to account_account_automatic_topup_config_path(account, config), method: :delete, data: { confirm: 'Cancel this top up?' }, class: 'button is-small is-light' do
+                        span.icon
+                          i.fa.fa-undo
+                        | &nbsp; Cancel
         - unless account.automatic_topup_configs.any?
           .card-footer
             = link_to '+Add', new_account_account_automatic_topup_config_path(account), class: 'card-footer-item'

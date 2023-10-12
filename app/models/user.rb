@@ -8,5 +8,5 @@ class User < ApplicationRecord
   belongs_to :account, optional: true
   has_many :feedbacks
 
-  validates :name, allow_blank: true, length: { minimum: 2, maximum: 20 }
+  validates :name, allow_blank: true, length: { minimum: 2, maximum: 30 }
 end

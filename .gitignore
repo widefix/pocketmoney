@@ -36,3 +36,9 @@ yarn-debug.log*
 .yarn-integrity
 
 /config/database.yml
+
+# Ignor sensitive configuration information and environment variables
+.env
+
+# Ignore Mac OS attributes files
+.DS_Store

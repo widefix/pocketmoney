@@ -9,7 +9,7 @@ RSpec.describe AutomaticTopupAction, type: :action do
 
   describe '#perform_implementation' do
     context 'when all attributes are valid' do
-      it { expect { action.perform }.to change { Transaction.count }.by(1) }
+      it { expect { action.perform }.to change(Transaction, :count).by(1) }
     end
   end
 end

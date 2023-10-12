@@ -42,7 +42,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rails-controller-testing'
   gem 'factory_bot_rails', '~> 6.2'
-  gem 'database_cleaner' 
+  gem 'database_cleaner'
   gem 'pry'
   gem 'ffaker'
   gem 'rubocop'
@@ -70,5 +70,10 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "newrelic_rpm", "~> 9.5"
+
+# Adds authentification with google
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 
 gem "rollbar", "~> 3.4"

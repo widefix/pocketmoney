@@ -1,5 +1,5 @@
 document.addEventListener('turbolinks:load', () => {
-  if (window.innerWidth > 768) {
+  if (window.innerWidth > 1024) {
     return
   }
   const navbarBurgers = document.querySelector('.navbar-burger')

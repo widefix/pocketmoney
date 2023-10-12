@@ -6,7 +6,7 @@ FactoryBot.define do
     uid { '12342' }
     info do
       {
-        name: "is-#{FFaker::Name.name[0, 27]}",
+        name: FFaker::Name.name,
         email: FFaker::Internet.email
       }
     end

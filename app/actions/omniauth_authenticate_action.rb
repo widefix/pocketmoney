@@ -6,27 +6,27 @@ class OmniauthAuthenticateAction < ApplicationAction
   private
 
   def perform_implementation
-    data = access_token.info
-    user = User.find_by(email: data['email'])
-
-    if user.nil?
-      ActiveRecord::Base.transaction do
-        user = create_user(data)
-        create_account_for(user)
-      end
-    end
-
-    user
+    existing_user || create_user
   end
 
-  def create_user(data)
-    User.create!(
-      name: data['name'] || data['nickname'],
-      email: data['email'],
-      avatar_url: data['image'],
-      password: Devise.friendly_token[0, 20],
-      provider: access_token.provider
-    )
+  def existing_user
+    User.find_by(email: access_token.info[:email])
+  end
+
+  def create_user
+    data = access_token.info
+    ActiveRecord::Base.transaction do
+      user = User.create!(
+        name: data[:name] || data[:nickname],
+        email: data[:email],
+        avatar_url: data[:image],
+        password: Devise.friendly_token[0, 20],
+        provider: access_token.provider
+      )
+      create_account_for(user)
+
+      user
+    end
   end
 
   def create_account_for(user)

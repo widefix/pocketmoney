@@ -1,37 +1,54 @@
 #topup-utc-time data-utc-time= topup_utc_time
 h2.title.is-4
   | Account details
-.buttons.for-desktop
-  = link_to my_account_path, class: 'button is-light' do
-    span.icon
-      i.fa.fa-chevron-left
-    | &nbsp; Back
-  = link_to edit_account_path(account), class: 'button is-light' do
-    span.icon
-      i.fa.fa-pencil
-    | &nbsp; Edit
-  = link_to account_shares_path(account), class: 'button is-light' do
-    span.icon
-      i.fa.fa-share-alt
-    | &nbsp; Account shares
-  = link_to archive_account_path(account), data: {confirm: 'Archive this account?'}, class: 'button is-danger' do
-    span.icon
-      i.fa.fa-archive
-    | &nbsp; Archive
+.buttons.for-desktop.is-justify-content-space-between
+  div
+    = link_to my_account_path, class: 'button is-light' do
+      span.icon
+        i.fa.fa-chevron-left
+      | &nbsp; Back
+    = link_to edit_account_path(account), class: 'button is-light' do
+      span.icon
+        i.fa.fa-pencil
+      | &nbsp; Edit
+    = link_to account_shares_path(account), class: 'button is-light' do
+      span.icon
+        i.fa.fa-share-alt
+      | &nbsp; Account shares
+  .dropdown.is-right
+    .dropdown-trigger
+      button.button.is-light
+        span.icon
+          i.fa.fa-ellipsis-h
+    .dropdown-menu
+      .dropdown-content
+        = link_to archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'dropdown-item' do
+          span.icon
+            i.fa.fa-archive
+          | &nbsp; Archive
 
-.buttons.for-mobile
-  = link_to my_account_path, class: 'button is-light' do
-    span.icon
-      i.fa.fa-chevron-left
-  = link_to edit_account_path(account), class: 'button is-light' do
-    span.icon
-      i.fa.fa-pencil
-  = link_to account_shares_path(account), class: 'button is-light' do
-    span.icon
-      i.fa.fa-share-alt
-  = link_to archive_account_path(account), data: {confirm: 'Archive this account?'}, class: 'button is-danger' do
-    span.icon
-      i.fa.fa-archive
+.buttons.for-mobile.is-justify-content-space-between
+  div
+    = link_to my_account_path, class: 'button is-light' do
+      span.icon
+        i.fa.fa-chevron-left
+    = link_to edit_account_path(account), class: 'button is-light' do
+      span.icon
+        i.fa.fa-pencil
+    = link_to account_shares_path(account), class: 'button is-light' do
+      span.icon
+        i.fa.fa-share-alt
+  .dropdown.is-right
+    .dropdown-trigger
+      button.button.is-light
+        span.icon
+          i.fa.fa-ellipsis-h
+    .dropdown-menu
+      .dropdown-content
+        = link_to archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'dropdown-item' do
+          span.icon
+            i.fa.fa-archive
+          | &nbsp; Archive
 
 .columns
   .column

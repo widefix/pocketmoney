@@ -18,4 +18,8 @@ class MyAccountsController < ApplicationController
   helper_method memoize def unaccepted_shares
     AccountShare.visible.unaccepted.for(current_user)
   end
+
+  helper_method memoize def archived_accounts
+    Account.visible_for_owner(current_user).archived
+  end
 end

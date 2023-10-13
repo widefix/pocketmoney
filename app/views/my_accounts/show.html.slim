@@ -5,8 +5,15 @@
         span.icon
           i.fa.fa-plus
         | &nbsp; Add account
-      = link_to archived_accounts_path, method: :get, class: 'button is-primary' do
-        | &nbsp; Archived accounts
+      - if archived_accounts.present?
+        .dropdown.is-right
+          .dropdown-trigger
+            button.button.is-light
+              span.icon
+                i.fa.fa-ellipsis-h
+          .dropdown-menu
+            .dropdown-content
+              = link_to 'Archived accounts', archived_accounts_path, method: :get, class: 'dropdown-item'
 
 - if account.children.unarchived.present? || shared_accounts.present?
   - account.children.unarchived.each do |child|

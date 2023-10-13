@@ -101,7 +101,11 @@ h2.title.is-4
               tbody
                 = render partial: 'objective', collection: objectives, account: account
         .card-footer
-          = link_to '+Add', new_account_objective_path(account), class: 'card-footer-item'
+          .card-footer-item.pb-0
+            = link_to new_account_objective_path(account), class: 'button is-small is-light mb-0' do
+              span.icon
+                i.fa.fa-plus
+              | &nbsp; Add
 .columns.automatic-topup-configs
   .column
     .card
@@ -140,6 +144,10 @@ h2.title.is-4
                         | &nbsp; Cancel
         - unless account.automatic_topup_configs.any?
           .card-footer
-            = link_to '+Add', new_account_account_automatic_topup_config_path(account), class: 'card-footer-item'
+            .card-footer-item.pb-0
+              = link_to new_account_account_automatic_topup_config_path(account), class: 'button is-small is-light mb-0' do
+                span.icon
+                  i.fa.fa-plus
+                | &nbsp; Add
 - if account.accumulative_balance_data.present?
   = line_chart account.accumulative_balance_data, xtitle: 'Date', ytitle: 'Accumulative Balance'

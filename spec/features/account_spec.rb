@@ -38,7 +38,7 @@ RSpec.feature 'Account', type: :feature do
     expect(objectives_block).to have_text(objective.name)
     expect(objectives_block).to have_text(objective.amount)
     expect(objectives_block).to have_link('Delete', href: objective_path(objective))
-    expect(objectives_block).to have_link('+Add', href: new_account_objective_path(account))
+    expect(objectives_block).to have_link('Add', href: new_account_objective_path(account))
 
     automatic_topup_config_block = find('.columns.automatic-topup-configs')
     expect(automatic_topup_config_block).to have_selector('table.table tbody tr', count: 1)
@@ -48,7 +48,7 @@ RSpec.feature 'Account', type: :feature do
     expect(automatic_topup_config_block)
       .to have_link('Cancel', href: account_account_automatic_topup_config_path(account, automatic_topup_config))
     expect(automatic_topup_config_block)
-      .not_to have_link('+Add', href: new_account_account_automatic_topup_config_path(account))
+      .not_to have_link('Add', href: new_account_account_automatic_topup_config_path(account))
   end
 
   scenario 'User views the account page without automatic_topup_config' do
@@ -57,6 +57,6 @@ RSpec.feature 'Account', type: :feature do
 
     automatic_topup_config_block = find('.columns.automatic-topup-configs')
     expect(automatic_topup_config_block)
-      .to have_link('+Add', href: new_account_account_automatic_topup_config_path(account))
+      .to have_link('Add', href: new_account_account_automatic_topup_config_path(account))
   end
 end

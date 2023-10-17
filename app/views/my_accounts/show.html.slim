@@ -21,12 +21,12 @@
       .card-content
         .columns
           .column
-            .figure.image.is-128x128
-              = image_tag("#{avatar_for(child)}", id:'image-preview', class:'is-rounded',  alt: 'ava')
-          .column
-            p.title.is-4= link_to child.name, account_path(child)
-          .column
-            nav.level
+            div.is-flex.is-justify-content-left.mgl-ava-card
+              .figure.image.is-128x128
+                = link_to image_tag("#{avatar_for(child)}", id:'image-preview', class:'is-rounded',  alt: 'ava'), account_path(child)
+              p.title.is-4= link_to child.name, account_path(child)
+          .column.is-3.is-flex.is-justify-content-center.is-align-items-center
+            nav.level.is-vcentered
               .level-item.has-text-centered
                 div
                   p.heading Balance
@@ -45,9 +45,12 @@
       .card.box.shared-accounts
         .card-content
           .columns
-            .column
-              p.title.is-6 Owner: #{shared_account.parent.email}
-              p.title.is-4= link_to shared_account.name, account_path(shared_account)
+            .column.is-flex.is-justify-content-left.is-flex-direction-column
+              .title.is-6.is-full-height Owner: #{shared_account.parent.email}
+              div.is-flex.is-justify-content-left.mgl-ava-card
+                .figure.image.is-128x128
+                  = link_to image_tag("#{avatar_for(shared_account)}", id:'image-preview', class:'is-rounded',  alt: 'ava'), account_path(shared_account)
+                .title.is-4= link_to shared_account.name, account_path(shared_account)
             .column
               nav.level
                 .level-item.has-text-centered
@@ -55,8 +58,6 @@
                     p.heading Balance
                     p.title #{shared_account.balance}
             .column
-
-
 
         footer.card-footer
           = link_to '<i class="fa fa-plus-circle fa-2x"></i>'.html_safe, new_account_topup_path(shared_account), class: 'card-footer-item is-plus-color'

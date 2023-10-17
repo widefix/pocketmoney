@@ -30,4 +30,12 @@ class ApplicationController < ActionController::Base
   helper_method def current_url
     "https://budgetingkid.com#{request.path}"
   end
+
+  helper_method def avatar_for(person)
+    if person.avatar.attached?
+      url_for(person.avatar)
+    else
+      'user.svg'
+    end
+  end
 end

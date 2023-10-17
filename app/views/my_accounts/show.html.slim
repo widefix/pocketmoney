@@ -21,6 +21,9 @@
       .card-content
         .columns
           .column
+            .figure.image.is-128x128
+              = image_tag("#{avatar_for(child)}", id:'image-preview', class:'is-rounded',  alt: 'ava')
+          .column
             p.title.is-4= link_to child.name, account_path(child)
           .column
             nav.level

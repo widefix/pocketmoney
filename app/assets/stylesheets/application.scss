@@ -21,10 +21,12 @@ $text-strong: hsl(270, 50%, 21%);
 $footer-background-color: white;
 $navbar-item-img-max-height: 40px;
 $navbar-item-hover-color: $text;
+$file-cta-color: hsl(270, 50%, 48%);
 
 @import "bulma";
 @import "font-awesome";
 @import url("https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap");
+@import 'cropperjs/dist/cropper.css';
 
 // BudgetingKid variables
 $primary-budgeting-kid-color: hsl(270, 50%, 40%);
@@ -45,7 +47,7 @@ $primary-budgeting-kid-background-color: hsl(270, 95%, 98%);
 .all-balance-button {
   position: absolute;
   right: 5px;
-  top: 5px; 
+  top: 5px;
 }
 
 .is-navbar-white-color {
@@ -99,6 +101,22 @@ $primary-budgeting-kid-background-color: hsl(270, 95%, 98%);
 
 .is-light {
   color: $text-light !important ;
+}
+
+.file.is-light {
+  color: $text-light !important ;
+
+  .file-label {
+    color: $text-light !important ;
+  }
+
+  .file-icon {
+    color:$text-light !important ;
+  }
+}
+
+.cropper-view-box {
+  border: 4px solid rgb(30, 155, 240) ;
 }
 
 .is-footer-light {

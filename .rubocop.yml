@@ -11,3 +11,11 @@ Style/Documentation:
 Metrics/BlockLength:
   Exclude:
     - "db/**/*"
+
+Metrics/MethodLength:
+  Exclude:
+    - "db/**/*"
+
+Metrics/AbcSize:
+  Exclude:
+    - "db/**/*"

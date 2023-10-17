@@ -4,6 +4,9 @@
 // that code so it'll be compiled.
 
 import "chartkick/chart.js"
+import Cropper from 'cropperjs'
+// import 'cropperjs/dist/cropper.css';
+ import 'cropperjs';
 
 require("@rails/ujs").start()
 require("turbolinks").start()
@@ -11,6 +14,7 @@ require("@rails/activestorage").start()
 require("channels")
 require("menu/navbar")
 require("menu/dropdowns")
+require("avatar/cropImage")
 require("account/toggleButton")
 require("spends/allBalance")
 require("time_zone/userTimeZone")

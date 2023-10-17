@@ -1,7 +1,22 @@
 .columns.is-centered
   .column.is-one-third
     h2.title.is-4.has-text-centered Edit account
+    .columns
+      .column.is-one-third
+        .field
+          .figure.image.is-128x128
+            = image_tag("#{avatar_for(account)}", id:'account-image', class:'is-rounded',  alt: 'ava')
+      .column
+          .file#file-input.is-light.is-pulled-right
+            label.file-label.is-light
+              input.file-input(type="file" name="origin-image")
+              span.file-cta
+                span.file-icon
+                  i.fa.fa-camera
+                span.file-label
+                  | Add photo
     = form_with model: account do |f|
+      = f.hidden_field :cropped_image, id: 'cropped-image'
       .field
         = f.text_field :name, autofocus: true, class: "input", placeholder: "Name"
       .field
@@ -20,3 +35,13 @@
           span.icon
             i.fa.fa-hdd-o
           | &nbsp; Save
+
+#modal-image-form.modal
+  .modal-background
+  .modal-card
+    .modal-card-body
+      figure.image
+        = image_tag('user.svg', id:'origin-image', alt: 'ava')
+    .modal-card-foot.buttons.is-right
+      #cancel-modal.button.is-light Cancel
+      #submit-modal.button.is-primary Save

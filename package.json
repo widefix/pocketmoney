@@ -9,6 +9,7 @@
     "babel-loader": "^8.2.2",
     "chart.js": "^4.4.0",
     "chartkick": "^5.0.1",
+    "cropperjs": "^1.6.1",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",

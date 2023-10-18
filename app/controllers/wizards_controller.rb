@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class WizardsController < ApplicationController
+  before_action :authenticate_user!
+
   def new_account; end
 
   def new_automatic_topup; end

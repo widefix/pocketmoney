@@ -53,15 +53,19 @@ h2.title.is-4
 .columns
   .column
     .card
-      .card-header
-        .card-header-title.is-centered
-          h3.title.is-4= account.name
       .card-content
-        nav.level
-          div.level-item.has-text-centered
-            div
-              p.heading Balance
-              p.title #{account.balance}
+        .columns
+          .column.is-flex.is-justify-content-end
+            .figure.image.is-rounded.is-128x128
+              = image_tag("#{avatar_for(account)}", class:'is-rounded', alt: 'avatar')
+          .column.is-flex.is-justify-content-start
+            h3.title.is-4
+              p= account.name
+              p.nav.level
+                div.level-item
+                  div
+                    p.heading Balance
+                    p.subtitle.is-3 #{account.balance}
       .card-footer
         = link_to '<i class="fa fa-plus-circle fa-2x"></i>'.html_safe, new_account_topup_path(account), class: 'card-footer-item is-plus-color'
         = link_to '<i class="fa fa-minus-circle fa-2x"></i>'.html_safe, new_account_spend_path(account), class: 'card-footer-item is-minus-color'

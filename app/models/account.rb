@@ -8,12 +8,10 @@ class Account < ApplicationRecord
 
   # an account has user optionally
   has_one :user
-
   has_many :automatic_topup_configs, class_name: 'AccountAutomaticTopupConfig', foreign_key: :to_account_id
-
   has_many :objectives
-
   belongs_to :parent, class_name: 'Account', optional: true
+  has_one_attached :avatar
 
   validates :name, presence: true
 

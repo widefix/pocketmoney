@@ -10,6 +10,7 @@ class AccountsController < ApplicationController
   def edit; end
 
   def update
+    attach_avatar_for(account)
     if account.update(ps[:account])
       redirect_to account_path
     else
@@ -20,7 +21,7 @@ class AccountsController < ApplicationController
   def create
     ActiveRecord::Base.transaction do
       account = Account.create!(parent: current_user.account, **ps.slice(:name))
-
+      attach_avatar_for(account)
       automatic_topup_amount = ps[:automatic_topup].fetch(:amount)
       if automatic_topup_amount.present?
         AccountAutomaticTopupConfig.create!(from_account: current_user.account,
@@ -38,6 +39,11 @@ class AccountsController < ApplicationController
   end
 
   private
+
+  def attach_avatar_for(account)
+    image_params = params.fetch(:avatar, params.dig(:account, :cropped_image))
+    account.avatar.attach(image_params) if image_params.present?
+  end
 
   helper_method memoize def account
     Account.visible_for(current_user).unarchived.find(ps.fetch(:id))

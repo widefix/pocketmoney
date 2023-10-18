@@ -19,3 +19,5 @@ Metrics/MethodLength:
 Metrics/AbcSize:
   Exclude:
     - "db/**/*"
+    - "spec/**/*_spec.rb"
+

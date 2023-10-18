@@ -11,3 +11,4 @@ Style/Documentation:
 Metrics/BlockLength:
   Exclude:
     - "db/**/*"
+    - "spec/**/*_spec.rb"

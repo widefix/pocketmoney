@@ -6,7 +6,7 @@
         .column.is-one-third
           .field
             .figure.image.is-128x128
-              = image_tag("#{avatar_for(account)}", id:'account-image', class:'is-rounded',  alt: 'avatar')
+              = image_tag(avatar_for(account), id:'account-image', class:'is-rounded',  alt: 'avatar')
         .column
           .file#file-input.is-light.is-pulled-right
             label.file-label.is-light

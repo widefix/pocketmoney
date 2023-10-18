@@ -41,7 +41,7 @@ class AccountsController < ApplicationController
   private
 
   def attach_avatar_for(account)
-    image_params = params.fetch(:avatar, params.dig(:account, :cropped_image))
+    image_params = params.fetch(:avatar, params.dig(:account, :avatar))
     account.avatar.attach(image_params) if image_params.present?
   end
 

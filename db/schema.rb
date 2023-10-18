@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_18_102011) do
+ActiveRecord::Schema.define(version: 2023_10_18_113402) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -88,8 +89,8 @@ ActiveRecord::Schema.define(version: 2023_10_18_102011) do
     t.bigint "account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "goal_achieved_notified", default: false
-    t.boolean "goal_almost_achieved_notified", default: false
+    t.datetime "goal_achieved_notified_to"
+    t.datetime "goal_almost_achieved_notified_to"
     t.index ["account_id"], name: "index_objectives_on_account_id"
   end
 

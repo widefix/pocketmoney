@@ -17,14 +17,15 @@
 
 - if account.children.unarchived.present? || shared_accounts.present?
   - account.children.unarchived.each do |child|
-    .card.box.accounts
-      .card-content
+    .card.box.accounts.p-0
+      / desktop
+      .card-content.for-desktop
         .columns
-          .column
-            div.is-flex.is-justify-content-left.mgl-ava-card
-              .figure.image.is-128x128
-                = link_to image_tag("#{avatar_for(child)}", id:'image-preview', class:'is-rounded',  alt: 'ava'), account_path(child)
-              p.title.is-4= link_to child.name, account_path(child)
+          .column.is-flex.is-flex-direction-column.is-align-items-center
+            .figure.image.is-128x128.mb-2
+              = link_to image_tag("#{avatar_for(child)}", id:'image-preview', class:'is-rounded',  alt: 'avatar'), account_path(child)
+            .title.is-4.has-limit-width.has-text-centered
+              p= link_to child.name, account_path(child)
           .column.is-3.is-flex.is-justify-content-center.is-align-items-center
             nav.level.is-vcentered
               .level-item.has-text-centered
@@ -32,33 +33,78 @@
                   p.heading Balance
                   p.title #{child.balance}
           .column
+            .buttons.for-desktop.is-justify-content-end
+              div
+                = link_to account_path(child), class: 'button is-light' do
+                  span.icon
+                    i.fa.fa-eye
+                  | &nbsp; View
+      / mobile
+      .card-content.for-mobile
+        .buttons.top-right-button
+          = link_to account_path(child), class: 'button is-light' do
+            span.icon
+              i.fa.fa-eye
+        .div.is-flex.is-flex-direction-column.is-align-items-center
+          figure.image.is-rounded.is-128x128
+              = link_to image_tag("#{avatar_for(child)}", id:'image-preview', class:'is-rounded',  alt: 'avatar'), account_path(child)
+          h3.title.is-4.has-text-centered.mt-2
+            p= link_to child.name, account_path(child)
+            p.nav.level
+              div.level-item
+                div
+                  p.heading.has-text-centered Balance
+                  p.title.is-4 #{child.balance}
 
       footer.card-footer
         = link_to '<i class="fa fa-plus-circle fa-2x"></i>'.html_safe, new_account_topup_path(child), class: 'card-footer-item is-plus-color'
         = link_to '<i class="fa fa-minus-circle fa-2x"></i>'.html_safe, new_account_spend_path(child), class: 'card-footer-item is-minus-color'
-
   br
   - if shared_accounts.present?
     .box.has-text-centered
       p.title.is-4 Shared accounts
     - shared_accounts.each do |shared_account|
       .card.box.shared-accounts
-        .card-content
+        / desktop
+        .card-content.for-desktop
           .columns
-            .column.is-flex.is-justify-content-left.is-flex-direction-column
+            .column.is-flex.is-flex-direction-column.is-align-items-center
               .title.is-6.is-full-height Owner: #{shared_account.parent.email}
-              div.is-flex.is-justify-content-left.mgl-ava-card
-                .figure.image.is-128x128
-                  = link_to image_tag("#{avatar_for(shared_account)}", class:'is-rounded',  alt: 'ava'), account_path(shared_account)
-                .title.is-4= link_to shared_account.name, account_path(shared_account)
-            .column
-              nav.level
+              .figure.image.is-128x128
+                = link_to image_tag(avatar_for(shared_account), class:'is-rounded',  alt: 'avatar'), account_path(shared_account)
+              .title.is-4= link_to shared_account.name, account_path(shared_account)
+            .column.is-3.is-flex.is-justify-content-center.is-align-items-center
+              nav.level.is-vcentered
                 .level-item.has-text-centered
                   div
                     p.heading Balance
                     p.title #{shared_account.balance}
             .column
-
+              .buttons.for-desktop.is-justify-content-end
+                div
+                  = link_to account_path(shared_account), class: 'button is-light' do
+                    span.icon
+                      i.fa.fa-eye
+                    | &nbsp; View
+        / mobile
+        .card-header-title.for-mobile.is-centered
+          | Owner: #{shared_account.parent.email}
+        .card-content.for-mobile
+          .buttons.top-right-shared-account-button
+            = link_to account_path(shared_account), class: 'button is-light' do
+              span.icon
+                i.fa.fa-eye
+          .div.is-flex.is-flex-direction-column.is-align-items-center
+            figure.image.is-rounded.is-128x128
+                = link_to image_tag(avatar_for(shared_account), class:'is-rounded',  alt: 'avatar'), account_path(shared_account)
+            h3.title.is-4.has-text-centered.mt-2
+              p= link_to link_to shared_account.name, account_path(shared_account)
+              p.nav.level
+                div.level-item
+                  div
+                    p.heading.has-text-centered Balance
+                    p.title.is-4 #{shared_account.balance}
+                    
         footer.card-footer
           = link_to '<i class="fa fa-plus-circle fa-2x"></i>'.html_safe, new_account_topup_path(shared_account), class: 'card-footer-item is-plus-color'
           = link_to '<i class="fa fa-minus-circle fa-2x"></i>'.html_safe, new_account_spend_path(shared_account), class: 'card-footer-item is-minus-color'

@@ -69,7 +69,7 @@ $primary-budgeting-kid-background-color: hsl(270, 95%, 98%);
     display: flex;
   }
   .for-desktop {
-    display: none;
+    display: none !important;
   }
   .reverse-columns {
     flex-direction: column-reverse;
@@ -79,7 +79,7 @@ $primary-budgeting-kid-background-color: hsl(270, 95%, 98%);
 
 @media (min-width: 1024px) {
   .for-mobile {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -151,6 +151,18 @@ body {
   }
 }
 
-.mgl-ava-card {
-  padding-left: 50px;
+.top-right-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.top-right-shared-account-button {
+  position: absolute;
+  top: 60px;
+  right: 10px;
+}
+
+.has-limit-width {
+  max-width: 200px;
 }

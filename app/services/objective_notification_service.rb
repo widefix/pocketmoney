@@ -3,30 +3,36 @@
 class ObjectiveNotificationService
   def perform
     Objective.not_archived.each do |objective|
-      check_almost_achieved(objective, WeekToGoalAction.new.calculate(objective))
-      check_achieved(objective, objective.account.balance, objective.amount)
+      send_almost_achieved_notification(objective)
+      send_achieved_notification(objective)
     end
   end
 
   private
 
-  def check_almost_achieved(objective, total_weeks_left)
-    return if total_weeks_left > 1 || total_weeks_left.zero? || objective.goal_almost_achieved_notified_to
+  def send_almost_achieved_notification(objective)
+    return if !goal_almost_achived?(objective) || objective.goal_almost_achieved_notified_at
 
-    ObjectivesMailer.objectives_almost_achieved(objective).deliver
-    objective.account.account_shares.accepted.each do |account_share|
-      ObjectivesMailer.objectives_almost_achieved(objective, account_share).deliver
-    end
-    objective.update!(goal_almost_achieved_notified_to: Time.current)
+    ObjectivesMailer.goal_almost_achieved(objective, emails(objective)).deliver
+    objective.update!(goal_almost_achieved_notified_at: Time.current)
   end
 
-  def check_achieved(objective, account_balance, objective_amount)
-    return if account_balance < objective_amount || objective.goal_achieved_notified_to
+  def send_achieved_notification(objective)
+    return if !goal_achived?(objective) || objective.goal_achieved_notified_at
 
-    ObjectivesMailer.objectives_achieved(objective).deliver
-    objective.account.account_shares.accepted.each do |account_share|
-      ObjectivesMailer.objectives_achieved(objective, account_share).deliver
-    end
-    objective.update!(goal_achieved_notified_to: Time.current)
+    ObjectivesMailer.goal_achieved(objective, emails(objective)).deliver
+    objective.update!(goal_achieved_notified_at: Time.current)
+  end
+
+  def emails(objective)
+    [objective.account.parent.user.email].concat(objective.account.account_shares.accepted.pluck(:email))
+  end
+
+  def goal_almost_achived?(objective)
+    objective.calculate_week_to_achived == 1
+  end
+
+  def goal_achived?(objective)
+    objective.account.balance >= objective.amount
   end
 end

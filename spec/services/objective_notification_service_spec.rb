@@ -20,8 +20,8 @@ RSpec.describe ObjectiveNotificationService, type: :service do
       before { create(:transaction, to_account: account, from_account: parent, amount: amount) }
 
       it { expect { subject }.to send_email(to: user.email) }
-      it { expect { subject }.not_to(change { objective.reload.goal_almost_achieved_notified_to }) }
-      it { expect { subject }.to change { objective.reload.goal_achieved_notified_to }.from(nil).to(be_a(Time)) }
+      it { expect { subject }.not_to(change { objective.reload.goal_almost_achieved_notified_at }) }
+      it { expect { subject }.to change { objective.reload.goal_achieved_notified_at }.from(nil).to(be_a(Time)) }
     end
 
     context 'when goal is almost achieved' do
@@ -29,10 +29,9 @@ RSpec.describe ObjectiveNotificationService, type: :service do
         create(:account_share, user: user, account: account, email: second_user.email, accepted_at: Time.current)
       end
 
-      it { expect { subject }.to send_email(to: user.email) }
-      it { expect { subject }.to send_email(to: second_user.email) }
-      it { expect { subject }.not_to(change { objective.reload.goal_achieved_notified_to }) }
-      it { expect { subject }.to change { objective.reload.goal_almost_achieved_notified_to }.from(nil).to(be_a(Time)) }
+      it { expect { subject }.to send_email(to: [user.email, second_user.email]) }
+      it { expect { subject }.not_to(change { objective.reload.goal_achieved_notified_at }) }
+      it { expect { subject }.to change { objective.reload.goal_almost_achieved_notified_at }.from(nil).to(be_a(Time)) }
     end
 
     context 'when goal is achieved and account shared' do
@@ -41,10 +40,9 @@ RSpec.describe ObjectiveNotificationService, type: :service do
         create(:account_share, user: user, account: account, email: second_user.email, accepted_at: Time.current)
       end
 
-      it { expect { subject }.to send_email(to: user.email) }
-      it { expect { subject }.to send_email(to: second_user.email) }
-      it { expect { subject }.not_to(change { objective.reload.goal_almost_achieved_notified_to }) }
-      it { expect { subject }.to change { objective.reload.goal_achieved_notified_to }.from(nil).to(be_a(Time)) }
+      it { expect { subject }.to send_email(to: [user.email, second_user.email]) }
+      it { expect { subject }.not_to(change { objective.reload.goal_almost_achieved_notified_at }) }
+      it { expect { subject }.to change { objective.reload.goal_achieved_notified_at }.from(nil).to(be_a(Time)) }
     end
 
     context 'when account archived' do
@@ -56,8 +54,8 @@ RSpec.describe ObjectiveNotificationService, type: :service do
 
       it { expect { subject }.not_to send_email(to: user.email) }
       it { expect { subject }.not_to send_email(to: second_user.email) }
-      it { expect { subject }.not_to(change { objective.reload.goal_almost_achieved_notified_to }) }
-      it { expect { subject }.not_to(change { objective.reload.goal_achieved_notified_to }) }
+      it { expect { subject }.not_to(change { objective.reload.goal_almost_achieved_notified_at }) }
+      it { expect { subject }.not_to(change { objective.reload.goal_achieved_notified_at }) }
     end
 
     context 'when automatic topup configs is empty but goal is achieved' do
@@ -67,16 +65,16 @@ RSpec.describe ObjectiveNotificationService, type: :service do
       end
 
       it { expect { subject }.to send_email(to: user.email) }
-      it { expect { subject }.not_to(change { objective.reload.goal_almost_achieved_notified_to }) }
-      it { expect { subject }.to change { objective.reload.goal_achieved_notified_to }.from(nil).to(be_a(Time)) }
+      it { expect { subject }.not_to(change { objective.reload.goal_almost_achieved_notified_at }) }
+      it { expect { subject }.to change { objective.reload.goal_achieved_notified_at }.from(nil).to(be_a(Time)) }
     end
 
     context 'when goals are not almost achieved' do
       let(:amount) { 20 }
 
       it { expect { subject }.not_to send_email(to: user.email) }
-      it { expect { subject }.not_to(change { objective.reload.goal_almost_achieved_notified_to }) }
-      it { expect { subject }.not_to(change { objective.reload.goal_achieved_notified_to }) }
+      it { expect { subject }.not_to(change { objective.reload.goal_almost_achieved_notified_at }) }
+      it { expect { subject }.not_to(change { objective.reload.goal_achieved_notified_at }) }
     end
   end
 end

@@ -1,0 +1,3 @@
+p Your kid, #{link_to @account.name, account_url(@account)}, has 1 week left to reach the goal #{link_to @objective, account_url(@account, anchor: 'objective')}.
+p The current balance on your kid's #{link_to 'account', account_url(@account)} is $#{@account.balance}.
+p Your kid needs $#{@amount} to achieve this goal.

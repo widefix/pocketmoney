@@ -29,7 +29,7 @@ RSpec.describe ObjectiveNotificationService, type: :service do
         create(:account_share, user: user, account: account, email: second_user.email, accepted_at: Time.current)
       end
 
-      it { expect { subject }.to send_email(to: [user.email, second_user.email]) }
+      it { expect { subject }.to send_email(to: [second_user.email, user.email]) }
       it { expect { subject }.not_to(change { objective.reload.goal_achieved_notified_at }) }
       it { expect { subject }.to change { objective.reload.goal_almost_achieved_notified_at }.from(nil).to(be_a(Time)) }
     end
@@ -40,7 +40,7 @@ RSpec.describe ObjectiveNotificationService, type: :service do
         create(:account_share, user: user, account: account, email: second_user.email, accepted_at: Time.current)
       end
 
-      it { expect { subject }.to send_email(to: [user.email, second_user.email]) }
+      it { expect { subject }.to send_email(to: [second_user.email, user.email]) }
       it { expect { subject }.not_to(change { objective.reload.goal_almost_achieved_notified_at }) }
       it { expect { subject }.to change { objective.reload.goal_achieved_notified_at }.from(nil).to(be_a(Time)) }
     end

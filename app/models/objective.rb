@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Objective < ApplicationRecord
   belongs_to :account
 
@@ -6,10 +8,10 @@ class Objective < ApplicationRecord
 
   scope :not_archived, -> { joins(:account).where(account: { archived_at: nil }) }
 
-  def calculate_week_to_achived
-    return '' if account.automatic_topup_configs.blank?
+  def week_to_achived
+    return -1 if account.balance >= amount
 
-    return 'Achived' if account.balance >= amount
+    return 0 if account.automatic_topup_configs.blank?
 
     ([amount - account.balance, 0].max / account.automatic_topup_configs.sum(:amount).+(0.1)).ceil
   end

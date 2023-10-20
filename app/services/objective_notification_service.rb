@@ -13,26 +13,26 @@ class ObjectiveNotificationService
   def send_almost_achieved_notification(objective)
     return if !goal_almost_achived?(objective) || objective.goal_almost_achieved_notified_at
 
-    ObjectivesMailer.goal_almost_achieved(objective, emails(objective)).deliver
+    ObjectivesMailer.goal_almost_achieved(objective, recipients(objective)).deliver
     objective.update!(goal_almost_achieved_notified_at: Time.current)
   end
 
   def send_achieved_notification(objective)
     return if !goal_achived?(objective) || objective.goal_achieved_notified_at
 
-    ObjectivesMailer.goal_achieved(objective, emails(objective)).deliver
+    ObjectivesMailer.goal_achieved(objective, recipients(objective)).deliver
     objective.update!(goal_achieved_notified_at: Time.current)
   end
 
-  def emails(objective)
-    [objective.account.parent.user.email].concat(objective.account.account_shares.accepted.pluck(:email))
+  def recipients(objective)
+    [*objective.account.account_shares.accepted.pluck(:email), objective.account.parent.user.email]
   end
 
   def goal_almost_achived?(objective)
-    objective.calculate_week_to_achived == 1
+    objective.week_to_achived == 1
   end
 
   def goal_achived?(objective)
-    objective.account.balance >= objective.amount
+    objective.week_to_achived == -1
   end
 end

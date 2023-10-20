@@ -8,7 +8,7 @@ tr
     =
     | #{goal_percentage(account, objective)}
     progress.progress.is-small(value="#{goal_percentage(account, objective).chomp('%')}" max="100") #{goal_percentage(account, objective)}
-  td= objective.calculate_week_to_achived
+  td= objective.week_to_achived
   td
     = link_to objective_path(objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button is-small is-light' do
       span.icon

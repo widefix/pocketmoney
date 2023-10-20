@@ -8,7 +8,7 @@ RSpec.describe ObjectivesMailer, type: :mailer do
   let!(:account) { create(:account, :children, parent: parent) }
   let!(:objective) { create(:objective, account: account) }
 
-  describe 'goal_achieved' do
+  describe '#goal_achieved' do
     subject(:mail) { ObjectivesMailer.goal_achieved(objective, [user.email]).deliver }
 
     it { expect(mail.to).to eq([user.email]) }
@@ -17,7 +17,7 @@ RSpec.describe ObjectivesMailer, type: :mailer do
     it { expect { subject }.to send_email(to: user.email) }
   end
 
-  describe 'goal_almost_achieved' do
+  describe '#goal_almost_achieved' do
     subject(:mail) { ObjectivesMailer.goal_almost_achieved(objective, [user.email]).deliver }
 
     it { expect(mail.to).to eq([user.email]) }

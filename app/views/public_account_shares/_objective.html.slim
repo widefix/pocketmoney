@@ -8,6 +8,6 @@ tr
     =
     | #{goal_percentage(public_account, objective)}
     progress.progress.is-small(value="#{goal_percentage(public_account, objective).chomp('%')}" max="100") #{goal_percentage(public_account, objective)}
-  - week_to_achieved = objective.week_to_achieved
-  td= (week_to_achieved == -1 ? "Achieved" : week_to_achieved)
+  - weeks_to_achieve = objective.weeks_to_achieve
+  td= (weeks_to_achieve == -1 ? "Achieved" : weeks_to_achieve)
   td= ''

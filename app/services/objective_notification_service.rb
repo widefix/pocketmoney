@@ -29,10 +29,10 @@ class ObjectiveNotificationService
   end
 
   def goal_almost_achieved?(objective)
-    objective.week_to_achieved == 1
+    objective.weeks_to_achieve == 1
   end
 
   def goal_achieved?(objective)
-    objective.week_to_achieved == -1
+    objective.weeks_to_achieve == -1
   end
 end

@@ -8,7 +8,7 @@ class Objective < ApplicationRecord
 
   scope :not_archived, -> { joins(:account).where(account: { archived_at: nil }) }
 
-  def week_to_achived
+  def week_to_achieved
     return -1 if account.balance >= amount
 
     return 0 if account.automatic_topup_configs.blank?

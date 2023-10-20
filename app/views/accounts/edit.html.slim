@@ -2,6 +2,20 @@
   .column.is-one-third
     h2.title.is-4.has-text-centered Edit account
     = form_with model: account do |f|
+      .columns.is-mobile
+        .column.is-one-third
+          .field
+            .figure.image.is-128x128
+              = image_tag(avatar_for(account), id:'account-image', class:'is-rounded',  alt: 'avatar')
+        .column
+          .file#file-input.is-light.is-pulled-right
+            label.file-label.is-light
+              = f.file_field :avatar, class: 'file-input'
+              span.file-cta
+                span.file-icon
+                  i.fa.fa-camera
+                span.file-label
+                  | Add photo
       .field
         = f.text_field :name, autofocus: true, class: "input", placeholder: "Name"
       .field

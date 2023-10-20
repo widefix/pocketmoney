@@ -18,7 +18,10 @@ h2.title.is-4
       .card-content
         .columns
           .column
-            p.title.is-4= account.name
+            div.is-flex.is-justify-content-left
+              .figure.image.is-128x128
+                = image_tag(avatar_for(account), id:'image-preview', class:'is-rounded',  alt: 'avatar')
+              p.title.is-4= account.name
           .column
             nav.level
               .level-item.has-text-centered

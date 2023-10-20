@@ -12,3 +12,11 @@ Metrics/BlockLength:
   Exclude:
     - "db/**/*"
     - "spec/**/*_spec.rb"
+
+Metrics/MethodLength:
+  Exclude:
+    - "db/**/*"
+
+Metrics/AbcSize:
+  Exclude:
+    - "db/**/*"

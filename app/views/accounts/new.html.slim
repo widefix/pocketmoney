@@ -3,21 +3,34 @@
   .column.is-one-third
     h2.title.is-4.has-text-centered New account
     = form_with url: accounts_path do |form|
+      .columns.is-mobile
+        .column.is-one-third
+          .field
+            .figure.image.is-128x128
+              = image_tag('user.svg', class:'is-rounded', id:'account-image', alt: 'avatar')
+        .column
+          .file#file-input.is-light.is-pulled-right
+            label.file-label.is-light
+              = form.file_field :avatar, class: "file-input"
+              span.file-cta
+                span.file-icon
+                  i.fa.fa-camera
+                span.file-label
+                  | Add photo
+      = form.text_field :name, autofocus: true, class: "input", placeholder: "Name"
       .field
-        = form.text_field :name, autofocus: true, class: "input", placeholder: "Name"
-        .field
-        = form.fields_for :automatic_topup do |auto_topup_form|
-          = auto_topup_form.text_field :amount, class: "input", placeholder: "Weekly amount (optional)"
-          .notification.is-light
-            | This amount will be automatically added to the account every week on Fridays at&nbsp;
-            span#formatted-time
-            |. You will receive an email notification about that
-        .buttons.is-flex.is-justify-content-flex-end
-          = link_to my_account_path, class: 'button is-light' do
-            span.icon
-              i.fa.fa-chevron-left
-            | &nbsp; Back
-          = button_to my_account_path, class: 'button is-primary' do
-            span.icon
-              i.fa.fa-hdd-o
-            | &nbsp; Save
+      = form.fields_for :automatic_topup do |auto_topup_form|
+        = auto_topup_form.text_field :amount, class: "input", placeholder: "Weekly amount (optional)"
+        .notification.is-light
+          | This amount will be automatically added to the account every week on Fridays at&nbsp;
+          span#formatted-time
+          |. You will receive an email notification about that
+      .buttons.is-flex.is-justify-content-flex-end
+        = link_to my_account_path, class: 'button is-light' do
+          span.icon
+            i.fa.fa-chevron-left
+          | &nbsp; Back
+        = button_to my_account_path, class: 'button is-primary' do
+          span.icon
+            i.fa.fa-hdd-o
+          | &nbsp; Save

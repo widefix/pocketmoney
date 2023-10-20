@@ -5,7 +5,7 @@ class ObjectivesMailer < ApplicationMailer
     @account = objective.account
     @objective = objective.name
 
-    mail to: emails, title: "Goal #{@objective} achived"
+    mail to: emails, title: "Goal #{@objective} achieved"
   end
 
   def goal_almost_achieved(objective, emails)
@@ -13,6 +13,6 @@ class ObjectivesMailer < ApplicationMailer
     @objective = objective.name
     @amount = objective.amount
 
-    mail to: emails, title: "Goal #{@objective} almost achived"
+    mail to: emails, title: "Goal #{@objective} almost achieved"
   end
 end

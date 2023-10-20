@@ -31,7 +31,7 @@ RSpec.describe Objective, type: :model do
     end
   end
 
-  describe '#week_to_achived' do
+  describe '#week_to_achieved' do
     let!(:children) { create(:account, :children, parent: account) }
     let!(:config) { create(:account_automatic_topup_config, params) }
     let!(:objective) { create(:objective, account: children, amount: amount) }
@@ -40,23 +40,23 @@ RSpec.describe Objective, type: :model do
     context 'when balance is greater than or equal to amount' do
       before { create(:transaction, to_account: children, from_account: account, amount: amount) }
 
-      it { expect(objective.week_to_achived).to eq(-1) }
+      it { expect(objective.week_to_achieved).to eq(-1) }
     end
 
     context 'when no top-up configs' do
       before { config.destroy }
 
-      it { expect(objective.week_to_achived).to eq(0) }
+      it { expect(objective.week_to_achieved).to eq(0) }
     end
 
     context 'when goal is almost achieved' do
-      it { expect(objective.week_to_achived).to eq(1) }
+      it { expect(objective.week_to_achieved).to eq(1) }
     end
 
     context 'when there are 2 weeks left to achieve' do
       let(:amount) { 20 }
 
-      it { expect(objective.week_to_achived).to eq(2) }
+      it { expect(objective.week_to_achieved).to eq(2) }
     end
   end
 end

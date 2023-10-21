@@ -7,7 +7,7 @@ document.addEventListener('turbolinks:load', () => {
 
   dropdowns.forEach(function (dropdown) {
     dropdown.addEventListener('click', function (e) {
-      e.stopPropagation()
+      // e.stopPropagation()
       dropdown.classList.toggle('is-active')
     })
 

@@ -18,12 +18,16 @@
                   | Add photo
       .field
         = f.text_field :name, autofocus: true, class: "input", placeholder: "Name"
+        br
+        br
       .field
-        = f.email_field :email, autocomplete: "email", placeholder: "email"
-      .field
-        = f.check_box :notification, class: "checkbox"
+        = f.check_box :notification, class: "checkbox", id: 'notification-check-box'
         |  &nbsp;
         = f.label :notification, "Report transactions"
+      .field
+        = f.email_field :email, disabled: !account.notification, autocomplete: "email", id:"email-input",  placeholder: "email"
+        .notification.is-light.mt-1
+          | You can check the box and specify the email of the person for whom you have created this account to send them notifications about balance changes
       br
       buttons.is-flex.is-justify-content-flex-end
         = link_to account_path(account), class: 'button is-light' do
@@ -34,3 +38,15 @@
           span.icon
             i.fa.fa-hdd-o
           | &nbsp; Save
+
+javascript:
+  document.addEventListener('turbolinks:load', function () {
+    const checkbox = document.getElementById('notification-check-box');
+    const input = document.getElementById('email-input');
+
+    checkbox.addEventListener('click', function (e) {
+      input.disabled = !checkbox.checked
+      input.focus()
+    })
+  });
+

@@ -10,7 +10,7 @@ class SendNotification
   end
 
   def execute
-    return unless @account.notification?
+    return unless @account.notification? && @account.email.present?
 
     TransactionsMailer.transaction_notification(@account).deliver
     @account.account_shares.accepted.each do |account_share|

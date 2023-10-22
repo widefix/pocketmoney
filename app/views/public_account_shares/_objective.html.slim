@@ -8,5 +8,6 @@ tr
     =
     | #{goal_percentage(public_account, objective)}
     progress.progress.is-small(value="#{goal_percentage(public_account, objective).chomp('%')}" max="100") #{goal_percentage(public_account, objective)}
-  td= ([objective.amount - public_account.balance, 0].max / public_account.automatic_topup_configs.sum(:amount).+(0.1)).ceil
+  - weeks_to_achieve = objective.weeks_to_achieve
+  td= (weeks_to_achieve == -1 ? "Achieved" : weeks_to_achieve)
   td= ''

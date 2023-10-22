@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(version: 2023_10_18_102011) do
     t.bigint "account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "goal_achieved_notified_at"
+    t.datetime "goal_almost_achieved_notified_at"
     t.index ["account_id"], name: "index_objectives_on_account_id"
   end
 

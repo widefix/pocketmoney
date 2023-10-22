@@ -1,3 +1,50 @@
+GIT
+  remote: https://github.com/rspec/rspec-core.git
+  revision: 1c662c35f91f33946fdfbed431878f4798f06f70
+  branch: main
+  specs:
+    rspec-core (3.13.0.pre)
+      rspec-support (= 3.13.0.pre)
+
+GIT
+  remote: https://github.com/rspec/rspec-expectations.git
+  revision: 562d327cb951575d13db2a43b232c9ca1456ea6a
+  branch: main
+  specs:
+    rspec-expectations (3.13.0.pre)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (= 3.13.0.pre)
+
+GIT
+  remote: https://github.com/rspec/rspec-mocks.git
+  revision: 868bf98d2aae5f0db15441a41b86b5f9346a12dd
+  branch: main
+  specs:
+    rspec-mocks (3.13.0.pre)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (= 3.13.0.pre)
+
+GIT
+  remote: https://github.com/rspec/rspec-rails.git
+  revision: cb100e0fa8402efb223c20c45f26195677d51385
+  branch: main
+  specs:
+    rspec-rails (6.1.0.pre)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (= 3.13.0.pre)
+      rspec-expectations (= 3.13.0.pre)
+      rspec-mocks (= 3.13.0.pre)
+      rspec-support (= 3.13.0.pre)
+
+GIT
+  remote: https://github.com/rspec/rspec-support.git
+  revision: 48c227f93d7b69ce28babb2dce0a9d08ac4d2654
+  branch: main
+  specs:
+    rspec-support (3.13.0.pre)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -250,23 +297,6 @@ GEM
       railties (>= 5.0)
     rexml (3.2.5)
     rollbar (3.4.0)
-    rspec-core (3.11.0)
-      rspec-support (~> 3.11.0)
-    rspec-expectations (3.11.0)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.11.0)
-    rspec-mocks (3.11.1)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.11.0)
-    rspec-rails (5.0.3)
-      actionpack (>= 5.2)
-      activesupport (>= 5.2)
-      railties (>= 5.2)
-      rspec-core (~> 3.10)
-      rspec-expectations (~> 3.10)
-      rspec-mocks (~> 3.10)
-      rspec-support (~> 3.10)
-    rspec-support (3.11.0)
     rubocop (1.56.0)
       base64 (~> 0.1.1)
       json (~> 2.3)
@@ -378,7 +408,11 @@ DEPENDENCIES
   rails (~> 6.1.4, >= 6.1.4)
   rails-controller-testing
   rollbar (~> 3.4)
-  rspec-rails (~> 5.0.0)
+  rspec-core!
+  rspec-expectations!
+  rspec-mocks!
+  rspec-rails!
+  rspec-support!
   rubocop
   sass-rails (>= 6)
   selenium-webdriver

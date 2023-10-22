@@ -8,7 +8,8 @@ tr
     =
     | #{goal_percentage(account, objective)}
     progress.progress.is-small(value="#{goal_percentage(account, objective).chomp('%')}" max="100") #{goal_percentage(account, objective)}
-  td= ([objective.amount - account.balance, 0].max / account.automatic_topup_configs.sum(:amount).+(0.1)).ceil
+  - weeks_to_achieve = objective.weeks_to_achieve
+  td= (weeks_to_achieve == -1 ? "Achieved" : weeks_to_achieve)
   td
     = link_to objective_path(objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button is-small is-light' do
       span.icon

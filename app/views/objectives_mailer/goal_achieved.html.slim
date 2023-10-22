@@ -1,0 +1,3 @@
+p Congratulations! Your kid #{link_to @account.name, account_url(@account)} has achieved the goal #{link_to @objective, account_url(@account, anchor: 'objective')}. 
+p Now, you can buy #{link_to @objective, account_url(@account, anchor: 'objective')} and delete it from the active goals.
+p The current balance on your kid's #{link_to 'account', account_url(@account)} is $#{@account.balance}.

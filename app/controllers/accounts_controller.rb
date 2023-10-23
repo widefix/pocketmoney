@@ -48,8 +48,4 @@ class AccountsController < ApplicationController
   helper_method memoize def account
     Account.visible_for(current_user).unarchived.find(ps.fetch(:id))
   end
-
-  def normalize_boolean(value)
-    ActiveModel::Type::Boolean.new.cast(value)
-  end
 end

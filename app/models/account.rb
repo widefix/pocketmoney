@@ -14,6 +14,7 @@ class Account < ApplicationRecord
   has_one_attached :avatar
 
   validates :name, presence: true
+  validates :email, presence: true, if: :notification?
 
   scope :unarchived, -> { where(archived_at: nil) }
   scope :archived, -> { where.not(archived_at: nil) }

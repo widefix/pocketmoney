@@ -73,8 +73,7 @@ RSpec.describe AccountsController, type: :controller do
       let(:account) { create(:account, :with_notify) }
       let(:attributes) {{ notification: true, email: '' }}
 
-      it { is_expected.to have_http_status(:redirect) }
-      it { expect { subject }.to change { account.reload.notification }.to(false) }
+      it { expect(subject).not_to be_redirect }
     end
   end
 

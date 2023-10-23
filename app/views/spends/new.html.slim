@@ -1,7 +1,7 @@
 .columns.is-centered
   .column.is-one-third
     h1.title.is-5.has-text-centered
-      | Spend from account:
+      | Deduct from account:
     .subtitle.is-5.has-text-centered
       = link_to account.name, account_path(account)
     .subtitle.is-6.has-text-centered
@@ -13,7 +13,8 @@
         = link_to 'All Balance', '#', class: 'button is-small is-light all-balance-button', data: { balance: account.balance }
       .field
         = f.text_field :description, class: 'input decscription', placeholder: "Description"
-
+      .notification.is-light
+        | With this app, we set aside money from this account for cool stuff that your child needs or wants, like toys, games, or tickets to fun places. It's all about what parents think is important for their child's spending.
       .buttons.is-flex.is-justify-content-flex-end
         = link_to request.referer, class: 'button is-light' do
           span.icon

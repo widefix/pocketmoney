@@ -46,16 +46,34 @@ RSpec.describe AccountsController, type: :controller do
   end
 
   describe '#update' do
-    let(:name) { FFaker::Name.first_name }
-    let(:old_name) { old_name = account.name }
+    subject(:update) { patch :update, params: { id: account, account: attributes } }
 
-    subject(:bad_update) { patch :update, params: { id: user.account, account: { name: nil }} }
-    subject(:update) { patch :update, params: { id: user.account, account: { name: name }} }
+    context 'with valid params' do
+      let(:new_name) { FFaker::Name.first_name }
+      let(:attributes) {{ name: new_name }}
 
-    it { is_expected.to have_http_status(:redirect) }
-    it { expect(bad_update).not_to be_redirect }
-    it 'name changed' do
-      expect(Account.where(id: account.id).name).not_to eq(old_name)
+      it { is_expected.to have_http_status(:redirect) }
+      it { expect { subject }.to change { account.reload.name }.to(new_name) }
+    end
+
+    context 'with invalid params' do
+      let(:attributes) {{ name: nil }}
+
+      it { expect(subject).not_to be_redirect }
+    end
+
+    context 'with notification and email' do
+      let(:attributes) {{ notification: true, email: FFaker::Internet.email }}
+
+      it { is_expected.to have_http_status(:redirect) }
+      it { expect { subject }.to change { account.reload.notification }.to(true) }
+    end
+
+    context 'with notification and empty email' do
+      let(:account) { create(:account, :with_notify) }
+      let(:attributes) {{ notification: true, email: '' }}
+
+      it { expect(subject).not_to be_redirect }
     end
   end
 

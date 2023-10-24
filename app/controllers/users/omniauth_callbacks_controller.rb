@@ -2,13 +2,16 @@
 
 module Users
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+    include Devise::Controllers::Rememberable
+
     def google_oauth2
+      remember_me user
       sign_in_and_redirect user, event: :authentication
     end
 
     private
 
-    def user
+    memoize def user
       OmniauthAuthenticateAction.new(access_token: request.env['omniauth.auth']).perform
     end
   end

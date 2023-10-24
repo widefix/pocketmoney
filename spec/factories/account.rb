@@ -15,5 +15,9 @@ FactoryBot.define do
       name { FFaker::Name.first_name }
       email { FFaker::Internet.email }
     end
+
+    trait :store do
+      name { 'store' }
+    end
   end
 end

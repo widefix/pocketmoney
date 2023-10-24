@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap");
+
+.menu {
+  background: $colortheme;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.menu-title-container {
+  display: flex;
+  align-items: center;
+}
+
+.menu-title {
+  font-family: "Reenie Beanie", sans-serif;
+  font-size: 40px;
+}
+.menu-logo {
+  width: 70px;
+  height: 40px;
+}
+
+.menu--content {
+  height: 80px;
+}
+
+.menu a {
+  color: #fff;
+}
+
+.menu a span {
+  font-weight: bold;
+}
+.back-to-site {
+  font-size: 20px;
+    @media screen and (max-width: 480px) {
+      img {
+        width: 22px
+      }
+    }
+    .back-to-site-text {
+      margin-left: 5px;
+      transition: .3s;
+      @media screen and (max-width: 480px) {
+        display: none
+      }
+    }
+}

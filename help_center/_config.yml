@@ -1,0 +1,28 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: "BudgetingKid"
+email: gusquinalha@gmail.com
+description: "Simple and flexible Jekyll theme for help center."
+baseurl: "/help"
+url: "http://quinalha.me"
+twitter_username: "gustavoquinalha"
+github_username:  "gustavoquinalha"
+color_theme:  "hsl(270, 50%, 40%)"
+color_text:  "hsl(270, 50%, 40%)"
+language:  "en"
+
+# Build settings
+markdown: kramdown
+permalink: /:title/
+gems: [jekyll-paginate]
+paginate: 5
+
+# Plugins
+plugins_dir:
+  - jekyll-admin

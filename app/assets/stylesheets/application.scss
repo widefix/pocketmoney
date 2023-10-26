@@ -15,26 +15,73 @@
  */
 
 // bulma variables
-$text: hsl(270, 50%, 29%);
-$text-light: hsl(270, 50%, 48%);
-$text-strong: hsl(270, 50%, 21%);
+
+// $text: hsl(0, 0%, 0%);
+// $text-light: hsl(270, 50%, 48%);
+// $text-strong: hsl(270, 50%, 21%);
+
 $footer-background-color: white;
 $navbar-item-img-max-height: 40px;
-$navbar-item-hover-color: $text;
+$navbar-item-hover-color: hsl(0, 0%, 0%);
 $file-cta-color: hsl(270, 50%, 48%);
+$family-primary: "Inter", sans-serif;
+
+// $text: hsl(270, 50%, 29%);
+// $text-light: hsl(270, 50%, 48%);
+// $text-strong: hsl(270, 50%, 21%);
+// $footer-background-color: white;
+// $navbar-item-img-max-height: 40px;
+// $navbar-item-hover-color: $text;
+// $file-cta-color: hsl(270, 50%, 48%);
 
 @import "bulma";
 @import "font-awesome";
-@import url("https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre&family=Inter&family=Reenie+Beanie&display=swap");
 
 // BudgetingKid variables
-$primary-budgeting-kid-color: hsl(270, 50%, 40%);
+$primary-budgeting-kid-color: rgb(102, 51, 153);
+$primary-budgeting-kid-strong-color: hsl(270, 50%, 21%);
 $primary-budgeting-kid-background-color: hsl(270, 95%, 98%);
 
 .budgeting-kid-logo-font {
   font-family: "Reenie Beanie", sans-serif;
   font-size: 40px;
   color: $primary-budgeting-kid-color;
+}
+
+.font-frank-ruhl-libre {
+  font-family: "Frank Ruhl Libre", sans-serif;
+  color: $primary-budgeting-kid-strong-color;
+}
+
+.is-budgeting-kid-hoverable:hover {
+  border-color: $primary-budgeting-kid-color;
+}
+
+.text-divider {
+  position: relative;
+  text-align: center;
+}
+
+.text-divider::before,
+.text-divider::after {
+  content: "";
+  display: inline-block;
+  width: 20%;
+  border-top: 1px solid #ccc;
+  margin: 0 1em;
+  vertical-align: middle;
+}
+
+.has-background-image {
+  background-image: url("background_objects.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+.image.is-coins {
+  max-width: 479px;
+  max-height: 417px;
 }
 
 .navbar {
@@ -84,7 +131,7 @@ $primary-budgeting-kid-background-color: hsl(270, 95%, 98%);
 }
 
 @media (min-width: 1408px) {
-  .ml-6-pmoney-fullhd {
+  .ml-6-budgeting-kid-fullhd {
     margin-left: 3rem !important;
   }
 }
@@ -94,7 +141,7 @@ $primary-budgeting-kid-background-color: hsl(270, 95%, 98%);
   color: $primary-budgeting-kid-color;
 }
 
-.text-has-pmoney-color {
+.text-has-budgeting-kid-color {
   color: $primary-budgeting-kid-color;
 }
 

@@ -1,18 +1,18 @@
 .columns.is-centered
   .column
-    .columns.is-centered
+    .columns.is-centered.is-mobile
       .column.is-four-fifths
-        h2.title.is-4.has-text-centered.text-has-budgeting-kid-color = t('.login')
+        h2.title.is-4.has-text-centered.has-text-budgeting-kid-color = t('.login')
         h2.title.is-3.has-text-centered.font-frank-ruhl-libre Login to your account
         - if Devise.omniauth_providers.include?(:google_oauth2)
           .field
             .buttons.is-centered
-              = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: 'button is-outlined is-budgeting-kid-hoverable' do
+              = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: 'button has-fixed-width is-outlined is-budgeting-kid-hoverable' do
                 span
                   figure.image.is-24x24
                     = image_tag('google.svg', class:'is-rounded',  alt: 'G')
                 | &nbsp; Google
-              = link_to "#", method: :post, class: 'button is-outlined is-budgeting-kid-hoverable' do
+              = link_to "#", method: :post, class: 'button has-fixed-width is-outlined is-budgeting-kid-hoverable' do
                 span
                   figure.image.is-24x24
                     = image_tag('facebook.svg', class:'is-rounded',  alt: 'G')
@@ -44,12 +44,12 @@
                 figure.image.is-16x16
                   = image_tag('arrow-right.svg', alt: '->')
           br
-          .columns
+          .columns.is-mobile
             .column.is-three-fifths
               | Don't have an account? &nbsp;
-              = link_to t(".sign_up"), new_registration_path(resource_name)
+              = link_to t(".sign_up"), new_registration_path(resource_name), class: 'has-text-weight-bold has-text-budgeting-kid-color'
             .column.is-flex.is-justify-content-flex-end
-              = link_to "Forgot your password?", new_password_path(resource_name)
-  .column.has-background-image.is-flex.is-justify-content-center.is-align-items-center
+                = link_to "Forgot your password?", new_password_path(resource_name), class: 'has-text-weight-bold has-text-budgeting-kid-color'
+  .for-desktop.column.has-background-image.is-flex.is-justify-content-center.is-align-items-center
     figure.image.is-coins
       = image_tag('coins.svg')

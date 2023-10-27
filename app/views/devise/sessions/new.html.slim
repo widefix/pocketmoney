@@ -1,30 +1,55 @@
 .columns.is-centered
-  .column.is-one-third
-    h2.title.is-4.has-text-centered = t('.log_in')
-    - if Devise.omniauth_providers.include?(:google_oauth2)
-      .field.is-fullwidth
-        = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: 'button is-primary is-fullwidth' do
-          span.icon
-            i.fa.fa-google
-          | &nbsp; Log in with Google
-      h2.title.is-4.has-text-centered = 'or'
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      .field
-        = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email"
-      .field
-        = f.password_field :password, autocomplete: "current-password", placeholder: "password"
-      - if devise_mapping.rememberable?
-        .field
-          = f.check_box :remember_me
-          |  &nbsp;
-          = f.label :remember_me
-      br
-      .actions
-        div.is-fullwidth
-          = f.submit 'Log in',  class: "button is-light is-fullwidth"
-      br
-      .columns
-        .column.is-one-quarters
-          = link_to t(".sign_up"), new_registration_path(resource_name)
-        .column.is-flex.is-justify-content-flex-end
-          = link_to "Forgot your password?", new_password_path(resource_name)
+  .column
+    .columns.is-centered.is-mobile
+      .column.is-four-fifths
+        h2.title.for-desktop.is-4.has-text-centered.has-text-budgeting-kid-color = t('.login')
+        h2.title.is-3.has-text-centered.font-frank-ruhl-libre Login to your account
+        - if Devise.omniauth_providers.include?(:google_oauth2)
+          .field
+            .buttons.is-centered
+              = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: 'button has-fixed-width is-outlined is-budgeting-kid-hoverable' do
+                span
+                  figure.image.is-24x24
+                    = image_tag('google.svg', class:'is-rounded',  alt: 'G')
+                | &nbsp; Google
+              /= link_to "#", method: :post, class: 'button has-fixed-width is-outlined is-budgeting-kid-hoverable' do
+                span
+                  figure.image.is-24x24
+                    = image_tag('facebook.svg', class:'is-rounded',  alt: 'G')
+                | &nbsp; Facebook
+          br
+          p.text-divider
+            | Or continue with
+          br
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .field
+            = f.label :email
+          .field.pb-2
+            = f.email_field :email, autofocus: true, autocomplete: "email"
+          .field
+            = f.label :password
+          .field
+            = f.password_field :password, autocomplete: "current-password"
+          - if devise_mapping.rememberable?
+            .field
+              = f.check_box :remember_me
+              |  &nbsp;
+              = f.label :remember_me
+          br
+          .actions
+            div.is-fullwidth
+              = button_to session_path(resource_name), class: 'button is-primary is-fullwidth' do
+                span
+                | Login &nbsp;
+                figure.image.is-16x16
+                  = image_tag('arrow-right.svg', alt: '->')
+          br
+          .columns.is-mobile
+            .column.is-three-fifths
+              | Don't have an account? &nbsp;
+              = link_to t(".sign_up"), new_registration_path(resource_name), class: 'has-text-weight-bold has-text-budgeting-kid-color'
+            .column.is-flex.is-justify-content-flex-end
+                = link_to "Forgot your password?", new_password_path(resource_name), class: 'has-text-weight-bold has-text-budgeting-kid-color'
+  .for-desktop.column.has-background-image.is-flex.is-justify-content-center.is-align-items-center
+    figure.image.is-coins
+      = image_tag('coins.svg')

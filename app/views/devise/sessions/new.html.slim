@@ -2,7 +2,7 @@
   .column
     .columns.is-centered.is-mobile
       .column.is-four-fifths
-        h2.title.is-4.has-text-centered.has-text-budgeting-kid-color = t('.login')
+        h2.title.for-desktop.is-4.has-text-centered.has-text-budgeting-kid-color = t('.login')
         h2.title.is-3.has-text-centered.font-frank-ruhl-libre Login to your account
         - if Devise.omniauth_providers.include?(:google_oauth2)
           .field

@@ -248,7 +248,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: $primary-budgeting-kid-color;
-  margin: 0 40px;
+  margin: 10px 40px;
 }
 
 .wizard-passed-step-circle::before {
@@ -273,7 +273,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 40px;
+  margin: 10px 40px;
 }
 
 .wizard-current-step-circle::before {
@@ -299,7 +299,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 40px;
+  margin: 10px 40px;
 }
 
 .wizard-future-step-circle::before {

@@ -1,24 +1,45 @@
 .columns.is-centered
-  .column.is-one-third
-    h1.title.is-3.has-text-centered Create an account for your kid
-    p.is-size-5.has-text-centered Step 4 out of 4: Share Account Access
-    progress.progress value="100" max="100"
-    .notification.is-light
-        | Time to involve the whole family!
+  .column
+    .columns.is-centered.is-mobile
+      .column.is-four-fifths
+        h2.title.for-desktop.is-4.has-text-centered.has-text-budgeting-kid-color Setup Kid's Account
+        h2.title.is-3.has-text-centered.font-frank-ruhl-libre Share Account Access
+        .wizard-container
+          .wizard-step-container
+            .wizard-passed-step-circle
+              .image.is-24x24.is-round
+                = image_tag("wizard_1.svg")
+            .subtitle.is-7.is-light Set name
+          .wizard-step-container
+            .wizard-passed-step-circle.solid
+              .image.is-24x24.is-round
+                = image_tag("wizard_2.svg")
+            .subtitle.is-7.has-text-centered.is-light Set Recurring Payment
+          .wizard-step-container
+            .wizard-passed-step-circle.solid
+              .image.is-24x24.is-round
+                = image_tag("wizard_3.svg")
+            .subtitle.is-7.is-light Set Goals
+          .wizard-step-container
+            .wizard-current-step-circle.solid
+              .image.is-24x24.is-round.is-budgeting-kid-light-color
+                = image_tag("wizard_4.svg")
+            .subtitle.is-7.is-light Share Account
         br
-        | Share your kid's account access with one of the family member for now, 
-        | like grandparents, aunts, uncles, or a trusted friend. 
         br
-        | This will assist in managing goals, making payments, and staying updated on your kid's financial activity.
-        br
-        br
-        | Feel free to skip this step for now, and you can easily share the account with other family members whenever you prefer.
-    = form_with url: create_share_account_wizard_path, method: :post, local: true do |form|
-      .field
-        = form.text_field :name, autofocus: true, class: "input", placeholder: "Name", required: true
-      .field
-        = form.text_field :email, class: "input", placeholder: "Email", required: true
-      .field
-        .buttons.is-flex.is-justify-content-flex-end
-          = link_to "Skip", account_path(account), class: "button is-light"
-          = form.submit "Finish", class: "button is-primary"
+        .subtitle.is-6.mb-3 Involve the family! Share account access with a trusted member to manage goals, payments, and stay updated on your child's financial activity.
+        = form_with url: create_share_account_wizard_path, method: :post, local: true do |form|
+          .field
+            = form.text_field :name, autofocus: true, class: "input", placeholder: "Name", required: true
+          .field
+            = form.text_field :email, class: "input", placeholder: "Email Address", required: true
+          br
+          .field
+            .columns
+              .column
+                = link_to "Skip", account_path(account), class: "button is-fullwidth is-light is-bordered"
+              .column
+                = form.submit "Finish", class: "button is-primary is-fullwidth"
+  .for-desktop.column.has-background-image.is-flex.is-justify-content-center.is-align-items-center
+    figure.image
+      = image_tag('wizard_account_access.svg')

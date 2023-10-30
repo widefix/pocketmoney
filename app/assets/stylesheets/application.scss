@@ -32,6 +32,7 @@ $family-primary: "Inter", sans-serif;
 $primary-budgeting-kid-color: rgb(102, 51, 153);
 $primary-budgeting-kid-strong-color: hsl(270, 50%, 21%);
 $primary-budgeting-kid-background-color: hsl(270, 95%, 98%);
+$primary-budgeting-kid-black-color: hsl(0, 0%, 0%);
 
 .budgeting-kid-logo-font {
   font-family: "Reenie Beanie", sans-serif;
@@ -49,7 +50,7 @@ $primary-budgeting-kid-background-color: hsl(270, 95%, 98%);
 }
 
 .has-background-image {
-  background-image: url("background_objects.svg");
+  background-image: image-url("background_objects.svg");
   background-size: 600px;
 }
 
@@ -154,6 +155,10 @@ $primary-budgeting-kid-background-color: hsl(270, 95%, 98%);
   color: $text-light !important ;
 }
 
+.is-bordered {
+  border-color: $primary-budgeting-kid-color !important ;
+}
+
 .is-footer-light {
   @extend .is-light;
   color: $text !important ;
@@ -218,3 +223,105 @@ body {
 .has-limit-width {
   max-width: 200px;
 }
+
+// wizard solutions --
+
+.wizard-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.wizard-step-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wizard-passed-step-circle {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid  $primary-budgeting-kid-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $primary-budgeting-kid-color;
+  margin: 0 40px;
+}
+
+.wizard-passed-step-circle::before {
+  content: "";
+  position: absolute;
+  left: -82px;
+  width: 80px;
+  height: 1px;
+  vertical-align: middle;
+}
+
+.wizard-passed-step-circle.solid::before {
+  border-bottom: 2px solid $primary-budgeting-kid-color;
+}
+
+.wizard-current-step-circle {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid $primary-budgeting-kid-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 40px;
+}
+
+.wizard-current-step-circle::before {
+  content: "";
+  position: absolute;
+  left: -82px;
+  width: 80px;
+  height: 1px;
+  vertical-align: middle;
+}
+
+.wizard-current-step-circle.solid::before {
+  border-bottom: 2px solid $primary-budgeting-kid-color;
+}
+
+
+.wizard-future-step-circle {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid $primary-budgeting-kid-black-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 40px;
+}
+
+.wizard-future-step-circle::before {
+  content: "";
+  position: absolute;
+  left: -82px;
+  width: 80px;
+  height: 1px;
+  vertical-align: middle;
+  border-bottom: 2px dashed $primary-budgeting-kid-black-color;
+}
+
+.is-solid-budgeting-kid-color {
+  background-color: $primary-budgeting-kid-color;
+}
+
+.is-budgeting-kid-light-color {
+  filter: invert(75%) sepia(25%) saturate(4361%) hue-rotate(249deg) brightness(90%) contrast(93%);
+}
+
+.is-budgeting-kid-black-color {
+  filter: invert(100%) sepia(100%) hue-rotate(180deg);
+}
+
+// -- wizard solutions

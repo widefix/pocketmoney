@@ -1,14 +1,44 @@
 .columns.is-centered
-  .column.is-one-third
-    h1.title.is-3.has-text-centered Create an account for your kid
-    p.is-size-5.has-text-centered Step 1 out of 4: Choose Account Name
-    progress.progress value="25" max="100"
-    .notification.is-light
-      | Please enter the name you'd like to assign to your kid's account.
-    = form_with url: create_account_wizard_path, method: :post, local: true do |form|
-      .field
-        = form.text_field :name, autofocus: true, class: "input", placeholder: "Name", required: true
-      .field
-        .buttons.is-flex.is-justify-content-flex-end
-          = form.submit "Next", class: "button is-primary"
-
+  .column
+    .columns.is-centered.is-mobile
+      .column.is-four-fifths
+        h2.title.for-desktop.is-4.has-text-centered.has-text-budgeting-kid-color Setup Kid's Account
+        h2.title.is-3.has-text-centered.font-frank-ruhl-libre  Set up account name
+        .wizard-container
+          .wizard-step-container
+            .wizard-current-step-circle.is-first
+              .image.is-24x24.is-round.is-budgeting-kid-light-color
+                = image_tag("wizard_1.svg")
+            .subtitle.is-7.is-light Set name
+          .wizard-step-container
+            .wizard-future-step-circle
+              .image.is-24x24.is-round.is-budgeting-kid-black-color
+                = image_tag("wizard_2.svg")
+            .subtitle.is-7.has-text-centered Set Recurring Payment
+          .wizard-step-container
+            .wizard-future-step-circle
+              .image.is-24x24.is-round.is-budgeting-kid-black-color
+                = image_tag("wizard_3.svg")
+            .subtitle.is-7 Set Goals
+          .wizard-step-container
+            .wizard-future-step-circle
+              .image.is-24x24.is-round.is-budgeting-kid-black-color
+                = image_tag("wizard_4.svg")
+            .subtitle.is-7 Share Account
+        br
+        br
+        .subtitle.is-6.mb-3
+          | Please enter the name you'd like to assign to your kid's account
+        = form_with url: create_account_wizard_path, method: :post, local: true do |form|
+          .field
+            = form.text_field :name, autofocus: true, class: "input", placeholder: "Kid Name", required: true
+          br
+          .field.is-fullwidth
+            = button_to create_account_wizard_path, class: 'button is-primary is-fullwidth' do
+              span
+              | Next &nbsp;
+              figure.image.is-16x16
+                = image_tag('arrow-right.svg', alt: '->')
+  .for-desktop.column.has-background-image.is-flex.is-justify-content-center.is-align-items-center
+    figure.image
+      = image_tag('wizard_account_name.svg')

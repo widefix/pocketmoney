@@ -323,6 +323,10 @@ body {
   filter: invert(100%) sepia(100%) hue-rotate(180deg);
 }
 
+.has-limit-height {
+  min-height: 600px;
+}
+
 @media (max-width: 1024px) {
   .wizard-passed-step-circle {
     margin: 10px 20px;

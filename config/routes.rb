@@ -44,4 +44,5 @@ Rails.application.routes.draw do
       get 'restore', action: 'restore'
     end
   end
+  get '/policy', to: 'policy#show'
 end

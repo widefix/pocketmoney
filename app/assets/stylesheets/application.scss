@@ -243,7 +243,7 @@ body {
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  border: 2px solid  $primary-budgeting-kid-color;
+  border: 2px solid $primary-budgeting-kid-color;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -289,7 +289,6 @@ body {
   border-bottom: 2px solid $primary-budgeting-kid-color;
 }
 
-
 .wizard-future-step-circle {
   position: relative;
   width: 52px;
@@ -324,4 +323,27 @@ body {
   filter: invert(100%) sepia(100%) hue-rotate(180deg);
 }
 
+@media (max-width: 1024px) {
+  .wizard-passed-step-circle {
+    margin: 10px 20px;
+  }
+  .wizard-passed-step-circle::before {
+    left: -41px;
+    width: 40px;
+  }
+  .wizard-current-step-circle {
+    margin: 10px 20px;
+  }
+  .wizard-current-step-circle::before {
+    left: -41px;
+    width: 40px;
+  }
+  .wizard-future-step-circle {
+    margin: 10px 20px;
+  }
+  .wizard-future-step-circle::before {
+    left: -41px;
+    width: 40px;
+  }
+}
 // -- wizard solutions

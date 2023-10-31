@@ -1,24 +1,49 @@
-.columns.is-centered
-  .column.is-one-third
-    h1.title.is-3.has-text-centered Create an account for your kid
-    p.is-size-5.has-text-centered Step 3 out of 4: Set Up Goals
-    progress.progress value="75" max="100"
-    .notification.is-light
-      | Note down your kid's dream savings goal here with it's price. 
-      | It could be anything, but it's usually a toy, a computer game, or a ticket to an entertainment event.
-      br
-      | For now, just add one goal or feel free to skip this step. 
-      | You can add goals at any time.
-      br
-      br
-      | If you avoid using the term 'money' with your kid, 
-      | consider using a 1:1 exchange rate to your local currency for easier balance conversion.
-    = form_with url: create_objective_wizard_path, method: :post, local: true do |form|
-      .field
-        = form.text_field :name, autofocus: true, class: "input", placeholder: "Name", required: true
-      .field
-        = form.text_field :amount, class: "input", placeholder: "Price", required: true
-      .field
-        .buttons.is-flex.is-justify-content-flex-end
-          = link_to "Skip", new_share_account_wizard_path, class: "button is-light"
-          = form.submit "Next", class: "button is-primary"
+.columns.is-centered.has-limit-height
+  .column
+    .columns.is-centered.is-mobile
+      .column.is-four-fifths
+        h2.title.for-desktop.is-4.has-text-centered.has-text-budgeting-kid-color Setup Kid's Account
+        h2.title.is-3.has-text-centered.font-frank-ruhl-libre  Set up Goal
+        .wizard-container
+          .wizard-step-container
+            .wizard-passed-step-circle
+              .image.is-24x24.is-round
+                = image_tag("wizard_1.svg")
+            .subtitle.is-7.is-light Set name
+          .wizard-step-container
+            .wizard-passed-step-circle.solid
+              .image.is-24x24.is-round
+                = image_tag("wizard_2.svg")
+            .subtitle.is-7.has-text-centered.is-light Set Recurring Payment
+          .wizard-step-container
+            .wizard-current-step-circle.solid
+              .image.is-24x24.is-round.is-budgeting-kid-light-color
+                = image_tag("wizard_3.svg")
+            .subtitle.is-7.is-light Set Goals
+          .wizard-step-container
+            .wizard-future-step-circle
+              .image.is-24x24.is-round.is-budgeting-kid-black-color
+                = image_tag("wizard_4.svg")
+            .subtitle.is-7 Share Account
+        br
+        br
+        .subtitle.is-6.mb-3 Note your child's dream savings goal and its cost. Add more goals anytime. To simplify, use a 1:1 exchange rate to your local currency if you avoid mentioning 'money' with your child.
+        = form_with url: create_objective_wizard_path, method: :post, local: true do |form|
+          .field
+            = form.text_field :name, autofocus: true, class: "input", placeholder: "Goal Name", required: true
+          .field
+            = form.text_field :amount, class: "input", placeholder: "Amount Required", required: true
+          br
+          .field
+            .columns
+              .column
+                = link_to "Skip", new_share_account_wizard_path, class: "button is-fullwidth is-light is-bordered"
+              .column
+                = button_to create_objective_wizard_path, class: 'button is-primary is-fullwidth' do
+                  span
+                  | Next &nbsp;
+                  figure.image.is-16x16
+                    = image_tag('arrow-right.svg', alt: '->')
+  .for-desktop.column.has-background-image.is-flex.is-justify-content-center.is-align-items-center
+    figure.image
+      = image_tag('wizard_goal.svg')

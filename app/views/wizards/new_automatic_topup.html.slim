@@ -1,21 +1,48 @@
-.columns.is-centered
-  .column.is-one-third
-    h1.title.is-3.has-text-centered Create an account for your kid
-    p.is-size-5.has-text-centered Step 2 out of 4: Set Up Recurring Payments
-    progress.progress value="50" max="100"
-    .notification.is-light
-        | Specify the weekly allowance for your kid. 
-        | Feel free to use alternative terms in conversations if your kid is too young to grasp the concept of money. 
-        | For instance, you can use terms like 'stars', 'likes' or 'points' - 
-        | just be creative and think about what resonates with your kid.
+.columns.is-centered.has-limit-height
+  .column
+    .columns.is-centered.is-mobile
+      .column.is-four-fifths
+        h2.title.for-desktop.is-4.has-text-centered.has-text-budgeting-kid-color Setup Kid's Account
+        h2.title.is-3.has-text-centered.font-frank-ruhl-libre  Set up Weekly Payment
+        .wizard-container
+          .wizard-step-container
+            .wizard-passed-step-circle
+              .image.is-24x24.is-round
+                = image_tag("wizard_1.svg")
+            .subtitle.is-7.is-light Set name
+          .wizard-step-container
+            .wizard-current-step-circle.solid
+              .image.is-24x24.is-round.is-budgeting-kid-light-color
+                = image_tag("wizard_2.svg")
+            .subtitle.is-7.has-text-centered.is-light Set Recurring Payment
+          .wizard-step-container
+            .wizard-future-step-circle
+              .image.is-24x24.is-round.is-budgeting-kid-black-color
+                = image_tag("wizard_3.svg")
+            .subtitle.is-7 Set Goals
+          .wizard-step-container
+            .wizard-future-step-circle
+              .image.is-24x24.is-round.is-budgeting-kid-black-color
+                = image_tag("wizard_4.svg")
+            .subtitle.is-7 Share Account
         br
         br
-        | This amount will be deposited weekly into the kid's account every Friday. 
-        | You can adjust it later as needed.
-    = form_with url: create_automatic_topup_wizard_path, method: :post, local: true do |form|
-      .field
-        = form.text_field :amount, autofocus: true, class: "input", placeholder: "Amount", required: true
-      .field
-        .buttons.is-flex.is-justify-content-flex-end
-          = link_to "Skip", new_objective_wizard_path, class: "button is-light"
-          = form.submit "Next", class: "button is-primary"
+        .subtitle.is-6.mb-3
+          | Set a weekly allowance for your child using creative terms like 'stars,' 'likes,' or 'points,' which will be deposited into their account every Friday and can be adjusted as required.
+        = form_with url: create_automatic_topup_wizard_path, method: :post, local: true do |form|
+          .field
+            = form.text_field :amount, autofocus: true, class: "input", placeholder: "Weekly Amount", required: true
+          br
+          .field
+            .columns
+              .column
+                = link_to "Skip", new_objective_wizard_path, class: "button is-fullwidth is-light is-bordered"
+              .column
+                = button_to create_automatic_topup_wizard_path, class: 'button is-primary is-fullwidth' do
+                  span
+                  | Next &nbsp;
+                  figure.image.is-16x16
+                    = image_tag('arrow-right.svg', alt: '->')
+  .for-desktop.column.has-background-image.is-flex.is-justify-content-center.is-align-items-center
+    figure.image
+      = image_tag('wizard_weekly_payments.svg')

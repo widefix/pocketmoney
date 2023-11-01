@@ -68,8 +68,8 @@
       <nav class="navbar is-spaced is-navbar-white-color has-shadow" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <%= link_to root_path, class: "navbar-item" do %>
-            <%= image_tag 'logo.svg', width: 70, height: 40 %>
-            <H2 class='budgeting-kid-logo-font' > BUDGETINGkid </H2>
+            <%= image_tag 'logo.svg', size: "44"%>
+            <H2 class='budgeting-kid-logo-font px-4' > BUDGETINGkid </H2>
           <% end %>
           <a role="button is-primary" class="navbar-burger" aria-label="menu" aria-expanded="true" data-target="navbarMenu">
             <span aria-hidden="true"></span>
@@ -79,7 +79,7 @@
         </div>
         <div id="navbarMenu" class="navbar-menu">
           <div class="navbar-end">
-            <div class="navbar-item">
+            <div class="navbar-item py-0">
               <div class="buttons">
                 <% if user_signed_in? %>
                   <div class="navbar-item has-dropdown is-hoverable">
@@ -121,7 +121,7 @@
         </div>
       </nav>
 
-      <section class="section is-fullheight p-2">
+      <section class="section is-fullheight p-2 mt-4">
         <%= yield %>
       </section>
 

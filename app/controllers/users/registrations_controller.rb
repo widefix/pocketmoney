@@ -1,9 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   def new
-    @title = 'Sign Up'
-    @description =
-      'Sign up for a BudgetingKid account and begin the journey to empower your kids with financial wisdom.'
-
     if params.key?(:email)
       self.resource = User.new(email: params[:email])
     else

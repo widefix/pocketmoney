@@ -3,6 +3,9 @@
 module Users
   class SessionsController < Devise::SessionsController
     def new
+      @title = 'Log In'
+      @description = 'Log in to your BudgetingKid account and start empowering your kids with financial wisdom.'
+
       if params.key?(:email)
         self.resource = User.new(email: params[:email])
       else

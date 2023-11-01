@@ -2,6 +2,19 @@
   .column.is-one-third
     h2.title.is-4.has-text-centered My profile
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+      .columns.is-mobile
+        .column.is-one-third
+          .field
+            img src=avatar_for(current_user) class="rounded-avatar" id='account-image' alt='avatar'
+        .column
+          .file#file-input.is-light.is-pulled-right
+            label.file-label.is-light
+              = f.file_field :avatar, class: 'file-input'
+              span.file-cta
+                span.file-icon
+                  i.fa.fa-camera
+                span.file-label
+                  | Add photo
       = render "devise/shared/error_messages", resource: resource
       .field
         = f.text_field :name, autofocus: true, type: "text", class: 'input', placeholder: "your name or nick name"

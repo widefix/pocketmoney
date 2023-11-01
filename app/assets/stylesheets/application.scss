@@ -23,6 +23,7 @@ $navbar-item-img-max-height: 40px;
 $navbar-item-hover-color: hsl(0, 0%, 0%);
 $file-cta-color: hsl(270, 50%, 48%);
 $family-primary: "Inter", sans-serif;
+$navbar-item-img-max-height: 100px;
 
 @import "bulma";
 @import "font-awesome";
@@ -224,7 +225,7 @@ body {
   max-width: 200px;
 }
 
-// wizard solutions --
+// wizard solutions ->
 
 .wizard-container {
   display: flex;
@@ -350,4 +351,13 @@ body {
     width: 40px;
   }
 }
-// -- wizard solutions
+// <- wizard solutions
+
+.rounded-avatar {
+  object-fit: cover;
+  object-position: top center;
+  width: 93px;
+  height: 93px;
+  border-radius: 50%;
+  outline: 3px solid $primary-budgeting-kid-color;
+}

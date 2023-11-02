@@ -10,7 +10,7 @@ class SendNotification
   end
 
   def execute
-    TransactionsMailer.transaction_notification(@account, recipients&.uniq).deliver
+    TransactionsMailer.transaction_notification(@account, recipients).deliver
   end
 
   private
@@ -19,7 +19,7 @@ class SendNotification
     result = []
     result << @account.email if @account.notification?
     result += parent_emails if @account.notice_to_parents?
-    result
+    result.uniq
   end
 
   def parent_emails

@@ -12,7 +12,7 @@ class TransactionsMailer < ApplicationMailer
   end
 
   def transaction_notification(account, recipients)
-    return if recipients.blank?
+    return if recipients.empty?
 
     @account = account
     @transaction = Transaction.last

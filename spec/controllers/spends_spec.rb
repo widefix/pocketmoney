@@ -27,7 +27,7 @@ RSpec.describe SpendsController, type: :controller do
 
     it 'recipient must be correct' do
       subject
-      expect(find_mail_to(child.email).to).to eq([user.email, child.email])
+      expect(find_mail_to(child.email).to).to eq([child.email, user.email])
     end
 
     it 'subject must be correct' do

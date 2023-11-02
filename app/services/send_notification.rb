@@ -16,12 +16,10 @@ class SendNotification
   private
 
   def recipients
-    return if !@account.notification? && !@account.notice_to_parents?
-
-    return [*parent_emails, @account.email] if @account.notification? && @account.notice_to_parents?
-    return parent_emails if @account.notice_to_parents?
-
-    [@account.email]
+    result = []
+    result << @account.email if @account.notification?
+    result += parent_emails if @account.notice_to_parents?
+    result
   end
 
   def parent_emails

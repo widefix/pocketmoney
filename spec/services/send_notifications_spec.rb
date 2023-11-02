@@ -35,7 +35,7 @@ RSpec.describe SendNotification, type: :service do
         account.update_attribute(:notification, true)
       end
 
-      it { expect { subject }.to send_email(to: [second_user.email, user.email, account.email]) }
+      it { expect { subject }.to send_email(to: [account.email, second_user.email, user.email]) }
     end
 
     context 'when not to recieve notifications' do
@@ -72,7 +72,7 @@ RSpec.describe SendNotification, type: :service do
         account.update_attribute(:notification, true)
       end
 
-      it { is_expected.to match([second_user.email, user.email, account.email]) }
+      it { is_expected.to match([account.email, second_user.email, user.email]) }
     end
 
     context 'when not to recieve notifications' do
@@ -80,7 +80,7 @@ RSpec.describe SendNotification, type: :service do
         account.update_attribute(:notice_to_parents, false)
       end
 
-      it { is_expected.to be_nil }
+      it { is_expected.to be_empty }
     end
   end
 

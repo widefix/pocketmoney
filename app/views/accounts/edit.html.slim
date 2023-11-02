@@ -16,28 +16,29 @@
                   i.fa.fa-camera
                 span.file-label
                   | Add photo
-      .field
+      .field.mb-4
         = f.text_field :name, autofocus: true, class: "input", placeholder: "Name"
-        br
-        br
       .field
-        = f.check_box :notification, class: "checkbox", id: 'notification-check-box'
-        |  &nbsp;
+        = f.check_box :notification, class: "checkbox mr-2", id: 'notification-check-box'
         = f.label :notification, "Report transactions"
-      .field
-        = f.email_field :email, disabled: !account.notification, autocomplete: "email", id:"email-input",  placeholder: "email"
+      .field.mb-4
+        = f.email_field :email, disabled: !account.notification, autocomplete: "email", id:"email-input",  placeholder: "email", required: true
         .notification.is-light.mt-1
-          | You can check the box and specify the email of the person for whom you have created this account to send them notifications about balance changes
-      br
+          | You can check the box and specify your kid's email to send them notifications about balance changes.
+      .field.mb-4
+        = f.check_box :notice_to_parents, class: "checkbox mr-2"
+        = f.label :notice_to_parents, "Report transactions to parents"
+        .notification.is-light.mt-3
+          | You and all users to whom you've shared access to your kid's account can receive email notifications about balance changes. By default, this option is enabled, but you can disable it.
       buttons.is-flex.is-justify-content-flex-end
-        = link_to account_path(account), class: 'button is-light' do
-          span.icon
+        = link_to account_path(account), class: 'button is-light mr-2' do
+          span.file-icon
             i.fa.fa-chevron-left
-          | &nbsp; Back
+          | Back
         = button_to account_path, class: 'button is-primary' do
-          span.icon
+          span.file-icon
             i.fa.fa-hdd-o
-          | &nbsp; Save
+          | Save
 
 javascript:
   document.addEventListener('turbolinks:load', function () {

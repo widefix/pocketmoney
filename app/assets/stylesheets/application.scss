@@ -24,6 +24,7 @@ $navbar-item-hover-color: hsl(0, 0%, 0%);
 $file-cta-color: hsl(270, 50%, 48%);
 $family-primary: "Inter", sans-serif;
 $navbar-item-img-max-height: 70px;
+$card-radius: 12px;
 
 @import "bulma";
 @import "font-awesome";
@@ -34,6 +35,15 @@ $primary-budgeting-kid-color: rgb(102, 51, 153);
 $primary-budgeting-kid-strong-color: hsl(270, 50%, 21%);
 $primary-budgeting-kid-background-color: hsl(270, 95%, 98%);
 $primary-budgeting-kid-black-color: hsl(0, 0%, 0%);
+$primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
+
+.is-budgeting-kid-color {
+  color: $primary-budgeting-kid-color !important;
+}
+
+.is-black-budgeting-kid-color {
+  color: $primary-budgeting-kid-black-color !important;
+}
 
 .budgeting-kid-logo-font {
   font-family: "Reenie Beanie", sans-serif;
@@ -60,10 +70,15 @@ $primary-budgeting-kid-black-color: hsl(0, 0%, 0%);
   max-height: 417px;
 }
 
+.custom-shadow {
+  box-shadow: none;
+}
+
 .navbar {
   position: sticky;
   top: 0;
   transition: transform 0.5s ease;
+  border-bottom: 2px solid #e7e7e7;
 }
 
 .all-balance-button {
@@ -72,8 +87,9 @@ $primary-budgeting-kid-black-color: hsl(0, 0%, 0%);
   top: 5px;
 }
 
-.is-navbar-white-color {
-  background-color: white !important ;
+.is-navbar-budgeting-kid-color {
+  background-color: rgb(255, 245, 255) !important ;
+  opacity: 0.95;
 }
 
 .navbar-footer {
@@ -165,22 +181,49 @@ $primary-budgeting-kid-black-color: hsl(0, 0%, 0%);
   color: $text !important ;
 }
 
-.is-plus-color {
-  color: hsl(120, 50%, 48%);
+// mobile
+@media (min-width: 1024px) {
+  button.is-plus-color {
+    width: 175px;
+    height: 48px;
+  }
+  button.is-minus-color {
+    width: 175px;
+    height: 48px;
+  }
 }
 
-.is-plus-color:hover {
-  color: hsl(120, 65%, 48%);
+button.is-plus-color {
+  border-radius: 6px;
+  color: hsla(145, 73%, 38%, 1);
+  border: 2px solid hsla(145, 73%, 38%, 1);
+}
+button.is-minus-color {
+  border-radius: 6px;
+  border: 2px solid hsl(8, 82%, 41%);
+  color: hsl(8, 82%, 41%);
+}
+
+button.is-plus-color:hover {
+  color: hsla(145, 73%, 38%, 1);
+  border: 2px solid hsla(145, 73%, 38%, 1);
   background-color: $primary-budgeting-kid-background-color !important ;
 }
 
-.is-minus-color {
-  color: hsl(0, 50%, 48%);
+button.is-minus-color:hover {
+  color: hsl(8, 82%, 41%);
+  border: 2px solid hsl(8, 82%, 41%);
+  background-color: $primary-budgeting-kid-background-color !important ;
 }
 
-.is-minus-color:hover {
-  color: hsl(0, 65%, 48%);
-  background-color: $primary-budgeting-kid-background-color !important ;
+button.is-gray {
+  color: $primary-budgeting-kid-light-gray-color;
+  border: none;
+}
+
+button.is-gray:hover {
+  color: $primary-budgeting-kid-color;
+  border: none;
 }
 
 .file.is-light {
@@ -197,9 +240,9 @@ $primary-budgeting-kid-black-color: hsl(0, 0%, 0%);
 
 html,
 body {
-  height: 100vh;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
+  background-image: image-url("background_objects.svg");
+  background-size: 600px;
+  background-attachment: fixed;
 }
 
 .card-content-overflow {

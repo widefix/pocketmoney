@@ -1,5 +1,16 @@
-.columns
-  .column.is-flex.is-justify-content-flex-end
+.columns.mb-5.mx-4
+  / desktop
+  .column.for-desktop.is-flex.is-align-items-center
+    .image.is-60x60
+      = image_tag("waving_hand.svg")
+    span.title.is-3.is-black-budgeting-kid-color &nbsp; Hi, Welcome back
+  / mobile
+  .column.for-mobile.is-flex.is-justify-content-center.is-align-items-center
+    .image.is-48x48
+      = image_tag("waving_hand.svg")
+    span.title.is-4.is-black-budgeting-kid-color &nbsp; Hi, Welcome back
+  / common
+  .column.is-flex.is-align-items-center.is-justify-content-flex-end
     - if account.children.unarchived.present? || shared_accounts.present?
       = button_to new_account_path, method: :get, class: 'button is-primary mr-2' do
         span.icon
@@ -17,97 +28,102 @@
 
 - if account.children.unarchived.present? || shared_accounts.present?
   - account.children.unarchived.each do |child|
-    .card.box.accounts.p-0
+    .card.box.custom-shadow.accounts.p-0
       / desktop
-      .card-content.for-desktop
-        .columns
-          .column.is-flex.is-flex-direction-column.is-align-items-center
-            .figure.image.is-128x128.mb-2
-              = link_to image_tag("#{avatar_for(child)}", id:'image-preview', class:'is-rounded',  alt: 'avatar'), account_path(child)
-            .title.is-4.has-limit-width.has-text-centered
-              p= link_to child.name, account_path(child)
-          .column.is-3.is-flex.is-justify-content-center.is-align-items-center
-            nav.level.is-vcentered
-              .level-item.has-text-centered
-                div
-                  p.heading Balance
-                  p.title #{child.balance}
-          .column
-            .buttons.for-desktop.is-justify-content-end
-              div
-                = link_to account_path(child), class: 'button is-light' do
-                  span.icon
-                    i.fa.fa-eye
-                  | &nbsp; View
+      .card-content.p-0.for-desktop
+        .columns.is-flex.is-justify-content-center.is-align-items-center
+          .column.is-1.is-flex.px-0.ml-4.is-justify-content-center.is-align-items-center
+            = link_to account_path(child), class:"pt-2" do
+              img src=asset_path(avatar_for(child)) class="rounded-avatar small" id='image-preview'
+          .column.is-flex.is-justify-content-center.is-align-items-center
+            .subtitle.is-4.has-limit-width.has-text-centered.is-black-budgeting-kid-color
+              p= child.name
+          .column.is-flex
+            p
+              span.subtitle.is-6.pl-6  Balance:&nbsp;&nbsp;
+              span.title.is-4.is-budgeting-kid-color #{child.balance}
+          .column.is-4.is-flex.is-justify-content-center.is-align-items-center
+            .buttons
+              = button_to new_account_topup_path(child), method: :get, class: 'button mx-2 is-plus-color is-medium' do
+                figure.image.is-24x24
+                  = image_tag('plus-circle-green.svg', alt: '+')
+                | &nbsp; Increase
+              = button_to new_account_spend_path(child), method: :get, class: 'button mx-2 is-minus-color is-medium' do
+                figure.image.is-24x24
+                  = image_tag('minus-circle-red.svg', alt: '-')
+                | &nbsp; Decrease
+          .column.is-1.is-flex.is-justify-content-center.is-align-items-center
+            .buttons.is-justify-content-end
+              = button_to account_path(child), method: :get, class: 'button is-gray mr-3' do
+                span.icon
+                  i.fa.fa-chevron-right
       / mobile
       .card-content.for-mobile
         .buttons.top-right-button
-          = link_to account_path(child), class: 'button is-light' do
+          = button_to account_path(child), method: :get, class: 'button is-gray mr-3' do
             span.icon
-              i.fa.fa-eye
+              i.fa.fa-chevron-right
         .div.is-flex.is-flex-direction-column.is-align-items-center
-          figure.image.is-rounded.is-128x128
-              = link_to image_tag("#{avatar_for(child)}", id:'image-preview', class:'is-rounded',  alt: 'avatar'), account_path(child)
-          h3.title.is-4.has-text-centered.mt-2
-            p= link_to child.name, account_path(child)
-            p.nav.level
-              div.level-item
-                div
-                  p.heading.has-text-centered Balance
-                  p.title.is-4 #{child.balance}
-
-      footer.card-footer
-        = link_to '<i class="fa fa-plus-circle fa-2x"></i>'.html_safe, new_account_topup_path(child), class: 'card-footer-item is-plus-color'
-        = link_to '<i class="fa fa-minus-circle fa-2x"></i>'.html_safe, new_account_spend_path(child), class: 'card-footer-item is-minus-color'
+          = link_to account_path(child), class:"pt-2" do
+            img src=asset_path(avatar_for(child)) class="rounded-avatar" id='image-preview'
+          h3.title.is-4.has-text-centered.mt-2.is-black-budgeting-kid-color
+            p= child.name
+            p
+              span.subtitle.is-6 Balance:&nbsp;&nbsp;
+              span.title.is-4.is-budgeting-kid-color #{child.balance}
+        .buttons
+          = button_to new_account_topup_path(child), method: :get, class: 'button m-2 is-plus-color' do
+            figure.image.is-24x24
+              = image_tag('plus-circle-green.svg', alt: '+')
+            | &nbsp; Increase
+          = button_to new_account_spend_path(child), method: :get, class: 'button m-2 is-minus-color' do
+            figure.image.is-24x24
+              = image_tag('minus-circle-red.svg', alt: '-')
+            | &nbsp; Decrease
   br
   - if shared_accounts.present?
     .box.has-text-centered
-      p.title.is-4 Shared accounts
+      p.title.is-4.is-black-budgeting-kid-color Shared accounts
     - shared_accounts.each do |shared_account|
-      .card.box.shared-accounts
+      .card.box.custom-shadow.shared-accounts
         / desktop
-        .card-content.for-desktop
-          .columns
-            .column.is-flex.is-flex-direction-column.is-align-items-center
-              .title.is-6.is-full-height Owner: #{shared_account.parent.email}
-              .figure.image.is-128x128
-                = link_to image_tag(avatar_for(shared_account), class:'is-rounded',  alt: 'avatar'), account_path(shared_account)
-              .title.is-4= link_to shared_account.name, account_path(shared_account)
-            .column.is-3.is-flex.is-justify-content-center.is-align-items-center
-              nav.level.is-vcentered
-                .level-item.has-text-centered
-                  div
-                    p.heading Balance
-                    p.title #{shared_account.balance}
-            .column
-              .buttons.for-desktop.is-justify-content-end
-                div
-                  = link_to account_path(shared_account), class: 'button is-light' do
-                    span.icon
-                      i.fa.fa-eye
-                    | &nbsp; View
+        .card-header.custom-shadow.for-desktop
+          .card-header-title.is-black-budgeting-kid-color
+            | Account owner: #{shared_account.parent.email}
+        .card-content.p-0.for-desktop
+          .columns.is-flex.is-justify-content-center.is-align-items-center
+            .column.is-1.is-flex.px-0.ml-4.is-justify-content-center.is-align-items-center
+              = link_to account_path(shared_account), class:"pt-2" do
+                img src=asset_path(avatar_for(shared_account)) class="rounded-avatar small" id='image-preview'
+            .column.is-flex.is-justify-content-center.is-align-items-center
+              .subtitle.is-4.has-text-centered.is-black-budgeting-kid-color
+                p= shared_account.name
+            .column.is-flex
+              p
+                span.subtitle.is-6.pl-6  Balance :&nbsp;&nbsp;
+                span.title.is-4.is-budgeting-kid-color #{shared_account.balance}
+            .column.is-4.is-flex.is-justify-content-center.is-align-items-center
+            .column.is-1.is-flex.is-justify-content-center.is-align-items-center
+              .buttons.is-justify-content-end
+                = button_to account_path(shared_account), method: :get, class: 'button is-gray ' do
+                  span.icon
+                    i.fa.fa-chevron-right
         / mobile
-        .card-header-title.for-mobile.is-centered
-          | Owner: #{shared_account.parent.email}
+        .card-header-title.for-mobile.is-centered.is-black-budgeting-kid-color
+          | Account owner: #{shared_account.parent.email}
         .card-content.for-mobile
           .buttons.top-right-shared-account-button
-            = link_to account_path(shared_account), class: 'button is-light' do
+            = button_to account_path(shared_account), method: :get, class: 'button is-gray mr-3' do
               span.icon
-                i.fa.fa-eye
+                i.fa.fa-chevron-right
           .div.is-flex.is-flex-direction-column.is-align-items-center
-            figure.image.is-rounded.is-128x128
-                = link_to image_tag(avatar_for(shared_account), class:'is-rounded',  alt: 'avatar'), account_path(shared_account)
-            h3.title.is-4.has-text-centered.mt-2
-              p= link_to link_to shared_account.name, account_path(shared_account)
-              p.nav.level
-                div.level-item
-                  div
-                    p.heading.has-text-centered Balance
-                    p.title.is-4 #{shared_account.balance}
-                    
-        footer.card-footer
-          = link_to '<i class="fa fa-plus-circle fa-2x"></i>'.html_safe, new_account_topup_path(shared_account), class: 'card-footer-item is-plus-color'
-          = link_to '<i class="fa fa-minus-circle fa-2x"></i>'.html_safe, new_account_spend_path(shared_account), class: 'card-footer-item is-minus-color'
+            = link_to account_path(shared_account), class:"pt-2" do
+              img src=asset_path(avatar_for(shared_account)) class="rounded-avatar" id='image-preview'
+            h3.title.is-4.has-text-centered.mt-2.is-black-budgeting-kid-color
+              p= shared_account.name
+              p
+                span.subtitle.is-6 Balance:&nbsp;&nbsp;
+                span.title.is-4.is-budgeting-kid-color #{shared_account.balance}
   br
   - if unaccepted_shares.present?
     .box.has-text-centered

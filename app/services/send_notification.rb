@@ -18,7 +18,7 @@ class SendNotification
   def recipients
     result = []
     result << @account.email if @account.notification?
-    result += parent_emails if @account.notice_parents?
+    result += parent_emails if @account.notify_parents?
     result.uniq
   end
 

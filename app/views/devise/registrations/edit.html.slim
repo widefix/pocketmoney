@@ -5,7 +5,7 @@
       .columns.is-mobile
         .column.is-one-third
           .field
-            img src=avatar_for(current_user) class="rounded-avatar" id='account-image' alt='avatar'
+            img src=asset_path(avatar_for(current_user)) class="rounded-avatar" id='account-image'
         .column
           .file#file-input.is-light.is-pulled-right
             label.file-label.is-light

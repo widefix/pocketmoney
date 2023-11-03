@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2023_11_02_120748) do
     t.string "email", default: "", null: false
     t.boolean "notification", default: false
     t.datetime "archived_at"
-    t.boolean "notice_to_parents", default: true
+    t.boolean "notice_parents", default: true
     t.index ["parent_id"], name: "index_accounts_on_parent_id"
   end
 

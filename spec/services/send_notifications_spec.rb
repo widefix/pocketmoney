@@ -23,7 +23,7 @@ RSpec.describe SendNotification, type: :service do
 
     context 'when kid to recieve notifications' do
       before do
-        account.update_attribute(:notice_to_parents, false)
+        account.update_attribute(:notice_parents, false)
         account.update_attribute(:notification, true)
       end
 
@@ -40,7 +40,7 @@ RSpec.describe SendNotification, type: :service do
 
     context 'when not to recieve notifications' do
       before do
-        account.update_attribute(:notice_to_parents, false)
+        account.update_attribute(:notice_parents, false)
       end
 
       it { expect { subject }.not_to send_email }
@@ -60,7 +60,7 @@ RSpec.describe SendNotification, type: :service do
 
     context 'when kid to recieve notifications' do
       before do
-        account.update_attribute(:notice_to_parents, false)
+        account.update_attribute(:notice_parents, false)
         account.update_attribute(:notification, true)
       end
 
@@ -77,7 +77,7 @@ RSpec.describe SendNotification, type: :service do
 
     context 'when not to recieve notifications' do
       before do
-        account.update_attribute(:notice_to_parents, false)
+        account.update_attribute(:notice_parents, false)
       end
 
       it { is_expected.to be_empty }

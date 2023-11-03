@@ -26,8 +26,8 @@
         .notification.is-light.mt-1
           | You can check the box and specify your kid's email to send them notifications about balance changes.
       .field.mb-4
-        = f.check_box :notice_to_parents, class: "checkbox mr-2"
-        = f.label :notice_to_parents, "Report transactions to parents"
+        = f.check_box :notice_parents, class: "checkbox mr-2"
+        = f.label :notice_parents, "Report transactions to parents"
         .notification.is-light.mt-3
           | You and all users to whom you've shared access to your kid's account can receive email notifications about balance changes. By default, this option is enabled, but you can disable it.
       buttons.is-flex.is-justify-content-flex-end

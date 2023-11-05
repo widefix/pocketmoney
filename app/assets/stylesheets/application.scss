@@ -77,8 +77,8 @@ $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
 .navbar {
   position: sticky;
   top: 0;
+  border-radius: 14px;
   transition: transform 0.5s ease;
-  border-bottom: 2px solid #e7e7e7;
 }
 
 .all-balance-button {
@@ -88,8 +88,7 @@ $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
 }
 
 .is-navbar-budgeting-kid-color {
-  background-color: rgb(255, 245, 255) !important ;
-  opacity: 0.95;
+  background-color: white !important ;
 }
 
 .navbar-footer {
@@ -238,8 +237,7 @@ button.is-gray:hover {
   }
 }
 
-html,
-body {
+.with-background {
   background-image: image-url("background_objects.svg");
   background-size: 600px;
   background-attachment: fixed;

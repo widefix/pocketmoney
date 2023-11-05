@@ -400,7 +400,7 @@ button.is-gray:hover {
   width: 93px;
   height: 93px;
   border-radius: 50%;
-  outline: 3px solid $primary-budgeting-kid-color;
+  box-shadow: 0px 0px 0px 3px $primary-budgeting-kid-color;
 }
 
 .rounded-avatar.small {

@@ -63,9 +63,11 @@
     <% end %>
   </head>
 
-  <body>
+  <body class=<%= user_signed_in? ? 'with-background' : ''%>>
     <div class="container hero is-fullheight">
-      <nav class="navbar is-spaced is-navbar-white-color has-shadow" role="navigation" aria-label="main navigation">
+      <nav class="navbar is-spaced has-shadow <%= user_signed_in? ? 'is-navbar-budgeting-kid-color' : ''%>"
+           role="navigation"
+           aria-label="main navigation">
         <div class="navbar-brand">
           <%= link_to root_path, class: "navbar-item" do %>
             <%= image_tag 'logo.svg', size: "44"%>

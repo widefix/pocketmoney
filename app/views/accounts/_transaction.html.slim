@@ -1,30 +1,28 @@
-tr
-  td.for-desktop= transaction.date
-  td.for-mobile.no-wrap= transaction.short_date
+/desktop
+tr.for-desktop
+  td.is-size-5.is-vcentered
+    = transaction.date
+  td.is-size-5.is-vcentered.has-text-dark-gray-budgeting-kid-color
+    = transaction.description
   - if transaction.from_account == account
-    td.is-minus-color= transaction.signed_amount(account)
+    td.is-size-5.is-vcentered= transaction.signed_amount(account)
   - else
-    td.is-plus-color= transaction.signed_amount(account)
-  td= transaction.description
-  td.for-desktop
-    = link_to transaction_path(transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-small is-light' do
-      span.icon
-        i.fa.fa-undo
-      | &nbsp; Cancel
-  td.for-mobile.px-0
-    div.dropdown.is-right dropdown-id="dropdown-transaction-#{transaction.id}"
-      .dropdown-trigger
-        button.button.is-small.is-white.is-striped-button aria-haspopup="true" aria-controls="dropdown-menu"
-          span.icon
-            i.fa.fa-ellipsis-h aria-hidden="true"
-      .dropdown-menu.cover#dropdown-menu role="menu"
-        .dropdown-content.cover
-          = link_to transaction_path(id: transaction, account_id: account), class: "button is-small is-white is-fullwidth" do
-            span.icon
-              i.fa.fa-list-ul
-            | &nbsp; View details
-          = link_to transaction_path(id: transaction, account_id: account), method: :delete, data: { confirm: 'Cancel this transaction?' }, class: 'button is-danger is-small is-fullwidth' do
-            span.icon
-              i.fa.fa-undo
-            | &nbsp; Cancel transaction
-
+    td.is-size-5.is-vcentered= transaction.signed_amount(account)
+  td.is-size-5.is-vcentered.px-0
+    = link_to transaction_path(transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-white-budgeting-kid-color px-0' do
+      figure.image.is-24x24.is-round.is-budgeting-kid-light-color
+        = image_tag("cross-circle-white.svg")
+/ mobile
+tr.for-mobile
+  td.is-vcentered
+    = transaction.date
+  td.is-vcentered.has-text-dark-gray-budgeting-kid-color
+    = transaction.description
+  - if transaction.from_account == account
+    td.is-vcentered= transaction.signed_amount(account)
+  - else
+    td.is-vcentered= transaction.signed_amount(account)
+  td.is-vcentered.px-0
+    = link_to transaction_path(transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-white-budgeting-kid-color px-0' do
+      figure.image.is-24x24.is-round.is-budgeting-kid-light-color
+        = image_tag("cross-circle-white.svg")

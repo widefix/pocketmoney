@@ -1,188 +1,209 @@
 #topup-utc-time data-utc-time= topup_utc_time
-h2.title.is-4
-  | Account details
-.buttons.for-desktop.is-justify-content-space-between
-  div
-    = link_to my_account_path, class: 'button is-light' do
-      span.icon
-        i.fa.fa-chevron-left
-      | &nbsp; Back
-    = link_to edit_account_path(account), class: 'button is-light' do
-      span.icon
-        i.fa.fa-pencil
-      | &nbsp; Edit
-    = link_to account_shares_path(account), class: 'button is-light' do
-      span.icon
-        i.fa.fa-share-alt
-      | &nbsp; Account shares
-  .dropdown.is-right
-    .dropdown-trigger
-      button.button.is-light
-        span.icon
-          i.fa.fa-ellipsis-h
-    .dropdown-menu
-      .dropdown-content
-        = link_to archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'dropdown-item' do
-          span.icon
-            i.fa.fa-archive
-          | &nbsp; Archive
-
-.buttons.for-mobile.is-justify-content-space-between
-  div
-    = link_to my_account_path, class: 'button is-light' do
-      span.icon
-        i.fa.fa-chevron-left
-    = link_to edit_account_path(account), class: 'button is-light' do
-      span.icon
-        i.fa.fa-pencil
-    = link_to account_shares_path(account), class: 'button is-light' do
-      span.icon
-        i.fa.fa-share-alt
-  .dropdown.is-right
-    .dropdown-trigger
-      button.button.is-light
-        span.icon
-          i.fa.fa-ellipsis-h
-    .dropdown-menu
-      .dropdown-content
-        = link_to archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'dropdown-item' do
-          span.icon
-            i.fa.fa-archive
-          | &nbsp; Archive
-.card
+.columns
+  .column.is-two-fifths.box.m-2
+    div.p-4.mb-4
+      .columns
+        .column.is-4.is-flex.is-justify-content-center.is-align-items-center
+          = link_to account_path(account), class:"" do
+            img src=asset_path(avatar_for(account)) class="rounded-avatar" id='image-preview'
+        .column.is-flex.is-justify-content-flex-start.is-align-items-center
+          .title.is-black-budgeting-kid-color
+            = account.name
   / desktop
-  .card-content.for-desktop
-    .columns
-      .column.is-flex.is-flex-direction-column.is-align-items-center
-        .figure.image.is-128x128.mb-2
-          = image_tag(avatar_for(account), class:'is-rounded', alt: 'avatar')
-        .title.is-4.has-limit-width.has-text-centered
-          p= account.name
-      .column.is-3.is-flex.is-justify-content-center.is-align-items-center
-        nav.level.is-vcentered
-          .level-item.has-text-centered
-            div
-              p.heading Balance
-              p.title #{account.balance}
-      .column
+  .column.for-desktop.box.m-2.is-flex.is-justify-content-center.is-align-items-center
+    .buttons.mb-4
+      = link_to account_shares_path(account), class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px" do
+        span.icon
+          i.fa.fa-share-alt
+        | &nbsp; Account shares
+      = link_to edit_account_path(account), class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px; " do
+        span.icon
+          i.fa.fa-pencil
+        | &nbsp; Edit Account
+      = link_to  archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px" do
+        span.icon
+          i.fa.fa-archive
+        | &nbsp; Archive account
   / mobile
-  .card-content.for-mobile
-    .columns.is-mobile
-      .column.is-flex.is-justify-content-center
-        figure.image.is-rounded.is-96x96
-          = image_tag(avatar_for(account), class:'is-rounded', alt: 'avatar')
-      .column.is-flex.is-justify-content-center
-        h3.title.has-text-centered.is-4
-          p= account.name
-          p.nav.level
-            div.level-item
-              div
-                p.heading Balance
-                p.title.is-4 #{account.balance}
-  .card-footer
-    = link_to '<i class="fa fa-plus-circle fa-2x"></i>'.html_safe, new_account_topup_path(account), class: 'card-footer-item is-plus-color'
-    = link_to '<i class="fa fa-minus-circle fa-2x"></i>'.html_safe, new_account_spend_path(account), class: 'card-footer-item is-minus-color'
-br
-.columns.transactions
-  .column
-    .card
-      .card-header
-        .card-header-title.is-centered
-          h3.title.is-4 History
-      .card-content.card-content-overflow.px-1
-        - transactions = account.transactions
-        -if transactions.empty?
-          .has-text-centered
-            i.fa.fa-calendar-times-o.fa-4x
-            p.mt-2 No transactions yet.
-        - else
-          .table-container
-            table.table.is-fullwidth.is-striped
-              thead
-                tr
-                  th Date
-                  th Amount
-                  th Description
-                  th.for-desktop Actions
-                  th.for-mobile &nbsp;
-              tbody.toggleable
-                = render partial: 'transaction', collection: transactions, account: account
-          - if transactions.count > 10
-            .card-footer
-              = link_to "Show all", "#", id: "toggle-button", class: 'card-footer-item'
+  .column.for-mobile.box.m-2.is-flex.is-justify-content-center.is-align-items-center
+    .buttons.mb-4
+      = link_to account_shares_path(account), class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px" do
+        span.icon
+          i.fa.fa-share-alt
+      = link_to edit_account_path(account), class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px; " do
+        span.icon
+          i.fa.fa-pencil
+      = link_to archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px" do
+        span.icon
+          i.fa.fa-archive
+/ desktop
+.box.for-desktop.is-flex.is-justify-content-center.is-align-items-center
+  div
+    p.is-size-5.has-text-centered.mb-1
+      | Balance
+    p.title.is-2.is-budgeting-kid-color.has-text-centered #{account.balance}
+    .buttons.mb-1
+      = button_to new_account_topup_path(account), method: :get, class: 'button mx-2 is-plus-color is-medium' do
+        figure.image.is-24x24
+          = image_tag('plus-circle-green.svg', alt: '+')
+        | &nbsp; Increase
+      = button_to new_account_spend_path(account), method: :get, class: 'button mx-2 is-minus-color is-medium' do
+        figure.image.is-24x24
+          = image_tag('minus-circle-red.svg', alt: '-')
+        | &nbsp; Decrease
+/ mobile
+.box.for-mobile.p-2.is-flex.is-justify-content-center.is-align-items-center
+  div
+    p.is-size-5.has-text-centered.mb-1
+      | Balance
+    p.title.is-2.is-budgeting-kid-color.has-text-centered #{account.balance}
+    .buttons.mb-1
+      = button_to new_account_topup_path(account), method: :get, class: 'button mx-1 is-plus-color' do
+        figure.image.is-24x24
+          = image_tag('plus-circle-green.svg', alt: '+')
+        | &nbsp; Increase
+      = button_to new_account_spend_path(account), method: :get, class: 'button mx-1 is-minus-color' do
+        figure.image.is-24x24
+          = image_tag('minus-circle-red.svg', alt: '-')
+        | &nbsp; Decrease
 
-.columns.objectives
-  .column
-    .card
-      .card-header
-        .card-header-title.is-centered
-          h3.title.is-4#objective Objectives
-      .card-content.px-1
-        - objectives = account.objectives
-        -if objectives.empty?
-          .has-text-centered
-            i.fa.fa-calendar-times-o.fa-4x
-            p.mt-2.mb-2 No objectives yet.
-        - else
-          .table-container
-            table.table.is-fullwidth.is-striped
-              thead
-                tr
-                  th Name
-                  th Amount
-                  th Progress
-                  th Weeks to goal
-                  th Actions
-              tbody
-                = render partial: 'objective', collection: objectives, account: account
-        .card-footer
-          .card-footer-item.pb-0
-            = link_to new_account_objective_path(account), class: 'button is-small is-light mb-0' do
+/ Transaction History & Goals
+/ desktop
+.columns.for-desktop
+  .column.box.m-2
+    div.m-5
+      .title.is-black-budgeting-kid-color
+        | Transaction History
+      - transactions = account.transactions.last(3)
+      -if transactions.empty?
+        .has-text-centered
+          i.fa.fa-calendar-times-o.fa-4x
+          p.mt-2 No transactions yet.
+      - else
+        .table-container
+          table.table.is-fullwidth
+            thead
+              tr.has-text-left
+                th.has-text-light-gray-budgeting-kid-color Date
+                th.has-text-light-gray-budgeting-kid-color Description
+                th.has-text-light-gray-budgeting-kid-color Amount
+                th.has-text-light-gray-budgeting-kid-color &nbsp;
+            tbody
+              = render partial: 'transaction', collection: transactions, account: account
+            tfoot
+              tr
+                th
+                th
+                th
+                th
+  .column.box.m-2
+     div.m-5
+      .title.is-black-budgeting-kid-color
+        | Goals
+      - objectives = account.objectives.last(2)
+      -if objectives.empty?
+        .has-text-centered
+          i.fa.fa-calendar-times-o.fa-4x
+          p.mt-2.mb-2 No objectives yet.
+      - else
+        .table-container
+          table.table.is-fullwidth
+            thead
+            tbody
+              = render partial: 'objective', collection: objectives, account: account
+            tfoot
+              tr
+                th
+                th
+                th
+                th
+/ mobile
+.columns.for-mobile
+  .column.box
+    div
+      .title.is-4.is-black-budgeting-kid-color
+        | Transaction History
+      - transactions = account.transactions.last(3)
+      -if transactions.empty?
+        .has-text-centered
+          i.fa.fa-calendar-times-o.fa-4x
+          p.mt-2 No transactions yet.
+      - else
+        .table-container
+          table.table.is-fullwidth.p-0
+            thead
+              tr.has-text-left
+                th.has-text-light-gray-budgeting-kid-color Date
+                th.has-text-light-gray-budgeting-kid-color Description
+                th.has-text-light-gray-budgeting-kid-color Amount
+                th.has-text-light-gray-budgeting-kid-color &nbsp;
+            tbody
+              = render partial: 'transaction', collection: transactions, account: account
+            tfoot
+              tr
+                th
+                th
+                th
+                th
+  .column.box.m-2
+     div.m-5
+      .title.is-black-budgeting-kid-color
+        | Goals
+      - objectives = account.objectives.last(2)
+      -if objectives.empty?
+        .has-text-centered
+          i.fa.fa-calendar-times-o.fa-4x
+          p.mt-2.mb-2 No objectives yet.
+      - else
+        .table-container
+          table.table.is-fullwidth
+            thead
+            tbody
+              = render partial: 'objective', collection: objectives, account: account
+            tfoot
+              tr
+                th
+                th
+                th
+                th
+/ Recurring balance increase & Accumulative balance
+.columns
+  .column.box.m-2
+    div.m-5.pb-2 style="border-bottom: 1px solid hsl(0, 0%, 86%)"
+      .title.is-black-budgeting-kid-color
+        | Recurring balance increase
+      .subtitle.is-6.is-vcentered.has-text-dark-gray-budgeting-kid-color
+        br
+        | This amount will be automatically added to the account every week on Fridays at&nbsp;
+        span#formatted-time
+      - automatic_topup_configs = account.automatic_topup_configs.first
+      - if automatic_topup_configs.nil?
+        .columns
+          .column
+            | No weekly automatic topups yet.
+          .column.is-pulled-right
+            = link_to new_account_account_automatic_topup_config_path(account), class: 'button pr-0 is-white has-text-weight-bold has-text-budgeting-kid-color' do
               span.icon
                 i.fa.fa-plus
               | &nbsp; Add
-.columns.automatic-topup-configs
-  .column
-    .card
-      .card-header
-        .card-header-title.is-centered
-          div
-            p.title.is-4.has-text-centered Weekly Automatic Topups
-            p.subtitle.is-6.is-light.has-text-centered
-              | This amount will be automatically added to the account every week on Fridays at&nbsp;
-              span#formatted-time
-      .card-content.px-1
-        - automatic_topup_configs = account.automatic_topup_configs
-        -if automatic_topup_configs.empty?
-          .has-text-centered
-            i.fa.fa-calendar-times-o.fa-4x
-            p.mt-2.mb-2 No weekly automatic topups yet.
-        - else
-          .table-container
-            table.table.is-fullwidth.is-striped
-              thead
-                tr
-                  th Amount
-                  th Actions
-              tbody
-                - automatic_topup_configs.each do |config|
-                  tr
-                    td= config.amount
-                    td.buttons
-                      = link_to edit_account_account_automatic_topup_config_path(account, config), class: 'button is-small is-light' do
-                        span.icon
-                          i.fa.fa-pencil
-                        | &nbsp; Edit
-                      = link_to account_account_automatic_topup_config_path(account, config), method: :delete, data: { confirm: 'Cancel this top up?' }, class: 'button is-small is-light' do
-                        span.icon
-                          i.fa.fa-undo
-                        | &nbsp; Cancel
-        - unless account.automatic_topup_configs.any?
-          .card-footer
-            .card-footer-item.pb-0
-              = link_to new_account_account_automatic_topup_config_path(account), class: 'button is-small is-light mb-0' do
+      - else
+        .columns
+          .column
+            .title #{automatic_topup_configs.amount}
+          .column
+            .buttons.is-pulled-right
+              = link_to account_account_automatic_topup_config_path(account, automatic_topup_configs), method: :delete, data: { confirm: 'Delete this top up?' }, class: 'button pr-0 is-white has-text-weight-bold has-text-budgeting-kid-color' do
                 span.icon
-                  i.fa.fa-plus
-                | &nbsp; Add
-- if account.accumulative_balance_data.present?
-  = line_chart account.accumulative_balance_data, xtitle: 'Date', ytitle: 'Accumulative Balance'
+                  i.fa.fa-trash-o
+                | &nbsp; Delete
+              = link_to edit_account_account_automatic_topup_config_path(account, automatic_topup_configs), class: 'button pr-0  is-white has-text-weight-bold has-text-budgeting-kid-color' do
+                span.icon
+                  i.fa.fa-pencil
+                | &nbsp; Edit
+
+  .column.box.m-2
+    div.mt-5
+      - if account.accumulative_balance_data.present?
+        p.has-text-dark-gray-budgeting-kid-color style="padding-left: 70px;"
+          | Accumulative Balance
+        = area_chart account.accumulative_balance_data, colors: ["#DAD7FE", "#DAD7FE"]

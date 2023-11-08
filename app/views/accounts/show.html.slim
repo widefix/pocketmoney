@@ -16,25 +16,25 @@
   / desktop
   .column.for-desktop.box.m-2.is-flex.is-justify-content-center.is-align-items-center
     .buttons.mb-4
-      = button_to account_shares_path(account), method: :get, class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px; " do
+      = link_to account_shares_path(account), class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px; " do
         figure.image.is-16x16.is-budgeting-kid-light-color
           = image_tag('share.svg')
         | &nbsp; Share Account
-      = button_to edit_account_path(account), method: :get, class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px; " do
+      = link_to edit_account_path(account), class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px; " do
         figure.image.is-16x16.is-budgeting-kid-light-color
           = image_tag('edit.svg')
         | &nbsp; Edit Account
       = link_to  archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px" do
         span.icon
           i.fa.fa-archive
-        | &nbsp; Archive account
+        | &nbsp; Archive Account
   / mobile
   .column.for-mobile.box.mb-5.is-flex.is-justify-content-center.is-align-items-center
     .buttons.mb-4
-      = button_to account_shares_path(account), class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px" do
+      = link_to account_shares_path(account), class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px" do
         figure.image.is-16x16.is-budgeting-kid-light-color
           = image_tag('share.svg')
-      = button_to edit_account_path(account), class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px; " do
+      = link_to edit_account_path(account), class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px; " do
         figure.image.is-16x16.is-budgeting-kid-light-color
           = image_tag('edit.svg')
       = link_to archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px" do
@@ -47,11 +47,11 @@
       | Balance
     p.title.is-2.is-budgeting-kid-color.has-text-centered #{account.balance}
     .buttons.mb-1
-      = button_to new_account_topup_path(account), method: :get, class: 'button mx-2 is-plus-color is-medium' do
+      = link_to new_account_topup_path(account), method: :get, class: 'button mx-2 is-plus-color is-medium' do
         figure.image.is-24x24
           = image_tag('plus-circle-green.svg', alt: '+')
         | &nbsp; Increase
-      = button_to new_account_spend_path(account), method: :get, class: 'button mx-2 is-minus-color is-medium' do
+      = link_to new_account_spend_path(account), method: :get, class: 'button mx-2 is-minus-color is-medium' do
         figure.image.is-24x24
           = image_tag('minus-circle-red.svg', alt: '-')
         | &nbsp; Decrease
@@ -74,7 +74,7 @@
 / Transaction History & Goals ----
 / desktop
 .columns.for-desktop
-  .column.box.m-2
+  .column.transactions.box.m-2
     div.m-5
       .title.is-black-budgeting-kid-color
         | Transaction History
@@ -101,7 +101,7 @@
                 th
                 th
                 th
-  .column.box.m-2
+  .column.goals.box.m-2
     div.m-5
       .columns
         .column
@@ -189,7 +189,7 @@
                 th
 
 / Recurring balance increase & Accumulative balance ----
-.columns
+.columns.automatic-topup-configs
   / desktop
   .column.box.m-2.for-desktop
     div.m-5.pb-2 style="border-bottom: 1px solid hsl(0, 0%, 86%)"

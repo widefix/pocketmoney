@@ -14,10 +14,10 @@
         = f.text_field :description, class: "input", placeholder: "Description"
       div.buttons.is-flex.is-justify-content-flex-end
         = link_to request.referer, class: 'button is-light' do
-          span.icon
+          span.file-icon
             i.fa.fa-chevron-left
-          | &nbsp; Back
-        = button_to account_topup_path(account), class: 'button is-primary' do
-          span.icon
+          | Back
+        = button_to account_topup_path(account), class: 'button is-primary', data: { disable_with: "<i class='fa fa-spinner fa-spin'></i>&nbsp; Save".html_safe } do
+          span.file-icon
             i.fa.fa-hdd-o
-          | &nbsp; Save
+          | Save

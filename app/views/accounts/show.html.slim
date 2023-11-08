@@ -4,10 +4,14 @@
     div.p-4.mb-4
       .columns
         .column.is-4.is-flex.is-justify-content-center.is-align-items-center
-          = link_to account_path(account), class:"" do
-            img src=asset_path(avatar_for(account)) class="rounded-avatar" id='image-preview'
-        .column.is-flex.is-justify-content-flex-start.is-align-items-center
+          img src=asset_path(avatar_for(account)) class="rounded-avatar" id='image-preview'
+        / desktop
+        .for-desktop.column.is-flex.is-justify-content-flex-start.is-align-items-center
           .title.is-black-budgeting-kid-color
+            = account.name
+        / mobile
+        .for-mobile.column.is-flex.is-justify-content-center.is-align-items-center
+          .title.has-text-centered.is-black-budgeting-kid-color
             = account.name
   / desktop
   .column.for-desktop.box.m-2.is-flex.is-justify-content-center.is-align-items-center
@@ -67,7 +71,7 @@
           = image_tag('minus-circle-red.svg', alt: '-')
         | &nbsp; Decrease
 
-/ Transaction History & Goals
+/ Transaction History & Goals ----
 / desktop
 .columns.for-desktop
   .column.box.m-2
@@ -133,7 +137,7 @@
           table.table.is-fullwidth.p-0
             thead
               tr.has-text-left
-                th.has-text-light-gray-budgeting-kid-color Date
+                th.has-text-light-gray-budgeting-kid-color.pl-0 Date
                 th.has-text-light-gray-budgeting-kid-color Description
                 th.has-text-light-gray-budgeting-kid-color Amount
                 th.has-text-light-gray-budgeting-kid-color &nbsp;
@@ -145,9 +149,9 @@
                 th
                 th
                 th
-  .column.box.m-2
-     div.m-5
-      .title.is-black-budgeting-kid-color
+  .column.box
+     div
+      .title.is-4.is-black-budgeting-kid-color
         | Goals
       - objectives = account.objectives.last(2)
       -if objectives.empty?
@@ -164,11 +168,11 @@
               tr
                 th
                 th
-                th
-                th
-/ Recurring balance increase & Accumulative balance
+
+/ Recurring balance increase & Accumulative balance ----
 .columns
-  .column.box.m-2
+  / desktop
+  .column.box.m-2.for-desktop
     div.m-5.pb-2 style="border-bottom: 1px solid hsl(0, 0%, 86%)"
       .title.is-black-budgeting-kid-color
         | Recurring balance increase
@@ -200,7 +204,37 @@
                 span.icon
                   i.fa.fa-pencil
                 | &nbsp; Edit
-
+  / mobile
+  .column.box.for-mobile
+    div style="border-bottom: 1px solid hsl(0, 0%, 86%)"
+      .title.is-4.is-black-budgeting-kid-color
+        | Recurring balance increase
+      .subtitle.is-6.is-vcentered.has-text-dark-gray-budgeting-kid-color
+        br
+        | This amount will be automatically added to the account every week on Fridays at
+        span#formatted-time
+      - automatic_topup_configs = account.automatic_topup_configs.first
+      - if automatic_topup_configs.nil?
+        .columns
+          .column
+            | No weekly automatic topups yet.
+          .column.is-pulled-right
+            = link_to new_account_account_automatic_topup_config_path(account), class: 'button pr-0 is-white has-text-weight-bold has-text-budgeting-kid-color' do
+              span.icon
+                i.fa.fa-plus
+              | &nbsp; Add
+      - else
+        .columns.is-mobile
+          .column
+            .title #{automatic_topup_configs.amount}
+          .column.is-3
+            .buttons
+              = link_to account_account_automatic_topup_config_path(account, automatic_topup_configs), method: :delete, data: { confirm: 'Delete this top up?' }, class: 'button pr-0 is-white has-text-weight-bold has-text-budgeting-kid-color' do
+                span.icon
+                  i.fa.fa-trash-o
+              = link_to edit_account_account_automatic_topup_config_path(account, automatic_topup_configs), class: 'button pr-0  is-white has-text-weight-bold has-text-budgeting-kid-color' do
+                span.icon
+                  i.fa.fa-pencil
   .column.box.m-2
     div.mt-5
       - if account.accumulative_balance_data.present?

@@ -1,4 +1,5 @@
-tr style="height:90px;"
+/ desktop
+tr.for-desktop style="height:90px;"
   td.is-vcentered style="width: 48px"
     figure.image.is-48x48
       img src=asset_path("wizard_goal.svg")
@@ -22,3 +23,28 @@ tr style="height:90px;"
   td.p-0.is-vcentered style="width: 50px"
     .title.is-6.pt-4.is-black-budgeting-kid-color
       | #{goal_percentage(account, objective)}
+
+/ mobile
+tr.for-mobile
+  td.px-0.has-text-centered style="width: 100px;"
+    .columns.p-1.mb-0.is-flex.is-centered
+      .figure.image.is-48x48.m-2
+        img src=asset_path("wizard_goal.svg")
+    p.span.is-black-budgeting-kid-color
+      = objective.name
+    p.span.has-text-light-gray-budgeting-kid-color
+      = objective.amount
+  td.px-0
+    columns.pb-2
+      column
+        p.is-pulled-left.is-black-budgeting-kid-color.pt-2
+          = "#{([objective.amount, 0].max / account.automatic_topup_configs.sum(:amount).+(0.1)).ceil} Weeks to go"
+      column.is-pulled-right
+        = link_to objective_path(objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button pr-0 is-white has-text-weight-bold has-text-budgeting-kid-color' do
+          span.file-icon
+            i.fa.fa-trash-o
+    - index = objective_counter + 1
+    progress.progress class="mb-2 is-small #{index.odd? ? 'is-blue' : 'is-orange'}" style="height:8px;" value="#{goal_percentage(account, objective).chomp('%')}" max="100" #{goal_percentage(account, objective)}
+    .title.is-4.has-text-centered.is-black-budgeting-kid-color
+      | #{goal_percentage(account, objective)}
+

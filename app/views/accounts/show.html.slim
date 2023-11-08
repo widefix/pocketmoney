@@ -29,7 +29,7 @@
           i.fa.fa-archive
         | &nbsp; Archive account
   / mobile
-  .column.for-mobile.box.m-2.is-flex.is-justify-content-center.is-align-items-center
+  .column.for-mobile.box.mb-5.is-flex.is-justify-content-center.is-align-items-center
     .buttons.mb-4
       = button_to account_shares_path(account), class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px" do
         figure.image.is-16x16.is-budgeting-kid-light-color
@@ -138,9 +138,11 @@
         | Transaction History
       - transactions = account.transactions.first(3)
       -if transactions.empty?
-        .has-text-centered
-          i.fa.fa-calendar-times-o.fa-4x
-          p.mt-2 No transactions yet.
+        .columns.p-1.mb-0.is-flex.is-centered
+          figure.image.is-48x48.is-loupe-color
+            = image_tag('loupe.svg', alt: 'No..., yet')
+        p.has-text-centered.mt-2 No transactions yet.
+
       - else
         .table-container
           table.table.is-fullwidth.p-0
@@ -162,7 +164,7 @@
      div
       .columns.is-mobile
         .column
-          .title.is-black-budgeting-kid-color
+          .title.is-4.is-black-budgeting-kid-color
             | Goals
         .column.is-half.is-flex.is-justify-content-flex-end
           = link_to new_account_objective_path(account), class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
@@ -171,9 +173,10 @@
             | &nbsp; Add Goal
       - objectives = account.objectives.last(2)
       -if objectives.empty?
-        .has-text-centered
-          i.fa.fa-calendar-times-o.fa-4x
-          p.mt-2.mb-2 No objectives yet.
+        .columns.p-1.mb-0.is-flex.is-centered
+          figure.image.is-48x48.is-loupe-color
+            = image_tag('loupe.svg', alt: 'No..., yet')
+        p.has-text-centered.mt-2 No goals yet.
       - else
         .table-container
           table.table.is-fullwidth

@@ -10,11 +10,19 @@ class SendNotification
   end
 
   def execute
-    return unless @account.notification?
+    TransactionsMailer.transaction_notification(@account, recipients).deliver
+  end
 
-    TransactionsMailer.transaction_notification(@account).deliver
-    @account.account_shares.accepted.each do |account_share|
-      TransactionsMailer.transaction_notification(@account, account_share).deliver
-    end
+  private
+
+  def recipients
+    result = []
+    result << @account.email if @account.notification?
+    result += parent_emails if @account.notify_parents?
+    result.uniq
+  end
+
+  def parent_emails
+    [*@account.account_shares.accepted.pluck(:email), @account.parent.user.email]
   end
 end

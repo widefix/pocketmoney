@@ -9,14 +9,14 @@ tr.for-desktop style="height:90px;"
     p.span.has-text-light-gray-budgeting-kid-color
       = objective.amount
   td
-    columns
-      column.is-black-budgeting-kid-color
-        p.is-pulled-left.pt-2
+    .columns.mb-1
+      .column.pb-0.is-pulled-left
+        p.pt-2.is-black-budgeting-kid-color
           = "#{([objective.amount, 0].max / account.automatic_topup_configs.sum(:amount).+(0.1)).ceil} Weeks to go"
-      column.is-pulled-right
-        = link_to objective_path(objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button pr-0 is-white has-text-weight-bold has-text-budgeting-kid-color' do
-          span.icon
-            i.fa.fa-trash-o
+      .column.pb-0.is-pulled-right
+        = link_to objective_path(objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
+          figure.image.is-16x16.is-budgeting-kid-light-color
+            = image_tag('delete.svg', alt: '+')
           | &nbsp; Delete
     - index = objective_counter + 1
     progress.progress class="is-small #{index.odd? ? 'is-blue' : 'is-orange'}" style="height:8px;" value="#{goal_percentage(account, objective).chomp('%')}" max="100" #{goal_percentage(account, objective)}
@@ -34,15 +34,15 @@ tr.for-mobile
       = objective.name
     p.span.has-text-light-gray-budgeting-kid-color
       = objective.amount
-  td.px-0
-    columns.pb-2
-      column
-        p.is-pulled-left.is-black-budgeting-kid-color.pt-2
+  td
+    .columns
+      .column.pb-0.is-pulled-left
+        p.is-black-budgeting-kid-color.pt-2
           = "#{([objective.amount, 0].max / account.automatic_topup_configs.sum(:amount).+(0.1)).ceil} Weeks to go"
-      column.is-pulled-right
+      .column.pb-0.is-pulled-right
         = link_to objective_path(objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button pr-0 is-white has-text-weight-bold has-text-budgeting-kid-color' do
-          span.file-icon
-            i.fa.fa-trash-o
+          figure.image.is-20x20.is-budgeting-kid-light-color
+            = image_tag('delete.svg', alt: '+')
     - index = objective_counter + 1
     progress.progress class="mb-2 is-small #{index.odd? ? 'is-blue' : 'is-orange'}" style="height:8px;" value="#{goal_percentage(account, objective).chomp('%')}" max="100" #{goal_percentage(account, objective)}
     .title.is-4.has-text-centered.is-black-budgeting-kid-color

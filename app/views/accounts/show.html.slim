@@ -16,13 +16,13 @@
   / desktop
   .column.for-desktop.box.m-2.is-flex.is-justify-content-center.is-align-items-center
     .buttons.mb-4
-      = link_to account_shares_path(account), class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px" do
-        span.icon
-          i.fa.fa-share-alt
-        | &nbsp; Account shares
-      = link_to edit_account_path(account), class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px; " do
-        span.icon
-          i.fa.fa-pencil
+      = button_to account_shares_path(account), method: :get, class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px; " do
+        figure.image.is-16x16.is-budgeting-kid-light-color
+          = image_tag('share.svg')
+        | &nbsp; Share Account
+      = button_to edit_account_path(account), method: :get, class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px; " do
+        figure.image.is-16x16.is-budgeting-kid-light-color
+          = image_tag('edit.svg')
         | &nbsp; Edit Account
       = link_to  archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px" do
         span.icon
@@ -31,12 +31,12 @@
   / mobile
   .column.for-mobile.box.m-2.is-flex.is-justify-content-center.is-align-items-center
     .buttons.mb-4
-      = link_to account_shares_path(account), class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px" do
-        span.icon
-          i.fa.fa-share-alt
-      = link_to edit_account_path(account), class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px; " do
-        span.icon
-          i.fa.fa-pencil
+      = button_to account_shares_path(account), class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px" do
+        figure.image.is-16x16.is-budgeting-kid-light-color
+          = image_tag('share.svg')
+      = button_to edit_account_path(account), class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px; " do
+        figure.image.is-16x16.is-budgeting-kid-light-color
+          = image_tag('edit.svg')
       = link_to archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px" do
         span.icon
           i.fa.fa-archive
@@ -56,7 +56,7 @@
           = image_tag('minus-circle-red.svg', alt: '-')
         | &nbsp; Decrease
 / mobile
-.box.for-mobile.p-2.is-flex.is-justify-content-center.is-align-items-center
+.columns.box.for-mobile.p-2.mb-5.is-flex.is-justify-content-center.is-align-items-center
   div
     p.is-size-5.has-text-centered.mb-1
       | Balance
@@ -78,11 +78,12 @@
     div.m-5
       .title.is-black-budgeting-kid-color
         | Transaction History
-      - transactions = account.transactions.last(3)
+      - transactions = account.transactions.first(3)
       -if transactions.empty?
-        .has-text-centered
-          i.fa.fa-calendar-times-o.fa-4x
-          p.mt-2 No transactions yet.
+        .columns.p-1.mb-0.is-flex.is-centered
+          figure.image.is-48x48.is-loupe-color
+            = image_tag('loupe.svg', alt: 'No..., yet')
+        p.has-text-centered.mt-2 No transactions yet.
       - else
         .table-container
           table.table.is-fullwidth
@@ -101,14 +102,22 @@
                 th
                 th
   .column.box.m-2
-     div.m-5
-      .title.is-black-budgeting-kid-color
-        | Goals
+    div.m-5
+      .columns
+        .column
+          .title.is-black-budgeting-kid-color
+            | Goals
+        .column.is-flex.is-justify-content-flex-end
+          = link_to new_account_objective_path(account), class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
+            figure.image.is-16x16.is-budgeting-kid-light-color
+              = image_tag('plus-circle-white.svg', alt: '+')
+            | &nbsp; Add Goal
       - objectives = account.objectives.last(2)
       -if objectives.empty?
-        .has-text-centered
-          i.fa.fa-calendar-times-o.fa-4x
-          p.mt-2.mb-2 No objectives yet.
+        .columns.p-1.mb-0.is-flex.is-centered
+          figure.image.is-48x48.is-loupe-color
+            = image_tag('loupe.svg', alt: 'No..., yet')
+        p.has-text-centered.mt-2 No goals yet.
       - else
         .table-container
           table.table.is-fullwidth
@@ -122,12 +131,12 @@
                 th
                 th
 / mobile
-.columns.for-mobile
+.columns.for-mobile.py-4
   .column.box
     div
       .title.is-4.is-black-budgeting-kid-color
         | Transaction History
-      - transactions = account.transactions.last(3)
+      - transactions = account.transactions.first(3)
       -if transactions.empty?
         .has-text-centered
           i.fa.fa-calendar-times-o.fa-4x
@@ -151,8 +160,15 @@
                 th
   .column.box
      div
-      .title.is-4.is-black-budgeting-kid-color
-        | Goals
+      .columns.is-mobile
+        .column
+          .title.is-black-budgeting-kid-color
+            | Goals
+        .column.is-half.is-flex.is-justify-content-flex-end
+          = link_to new_account_objective_path(account), class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
+            figure.image.is-20x20.is-budgeting-kid-light-color
+              = image_tag('plus-circle-white.svg', alt: '+')
+            | &nbsp; Add Goal
       - objectives = account.objectives.last(2)
       -if objectives.empty?
         .has-text-centered
@@ -183,26 +199,26 @@
       - automatic_topup_configs = account.automatic_topup_configs.first
       - if automatic_topup_configs.nil?
         .columns
-          .column
+          .column.is-flex.is-justify-content-flex-start.is-align-items-center
             | No weekly automatic topups yet.
-          .column.is-pulled-right
-            = link_to new_account_account_automatic_topup_config_path(account), class: 'button pr-0 is-white has-text-weight-bold has-text-budgeting-kid-color' do
-              span.icon
-                i.fa.fa-plus
-              | &nbsp; Add
+          .column.is-flex.is-justify-content-flex-end
+            = link_to new_account_account_automatic_topup_config_path(account), class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
+              figure.image.is-16x16.is-budgeting-kid-light-color
+                = image_tag('plus-circle-white.svg', alt: '+')
+              | &nbsp; Add amount
       - else
         .columns
           .column
             .title #{automatic_topup_configs.amount}
           .column
             .buttons.is-pulled-right
-              = link_to account_account_automatic_topup_config_path(account, automatic_topup_configs), method: :delete, data: { confirm: 'Delete this top up?' }, class: 'button pr-0 is-white has-text-weight-bold has-text-budgeting-kid-color' do
-                span.icon
-                  i.fa.fa-trash-o
+              = link_to account_account_automatic_topup_config_path(account, automatic_topup_configs), method: :delete, data: { confirm: 'Delete this top up?' }, class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
+                figure.image.is-16x16.is-budgeting-kid-light-color
+                  = image_tag('delete.svg', alt: '+')
                 | &nbsp; Delete
-              = link_to edit_account_account_automatic_topup_config_path(account, automatic_topup_configs), class: 'button pr-0  is-white has-text-weight-bold has-text-budgeting-kid-color' do
-                span.icon
-                  i.fa.fa-pencil
+              = link_to edit_account_account_automatic_topup_config_path(account, automatic_topup_configs), class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
+                figure.image.is-16x16.is-budgeting-kid-light-color
+                  = image_tag('edit.svg')
                 | &nbsp; Edit
   / mobile
   .column.box.for-mobile
@@ -215,26 +231,27 @@
         span#formatted-time
       - automatic_topup_configs = account.automatic_topup_configs.first
       - if automatic_topup_configs.nil?
-        .columns
-          .column
+        .columns.is-mobile
+          .column.is-flex.is-justify-content-flex-start.is-align-items-center
             | No weekly automatic topups yet.
-          .column.is-pulled-right
+          .column.is-3.is-pulled-right.px-0
             = link_to new_account_account_automatic_topup_config_path(account), class: 'button pr-0 is-white has-text-weight-bold has-text-budgeting-kid-color' do
-              span.icon
-                i.fa.fa-plus
+              figure.image.is-20x20.is-budgeting-kid-light-color
+                = image_tag('plus-circle-white.svg', alt: '+')
               | &nbsp; Add
+
       - else
         .columns.is-mobile
           .column
             .title #{automatic_topup_configs.amount}
-          .column.is-3
+          .column.is-4
             .buttons
               = link_to account_account_automatic_topup_config_path(account, automatic_topup_configs), method: :delete, data: { confirm: 'Delete this top up?' }, class: 'button pr-0 is-white has-text-weight-bold has-text-budgeting-kid-color' do
-                span.icon
-                  i.fa.fa-trash-o
+                figure.image.is-16x16.is-budgeting-kid-light-color
+                  = image_tag('delete.svg', alt: '+')
               = link_to edit_account_account_automatic_topup_config_path(account, automatic_topup_configs), class: 'button pr-0  is-white has-text-weight-bold has-text-budgeting-kid-color' do
-                span.icon
-                  i.fa.fa-pencil
+                figure.image.is-16x16.is-budgeting-kid-light-color
+                  = image_tag('edit.svg')
   .column.box.m-2
     div.mt-5
       - if account.accumulative_balance_data.present?

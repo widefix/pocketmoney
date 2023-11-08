@@ -433,3 +433,7 @@ button.is-gray:hover {
 .progress.is-orange::-webkit-progress-value {
   background-color: hsla(29, 88%, 59%, 1) !important;
 }
+
+.is-loupe-color {
+  filter: invert(15%);
+}

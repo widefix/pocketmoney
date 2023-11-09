@@ -13,10 +13,7 @@ tr.for-desktop style="height:90px;"
       .column.pb-0.is-pulled-left
         p.pt-2.is-black-budgeting-kid-color
           - weeks_to_achieve = objective.weeks_to_achieve
-          - if weeks_to_achieve != -1
-            = "#{weeks_to_achieve} Weeks to go"
-          - else
-            = "Achieved"
+          | #{ weeks_to_achieve != -1 ? "#{weeks_to_achieve} Weeks to go" : "Achieved"}
       .column.pb-0.is-pulled-right
         = link_to objective_path(objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
           figure.image.is-16x16.is-budgeting-kid-light-color
@@ -43,10 +40,7 @@ tr.for-mobile
       .column.pb-0.is-pulled-left
         p.is-black-budgeting-kid-color.pt-2
           - weeks_to_achieve = objective.weeks_to_achieve
-          - if weeks_to_achieve != -1
-            = "#{weeks_to_achieve} Weeks to go"
-          - else
-            = "Achieved"
+          | #{ weeks_to_achieve != -1 ? "#{weeks_to_achieve} Weeks to go" : "Achieved"}
       .column.pb-0.is-pulled-right
         = link_to objective_path(objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button pr-0 is-white has-text-weight-bold has-text-budgeting-kid-color' do
           figure.image.is-20x20.is-budgeting-kid-light-color

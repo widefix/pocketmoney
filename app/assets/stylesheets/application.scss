@@ -200,22 +200,22 @@ $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
 
 // mobile
 @media (min-width: 1024px) {
-  button.is-plus-color {
+  a.is-plus-color {
     width: 175px;
     height: 48px;
   }
-  button.is-minus-color {
+  a.is-minus-color {
     width: 175px;
     height: 48px;
   }
 }
 
-button.is-plus-color {
+a.is-plus-color {
   border-radius: 6px;
   color: hsla(145, 73%, 38%, 1);
   border: 2px solid hsla(145, 73%, 38%, 1);
 }
-button.is-minus-color {
+a.is-minus-color {
   border-radius: 6px;
   border: 2px solid hsl(8, 82%, 41%);
   color: hsl(8, 82%, 41%);

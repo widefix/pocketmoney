@@ -210,6 +210,17 @@ $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
   }
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+    appearance: none;
+}
+
 a.is-plus-color {
   border-radius: 6px;
   color: hsla(145, 73%, 38%, 1);

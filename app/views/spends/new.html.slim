@@ -9,7 +9,7 @@
       = account.balance
     = form_with url: account_spend_path(account), method: :post do |f|
       .field.is-relative
-        = f.text_field :amount, autofocus: true, class: 'input amount', placeholder: "Amount"
+        = f.text_field :amount, autofocus: true, type: 'number', min: '1', required: true, class: 'input amount', placeholder: "Amount"
         = link_to 'All Balance', '#', class: 'button is-small is-light all-balance-button', data: { balance: account.balance }
       .field
         = f.text_field :description, class: 'input decscription', placeholder: "Description"

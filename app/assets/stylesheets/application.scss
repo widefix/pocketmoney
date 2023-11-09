@@ -25,6 +25,10 @@ $file-cta-color: hsl(270, 50%, 48%);
 $family-primary: "Inter", sans-serif;
 $navbar-item-img-max-height: 70px;
 $card-radius: 12px;
+$box-radius: 12px;
+$table-head-cell-border-width: 0 0 0;
+$table-cell-border-width: 0px 0px 1px;
+$table-foot-cell-border-width: 1px 0px 0px;
 
 @import "bulma";
 @import "font-awesome";
@@ -35,6 +39,7 @@ $primary-budgeting-kid-color: rgb(102, 51, 153);
 $primary-budgeting-kid-strong-color: hsl(270, 50%, 21%);
 $primary-budgeting-kid-background-color: hsl(270, 95%, 98%);
 $primary-budgeting-kid-black-color: hsl(0, 0%, 0%);
+$primary-budgeting-kid-dark-gray-color: hsla(0, 0%, 35%, 1);
 $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
 
 .is-budgeting-kid-color {
@@ -70,7 +75,7 @@ $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
   max-height: 417px;
 }
 
-.custom-shadow {
+.box {
   box-shadow: none;
 }
 
@@ -167,12 +172,25 @@ $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
   color: $primary-budgeting-kid-color !important;
 }
 
+.has-text-light-gray-budgeting-kid-color {
+  color: $primary-budgeting-kid-light-gray-color !important;
+}
+
+.has-text-dark-gray-budgeting-kid-color {
+  color: $primary-budgeting-kid-dark-gray-color !important;
+}
+
 .is-light {
-  color: $text-light !important ;
+  color: $primary-budgeting-kid-color !important;
+}
+
+.button.is-white-budgeting-kid-color {
+  color: $primary-budgeting-kid-color !important;
+  border: none;
 }
 
 .is-bordered {
-  border-color: $primary-budgeting-kid-color !important ;
+  border: 2px solid $primary-budgeting-kid-color !important ;
 }
 
 .is-footer-light {
@@ -406,4 +424,16 @@ button.is-gray:hover {
 .rounded-avatar.small {
   width: 69px;
   height: 69px;
+}
+
+.progress.is-blue::-webkit-progress-value {
+  background-color: hsla(243, 88%, 59%, 1) !important;
+}
+
+.progress.is-orange::-webkit-progress-value {
+  background-color: hsla(29, 88%, 59%, 1) !important;
+}
+
+.is-loupe-color {
+  filter: invert(15%);
 }

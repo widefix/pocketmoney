@@ -28,7 +28,7 @@
 
 - if account.children.unarchived.present? || shared_accounts.present?
   - account.children.unarchived.each do |child|
-    .card.box.custom-shadow.accounts.p-0
+    .card.box.accounts.p-0
       / desktop
       .card-content.p-0.for-desktop
         .columns.is-flex.is-justify-content-center.is-align-items-center
@@ -58,7 +58,7 @@
                 span.icon
                   i.fa.fa-chevron-right
       / mobile
-      .card-content.for-mobile
+      .card-content.for-mobile.p-4
         .buttons.top-right-button
           = button_to account_path(child), method: :get, class: 'button is-gray mr-3' do
             span.icon
@@ -85,9 +85,9 @@
     .box.has-text-centered
       p.title.is-4.is-black-budgeting-kid-color Shared accounts
     - shared_accounts.each do |shared_account|
-      .card.box.custom-shadow.shared-accounts.p-0
+      .card.box.shared-accounts.p-0
         / desktop
-        .card-header.custom-shadow.for-desktop
+        .card-header.for-desktop
           .card-header-title.is-black-budgeting-kid-color
             | Account owner: #{shared_account.parent.email}
         .card-content.p-0.for-desktop

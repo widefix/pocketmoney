@@ -76,7 +76,7 @@ $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
 }
 
 .box {
-  box-shadow: none;
+  box-shadow: 0 0.1em 1em -0.125em rgba($scheme-invert, 0.1), 0 0px 0 1px rgba($scheme-invert, 0.02)
 }
 
 .navbar {

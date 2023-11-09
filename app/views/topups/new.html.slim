@@ -9,7 +9,7 @@
       = account.balance
     = form_with url: account_topup_path(account), method: :post do |f|
       .field
-        = f.text_field :amount, autofocus: true, class: "input", placeholder: "Amount"
+        = f.text_field :amount, autofocus: true, type: 'number', min: '1', required: true, class: "input", placeholder: "Amount"
       .field
         = f.text_field :description, class: "input", placeholder: "Description"
       div.buttons.is-flex.is-justify-content-flex-end

@@ -4,7 +4,7 @@
     h2.title.is-4.has-text-centered Edit automatic topup
     = form_with model: [account, automatic_topup_config], method: :patch do |f|
       .field
-        = f.text_field :amount, autofocus: true, class: "input", placeholder: "Weekly amount"
+        = f.text_field :amount, autofocus: true, class: "input", type: 'number', min: '1', placeholder: "Weekly amount", required: true
         .notification.is-light
           | This amount will be automatically added to the account every week on Fridays at&nbsp;
           span#formatted-time

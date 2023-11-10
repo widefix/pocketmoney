@@ -452,6 +452,14 @@ button.is-gray:hover {
 
 .modal-card-body {
   border-radius: 12px;
+
+}
+.pl-8 {
+  padding-left: 5rem !important
+}
+
+.radio_color {
+  accent-color: $primary-budgeting-kid-color;
 }
 
 .navbar-dropdown.for-desktop {

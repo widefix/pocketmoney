@@ -18,6 +18,10 @@ class AccountsController < ApplicationController
     end
   end
 
+  def update_timeframe
+    account.update(accumulative_balance_timeframe: ps[:accumulative_balance_timeframe])
+  end
+
   def create
     ActiveRecord::Base.transaction do
       account = Account.create!(parent: current_user.account, **ps.slice(:name))

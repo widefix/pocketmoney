@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
     member do
       get 'archive', action: 'archive'
+      patch 'update_timeframe', action: 'update_timeframe'
     end
   end
 

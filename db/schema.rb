@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_02_120748) do
+ActiveRecord::Schema.define(version: 2023_11_10_144256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2023_11_02_120748) do
     t.boolean "notification", default: false
     t.datetime "archived_at"
     t.boolean "notify_parents", default: true
+    t.string "accumulative_balance_timeframe", default: "by day"
     t.index ["parent_id"], name: "index_accounts_on_parent_id"
   end
 

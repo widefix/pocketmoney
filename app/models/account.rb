@@ -15,6 +15,7 @@ class Account < ApplicationRecord
 
   validates :name, presence: true
   validates :email, presence: true, if: :notification?
+  validates :accumulative_balance_timeframe, inclusion: { in: ['by day', 'by week', 'by month'] }
 
   scope :unarchived, -> { where(archived_at: nil) }
   scope :archived, -> { where.not(archived_at: nil) }
@@ -39,7 +40,7 @@ class Account < ApplicationRecord
     Transaction.where(to_account: self).or(Transaction.where(from_account: self)).order(created_at: :desc)
   end
 
-  def accumulative_balance_data
+  memoize def accumulative_balance_data
     result = ActiveRecord::Base.connection.execute(balance_sql)
     result.to_h { |transaction| [transaction['date'], transaction['sum']] }
   end

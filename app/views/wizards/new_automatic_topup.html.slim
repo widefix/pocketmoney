@@ -28,7 +28,13 @@
         br
         br
         .subtitle.is-6.mb-3
-          | Set a weekly allowance for your child using creative terms like 'stars,' 'likes,' or 'points,' which will be deposited into their account every Friday and can be adjusted as required.
+          | Set a weekly allowance for your child using creative terms like
+          i
+            |  stars, likes
+          | , or
+          i
+            |  points
+          | , which will be deposited into their account every Friday and can be adjusted as required.
         = form_with url: create_automatic_topup_wizard_path, method: :post, local: true do |form|
           .field
             = form.text_field :amount, autofocus: true, type: 'number', min: '1', class: "input", placeholder: "Weekly Amount", required: true

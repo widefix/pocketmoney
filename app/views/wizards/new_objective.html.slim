@@ -27,7 +27,11 @@
             .subtitle.is-7 Share Account
         br
         br
-        .subtitle.is-6.mb-3 Note your child's dream savings goal and its cost. Add more goals anytime. To simplify, use a 1:1 exchange rate to your local currency if you avoid mentioning 'money' with your child.
+        .subtitle.is-6.mb-3
+          | Note your child's dream savings goal and its cost. Add more goals anytime. To simplify, use a 1:1 exchange rate to your local currency if you avoid mentioning
+          i
+            |  money
+          |  with your child.
         = form_with url: create_objective_wizard_path, method: :post, local: true do |form|
           .field
             = form.text_field :name, autofocus: true, class: "input", placeholder: "Goal Name", required: true

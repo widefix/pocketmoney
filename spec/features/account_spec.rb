@@ -21,8 +21,8 @@ RSpec.feature 'Account', type: :feature do
     expect(page).to have_link('Archive Account', href: archive_account_path(account))
     expect(page).to have_content(account.name)
     expect(page).to have_content(account.balance)
-    expect(page).to have_link('Increase', href: new_account_topup_path(account))
-    expect(page).to have_link('Decrease', href: new_account_spend_path(account))
+    expect(page).to have_button('Increase')
+    expect(page).to have_button('Decrease')
 
     transactions_block = find('.column.transactions')
     expect(transactions_block).to have_content('Transaction History')

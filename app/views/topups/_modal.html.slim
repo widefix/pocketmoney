@@ -1,0 +1,22 @@
+#modal-topup-form.modal
+  .modal-background
+  .modal-card
+    .button.is-white.is-round.top-right-button.close-button
+      figure.image.is-20x20
+        = image_tag('cross.svg', alt: 'X')
+    .modal-card-body
+      = form_with url:false, method: :post, id: 'topup-form-with' do |f|
+        .field.mt-2
+          = f.label "Amount to be added"
+        .field
+          = f.text_field :amount, autofocus: true, type: 'number', min: '1', class: "input"
+        .field
+          = f.label "Description (optional)"
+        .field
+          = f.text_field :description, class: "input"
+        br
+        .field.mb-2
+          = button_tag class: 'button is-primary is-fullwidth', id:"amount-submit-button", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i>&nbsp; Save".html_safe } do
+            figure.image.is-24x24
+              = image_tag('plus-circle-white.svg', alt: '+')
+            | &nbsp; Increase

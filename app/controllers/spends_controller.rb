@@ -1,7 +1,4 @@
 class SpendsController < ApplicationController
-  def new
-  end
-
   def create
     Transaction.create!(
       from_account: account,
@@ -13,6 +10,6 @@ class SpendsController < ApplicationController
     )
     SendNotification.call(account)
 
-    redirect_to account_path(account)
+    redirect_to request.referrer
   end
 end

@@ -29,6 +29,7 @@ $box-radius: 12px;
 $table-head-cell-border-width: 0 0 0;
 $table-cell-border-width: 0px 0px 1px;
 $table-foot-cell-border-width: 1px 0px 0px;
+$modal-content-width: 432px;
 
 @import "bulma";
 @import "font-awesome";
@@ -447,4 +448,8 @@ button.is-gray:hover {
 
 .is-loupe-color {
   filter: invert(15%);
+}
+
+.modal-card-body {
+  border-radius: 12px;
 }

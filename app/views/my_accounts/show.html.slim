@@ -72,11 +72,11 @@
               span.subtitle.is-6 Balance:&nbsp;&nbsp;
               span.title.is-4.is-budgeting-kid-color #{child.balance}
         .buttons
-          = button_to new_account_topup_path(child), method: :get, class: 'button m-1 is-plus-color' do
+          = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(child) }, class: 'button m-1 is-plus-color' do
             figure.image.is-24x24
               = image_tag('plus-circle-green.svg', alt: '+')
             | &nbsp; Increase
-          = button_to new_account_spend_path(child), method: :get, class: 'button m-1 is-minus-color' do
+          = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(child) }, class: 'button m-1 is-minus-color' do
             figure.image.is-24x24
               = image_tag('minus-circle-red.svg', alt: '-')
             | &nbsp; Decrease
@@ -104,11 +104,11 @@
                 span.title.is-4.is-budgeting-kid-color #{shared_account.balance}
             .column.is-4.is-flex.is-justify-content-center.is-align-items-center
               .buttons
-                = button_to new_account_topup_path(shared_account), method: :get, class: 'button mx-2 is-plus-color is-medium' do
+                = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(child) }, class: 'button mx-2 is-plus-color is-medium' do
                   figure.image.is-24x24
                     = image_tag('plus-circle-green.svg', alt: '+')
                   | &nbsp; Increase
-                = button_to new_account_spend_path(shared_account), method: :get, class: 'button mx-2 is-minus-color is-medium' do
+                = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(child) }, class: 'button mx-2 is-minus-color is-medium' do
                   figure.image.is-24x24
                     = image_tag('minus-circle-red.svg', alt: '-')
                   | &nbsp; Decrease
@@ -134,11 +134,11 @@
                 span.subtitle.is-6 Balance:&nbsp;&nbsp;
                 span.title.is-4.is-budgeting-kid-color #{shared_account.balance}
           .buttons
-            = button_to new_account_topup_path(shared_account), method: :get, class: 'button m-1 is-plus-color' do
+            = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(child) }, class: 'button m-1 is-plus-color' do
               figure.image.is-24x24
                 = image_tag('plus-circle-green.svg', alt: '+')
               | &nbsp; Increase
-            = button_to new_account_spend_path(shared_account), method: :get, class: 'button m-1 is-minus-color' do
+            = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(child) }, class: 'button m-1 is-minus-color' do
               figure.image.is-24x24
                 = image_tag('minus-circle-red.svg', alt: '-')
               | &nbsp; Decrease

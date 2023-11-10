@@ -222,12 +222,12 @@ input[type=number] {
     appearance: none;
 }
 
-a.is-plus-color {
+button.is-plus-color {
   border-radius: 6px;
   color: hsla(145, 73%, 38%, 1);
   border: 2px solid hsla(145, 73%, 38%, 1);
 }
-a.is-minus-color {
+button.is-minus-color {
   border-radius: 6px;
   border: 2px solid hsl(8, 82%, 41%);
   color: hsl(8, 82%, 41%);

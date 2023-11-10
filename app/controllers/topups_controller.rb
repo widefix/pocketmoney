@@ -1,7 +1,4 @@
 class TopupsController < ApplicationController
-  def new
-  end
-
   def create
     Transaction.create!(
       from_account: current_user.account,
@@ -13,6 +10,6 @@ class TopupsController < ApplicationController
     )
     SendNotification.call(account)
 
-    redirect_to account_path(account)
+    redirect_to request.referrer
   end
 end

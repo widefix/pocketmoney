@@ -29,6 +29,7 @@ $box-radius: 12px;
 $table-head-cell-border-width: 0 0 0;
 $table-cell-border-width: 0px 0px 1px;
 $table-foot-cell-border-width: 1px 0px 0px;
+$modal-content-width: 432px;
 
 @import "bulma";
 @import "font-awesome";
@@ -221,12 +222,12 @@ input[type=number] {
     appearance: none;
 }
 
-a.is-plus-color {
+button.is-plus-color {
   border-radius: 6px;
   color: hsla(145, 73%, 38%, 1);
   border: 2px solid hsla(145, 73%, 38%, 1);
 }
-a.is-minus-color {
+button.is-minus-color {
   border-radius: 6px;
   border: 2px solid hsl(8, 82%, 41%);
   color: hsl(8, 82%, 41%);
@@ -447,4 +448,8 @@ button.is-gray:hover {
 
 .is-loupe-color {
   filter: invert(15%);
+}
+
+.modal-card-body {
+  border-radius: 12px;
 }

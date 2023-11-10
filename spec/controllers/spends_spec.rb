@@ -1,16 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe SpendsController, type: :controller do
-  describe '#new' do
-    let(:account) { create(:account, :parent) }
-
-    subject(:new) { get :new, params: { account_id: account } }
-
-    it { is_expected.to have_http_status(:success) }
-    it { is_expected.to render_template(:new) }
-    it { is_expected.to_not render_template('home/index') }
-  end
-
   describe '#create' do
     let(:user) { create(:user, account: account) }
     let(:account) { create(:account, :with_notify)}
@@ -19,7 +9,10 @@ RSpec.describe SpendsController, type: :controller do
     let(:amount) { FFaker::Number.number }
     let(:description) { FFaker::Lorem.phrase }
 
-    subject { post :create, params: { account_id: child, amount: amount, description: description } }
+    subject do
+      request.env['HTTP_REFERER'] = 'https://budgetingkid.com/my_account'
+      post :create, params: { account_id: child, amount: amount, description: description }
+    end
 
     before { sign_in user }
 
@@ -45,7 +38,7 @@ RSpec.describe SpendsController, type: :controller do
       expect(created_transaction.access_token).not_to be_nil
     end
 
-    it { is_expected.to redirect_to(account_path(child)) }
+    it { is_expected.to redirect_to('https://budgetingkid.com/my_account') }
     it { is_expected.to have_http_status(:redirect)}
     it { expect { subject }.to change { Transaction.count }.by(1) }
     it { expect { subject }.to change { Transaction.count }.by(1) }

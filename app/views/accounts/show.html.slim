@@ -47,11 +47,11 @@
       | Balance
     p.title.is-2.is-budgeting-kid-color.has-text-centered #{account.balance}
     .buttons.mb-1
-      = link_to new_account_topup_path(account), class: 'button mx-2 is-plus-color is-medium' do
+      = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(account) }, class: 'button mx-2 is-plus-color is-medium' do
         figure.image.is-24x24
           = image_tag('plus-circle-green.svg', alt: '+')
         | &nbsp; Increase
-      = link_to new_account_spend_path(account), class: 'button mx-2 is-minus-color is-medium' do
+      = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(account) }, class: 'button mx-2 is-minus-color is-medium' do
         figure.image.is-24x24
           = image_tag('minus-circle-red.svg', alt: '-')
         | &nbsp; Decrease
@@ -62,11 +62,11 @@
       | Balance
     p.title.is-2.is-budgeting-kid-color.has-text-centered #{account.balance}
     .buttons.mb-1
-      = link_to new_account_topup_path(account), class: 'button mx-1 is-plus-color' do
+      = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(account) }, class: 'button mx-1 is-plus-color' do
         figure.image.is-24x24
           = image_tag('plus-circle-green.svg', alt: '+')
         | &nbsp; Increase
-      = link_to new_account_spend_path(account), class: 'button mx-1 is-minus-color' do
+      = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(account) }, class: 'button mx-1 is-minus-color' do
         figure.image.is-24x24
           = image_tag('minus-circle-red.svg', alt: '-')
         | &nbsp; Decrease
@@ -261,3 +261,6 @@
         p.has-text-dark-gray-budgeting-kid-color style="padding-left: 70px;"
           | Accumulative Balance
         = area_chart account.accumulative_balance_data, colors: ["#DAD7FE", "#DAD7FE"]
+
+= render partial: "topups/modal"
+= render partial: "spends/modal"

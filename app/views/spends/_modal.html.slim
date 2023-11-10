@@ -1,0 +1,37 @@
+
+#modal-spend-form.modal
+  .modal-background
+  .modal-card
+    .button.is-white.is-round.top-right-button.close-button
+      figure.image.is-20x20
+        = image_tag('cross.svg', alt: 'X')
+    .modal-card-body
+      = form_with url:false, method: :post, id: 'spend-form-with' do |f|
+        .field.mt-2
+          = f.label "Amount to be deducted"
+        .field.is-relative
+          = f.text_field :amount, autofocus: true, type: 'number', min: '1', class: 'input amount'
+          = link_to 'All Balance', '#', class: 'button is-small is-light all-balance-button', data: { balance: account.balance }
+        .field
+          = f.label "Description (optional)"
+        .field
+          = f.text_field :description, class: 'input decscription'
+        br
+        .field
+          = button_tag class: 'button is-primary is-fullwidth', id:"amount-submit-button", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i>&nbsp; Decrease".html_safe } do
+            figure.image.is-24x24
+              = image_tag('minus-circle-white.svg', alt: '+')
+            | &nbsp; Decrease
+        .notification.p-4.is-light.mb-2
+          .columns
+            .column.px-1.is-narrow
+              figure.image.is-24x24
+                = image_tag('info.svg', alt: 'i')
+            .column.px-1
+              | Deduct funds from your kid's balance for expenses like
+              i
+                |  toys, gadgets, entertainment tickets
+              | , and other
+              i
+                |  non-budgeted items
+              | . In rare cases, use it to fine your child for discipline.

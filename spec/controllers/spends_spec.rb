@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe SpendsController, type: :controller do
-
   describe '#create' do
     let(:user) { create(:user, account: account) }
     let(:account) { create(:account, :with_notify)}

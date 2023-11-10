@@ -12,7 +12,6 @@ RSpec.describe TopupsController, type: :controller do
     subject do
       request.env['HTTP_REFERER'] = 'https://budgetingkid.com/my_account'
       post :create, params: { account_id: child, amount: amount, description: description }
-
     end
 
     before { sign_in user }

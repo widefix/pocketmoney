@@ -51,5 +51,16 @@ RSpec.describe Account, type: :model do
                  })
       end
     end
+
+    context 'with positive and negative transactions grouped dy quarter' do
+      before { child.update_attribute(:accumulative_balance_timeframe, 'quarter') }
+
+      it do
+        expect(child.accumulative_balance_data)
+          .to eq({
+                   third_transaction.created_at.beginning_of_quarter.to_date.strftime('%Y-%m-%d') => 80.0
+                 })
+      end
+    end
   end
 end

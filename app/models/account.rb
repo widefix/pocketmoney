@@ -15,7 +15,7 @@ class Account < ApplicationRecord
 
   validates :name, presence: true
   validates :email, presence: true, if: :notification?
-  validates :accumulative_balance_timeframe, inclusion: { in: %w[day week month] }
+  validates :accumulative_balance_timeframe, inclusion: { in: %w[day week month quarter] }
 
   scope :unarchived, -> { where(archived_at: nil) }
   scope :archived, -> { where.not(archived_at: nil) }

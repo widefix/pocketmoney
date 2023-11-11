@@ -9,7 +9,7 @@
           figure.icon.has-text-budgeting-kid-color.mr-1
             i.fa.fa-times.fa-lg
       = form_with(model: account, url: update_timeframe_account_path, method: :patch, remote: true) do |f|
-        .field.is-size-5.has-text-dark-gray-budgeting-kid-color.mb-6
+        .field.is-size-5.has-text-dark-gray-budgeting-kid-color.mb-4
           .mb-4.is-size-6
             = f.label :accumulative_balance_timeframe, "Select how to display the chart:"
           .is-flex.is-flex-direction-column
@@ -22,6 +22,9 @@
             label.radio.mb-4.radio_color
               = f.radio_button :accumulative_balance_timeframe, 'month'
               | &nbsp; By Month
+            label.radio.mb-4.radio_color
+              = f.radio_button :accumulative_balance_timeframe, 'quarter'
+              | &nbsp; By Quarter
 
         .field.is-flex.is-justify-content-flex-end
           = f.submit 'Save', class: 'button is-primary', data: { disable_with: "Save" }
@@ -35,7 +38,7 @@
           = link_to '#', id: 'open-desktop-chart-setting-button' do
             figure.icon.mr-2.has-text-budgeting-kid-color
               i.fa.fa-cog.fa-lg
-        = area_chart account.accumulative_balance_data, colors: ["#DAD7FE", "#DAD7FE"], height: "287px"
+        = area_chart account.accumulative_balance_data, colors: ["#DAD7FE", "#DAD7FE"], height: "296px"
     - else
       .m-5
         .title.is-black-budgeting-kid-color Accumulative balance
@@ -53,7 +56,7 @@
         figure.icon.has-text-budgeting-kid-color
           i.fa.fa-times.is-16x16
     = form_with(model: account, url: update_timeframe_account_path, method: :patch, remote: true) do |f|
-      .field.has-text-dark-gray-budgeting-kid-color.mb-6
+      .field.has-text-dark-gray-budgeting-kid-color.mb-4
         .mb-4
           = f.label :accumulative_balance_timeframe, "Select how to display the chart:"
         .is-flex.is-flex-direction-column
@@ -66,6 +69,9 @@
           label.radio.mb-4.radio_color
             = f.radio_button :accumulative_balance_timeframe, 'month'
             | &nbsp; By Month
+          label.radio.mb-4.radio_color
+            = f.radio_button :accumulative_balance_timeframe, 'quarter'
+            | &nbsp; By Quarter
 
       .field.is-flex.is-justify-content-flex-end
         = f.submit 'Save', class: 'button is-primary'
@@ -78,7 +84,7 @@
         = link_to '#', id: 'open-mobile-chart-setting-button' do
             figure.icon.mr-1.has-text-budgeting-kid-color
               i.fa.fa-cog.is-16x16
-      = area_chart account.accumulative_balance_data, colors: ["#DAD7FE", "#DAD7FE"], height: "263px"
+      = area_chart account.accumulative_balance_data, colors: ["#DAD7FE", "#DAD7FE"], height: "267px"
   - else
     .title.is-4.is-black-budgeting-kid-color
       | Accumulative balance

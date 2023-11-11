@@ -77,6 +77,24 @@ RSpec.describe AccountsController, type: :controller do
     end
   end
 
+  describe '#update_timeframe' do
+    subject(:update_timeframe) { patch :update, params: { id: account, account: attributes } }
+
+    context 'with valid params' do
+      let(:attributes) {{ accumulative_balance_timeframe: 'week' }}
+
+      it { expect(subject).to redirect_to(account_path) }
+      it { expect { subject }.to change { account.reload.accumulative_balance_timeframe }.to('week') }
+    end
+
+    context 'with invalid params' do
+      let(:attributes) {{ accumulative_balance_timeframe: nil }}
+
+      it { expect(subject).not_to be_redirect }
+      it { expect { subject }.not_to(change { account.reload.accumulative_balance_timeframe }) }
+    end
+  end
+
   describe '#archive' do
     subject(:archive) { get :archive, params: { id: account } }
 

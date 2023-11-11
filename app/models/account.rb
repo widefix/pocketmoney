@@ -15,7 +15,7 @@ class Account < ApplicationRecord
 
   validates :name, presence: true
   validates :email, presence: true, if: :notification?
-  validates :accumulative_balance_timeframe, inclusion: { in: ['by day', 'by week', 'by month'] }
+  validates :accumulative_balance_timeframe, inclusion: { in: %w[day week month] }
 
   scope :unarchived, -> { where(archived_at: nil) }
   scope :archived, -> { where.not(archived_at: nil) }
@@ -52,7 +52,7 @@ class Account < ApplicationRecord
       WITH trs AS (
         SELECT
           id,
-          created_at::date AS date,
+          DATE_TRUNC('#{accumulative_balance_timeframe}', created_at)::date AS date,
           CASE WHEN to_account_id = #{id} THEN amount ELSE -amount END AS amount
         FROM transactions
         WHERE to_account_id = #{id} OR from_account_id = #{id}

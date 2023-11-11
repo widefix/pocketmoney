@@ -255,65 +255,7 @@
               = link_to edit_account_account_automatic_topup_config_path(account, automatic_topup_configs), class: 'button pr-0  is-white has-text-weight-bold has-text-budgeting-kid-color' do
                 figure.image.is-16x16.is-budgeting-kid-light-color
                   = image_tag('edit.svg')
-  / desktop
-  .column.box.m-2.for-desktop
-    .mt-5
-      #desktop-chart-settings.m-3.ml-5.is-hidden
-        .is-flex.is-align-items-center.is-justify-content-space-between.mb-5
-          .is-flex
-            .title.is-black-budgeting-kid-color Accumulative Balance Settings
-          = link_to '#', id: 'close-desktop-chart-setting-button' do
-            figure.icon.has-text-budgeting-kid-color
-              i.fa.fa-times.fa-lg
-        = form_with(model: account, url: update_timeframe_account_path, method: :patch, remote: true) do |f|
-          .field.is-size-5.has-text-dark-gray-budgeting-kid-color.mb-6
-            .mb-4.is-size-6
-              = f.label :accumulative_balance_timeframe, "Select how to display the chart:"
-            .is-flex.is-flex-direction-column
-              label.radio.ml-2.mb-4.radio_color
-                = f.radio_button :accumulative_balance_timeframe, 'by day'
-                | &nbsp; By Day
-              label.radio.mb-4.radio_color
-                = f.radio_button :accumulative_balance_timeframe, 'by week'
-                | &nbsp; By Week
-              label.radio.mb-4.radio_color
-                = f.radio_button :accumulative_balance_timeframe, 'by month'
-                | &nbsp; By Month
 
-          .field.is-flex.is-justify-content-flex-end.mt-4
-            = f.submit 'Save', class: 'button is-primary', data: { disable_with: "Please wait..." }
-
-      - if account.accumulative_balance_data.present?
-        #desktop-chart= render partial: "topups/modal"
-= render partial: "spends/modal"
-          .is-flex.is-align-items-center.is-justify-content-space-between
-            p.has-text-dark-gray-budgeting-kid-color.pl-8.is-size-5 Accumulative Balance
-            = link_to '#', id: 'open-desktop-chart-setting-button' do
-              figure.icon.mr-2.has-text-budgeting-kid-color
-                i.fa.fa-cog.fa-lg
-          = area_chart account.accumulative_balance_data, colors: ["#DAD7FE", "#DAD7FE"]
-      - else
-        .m-5
-          .title.is-black-budgeting-kid-color Accumulative Balance
-          .columns.p-1.mb-0.is-flex.is-centered
-            figure.image.is-48x48.is-loupe-color
-              = image_tag('loupe.svg', alt: 'No..., yet')
-          p.has-text-centered.mt-2 Balance is empty.
-  / mobile
-  .column.box.m-2.for-mobile
-    - if account.accumulative_balance_data.present?
-      .is-flex.is-align-items-center.is-justify-content-space-between
-        p.has-text-dark-gray-budgeting-kid-color.pl-8.is-size-5 Accumulative Balance
-        figure.icon.mr-2.is-budgeting-kid-color
-          i.fa.fa-cog.is-16x16
-      = area_chart account.accumulative_balance_data, colors: ["#DAD7FE", "#DAD7FE"]
-    - else
-      .title.is-4.is-black-budgeting-kid-color
-        | Accumulative Balance
-      .columns.p-1.mb-0.is-flex.is-centered
-        figure.image.is-48x48.is-loupe-color
-          = image_tag('loupe.svg', alt: 'No..., yet')
-      p.has-text-centered.mt-2 Balance is empty.
-
+  = render partial: 'accumulative_balance'
 = render partial: "topups/modal"
 = render partial: "spends/modal"

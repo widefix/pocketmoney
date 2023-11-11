@@ -19,7 +19,8 @@ class AccountsController < ApplicationController
   end
 
   def update_timeframe
-    account.update(accumulative_balance_timeframe: ps[:accumulative_balance_timeframe])
+    account.update(accumulative_balance_timeframe)
+    redirect_to account_path(anchor: 'chart')
   end
 
   def create
@@ -51,5 +52,9 @@ class AccountsController < ApplicationController
 
   helper_method memoize def account
     Account.visible_for(current_user).unarchived.find(ps.fetch(:id))
+  end
+
+  def accumulative_balance_timeframe
+    { accumulative_balance_timeframe: ps[:account].fetch(:accumulative_balance_timeframe) }
   end
 end

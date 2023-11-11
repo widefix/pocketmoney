@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2023_11_10_144256) do
     t.boolean "notification", default: false
     t.datetime "archived_at"
     t.boolean "notify_parents", default: true
-    t.string "accumulative_balance_timeframe", default: "by day"
+    t.string "accumulative_balance_timeframe", default: "day"
     t.index ["parent_id"], name: "index_accounts_on_parent_id"
   end
 

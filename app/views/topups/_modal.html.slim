@@ -9,7 +9,7 @@
         .field.mt-2
           = f.label "Amount to be added"
         .field
-          = f.text_field :amount, autofocus: true, type: 'number', min: '1', class: "input"
+          = f.text_field :amount, autofocus: true, type: 'number', min: '1', class: "input", required: true
         .field
           = f.label "Description (optional)"
         .field

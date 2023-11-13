@@ -13,7 +13,7 @@
     / common
     .column.is-flex.is-align-items-center.is-justify-content-flex-end
       - if account.children.unarchived.present? || shared_accounts.present?
-        = button_to new_account_path, class: 'button is-primary has-text-weight-bold'
+        = button_to new_account_path, method: :get, class: 'button is-primary has-text-weight-bold'
           figure.file-icon.image.is-18x18
             = image_tag('add_account.svg', alt: 'add-account')
           | Add account

@@ -255,12 +255,7 @@
               = link_to edit_account_account_automatic_topup_config_path(account, automatic_topup_configs), class: 'button pr-0  is-white has-text-weight-bold has-text-budgeting-kid-color' do
                 figure.image.is-16x16.is-budgeting-kid-light-color
                   = image_tag('edit.svg')
-  .column.box.m-2
-    div.mt-5
-      - if account.accumulative_balance_data.present?
-        p.has-text-dark-gray-budgeting-kid-color style="padding-left: 70px;"
-          | Accumulative Balance
-        = area_chart account.accumulative_balance_data, colors: ["#DAD7FE", "#DAD7FE"]
 
+  = render partial: 'accumulative_balance'
 = render partial: "topups/modal"
 = render partial: "spends/modal"

@@ -454,6 +454,10 @@ button.is-gray:hover {
   border-radius: 12px;
 }
 
+.radio_color {
+  accent-color: $primary-budgeting-kid-color;
+}
+
 .navbar-dropdown.for-desktop {
   top: calc(100% + (11px)) !important;
   border: 1px solid #ddd !important;

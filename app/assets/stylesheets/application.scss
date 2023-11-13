@@ -453,3 +453,27 @@ button.is-gray:hover {
 .modal-card-body {
   border-radius: 12px;
 }
+
+.navbar-dropdown.for-desktop {
+  top: calc(100% + (11px)) !important;
+  border: 1px solid #ddd !important;
+  box-shadow: none !important;
+}
+
+.navbar-dropdown.for-desktop::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: 25px;
+  border: 10px solid transparent;
+  border-bottom-color: #ddd;
+}
+
+.navbar-dropdown.for-desktop::after {
+  content: '';
+  position: absolute;
+  top: -19px;
+  right: 25px;
+  border: 10px solid transparent;
+  border-bottom-color: #fff;
+}

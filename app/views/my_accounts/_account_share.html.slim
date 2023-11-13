@@ -1,5 +1,19 @@
-tr
-  td= account_share.account.name
-  td= account_share.account.parent.email
-  td= account_share.created_at.to_formatted_s(:short)
-  td= link_to 'accept', accept_account_share_url(token: account_share.token)
+p.title.is-4.has-text-centered.pt-4 Unaccepted shares
+.columns.unaccepted-shares
+  .column
+    .card
+      .card-content.px-1
+        .table-container
+          table.table.is-fullwidth.is-striped
+            thead
+              tr
+                th Account
+                th From
+                th Created
+                th Actions
+            tbody
+              tr
+                td= account_share.account.name
+                td= account_share.account.parent.email
+                td= account_share.created_at.to_formatted_s(:short)
+                td= link_to 'accept', accept_account_share_url(token: account_share.token)

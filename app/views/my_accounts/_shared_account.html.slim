@@ -47,7 +47,7 @@ p.title.is-4.is-black-budgeting-kid-color.has-text-centered.pt-4 Shared accounts
         p.my-2
           span.subtitle.is-6.mr-2 Balance:
           span.title.is-4.is-budgeting-kid-color #{shared_account.balance}
-    .buttons.is-flex-wrap-nowrap
+    .buttons
       = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(shared_account) }, class: 'button m-1 is-plus-color' do
         figure.file-icon.image.is-24x24
           = image_tag('plus-circle-green.svg', alt: '+')

@@ -1,0 +1,52 @@
+.card.box.accounts.p-0
+  / desktop
+  .card-content.p-0.for-desktop
+    .columns.is-flex.is-justify-content-center.is-align-items-center
+      .column.is-1.is-flex.px-0.ml-4.is-justify-content-center.is-align-items-center
+        = link_to account_path(child), class:"pt-2" do
+          img src=asset_path(avatar_for(child)) class="rounded-avatar small" id='image-preview'
+      .column.is-flex.is-justify-content-center.is-align-items-center
+        .subtitle.is-4.has-limit-width.has-text-centered.is-black-budgeting-kid-color
+          p= child.name
+      .column.is-flex
+        p
+          span.subtitle.is-6.pl-6  Balance:&nbsp;&nbsp;
+          span.title.is-4.is-budgeting-kid-color #{child.balance}
+      .column.is-4.is-flex.is-justify-content-center.is-align-items-center
+        .buttons
+          = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(child) }, class: 'button mx-2 is-plus-color is-medium'
+            figure.file-icon.image.is-24x24
+              = image_tag('plus-circle-green.svg', alt: '+')
+            | Increase
+          = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(child) }, class: 'button mx-2 is-minus-color is-medium'
+            figure.file-icon.image.is-24x24
+              = image_tag('minus-circle-red.svg', alt: '-')
+            | Decrease
+      .column.is-1.is-flex.is-justify-content-center.is-align-items-center
+        .buttons.is-justify-content-end
+          = button_to account_path(child), method: :get, class: 'button is-gray mr-3' do
+            span.icon
+              i.fa.fa-chevron-right
+  / mobile
+  .card-content.for-mobile.p-4
+    .buttons.top-right-button
+      = button_to account_path(child), method: :get, class: 'button is-gray mr-3' do
+        span.icon
+          i.fa.fa-chevron-right
+    .div.is-flex.is-flex-direction-column.is-align-items-center
+      = link_to account_path(child), class:"pt-2" do
+        img src=asset_path(avatar_for(child)) class="rounded-avatar" id='image-preview'
+      h3.title.is-4.has-text-centered.mt-2.is-black-budgeting-kid-color
+        p= child.name
+        p.my-2
+          span.subtitle.is-6 Balance:&nbsp;&nbsp;
+          span.title.is-4.is-budgeting-kid-color #{child.balance}
+    .buttons
+      = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(child) }, class: 'button m-1 is-plus-color' do
+        figure.file-icon.image.is-24x24
+          = image_tag('plus-circle-green.svg', alt: '+')
+        | Increase
+      = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(child) }, class: 'button m-1 is-minus-color' do
+        figure.file-icon.image.is-24x24
+          = image_tag('minus-circle-red.svg', alt: '-')
+        | Decrease

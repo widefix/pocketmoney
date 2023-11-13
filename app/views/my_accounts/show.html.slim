@@ -1,175 +1,38 @@
-.columns.mb-5.mx-4
-  / desktop
-  .column.for-desktop.is-flex.is-align-items-center
-    .image.is-60x60
-      = image_tag("waving_hand.svg")
-    span.title.is-3.is-black-budgeting-kid-color &nbsp; Hi, Welcome back
-  / mobile
-  .column.for-mobile.is-flex.is-justify-content-center.is-align-items-center
-    .image.is-48x48
-      = image_tag("waving_hand.svg")
-    span.title.is-4.is-black-budgeting-kid-color &nbsp; Hi, Welcome back
-  / common
-  .column.is-flex.is-align-items-center.is-justify-content-flex-end
-    - if account.children.unarchived.present? || shared_accounts.present?
-      = button_to new_account_path, method: :get, class: 'button is-primary mr-2' do
-        span.icon
-          i.fa.fa-plus
-        | &nbsp; Add account
-      - if archived_accounts.present?
-        .dropdown.is-right
-          .dropdown-trigger
-            button.button.is-light
-              span.icon
-                i.fa.fa-ellipsis-h
-          .dropdown-menu
-            .dropdown-content
-              = link_to 'Archived accounts', archived_accounts_path, method: :get, class: 'dropdown-item'
-
 - if account.children.unarchived.present? || shared_accounts.present?
-  - account.children.unarchived.each do |child|
-    .card.box.accounts.p-0
-      / desktop
-      .card-content.p-0.for-desktop
-        .columns.is-flex.is-justify-content-center.is-align-items-center
-          .column.is-1.is-flex.px-0.ml-4.is-justify-content-center.is-align-items-center
-            = link_to account_path(child), class:"pt-2" do
-              img src=asset_path(avatar_for(child)) class="rounded-avatar small" id='image-preview'
-          .column.is-flex.is-justify-content-center.is-align-items-center
-            .subtitle.is-4.has-limit-width.has-text-centered.is-black-budgeting-kid-color
-              p= child.name
-          .column.is-flex
-            p
-              span.subtitle.is-6.pl-6  Balance:&nbsp;&nbsp;
-              span.title.is-4.is-budgeting-kid-color #{child.balance}
-          .column.is-4.is-flex.is-justify-content-center.is-align-items-center
-            .buttons
-              = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(child) }, class: 'button mx-2 is-plus-color is-medium'
-                figure.image.is-24x24
-                  = image_tag('plus-circle-green.svg', alt: '+')
-                | &nbsp; Increase
-              = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(child) }, class: 'button mx-2 is-minus-color is-medium'
-                figure.image.is-24x24
-                  = image_tag('minus-circle-red.svg', alt: '-')
-                | &nbsp; Decrease
-          .column.is-1.is-flex.is-justify-content-center.is-align-items-center
-            .buttons.is-justify-content-end
-              = button_to account_path(child), method: :get, class: 'button is-gray mr-3' do
+  .columns.mb-5.mx-4
+    / desktop
+    .column.for-desktop.is-flex.is-align-items-center
+      .image.is-60x60
+        = image_tag("waving_hand.svg")
+      span.title.is-3.is-black-budgeting-kid-color &nbsp; Hi, Welcome back
+    / mobile
+    .column.for-mobile.is-flex.is-justify-content-center.is-align-items-center
+      .image.is-48x48
+        = image_tag("waving_hand.svg")
+      span.title.is-4.is-black-budgeting-kid-color &nbsp; Hi, Welcome back
+    / common
+    .column.is-flex.is-align-items-center.is-justify-content-flex-end
+      - if account.children.unarchived.present? || shared_accounts.present?
+        = link_to new_account_path, class: 'button is-primary has-text-weight-bold'
+          figure.file-icon.image.is-18x18
+            = image_tag('add_account.svg', alt: 'add-account')
+          | Add account
+        - if archived_accounts.present?
+          .dropdown.is-right
+            .dropdown-trigger
+              button.button.is-light
                 span.icon
-                  i.fa.fa-chevron-right
-      / mobile
-      .card-content.for-mobile.p-4
-        .buttons.top-right-button
-          = button_to account_path(child), method: :get, class: 'button is-gray mr-3' do
-            span.icon
-              i.fa.fa-chevron-right
-        .div.is-flex.is-flex-direction-column.is-align-items-center
-          = link_to account_path(child), class:"pt-2" do
-            img src=asset_path(avatar_for(child)) class="rounded-avatar" id='image-preview'
-          h3.title.is-4.has-text-centered.mt-2.is-black-budgeting-kid-color
-            p= child.name
-            p.my-2
-              span.subtitle.is-6 Balance:&nbsp;&nbsp;
-              span.title.is-4.is-budgeting-kid-color #{child.balance}
-        .buttons
-          = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(child) }, class: 'button m-1 is-plus-color' do
-            figure.image.is-24x24
-              = image_tag('plus-circle-green.svg', alt: '+')
-            | &nbsp; Increase
-          = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(child) }, class: 'button m-1 is-minus-color' do
-            figure.image.is-24x24
-              = image_tag('minus-circle-red.svg', alt: '-')
-            | &nbsp; Decrease
-  br
-  - if shared_accounts.present?
-    .box.has-text-centered
-      p.title.is-4.is-black-budgeting-kid-color Shared accounts
-    - shared_accounts.each do |shared_account|
-      .card.box.shared-accounts.p-0
-        / desktop
-        .card-header.for-desktop
-          .card-header-title.is-black-budgeting-kid-color
-            | Account owner: #{shared_account.parent.email}
-        .card-content.p-0.for-desktop
-          .columns.is-flex.is-justify-content-center.is-align-items-center
-            .column.is-1.is-flex.px-0.ml-4.is-justify-content-center.is-align-items-center
-              = link_to account_path(shared_account), class:"pt-2" do
-                img src=asset_path(avatar_for(shared_account)) class="rounded-avatar small" id='image-preview'
-            .column.is-flex.is-justify-content-center.is-align-items-center
-              .subtitle.is-4.has-text-centered.is-black-budgeting-kid-color
-                p= shared_account.name
-            .column.is-flex
-              p
-                span.subtitle.is-6.pl-6  Balance :&nbsp;&nbsp;
-                span.title.is-4.is-budgeting-kid-color #{shared_account.balance}
-            .column.is-4.is-flex.is-justify-content-center.is-align-items-center
-              .buttons
-                = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(shared_account) }, class: 'button mx-2 is-plus-color is-medium' do
-                  figure.image.is-24x24
-                    = image_tag('plus-circle-green.svg', alt: '+')
-                  | &nbsp; Increase
-                = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(shared_account) }, class: 'button mx-2 is-minus-color is-medium' do
-                  figure.image.is-24x24
-                    = image_tag('minus-circle-red.svg', alt: '-')
-                  | &nbsp; Decrease
-            .column.is-1.is-flex.is-justify-content-center.is-align-items-center
-              .buttons.is-justify-content-end
-                = button_to account_path(shared_account), method: :get, class: 'button is-gray ' do
-                  span.icon
-                    i.fa.fa-chevron-right
-        / mobile
-        .card-header-title.for-mobile.is-centered.is-black-budgeting-kid-color
-          | Account owner: #{shared_account.parent.email}
-        .card-content.for-mobile
-          .buttons.top-right-shared-account-button
-            = button_to account_path(shared_account), method: :get, class: 'button is-gray mr-3' do
-              span.icon
-                i.fa.fa-chevron-right
-          .div.is-flex.is-flex-direction-column.is-align-items-center
-            = link_to account_path(shared_account), class:"pt-2" do
-              img src=asset_path(avatar_for(shared_account)) class="rounded-avatar" id='image-preview'
-            h3.title.is-4.has-text-centered.mt-2.is-black-budgeting-kid-color
-              p= shared_account.name
-              p
-                span.subtitle.is-6 Balance:&nbsp;&nbsp;
-                span.title.is-4.is-budgeting-kid-color #{shared_account.balance}
-          .buttons
-            = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(shared_account) }, class: 'button m-1 is-plus-color' do
-              figure.image.is-24x24
-                = image_tag('plus-circle-green.svg', alt: '+')
-              | &nbsp; Increase
-            = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(shared_account) }, class: 'button m-1 is-minus-color' do
-              figure.image.is-24x24
-                = image_tag('minus-circle-red.svg', alt: '-')
-              | &nbsp; Decrease
-  br
+                  i.fa.fa-ellipsis-h
+            .dropdown-menu
+              .dropdown-content
+                = link_to 'Archived accounts', archived_accounts_path, method: :get, class: 'dropdown-item'
+  
+  = render partial: 'child', collection: account.children.unarchived
+
   - if unaccepted_shares.present?
-    .box.has-text-centered
-      p.title.is-4 Unaccepted shares
-    .columns.unaccepted-shares
-      .column
-        .card
-          .card-content.px-1
-            .table-container
-              table.table.is-fullwidth.is-striped
-                thead
-                  tr
-                    th Account
-                    th From
-                    th Created
-                    th Actions
-                tbody
-                  = render partial: 'account_share', collection: unaccepted_shares.order(created_at: :desc)
+    = render partial: 'account_share', collection: unaccepted_shares.order(created_at: :desc)
 - else
-    .hero.is-medium.has-text-centered
-      .hero-body
-        .container
-          .columns.is-centered
-            div.column.is-8
-              h1.title.titled.is-5.mb-6
-                p Welcome to our app!
-                p We invite you to embark on your journey by creating your first account
-              = link_to 'Add account', new_account_path, class: 'button is-primary'
+  = render partial: 'accounts_empty'
 
 = render partial: "topups/modal"
 = render partial: "spends/modal"

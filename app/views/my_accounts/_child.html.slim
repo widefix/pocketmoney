@@ -41,7 +41,7 @@
         p.my-2
           span.subtitle.is-6 Balance:&nbsp;&nbsp;
           span.title.is-4.is-budgeting-kid-color #{child.balance}
-    .buttons
+    .buttons.is-justify-content-center
       = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(child) }, class: 'button m-1 is-plus-color' do
         figure.file-icon.image.is-24x24
           = image_tag('plus-circle-green.svg', alt: '+')

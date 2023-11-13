@@ -3,12 +3,12 @@
 require 'rails_helper'
 
 RSpec.feature 'Account', type: :feature do
-  let(:account) { create(:account, :parent) }
-  let(:user) { create(:user, account: account) }
-  let(:child) { create(:account, :children, parent: account) }
+  let(:parent_account) { create(:account, :parent) }
+  let(:user) { create(:user, account: parent_account) }
+  let(:account) { create(:account, :children, parent: parent_account) }
   let!(:objective) { create(:objective, account: account) }
-  let!(:transaction) { create(:transaction, to_account: child, from_account: account) }
-  let!(:automatic_topup_config) { create(:account_automatic_topup_config, from_account: account, to_account: account) }
+  let!(:transaction) { create(:transaction, to_account: account, from_account: parent_account) }
+  let!(:automatic_topup_config) { create(:account_automatic_topup_config, from_account: parent_account, to_account: account) }
 
   before { sign_in user }
 
@@ -19,6 +19,7 @@ RSpec.feature 'Account', type: :feature do
     expect(page).to have_link('Edit Account', href: edit_account_path(account))
     expect(page).to have_link('Share Account', href: account_shares_path(account))
     expect(page).to have_link('Archive Account', href: archive_account_path(account))
+      .or(have_link('Terminate Account', href: terminate_shared_account_path(account)))
     expect(page).to have_content(account.name)
     expect(page).to have_content(account.balance)
     expect(page).to have_button('Increase')

@@ -2,7 +2,12 @@
 .columns
   .column.is-two-fifths.box.m-2
     div.p-4.mb-4
-      .columns
+      - if account.parent.email != current_user.email
+        .columns
+          .column.is-flex.is-justify-content-center.is-align-items-center
+            .has-text-weight-bold
+              | Account owner: #{account.parent.email}
+      .columns.is-mobile
         .column.is-4.is-flex.is-justify-content-center.is-align-items-center
           img src=asset_path(avatar_for(account)) class="rounded-avatar" id='image-preview'
         / desktop
@@ -24,10 +29,16 @@
         figure.image.is-16x16.is-budgeting-kid-light-color
           = image_tag('edit.svg')
         | &nbsp; Edit Account
-      = link_to  archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px" do
-        span.icon
-          i.fa.fa-archive
-        | &nbsp; Archive Account
+      - if account.parent.email == current_user.email
+        = link_to archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px" do
+          span.icon
+            i.fa.fa-archive
+          | &nbsp; Archive Account
+      - else
+        = link_to terminate_shared_account_path(account), method: :patch, data: {confirm: 'Would you like to terminate this account?'}, class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4' do
+          span.icon
+            i.fa.fa-sign-out
+          | &nbsp; Terminate Account
   / mobile
   .column.for-mobile.box.mb-5.is-flex.is-justify-content-center.is-align-items-center
     .buttons.mb-4
@@ -37,9 +48,14 @@
       = link_to edit_account_path(account), class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px; " do
         figure.image.is-16x16.is-budgeting-kid-light-color
           = image_tag('edit.svg')
-      = link_to archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px" do
-        span.icon
-          i.fa.fa-archive
+      - if account.parent.email == current_user.email
+        = link_to archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px" do
+          span.icon
+            i.fa.fa-archive
+      - else
+        = link_to terminate_shared_account_path(account), method: :patch, data: {confirm: 'Would you like to terminate this account?'}, class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px" do
+          span.icon
+            i.fa.fa-sign-out
 / desktop
 .box.for-desktop.is-flex.is-justify-content-center.is-align-items-center
   div

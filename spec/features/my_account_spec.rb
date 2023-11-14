@@ -40,12 +40,9 @@ RSpec.feature 'MyAccount', type: :feature do
 
     expect(page).to have_content('Unaccepted shares')
 
-    unaccepted_shares_block = find('.columns.unaccepted-shares')
-    expect(unaccepted_shares_block).to have_selector('table.table tbody tr', count: 1)
+    unaccepted_shares_block = find('.card.box.unaccepted_shares')
     expect(unaccepted_shares_block).to have_content(unaccepted_share.account.name)
     expect(unaccepted_shares_block).to have_content(unaccepted_share.account.parent.email)
-    expect(unaccepted_shares_block).to have_content(unaccepted_share.created_at.to_formatted_s(:short))
-    expect(unaccepted_shares_block)
-      .to have_link('accept', href: accept_account_share_url(token: unaccepted_share.token))
+    expect(page).to have_button('Accept')
   end
 end

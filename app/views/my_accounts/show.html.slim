@@ -26,28 +26,15 @@
             .dropdown-menu
               .dropdown-content
                 = link_to 'Archived accounts', archived_accounts_path, method: :get, class: 'dropdown-item'
-  
+
   = render partial: 'child', collection: account.children.unarchived
   - if shared_accounts.present?
     p.title.is-4.is-black-budgeting-kid-color.has-text-centered.pt-4 Shared accounts
     = render partial: 'shared_account', collection: shared_accounts
 
   - if unaccepted_shares.present?
-    p.title.is-4.has-text-centered.pt-4 Unaccepted shares
-    .columns.unaccepted-shares
-      .column
-        .card
-          .card-content.px-1
-            .table-container
-              table.table.is-fullwidth.is-striped
-                thead
-                  tr
-                    th Account
-                    th From
-                    th Created
-                    th Actions
-                tbody
-                  = render partial: 'account_share', collection: unaccepted_shares.order(created_at: :desc)
+    p.title.is-4.is-black-budgeting-kid-color.has-text-centered.py-4 Unaccepted shares
+    = render partial: 'unaccepted_share', collection: unaccepted_shares.order(created_at: :desc)
 - else
   = render partial: 'accounts_empty'
 

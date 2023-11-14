@@ -1,0 +1,34 @@
+.card.box.unaccepted_shares.p-0
+  / desktop
+  .card-content.p-0.for-desktop
+    .columns.is-flex.is-justify-content-center.is-align-items-center
+      .column.is-1.is-flex.px-0.py-4.ml-4.is-justify-content-center.is-align-items-center
+        img src=asset_path(avatar_for(unaccepted_share.account)) class="rounded-avatar small" id='image-preview'
+      .column.is-3.is-flex.is-justify-content-center.is-align-items-center
+        .subtitle.is-4.has-text-centered.is-black-budgeting-kid-color
+          p= unaccepted_share.account.name
+      .column.is-flex
+        p
+          span.subtitle.is-6.pl-6.mr-2 Account owner:
+          span.title.is-6.is-budgeting-kid-color #{unaccepted_share.account.parent.email}
+      .column.is-4.is-flex.is-justify-content-center.is-align-items-center
+        .buttons
+          = button_to accept_account_share_url(token: unaccepted_share.token), method: :get, class: 'button px-6 is-medium is-plus-color' do
+            span.icon.mr-1
+              i.fa.fa-check-square-o
+            | Accept
+
+  / mobile
+  .card-header-title.for-mobile.is-centered.is-black-budgeting-kid-color
+    | Account owner: #{unaccepted_share.account.parent.email}
+  .card-content.for-mobile.p-4
+    .div.is-flex.is-flex-direction-column.is-align-items-center
+      img src=asset_path(avatar_for(unaccepted_share.account)) class="rounded-avatar" id='image-preview'
+      h3.title.is-4.has-text-centered.my-2.is-black-budgeting-kid-color
+        p= unaccepted_share.account.name
+    .buttons.is-justify-content-center
+      .buttons
+        = button_to accept_account_share_url(token: unaccepted_share.token), method: :get, class: 'button px-6 is-plus-color' do
+          span.icon.mr-1
+            i.fa.fa-check-square-o
+          | Accept

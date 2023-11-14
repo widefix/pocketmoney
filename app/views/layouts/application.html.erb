@@ -65,13 +65,13 @@
 
   <body class=<%= show_application_background? ? 'with-background' : ''%>>
     <div class="container hero is-fullheight">
-      <nav class="navbar is-spaced has-shadow is-navbar-budgeting-kid-color"
+      <nav class="navbar is-spaced has-shadow <%= navbar_hide? ? 'hidden' : ''%> "
            role="navigation"
            aria-label="main navigation">
         <div class="navbar-brand">
           <%= link_to root_path, class: "navbar-item" do %>
             <%= image_tag 'logo.svg', size: "44"%>
-            <H2 class='budgeting-kid-logo-font px-4' > BUDGETINGkid </H2>
+            <H2 class='budgeting-kid-logo-font px-4 is-navbar-budgeting-kid-color' > BUDGETINGkid </H2>
           <% end %>
           <a role="button is-primary" class="navbar-burger" aria-label="menu" aria-expanded="true" data-target="navbarMenu">
             <span aria-hidden="true"></span>

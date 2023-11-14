@@ -3,6 +3,11 @@
 
 .columns.is-centered
   .column
+    .columns
+      .column.is-flex.is-align-items-center.p-0
+        span.figure.image.is-48x48
+          = image_tag 'logo.svg'
+        span.H2.budgeting-kid-logo-font.px-4.mb-1 BUDGETINGkid
     .columns.is-centered.is-mobile
       .column.is-four-fifths
         h2.title.for-desktop.is-4.has-text-centered.has-text-budgeting-kid-color = t('.login')

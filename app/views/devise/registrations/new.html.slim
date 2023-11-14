@@ -3,6 +3,11 @@
 
 .columns.is-centered
   .column
+    .columns
+      .column.is-flex.is-align-items-center.p-0
+        span.figure.image.is-48x48
+          = image_tag 'logo.svg'
+        span.H2.budgeting-kid-logo-font.px-4.mb-1 BUDGETINGkid
     .columns.is-centered.is-mobile
       .column.is-four-fifths
         h2.title.for-desktop.is-4.has-text-centered.has-text-budgeting-kid-color = t('.sign_up')
@@ -39,7 +44,7 @@
           .field
             = f.check_box :agreed_to_terms, { checked: true }, true, false
             = f.label :agreed_to_terms, class: 'ml-2' do
-              | I've read and accepted the 
+              | I've read and accepted the
               = link_to("Privacy Policy", policy_path)
           br
           .actions.is-flex.is-flex-direction-column.is-align-items-end

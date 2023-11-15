@@ -80,7 +80,7 @@ $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
   box-shadow: 0 0.1em 1em -0.125em rgba($scheme-invert, 0.1), 0 0px 0 1px rgba($scheme-invert, 0.02)
 }
 
-// navbar ->
+// navbar transparency ->
 .navbar {
   position: sticky;
   top: 0;
@@ -111,7 +111,11 @@ $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
     padding-top: 100px;
   }
 }
-// <- navbar
+
+.container-buttom-border {
+  border-bottom: 1px solid  hsl(0, 0%, 90%);
+}
+// <- navbar transparency
 
 .all-balance-button {
   position: absolute;
@@ -521,11 +525,6 @@ button.is-gray:hover {
 
 .hidden {
   display: none !important;
-}
-
-.container-buttom-border {
-  border-bottom: 1px solid  hsl(0, 0%, 90%);
-  border-radius: 14px;
 }
 
 .image.is-44x44 {

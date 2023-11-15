@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     resources :objectives, only: %i[new create]
     resources :shares, only: %i[index new create destroy], controller: 'account_shares'
     resources :public_account_shares, only: %i[new create]
+    resources :kid_account_shares, only: %i[new create]
 
     member do
       get 'archive', action: 'archive'

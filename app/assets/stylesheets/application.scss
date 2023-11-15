@@ -80,12 +80,38 @@ $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
   box-shadow: 0 0.1em 1em -0.125em rgba($scheme-invert, 0.1), 0 0px 0 1px rgba($scheme-invert, 0.02)
 }
 
+// navbar ->
 .navbar {
   position: sticky;
   top: 0;
-  border-radius: 14px;
   transition: transform 0.5s ease;
+  height: 108px;
 }
+
+.wrapper {
+  width:100%;
+  position:fixed;
+  z-index:10;
+  background:inherit;
+}
+
+.bottom-wrapper {
+  width:100%;
+  padding-top:130px;
+  z-index:5;
+  overflow:auto;
+}
+
+// mobile
+@media (max-width: 1024px) {
+  .navbar {
+    height: auto;
+  }
+  .bottom-wrapper {
+    padding-top: 100px;
+  }
+}
+// <- navbar
 
 .all-balance-button {
   position: absolute;
@@ -105,6 +131,7 @@ $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
   width: 100%;
   padding: 10px;
   background-color: hsl(0, 0%, 96%);
+  z-index:10;
 }
 
 .text-divider {
@@ -494,4 +521,9 @@ button.is-gray:hover {
 
 .hidden {
   display: none !important;
+}
+
+.container-buttom-border {
+  border-bottom: 1px solid  hsl(0, 0%, 90%);
+  border-radius: 14px;
 }

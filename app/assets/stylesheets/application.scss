@@ -127,6 +127,13 @@ $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
   background-color: white !important ;
 }
 
+.center-columns {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+ }
+
 .navbar-footer {
   transition: opacity 0.8s ease;
   border-top: 1px solid hsl(0, 0%, 90%);

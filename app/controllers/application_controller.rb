@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  helper_method def navbar_hide?
+  helper_method def navbar_buttons_hide?
     return true if %w[sessions registrations].include?(controller_name) && action_name == 'new'
     return true if controller_name == 'wizards'
 

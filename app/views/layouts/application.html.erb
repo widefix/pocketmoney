@@ -64,22 +64,22 @@
   </head>
 
   <body class=<%= show_application_background? ? 'with-background' : ''%>>
-    <nav class="navbar wrapper is-navbar-budgeting-kid-color <%= navbar_hide? ? 'hidden' : ''%>"
+    <nav class="navbar wrapper is-navbar-budgeting-kid-color"
           role="navigation"
           aria-label="main navigation">
-      <div class="container px-4 container-buttom-border">
+      <div class="container px-4 <%= navbar_buttons_hide? ? '' : 'container-buttom-border'%>">
         <div class="navbar-brand">
           <%= link_to root_path, class: "navbar-item" do %>
             <%= image_tag 'logo.svg', size: "44"%>
             <H2 class='budgeting-kid-logo-font px-4'> BUDGETINGkid </H2>
           <% end %>
-          <a role="button is-primary" class="navbar-burger" aria-label="menu" aria-expanded="true" data-target="navbarMenu">
+          <a role="button is-primary" class="navbar-burger <%= navbar_buttons_hide? ? 'hidden' : ''%>" aria-label="menu" aria-expanded="true" data-target="navbarMenu">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </a>
         </div>
-        <div id="navbarMenu" class="navbar-menu">
+        <div id="navbarMenu" class="navbar-menu <%= navbar_buttons_hide? ? 'hidden' : ''%>">
           <div class="navbar-end">
             <div class="navbar-item pb-4">
               <div class="buttons">
@@ -148,10 +148,8 @@
       </div>
     </nav>
 
-    <div class="container hero is-fullheight bottom-wrapper "
-      style=" <%= navbar_hide? ? 'padding-top: 36px;' : ''%>"
-    >
-      <section class="section is-fullheight py-0 ">
+    <div class="container hero is-fullheight bottom-wrapper " >
+      <section class="section is-fullheight py-0 <%= navbar_buttons_hide? ? 'center-columns' : ''%>">
         <%= yield %>
       </section>
 

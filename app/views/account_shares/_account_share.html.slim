@@ -2,6 +2,9 @@ tr
   - if account_share.public?
     td= 'public'
     td= 'public'
+  - elsif account_share.for_kid
+    td= account.name
+    td= 'for kid'
   - else
     td= account_share.name
     td= account_share.email
@@ -12,6 +15,8 @@ tr
     td= account_share.accepted_at&.to_formatted_s(:short)
   - if account_share.public?
     td= link_to 'link', public_account_path(token: account_share.token)
+  - elsif account_share.for_kid
+    td= account.parents_key
   - else
     td= link_to 'link', accept_account_share_url(token: account_share.token)
   td

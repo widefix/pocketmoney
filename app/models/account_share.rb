@@ -10,7 +10,7 @@ class AccountShare < ApplicationRecord
   scope :visible, -> { includes(:account).where(accounts: { archived_at: nil }) }
 
   memoize def public?
-    email.nil? && name.nil?
+    email.nil? && name.nil? && !for_kid
   end
 
   def terminated?

@@ -7,6 +7,11 @@ class KidAccountSharesController < ApplicationController
 
   def create
     account.update(parents_key: generate_unique_key)
+    AccountShare.create!(user_id: current_user.id,
+                         account_id: account.id,
+                         token: SecureRandom.urlsafe_base64(32),
+                         accepted_at: Time.current,
+                         for_kid: true)
     redirect_to account_shares_path(account)
   end
 

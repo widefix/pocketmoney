@@ -5,4 +5,4 @@
     | Choose Your Role
   .buttons.is-centered
     = link_to 'Parent', my_account_path, class: 'button is-primary is-medium is-3'
-    = link_to 'Kid', request.referer.present? ? request.referer : root_path, class: 'button is-primary is-medium is-3'
+    = link_to 'Kid', new_login_kid_path, class: 'button is-primary is-medium is-3'

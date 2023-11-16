@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',
-    omniauth_callbacks: 'users/omniauth_callbacks'
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    login_kids: 'users/login_kids'
   }
+
   resource :my_account, only: :show
 
   resource :wizard, only: [] do

@@ -1,4 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  layout 'initial_application', only: [:new]
+
   def new
     if params.key?(:email)
       self.resource = User.new(email: params[:email])

@@ -2,6 +2,7 @@
 
 class WizardsController < ApplicationController
   before_action :authenticate_user!
+  layout 'initial_application'
 
   def new_account; end
 

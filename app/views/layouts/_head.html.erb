@@ -1,4 +1,3 @@
-<title>BudgetingKid</title>
 <%= csrf_meta_tags %>
 <%= csp_meta_tag %>
 <%  title = content_for?(:title) ? yield(:title) : 'BudgetingKid - Foster good financial habits in your children'
@@ -8,10 +7,10 @@
         description
 %>
 
+<title><%= title %></title>
 <link rel="canonical" href="<%= current_url %>">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="title" content="<%= title %>">
 <meta name="description" content="<%= description.squish %>">
 
 <!-- twitter -->
@@ -40,21 +39,21 @@
 <%= favicon_link_tag 'favicons/favicon.svg'%>
 
 <% %w(16 32 48 96 144 192 256 384 512 70 150 310).each do |s| %>
-    <%= favicon_link_tag "favicons/favicon_#{s}.png",sizes: "#{s}x#{s}" %>
+  <%= favicon_link_tag "favicons/favicon_#{s}.png",sizes: "#{s}x#{s}" %>
 <% end %>
 
 <% %w(32 76 120 152 167 180).each do |s| %>
-    <%= favicon_link_tag "favicons/favicon_#{s}.png",sizes: "#{s}x#{s}", rel: 'apple-touch-icon', type: 'image/png' %>
+  <%= favicon_link_tag "favicons/favicon_#{s}.png",sizes: "#{s}x#{s}", rel: 'apple-touch-icon', type: 'image/png' %>
 <% end %>
 
 <% if ENV['GOOGLE_TAG_ID'] %>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= ENV['GOOGLE_TAG_ID'] %>"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= ENV['GOOGLE_TAG_ID'] %>"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    gtag('config', '<%= ENV['GOOGLE_TAG_ID'] %>');
-    </script>
+  gtag('config', '<%= ENV['GOOGLE_TAG_ID'] %>');
+  </script>
 <% end %>

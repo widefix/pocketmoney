@@ -11,10 +11,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-  helper_method def show_application_background?
-    user_signed_in? && controller_name != 'wizards'
-  end
-
   helper_method memoize def account
     Account.visible_for(current_user).unarchived.find(ps.fetch(:account_id))
   end

@@ -39,14 +39,14 @@
           .field
             = f.check_box :agreed_to_terms, { checked: true }, true, false
             = f.label :agreed_to_terms, class: 'ml-2' do
-              | I've read and accepted the 
+              | I've read and accepted the&nbsp;
               = link_to("Privacy Policy", policy_path)
           br
           .actions.is-flex.is-flex-direction-column.is-align-items-end
           .field.is-fullwidth
             = button_to registration_path(resource_name), class: 'button is-primary is-fullwidth', id: 'login-button' do
               span
-              | Login &nbsp;
+              | Signup &nbsp;
               figure.image.is-16x16
                 = image_tag('arrow-right.svg', alt: '->')
           br

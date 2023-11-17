@@ -1,0 +1,59 @@
+<%= csrf_meta_tags %>
+<%= csp_meta_tag %>
+<%  title = content_for?(:title) ? yield(:title) : 'BudgetingKid - Foster good financial habits in your children'
+    description = content_for?(:description) ? yield(:description) : <<~description
+        Empower Kids with Financial Wisdom. Teach, track, and save effortlessly with our app.
+        Start their journey to financial literacy now!
+        description
+%>
+
+<title><%= title %></title>
+<link rel="canonical" href="<%= current_url %>">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="<%= description.squish %>">
+
+<!-- twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<%= title %>">
+<meta name="twitter:description" content="<%= description.squish %>">
+<meta property="twitter:image" content="<%= image_url 'budgeting_kid_twitter.png' %>">
+<meta itemprop="name" content="<%= title %>">
+<meta itemprop="description" content="<%= description.squish %>">
+<meta itemprop="image" content="<%= image_url 'budgeting_kid_twitter.png' %>">
+<!-- twitter -->
+
+<!-- facebook -->
+<meta property="og:title" content="<%= title %>">
+<meta property="og:type" content="website">
+<meta property="og:url" content="<%= current_url %>">
+<meta property="og:description" content="<%= description.squish %>">
+<meta property="og:site_name" content="<%= title %>" />
+<meta property="og:image" itemprop="image" content="<%= image_url 'budgeting_kid_facebook.png'%>">
+<!-- facebook -->
+
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+<%= favicon_link_tag 'favicons/favicon.ico'%>
+<%= favicon_link_tag 'favicons/favicon.svg'%>
+
+<% %w(16 32 48 96 144 192 256 384 512 70 150 310).each do |s| %>
+  <%= favicon_link_tag "favicons/favicon_#{s}.png",sizes: "#{s}x#{s}" %>
+<% end %>
+
+<% %w(32 76 120 152 167 180).each do |s| %>
+  <%= favicon_link_tag "favicons/favicon_#{s}.png",sizes: "#{s}x#{s}", rel: 'apple-touch-icon', type: 'image/png' %>
+<% end %>
+
+<% if ENV['GOOGLE_TAG_ID'] %>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= ENV['GOOGLE_TAG_ID'] %>"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '<%= ENV['GOOGLE_TAG_ID'] %>');
+  </script>
+<% end %>

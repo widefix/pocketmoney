@@ -77,15 +77,47 @@ $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
 }
 
 .box {
-  box-shadow: 0 0.1em 1em -0.125em rgba($scheme-invert, 0.1), 0 0px 0 1px rgba($scheme-invert, 0.02)
+  box-shadow:
+    0 0.1em 1em -0.125em rgba($scheme-invert, 0.1),
+    0 0px 0 1px rgba($scheme-invert, 0.02);
 }
 
+// navbar transparency ->
 .navbar {
   position: sticky;
   top: 0;
-  border-radius: 14px;
   transition: transform 0.5s ease;
+  height: 108px;
 }
+
+.wrapper {
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+  background: inherit;
+}
+
+.bottom-wrapper {
+  width: 100%;
+  padding-top: 130px;
+  z-index: 5;
+  overflow: auto;
+}
+
+// mobile
+@media (max-width: 1024px) {
+  .navbar {
+    height: auto;
+  }
+  .bottom-wrapper {
+    padding-top: 100px;
+  }
+}
+
+.container-buttom-border {
+  border-bottom: 1px solid hsl(0, 0%, 90%);
+}
+// <- navbar transparency
 
 .all-balance-button {
   position: absolute;
@@ -97,6 +129,13 @@ $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
   background-color: white !important ;
 }
 
+.vcentered-columns {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .navbar-footer {
   transition: opacity 0.8s ease;
   border-top: 1px solid hsl(0, 0%, 90%);
@@ -105,6 +144,7 @@ $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
   width: 100%;
   padding: 10px;
   background-color: hsl(0, 0%, 96%);
+  z-index: 10;
 }
 
 .text-divider {
@@ -217,9 +257,9 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
-    appearance: textfield;
+  appearance: textfield;
 }
 
 button.is-plus-color {
@@ -465,7 +505,7 @@ button.is-gray:hover {
 }
 
 .navbar-dropdown.for-desktop::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -20px;
   right: 25px;
@@ -474,7 +514,7 @@ button.is-gray:hover {
 }
 
 .navbar-dropdown.for-desktop::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -19px;
   right: 25px;
@@ -490,4 +530,13 @@ button.is-gray:hover {
 .image.is-20x20 {
   width: 20px;
   height: 20px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.image.is-44x44 {
+  height: 44px;
+  width: 44px;
 }

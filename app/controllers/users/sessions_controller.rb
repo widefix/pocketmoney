@@ -2,6 +2,8 @@
 
 module Users
   class SessionsController < Devise::SessionsController
+    layout 'initial_application'
+
     def new
       if params.key?(:email)
         self.resource = User.new(email: params[:email])

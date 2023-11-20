@@ -1,5 +1,21 @@
-tr
-  td= transaction.date
-  td= transaction.signed_amount(public_account)
-  td= transaction.description
-  td= ''
+/ desktop
+tr.for-desktop
+  td.is-size-5.is-vcentered
+    = transaction.date
+  td.is-size-5.is-vcentered.has-text-dark-gray-budgeting-kid-color
+    = transaction.description
+  - if transaction.from_account == public_account
+    td.is-size-5.is-vcentered= transaction.signed_amount(public_account)
+  - else
+    td.is-size-5.is-vcentered= transaction.signed_amount(public_account)
+
+/ mobile
+tr.for-mobile
+  td.is-vcentered.p-0
+    = transaction.date
+  td.is-vcentered.has-text-dark-gray-budgeting-kid-color
+    = transaction.description
+  - if transaction.from_account == public_account
+    td.is-vcentered= transaction.signed_amount(public_account)
+  - else
+    td.is-vcentered= transaction.signed_amount(public_account)

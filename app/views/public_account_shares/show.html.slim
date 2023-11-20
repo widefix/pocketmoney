@@ -1,102 +1,185 @@
 #topup-utc-time data-utc-time= topup_utc_time
-h2.title.is-4
-  | Account details
-.buttons
-  = link_to my_account_path, class: 'button is-light' do
-    span.icon
-      i.fa.fa-chevron-left
-    | &nbsp; Back
 .columns
-  .column
-    .card
-      .card-header
-        .card-header-title.is-centered
-          h3.title.is-4= public_account.name
-      .card-content
-        nav.level
-          div.level-item.has-text-centered
-            div
-              p.heading Balance
-              p.title #{public_account.balance}
-.columns.transactions
-  .column
-    .card
-      .card-header
-        .card-header-title.is-centered
-          h3.title.is-4 History
-      .card-content.px-1
-        - transactions = public_account.transactions
-        -if transactions.empty?
-          .has-text-centered
-            i.fa.fa-calendar-times-o.fa-4x
-            p.mt-2 No transactions yet.
-        - else
-          .table-container
-            table.table.is-fullwidth.is-striped
-              thead
-                tr
-                  th Date
-                  th Amount
-                  th Description
-                  th Actions
-              tbody.toggleable
-                = render partial: 'transaction', collection: transactions, public_account: public_account
-          - if transactions.count > 10
-          .card-footer
-            = link_to "Show all", "#", id: "toggle-button", class: 'card-footer-item'
-.columns.objectives
-  .column
-    .card
-      .card-header
-        .card-header-title.is-centered
-          h3.title.is-4 Objectives
-      .card-content.px-1
-        - objectives = public_account.objectives
-        -if objectives.empty?
-          .has-text-centered
-            i.fa.fa-calendar-times-o.fa-4x
-            p.mt-2 No objectives yet.
-        - else
-          .table-container
-            table.table.is-fullwidth.is-striped
-              thead
-                tr
-                  th Name
-                  th Amount
-                  th Progress
-                  th Weeks to goal
-                  th Actions
-              tbody
-                = render partial: 'objective', collection: objectives, public_account: public_account
-.columns.automatic-topup-configs
-  .column
-    .card
-      .card-header
-        .card-header-title.is-centered
-          div
-            p.title.is-4.has-text-centered Weekly Automatic Topups
-            p.subtitle.is-6.is-light.has-text-centered
-              | This amount will be automatically added to the account every week on Fridays at&nbsp;
-              span#formatted-time
-      .card-content.px-1
-        - automatic_topup_configs = public_account.automatic_topup_configs
-        -if automatic_topup_configs.empty?
-          .has-text-centered
-            i.fa.fa-calendar-times-o.fa-4x
-            p.mt-2.mb-2 No weekly automatic topups yet.
-        - else
-          .table-container
-            table.table.is-fullwidth.is-striped
-              thead
-                tr
-                  th From
-                  th Amount
-                  th Actions
-              - automatic_topup_configs.each do |config|
-                tbody
-                  tr
-                    td= config.from_account.name
-                    td= config.amount
-                    td ''
-- if public_account.accumulative_balance_data.present?
-  = line_chart public_account.accumulative_balance_data, xtitle: 'Date', ytitle: 'Accumulative Balance'
+  / desktop
+  .column.for-desktop.box.m-2
+    div.p-4.mb-4
+      .columns
+        .column.is-flex.is-justify-content-center.is-align-items-center
+          .has-text-weight-bold
+            | Account owner: #{public_account.parent.email}
+      .columns.is-mobile
+        .column.is-4.is-flex.is-justify-content-center.is-align-items-center
+          img src=asset_path(avatar_for(public_account)) class="rounded-avatar" id='image-preview'
+        .column.is-flex.is-justify-content-flex-start.is-align-items-center
+          .title.is-black-budgeting-kid-color
+            = public_account.name
+  / mobile
+  .column.for-mobile.box
+    div.p-4
+      .columns
+        .column.is-flex.is-justify-content-center.is-align-items-center
+          .has-text-weight-bold
+            | Account owner: #{public_account.parent.email}
+      .columns.is-mobile
+        .column.is-4.px-0.is-flex.is-justify-content-center.is-align-items-center
+          img src=asset_path(avatar_for(public_account)) class="rounded-avatar" id='image-preview'
+        .column.p-0.is-flex.is-justify-content-center.is-align-items-center
+          .title.has-text-centered.is-black-budgeting-kid-color
+            = public_account.name
+  / desktop
+  .column.for-desktop.box.m-2.is-flex.is-justify-content-center.is-align-items-center
+    div
+      p.is-size-5.has-text-centered.mb-1
+        | Balance
+      p.title.is-2.is-budgeting-kid-color.has-text-centered #{public_account.balance}
+
+/ mobile
+.columns.box.for-mobile.p-2.is-flex.is-justify-content-center.is-align-items-center
+  div
+    p.is-size-5.has-text-centered.mb-1
+      | Balance
+    p.title.is-2.is-budgeting-kid-color.has-text-centered #{public_account.balance}
+
+/ Transaction History & Goals ----
+/ desktop
+.columns.for-desktop
+  .column.transactions.box.m-2
+    div.m-5
+      .title.is-black-budgeting-kid-color
+        | Transaction History
+      - transactions = public_account.transactions.first(3)
+      -if transactions.empty?
+        .columns.p-1.mb-0.is-flex.is-centered
+          figure.image.is-48x48.is-hint-icon-color
+            = image_tag('loupe.svg', alt: 'No..., yet')
+        p.has-text-centered.mt-2 No transactions yet.
+      - else
+        .table-container
+          table.table.is-fullwidth
+            thead
+              tr.has-text-left
+                th.has-text-light-gray-budgeting-kid-color Date
+                th.has-text-light-gray-budgeting-kid-color Description
+                th.has-text-light-gray-budgeting-kid-color Amount
+            tbody
+              = render partial: 'transaction', collection: transactions, account: public_account
+            tfoot
+              tr
+                th
+                th
+                th
+  .column.goals.box.m-2
+    div.m-5
+      .columns
+        .column
+          .title.is-black-budgeting-kid-color
+            | Goals
+      - objectives = public_account.objectives.last(2)
+      -if objectives.empty?
+        .columns.p-1.mb-0.is-flex.is-centered
+          figure.image.is-48x48.is-hint-icon-color
+            = image_tag('loupe.svg', alt: 'No..., yet')
+        p.has-text-centered.mt-2 No goals yet.
+      - else
+        .table-container
+          table.table.is-fullwidth
+            thead
+            tbody
+              = render partial: 'objective', collection: objectives, account: public_account
+            tfoot
+              tr
+                th
+                th
+                th
+                th
+/ mobile
+.columns.for-mobile.py-4
+  .column.box
+    div
+      .title.is-4.is-black-budgeting-kid-color
+        | Transaction History
+      - transactions = public_account.transactions.first(3)
+      -if transactions.empty?
+        .columns.p-1.mb-0.is-flex.is-centered
+          figure.image.is-48x48.is-hint-icon-color
+            = image_tag('loupe.svg', alt: 'No..., yet')
+        p.has-text-centered.mt-2 No transactions yet.
+
+      - else
+        .table-container
+          table.table.is-fullwidth.p-0
+            thead
+              tr.has-text-left
+                th.has-text-light-gray-budgeting-kid-color.pl-0 Date
+                th.has-text-light-gray-budgeting-kid-color Description
+                th.has-text-light-gray-budgeting-kid-color Amount
+            tbody
+              = render partial: 'transaction', collection: transactions, account: public_account
+            tfoot
+              tr
+                th
+                th
+                th
+  .column.box
+     div
+      .columns.is-mobile
+        .column
+          .title.is-4.is-black-budgeting-kid-color
+            | Goals
+      - objectives = public_account.objectives.last(2)
+      -if objectives.empty?
+        .columns.p-1.mb-0.is-flex.is-centered
+          figure.image.is-48x48.is-hint-icon-color
+            = image_tag('loupe.svg', alt: 'No..., yet')
+        p.has-text-centered.mt-2 No goals yet.
+      - else
+        .table-container
+          table.table.is-fullwidth
+            thead
+            tbody
+              = render partial: 'objective', collection: objectives, account: public_account
+            tfoot
+              tr
+                th
+                th
+
+/ Recurring balance increase & Accumulative balance ----
+.columns.mb-3.automatic-topup-configs
+  / desktop
+  .column.box.m-2.for-desktop
+    div.m-5.pb-2 style="border-bottom: 1px solid hsl(0, 0%, 86%)"
+      .title.is-black-budgeting-kid-color
+        | Recurring balance increase
+      .subtitle.is-6.is-vcentered.has-text-dark-gray-budgeting-kid-color
+        br
+        | This amount will be automatically added to the account every Friday at&nbsp;
+        span#formatted-time
+      - automatic_topup_configs = public_account.automatic_topup_configs.first
+      - if automatic_topup_configs.nil?
+        .columns
+          .column.is-flex.is-justify-content-flex-start.is-align-items-center
+            | No weekly automatic topups yet.
+      - else
+        .columns
+          .column
+            .title #{automatic_topup_configs.amount}
+  / mobile
+  .column.box.for-mobile
+    div style="border-bottom: 1px solid hsl(0, 0%, 86%)"
+      .title.is-4.is-black-budgeting-kid-color
+        | Recurring balance increase
+      .subtitle.is-6.is-vcentered.has-text-dark-gray-budgeting-kid-color
+        br
+        | This amount will be automatically added to the account every Friday at
+        span#formatted-time
+      - automatic_topup_configs = public_account.automatic_topup_configs.first
+      - if automatic_topup_configs.nil?
+        .columns.is-mobile
+          .column.is-flex.is-justify-content-flex-start.is-align-items-center
+            | No weekly automatic topups yet.
+      - else
+        .columns.is-mobile
+          .column
+            .title #{automatic_topup_configs.amount}
+
+  = render partial: 'accumulative_balance'

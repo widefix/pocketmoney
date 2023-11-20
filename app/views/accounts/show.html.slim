@@ -107,7 +107,7 @@
       - transactions = account.transactions.first(3)
       -if transactions.empty?
         .columns.p-1.mb-0.is-flex.is-centered
-          figure.image.is-48x48.is-loupe-color
+          figure.image.is-48x48.is-hint-icon-color
             = image_tag('loupe.svg', alt: 'No..., yet')
         p.has-text-centered.mt-2 No transactions yet.
       - else
@@ -141,7 +141,7 @@
       - objectives = account.objectives.last(2)
       -if objectives.empty?
         .columns.p-1.mb-0.is-flex.is-centered
-          figure.image.is-48x48.is-loupe-color
+          figure.image.is-48x48.is-hint-icon-color
             = image_tag('loupe.svg', alt: 'No..., yet')
         p.has-text-centered.mt-2 No goals yet.
       - else
@@ -165,7 +165,7 @@
       - transactions = account.transactions.first(3)
       -if transactions.empty?
         .columns.p-1.mb-0.is-flex.is-centered
-          figure.image.is-48x48.is-loupe-color
+          figure.image.is-48x48.is-hint-icon-color
             = image_tag('loupe.svg', alt: 'No..., yet')
         p.has-text-centered.mt-2 No transactions yet.
 
@@ -200,7 +200,7 @@
       - objectives = account.objectives.last(2)
       -if objectives.empty?
         .columns.p-1.mb-0.is-flex.is-centered
-          figure.image.is-48x48.is-loupe-color
+          figure.image.is-48x48.is-hint-icon-color
             = image_tag('loupe.svg', alt: 'No..., yet')
         p.has-text-centered.mt-2 No goals yet.
       - else
@@ -223,7 +223,7 @@
         | Recurring balance increase
       .subtitle.is-6.is-vcentered.has-text-dark-gray-budgeting-kid-color
         br
-        | This amount will be automatically added to the account every week on Fridays at&nbsp;
+        | This amount will be automatically added to the account every Friday at&nbsp;
         span#formatted-time
       - automatic_topup_configs = account.automatic_topup_configs.first
       - if automatic_topup_configs.nil?
@@ -256,7 +256,7 @@
         | Recurring balance increase
       .subtitle.is-6.is-vcentered.has-text-dark-gray-budgeting-kid-color
         br
-        | This amount will be automatically added to the account every week on Fridays at
+        | This amount will be automatically added to the account every Friday at
         span#formatted-time
       - automatic_topup_configs = account.automatic_topup_configs.first
       - if automatic_topup_configs.nil?

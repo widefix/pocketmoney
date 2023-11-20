@@ -6,8 +6,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',
-    omniauth_callbacks: 'users/omniauth_callbacks',
-    login_kids: 'users/login_kids'
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
   resource :my_account, only: :show
@@ -30,7 +29,7 @@ Rails.application.routes.draw do
     resources :objectives, only: %i[new create]
     resources :shares, only: %i[index new create destroy], controller: 'account_shares'
     resources :public_account_shares, only: %i[new create]
-    resources :kid_account_shares, only: %i[new create]
+    resources :kid_account_shares, only: %i[new create destroy]
 
     member do
       get 'archive', action: 'archive'
@@ -49,6 +48,8 @@ Rails.application.routes.draw do
       get 'restore', action: 'restore'
     end
   end
+
+  resources :sign_in_kids, only: %i[new create]
 
   get '/policy', to: 'policy#show'
   get '/choose_role', to: 'choose_role#index'

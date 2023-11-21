@@ -4,7 +4,7 @@ tr
     td= 'public'
   - elsif account_share.for_kid
     td= account.name
-    td= 'for kid'
+    td= account.email.blank? ? 'for kid' : account.email
   - else
     td= account_share.name
     td= account_share.email
@@ -21,7 +21,7 @@ tr
     td= link_to 'link', accept_account_share_url(token: account_share.token)
   td
     - if account_share.for_kid?
-      =link_to account_kid_account_share_path(account, account_share), method: :delete, data: {confirm: 'Cancel this share?'}, class: 'button is-small is-light' do
+      =link_to account_share_for_kid_path(account, account_share, parents_key: account.parents_key), method: :delete, data: {confirm: 'Cancel this share?'}, class: 'button is-small is-light' do
         span.icon
           i.fa.fa-undo
         | &nbsp; Cancel

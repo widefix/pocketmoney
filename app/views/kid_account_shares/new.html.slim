@@ -2,7 +2,7 @@
   .column.is-one-third
     h1.title.is-5.has-text-centered
       | Share Account for your Kid:
-    = form_with(url: account_kid_account_shares_path, method: :post) do |form|
+    = form_with(url: account_share_for_kids_path, method: :post) do |form|
       .buttons.is-centered
         = link_to account_shares_path(account), class: 'button is-light' do
           span.icon

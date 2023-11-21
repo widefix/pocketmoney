@@ -18,19 +18,20 @@
                   | Add photo
       .field.mb-4
         = f.text_field :name, autofocus: true, class: "input", placeholder: "Name"
-      .field
-        = f.check_box :notification, class: "checkbox mr-2", id: 'notification-check-box'
-        = f.label :notification, "Report transactions"
-      .field.mb-4
-        = f.email_field :email, disabled: !account.notification, autocomplete: "email", id:"email-input",  placeholder: "email", required: true
-        .notification.is-light.mt-1
-          | You can check the box and specify your kid's email to send them notifications about balance changes.
-      .field.mb-4
-        = f.check_box :notify_parents, class: "checkbox mr-2"
-        = f.label :notify_parents, "Report transactions to parents"
-        .notification.is-light.mt-3
-          | If checked, all users with access to your kid's account, including you, will get email notifications 
-          | about balance changes.
+      - if current_user.parents_key.nil?
+        .field
+          = f.check_box :notification, class: "checkbox mr-2", id: 'notification-check-box'
+          = f.label :notification, "Report transactions"
+        .field.mb-4
+          = f.email_field :email, disabled: !account.notification, autocomplete: "email", id:"email-input",  placeholder: "email", required: true
+          .notification.is-light.mt-1
+            | You can check the box and specify your kid's email to send them notifications about balance changes.
+        .field.mb-4
+          = f.check_box :notify_parents, class: "checkbox mr-2"
+          = f.label :notify_parents, "Report transactions to parents"
+          .notification.is-light.mt-3
+            | If checked, all users with access to your kid's account, including you, will get email notifications 
+            | about balance changes.
       buttons.is-flex.is-justify-content-flex-end
         = link_to account_path(account), class: 'button is-light mr-2' do
           span.file-icon
@@ -45,10 +46,11 @@ javascript:
   document.addEventListener('turbolinks:load', function () {
     const checkbox = document.getElementById('notification-check-box');
     const input = document.getElementById('email-input');
-
-    checkbox.addEventListener('click', function (e) {
-      input.disabled = !checkbox.checked
-      input.focus()
-    })
+    if (checkbox) {
+      checkbox.addEventListener('click', function (e) {
+        input.disabled = !checkbox.checked
+        input.focus()
+      })
+    }
   });
 

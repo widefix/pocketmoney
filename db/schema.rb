@@ -127,8 +127,10 @@ ActiveRecord::Schema.define(version: 2023_11_16_163928) do
     t.string "avatar_url"
     t.string "provider"
     t.integer "parents_key"
+    t.datetime "blocked_at"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["parents_key"], name: "index_users_on_parents_key", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

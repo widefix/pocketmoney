@@ -8,4 +8,12 @@ class User < ApplicationRecord
   belongs_to :account, optional: true
   has_many :feedbacks
   has_one_attached :avatar
+
+  def active_for_authentication?
+    super && user_active?
+  end
+
+  def user_active?
+    blocked_at.nil?
+  end
 end

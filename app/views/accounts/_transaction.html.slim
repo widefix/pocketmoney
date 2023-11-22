@@ -8,7 +8,7 @@ tr.for-desktop
     td.is-size-5.is-vcentered= transaction.signed_amount(account)
   - else
     td.is-size-5.is-vcentered= transaction.signed_amount(account)
-  - if current_user.parents_key.nil?
+  - if current_user.parent?
     td.is-size-5.is-vcentered.px-0
       = link_to transaction_path(transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-white-budgeting-kid-color px-0' do
         figure.image.is-24x24.is-round.is-budgeting-kid-light-color
@@ -24,7 +24,7 @@ tr.for-mobile
     td.is-vcentered= transaction.signed_amount(account)
   - else
     td.is-vcentered= transaction.signed_amount(account)
-  - if current_user.parents_key.nil?
+  - if current_user.parent?
     td.is-vcentered.px-0
       = link_to transaction_path(transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-white-budgeting-kid-color px-0' do
         figure.image.is-24x24.is-round.is-budgeting-kid-light-color

@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2023_11_16_163928) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "accepted_at"
-    t.boolean "for_kid", default: false
+    t.string "parental_key"
   end
 
   create_table "accounts", force: :cascade do |t|
@@ -47,9 +47,9 @@ ActiveRecord::Schema.define(version: 2023_11_16_163928) do
     t.datetime "archived_at"
     t.boolean "notify_parents", default: true
     t.string "accumulative_balance_timeframe", default: "day"
-    t.integer "parents_key"
+    t.string "parental_key"
     t.index ["parent_id"], name: "index_accounts_on_parent_id"
-    t.index ["parents_key"], name: "index_accounts_on_parents_key", unique: true
+    t.index ["parental_key"], name: "index_accounts_on_parental_key", unique: true
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -126,11 +126,11 @@ ActiveRecord::Schema.define(version: 2023_11_16_163928) do
     t.string "uid"
     t.string "avatar_url"
     t.string "provider"
-    t.integer "parents_key"
+    t.string "parental_key"
     t.datetime "blocked_at"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["parents_key"], name: "index_users_on_parents_key", unique: true
+    t.index ["parental_key"], name: "index_users_on_parental_key", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

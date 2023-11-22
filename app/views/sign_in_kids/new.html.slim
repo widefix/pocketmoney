@@ -1,9 +1,28 @@
-h2 Enter Parent's Key
+- content_for :title, 'Log in for kid'
+- content_for :description, 'Log in to your BudgetingKid account and start empowering your financial wisdom.'
 
-= form_with(url: sign_in_kids_path, method: :post) do |f|
-  .field
-    = f.label :parents_key, "Parent's Key"
-    = f.text_field :parents_key
+.columns.is-centered
+  .column
+    .columns.is-centered.is-mobile
+      .column.is-four-fifths
+        h2.title.for-desktop.is-4.has-text-centered.has-text-budgeting-kid-color
+          | Login for kid
+        h2.title.is-3.has-text-centered.font-frank-ruhl-libre Enter Parental Key
+        = form_with(url: sign_in_kids_path, method: :post) do |f|
+          .field
+            = f.label :parental_key, 'Parental Key'
+          .field.pb-2
+            = f.text_field :parental_key, autofocus: true, required: true
+          br
+          .actions
+            div.is-fullwidth
+              = button_to sign_in_kids_path, class: 'submit button is-primary is-fullwidth' do
+                span
+                | Login &nbsp;
+                figure.image.is-16x16
+                  = image_tag('arrow-right.svg', alt: '->')
+          br
+  .for-desktop.column.has-background-image.is-flex.is-justify-content-center.is-align-items-center
+    figure.image.is-coins
+      = image_tag('coins.svg')
 
-  .actions
-    = f.submit 'Submit'

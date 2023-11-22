@@ -3,7 +3,7 @@
   / desktop
   .column.for-desktop.is-two-fifths.box.m-2
     div.p-4.mb-4
-      - if account.parent.email != current_user.email && current_user.parents_key.nil?
+      - if account.parent.email != current_user.email && current_user.parent?
         .columns
           .column.is-flex.is-justify-content-center.is-align-items-center
             .has-text-weight-bold
@@ -31,7 +31,7 @@
   / desktop
   .column.for-desktop.box.m-2.is-flex.is-justify-content-center.is-align-items-center
     .buttons.mb-4
-      - if current_user.parents_key.nil?
+      - if current_user.parent?
         = link_to account_shares_path(account), class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px; " do
           figure.image.is-16x16.is-budgeting-kid-light-color
             = image_tag('share.svg')
@@ -40,7 +40,7 @@
         figure.image.is-16x16.is-budgeting-kid-light-color
           = image_tag('edit.svg')
         | &nbsp; Edit Account
-      - if current_user.parents_key.nil?
+      - if current_user.parent?
         - if account.parent.email == current_user.email
           = link_to archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px" do
             span.icon
@@ -53,15 +53,15 @@
             | &nbsp; Terminate Account
   / mobile
   .column.for-mobile.box.mb-5.is-flex.is-justify-content-center.is-align-items-center
-    .buttons.mb-4
-      - if current_user.parents_key.nil?
+    .buttons
+      - if current_user.parent?
         = link_to account_shares_path(account), class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px" do
           figure.image.is-16x16.is-budgeting-kid-light-color
             = image_tag('share.svg')
       = link_to edit_account_path(account), class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px; " do
         figure.image.is-16x16.is-budgeting-kid-light-color
           = image_tag('edit.svg')
-      - if current_user.parents_key.nil?
+      - if current_user.parent?
         - if account.parent.email == current_user.email
           = link_to archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px" do
             span.icon
@@ -77,7 +77,7 @@
       | Balance
     p.title.is-2.is-budgeting-kid-color.has-text-centered #{account.balance}
     .buttons.mb-1
-      - if current_user.parents_key.nil?
+      - if current_user.parent?
         = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(account) }, class: 'button mx-2 is-plus-color is-medium' do
           figure.image.is-24x24
             = image_tag('plus-circle-green.svg', alt: '+')
@@ -93,7 +93,7 @@
       | Balance
     p.title.is-2.is-budgeting-kid-color.has-text-centered #{account.balance}
     .buttons.mb-1
-      - if current_user.parents_key.nil?
+      - if current_user.parent?
         = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(account) }, class: 'button mx-1 is-plus-color' do
           figure.image.is-24x24
             = image_tag('plus-circle-green.svg', alt: '+')
@@ -124,7 +124,7 @@
                 th.has-text-light-gray-budgeting-kid-color Date
                 th.has-text-light-gray-budgeting-kid-color Description
                 th.has-text-light-gray-budgeting-kid-color Amount
-                - if current_user.parents_key.nil?
+                - if current_user.parent?
                   th.has-text-light-gray-budgeting-kid-color &nbsp;
             tbody
               = render partial: 'transaction', collection: transactions, account: account
@@ -133,7 +133,7 @@
                 th
                 th
                 th
-                - if current_user.parents_key.nil?
+                - if current_user.parent?
                   th
   .column.goals.box.m-2
     div.m-5
@@ -185,7 +185,7 @@
                 th.has-text-light-gray-budgeting-kid-color.pl-0 Date
                 th.has-text-light-gray-budgeting-kid-color Description
                 th.has-text-light-gray-budgeting-kid-color Amount
-                - if current_user.parents_key.nil?
+                - if current_user.parent?
                   th.has-text-light-gray-budgeting-kid-color &nbsp;
             tbody
               = render partial: 'transaction', collection: transactions, account: account
@@ -194,7 +194,7 @@
                 th
                 th
                 th
-                - if current_user.parents_key.nil?
+                - if current_user.parent?
                   th
   .column.box
      div
@@ -251,7 +251,7 @@
             .title #{automatic_topup_configs.amount}
           .column
             .buttons.is-pulled-right
-              - if current_user.parents_key.nil?
+              - if current_user.parent?
                 = link_to account_account_automatic_topup_config_path(account, automatic_topup_configs), method: :delete, data: { confirm: 'Delete this top up?' }, class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
                   figure.image.is-16x16.is-budgeting-kid-light-color
                     = image_tag('delete.svg', alt: '+')
@@ -286,7 +286,7 @@
             .title #{automatic_topup_configs.amount}
           .column.is-4
             .buttons
-              - if current_user.parents_key.nil?
+              - if current_user.parent?
                 = link_to account_account_automatic_topup_config_path(account, automatic_topup_configs), method: :delete, data: { confirm: 'Delete this top up?' }, class: 'button pr-0 is-white has-text-weight-bold has-text-budgeting-kid-color' do
                   figure.image.is-16x16.is-budgeting-kid-light-color
                     = image_tag('delete.svg', alt: '+')

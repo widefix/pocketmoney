@@ -13,12 +13,12 @@
               = f.file_field :avatar, class: 'file-input'
               span.file-cta
                 span.file-icon
-                  i.fa.fa-camera
+                  i.fa.fa-camera  
                 span.file-label
                   | Add photo
       .field.mb-4
         = f.text_field :name, autofocus: true, class: "input", placeholder: "Name"
-      - if current_user.parents_key.nil?
+      - if current_user.parent?
         .field
           = f.check_box :notification, class: "checkbox mr-2", id: 'notification-check-box'
           = f.label :notification, "Report transactions"

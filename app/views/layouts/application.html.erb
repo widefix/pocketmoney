@@ -5,7 +5,7 @@
   </head>
 
   <body class= <%= user_signed_in? ? 'with-background' : ''%>>
-      <%= render 'layouts/header/main' %>
+    <%= render 'layouts/header/main' %>
     <div class="container hero is-fullheight bottom-wrapper " >
       <section class="section is-fullheight py-0">
         <%= yield %>

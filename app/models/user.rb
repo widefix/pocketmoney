@@ -16,4 +16,8 @@ class User < ApplicationRecord
   def user_active?
     blocked_at.nil?
   end
+
+  memoize def parent?
+    parental_key.nil?
+  end
 end

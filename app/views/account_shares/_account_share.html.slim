@@ -2,31 +2,28 @@ tr
   - if account_share.public?
     td= 'public'
     td= 'public'
-  - elsif account_share.for_kid
-    td= account.name
-    td= account.email.blank? ? 'for kid' : account.email
   - else
     td= account_share.name
     td= account_share.email
+
   td= account_share.created_at.to_formatted_s(:short)
+
   - if account_share.terminated?
     td= "Terminated by #{account_share.name}"
   - else
     td= account_share.accepted_at&.to_formatted_s(:short)
+
   - if account_share.public?
     td= link_to 'link', public_account_path(token: account_share.token)
-  - elsif account_share.for_kid
-    td= account.parents_key
+  - elsif account_share.parental_key.present?
+    td= account_share.parental_key
   - else
     td= link_to 'link', accept_account_share_url(token: account_share.token)
+
   td
-    - if account_share.for_kid?
-      =link_to account_share_for_kid_path(account, account_share, parents_key: account.parents_key), method: :delete, data: {confirm: 'Cancel this share?'}, class: 'button is-small is-light' do
-        span.icon
-          i.fa.fa-undo
-        | &nbsp; Cancel
-    - else
-      =link_to account_share_path(account, account_share), method: :delete, data: {confirm: 'Cancel this share?'}, class: 'button is-small is-light' do
-        span.icon
-          i.fa.fa-undo
-        | &nbsp; Cancel
+    - path = account_share.parental_key.present? ? account_share_for_kid_path(account, account_share, parental_key: account_share.parental_key) : account_share_path(account, account_share)
+
+    = link_to path, method: :delete, data: { confirm: 'Cancel this share?' }, class: 'button is-small is-light' do
+      span.icon
+        i.fa.fa-undo
+      | &nbsp; Cancel

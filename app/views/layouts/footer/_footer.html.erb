@@ -4,24 +4,26 @@
   <%= link_to("Privacy Policy", policy_path) %>
 </footer>
 
-<nav class="navbar-footer is-fixed-bottom is-flex-align-items-flex-end for-mobile">
-  <div class="columns is-mobile is-gapless">
-    <div class="column">
-      <%= button_to my_account_path, method: :get, class:'button is-footer-light is-fullwidth' do %>
-        <span class="icon">
-          <i class="fa fa-home fa-lg"></i>
-        </span>
-      <% end %>
+<% if current_user&.parent? %>
+  <nav class="navbar-footer is-fixed-bottom is-flex-align-items-flex-end for-mobile">
+    <div class="columns is-mobile is-gapless">
+      <div class="column">
+        <%= button_to my_account_path, method: :get, class:'button is-footer-light is-fullwidth' do %>
+          <span class="icon">
+            <i class="fa fa-home fa-lg"></i>
+          </span>
+        <% end %>
+      </div>
+      <div class="column ">
+        <%= button_to new_feedback_path, method: :get, class:'button is-footer-light is-fullwidth' do %>
+          <i class="fa fa-comments-o fa-lg"></i>
+        <% end %>
+      </div>
+      <div class="column ">
+        <%= button_to edit_user_registration_path, method: :get, class:'button is-footer-light is-fullwidth' do %>
+          <i class="fa fa-user-o fa-lg"></i>
+        <% end %>
+      </div>
     </div>
-    <div class="column ">
-      <%= button_to new_feedback_path, method: :get, class:'button is-footer-light is-fullwidth' do %>
-        <i class="fa fa-comments-o fa-lg"></i>
-      <% end %>
-    </div>
-    <div class="column ">
-      <%= button_to edit_user_registration_path, method: :get, class:'button is-footer-light is-fullwidth' do %>
-        <i class="fa fa-user-o fa-lg"></i>
-      <% end %>
-    </div>
-  </div>
-</nav>
+  </nav>
+<% end %>

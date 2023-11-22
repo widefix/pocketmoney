@@ -1,3 +1,5 @@
+- account_shares = account.account_shares.order(created_at: :desc)
+
 h2.title.is-4
   | Account shares
 .buttons.for-desktop.mt-4
@@ -13,10 +15,11 @@ h2.title.is-4
     span.icon
       i.fa.fa-users
     | &nbsp; Public share
-  = link_to new_account_share_for_kid_path, class: 'button is-light' do
-    span.icon
-      i.fa.fa-user
-    | &nbsp; Share for kid
+  - unless account_shares.any? { |share| share.parental_key.present? }
+    = link_to new_account_share_for_kid_path, class: 'button is-light' do
+      span.icon
+        i.fa.fa-user
+      | &nbsp; Share for kid
 
 .buttons.for-mobile.mt-4
   = link_to account_path(account), class: 'button is-light' do
@@ -30,10 +33,11 @@ h2.title.is-4
     span.icon
       i.fa.fa-users
     | &nbsp; Public share
-  = link_to new_account_share_for_kid_path, class: 'button is-light' do
-    span.icon
-      i.fa.fa-user
-    | &nbsp; Share for kid
+  - unless account_shares.any? { |share| share.parental_key.present? }
+    = link_to new_account_share_for_kid_path, class: 'button is-light' do
+      span.icon
+        i.fa.fa-user
+      | &nbsp; Share for kid
 
 .columns
   .column
@@ -53,7 +57,6 @@ h2.title.is-4
                 th Link
                 th Actions
             tbody.toggleable
-              - account_shares = account.account_shares.order(created_at: :desc)
               = render partial: 'account_share', collection: account_shares
         - if account_shares.count > 10
           .card-footer

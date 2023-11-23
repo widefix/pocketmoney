@@ -3,7 +3,12 @@
 class MyAccountsController < ApplicationController
   before_action :authenticate_user!
 
-  def show; end
+  def show
+    return if current_user.parent?
+
+    kids_account = shared_accounts.find { |shared_account| shared_account.parental_key == current_user.parental_key }
+    redirect_to account_path(kids_account) if kids_account
+  end
 
   private
 

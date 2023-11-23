@@ -9,14 +9,6 @@ class User < ApplicationRecord
   has_many :feedbacks
   has_one_attached :avatar
 
-  def active_for_authentication?
-    super && user_active?
-  end
-
-  def user_active?
-    blocked_at.nil?
-  end
-
   memoize def parent?
     parental_key.nil?
   end

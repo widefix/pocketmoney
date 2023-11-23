@@ -16,7 +16,7 @@
           br
           .actions
             div.is-fullwidth
-              = button_to sign_in_kids_path, class: 'submit button is-primary is-fullwidth' do
+              = button_to sign_in_kids_path, class: 'submit button is-primary is-fullwidth', data: { disable_with: "Login" } do
                 span
                 | Login &nbsp;
                 figure.image.is-16x16

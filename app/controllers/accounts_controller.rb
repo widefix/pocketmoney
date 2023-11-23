@@ -11,11 +11,13 @@ class AccountsController < ApplicationController
 
   def update
     attach_avatar_for(account)
-    if account.update(ps[:account])
-      redirect_to account_path
-    else
-      render :edit
+    ActiveRecord::Base.transaction do
+      account.update!(ps[:account])
+      update_kids_info unless current_user.parent?
     end
+    redirect_to account_path
+  rescue ActiveRecord::ActiveRecordError
+    render :edit
   end
 
   def update_timeframe
@@ -44,6 +46,13 @@ class AccountsController < ApplicationController
   end
 
   private
+
+  def update_kids_info
+    account_params = params.require(:account).permit(:name, :email)
+    current_user.update!(account_params)
+    current_user.account.update!(account_params)
+    account.account_shares.find { |share| share.parental_key == current_user.parental_key }.update!(account_params)
+  end
 
   def attach_avatar_for(account)
     image_params = params.fetch(:avatar, params.dig(:account, :avatar))

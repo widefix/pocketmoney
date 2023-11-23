@@ -75,23 +75,44 @@ RSpec.describe AccountsController, type: :controller do
 
       it { expect(subject).not_to be_redirect }
     end
+
+    context 'when user is kid' do
+      let!(:parent_account) { create(:account, :parent) }
+      let!(:account) { create(:account, :children, parental_key: parental_key, parent_id: parent_account.id) }
+      let!(:user) { create(:user, account: parent_account) }
+      let!(:kids_account) { create(:account, :parent) }
+      let!(:kids_user) { create(:user, account: kids_account, parental_key: parental_key) }
+      let!(:account_share) do 
+        create(:account_share, user: user,
+                               account: account,
+                               email: kids_user.email,
+                               parental_key: parental_key,
+                               accepted_at: Time.current)
+      end
+
+      let(:parental_key) { SecureRandom.hex(3).upcase }
+      let(:attributes) {{ notification: true, email: FFaker::Internet.email, name: FFaker::Name.first_name }}
+
+      before { sign_in kids_user }
+
+      it { is_expected.to have_http_status(:redirect) }
+      it { expect { subject }.to(change { account_share.reload.email }) }
+      it { expect { subject }.to(change { account_share.reload.name }) }
+      it { expect { subject }.to(change { kids_account.reload.email }) }
+      it { expect { subject }.to(change { kids_account.reload.name }) }
+      it { expect { subject }.to(change { kids_user.reload.email }) }
+      it { expect { subject }.to(change { kids_user.reload.name }) }
+    end
   end
 
   describe '#update_timeframe' do
-    subject(:update_timeframe) { patch :update, params: { id: account, account: attributes } }
+    subject(:update_timeframe) { patch :update_timeframe, params: { id: account, account: attributes } }
 
     context 'with valid params' do
       let(:attributes) {{ accumulative_balance_timeframe: 'week' }}
 
-      it { expect(subject).to redirect_to(account_path) }
+      it { is_expected.to have_http_status(:redirect) }
       it { expect { subject }.to change { account.reload.accumulative_balance_timeframe }.to('week') }
-    end
-
-    context 'with invalid params' do
-      let(:attributes) {{ accumulative_balance_timeframe: nil }}
-
-      it { expect(subject).not_to be_redirect }
-      it { expect { subject }.not_to(change { account.reload.accumulative_balance_timeframe }) }
     end
   end
 

@@ -8,7 +8,6 @@ RSpec.describe SignInKidsController, type: :controller do
   let!(:user) { create(:user, account: parent_account) }
   let!(:kids_account) { create(:account, :parent) }
   let!(:kids_user) { create(:user, account: kids_account, parental_key: parental_key) }
-  let!(:account_share) { create(:account_share, user: user, account: account, parental_key: parental_key) }
 
   let(:parental_key) { SecureRandom.hex(3).upcase }
 
@@ -22,13 +21,13 @@ RSpec.describe SignInKidsController, type: :controller do
   describe '#create' do
     subject { post :create, params: { parental_key: parental_key } }
 
-    context "when kid's user exist" do
+    context 'when account_share exist' do
+      let!(:account_share) { create(:account_share, user: user, account: account, parental_key: parental_key) }
+
       it { is_expected.to redirect_to(account_path(account)) }
     end
 
-    context "when kid's user not exist" do
-      let!(:kids_user) { create(:user, account: kids_account, parental_key: parental_key, blocked_at: Time.current) }
-
+    context 'when account_share not exist' do
       it { is_expected.not_to redirect_to(account_path(account)) }
     end
   end

@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 class SignInKidsController < ApplicationController
+  layout 'initial_application'
+
   def new; end
 
   def create
     account = Account.find_by(parental_key)
-    return unless account
+    return if !account || account.account_shares.none? { |share| share.parental_key == ps[:parental_key].upcase }
 
     user = User.find_by(parental_key)
     sign_in user

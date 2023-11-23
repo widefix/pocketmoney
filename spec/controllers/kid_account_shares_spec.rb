@@ -33,13 +33,12 @@ RSpec.describe KidAccountSharesController, type: :controller do
     end
 
     context "when kid's user already exist" do
-      let!(:kids_user) { create(:user, account: kids_account, parental_key: parental_key, blocked_at: Time.current) }
+      let!(:kids_user) { create(:user, account: kids_account, parental_key: parental_key) }
 
       it { is_expected.to redirect_to(account_shares_path) }
       it { expect { subject }.to change { AccountShare.count }.by(1) }
       it { expect { subject }.not_to(change { User.count }) }
       it { expect { subject }.to change { kids_user.reload.parental_key }.from(parental_key) }
-      it { expect { subject }.to change { kids_user.reload.blocked_at }.to(nil) }
       it { expect { subject }.not_to(change { Account.count }) }
       it { expect { subject }.to(change { account.reload.parental_key }) }
     end
@@ -55,7 +54,6 @@ RSpec.describe KidAccountSharesController, type: :controller do
       it { expect { subject }.to change { AccountShare.count }.by(-1) }
       it { is_expected.to redirect_to(account_shares_path) }
       it { expect { subject }.not_to(change { User.count }) }
-      it { expect { subject }.to change { kids_user.reload.blocked_at }.from(nil) }
       it { expect { subject }.not_to(change { Account.count }) }
     end
   end

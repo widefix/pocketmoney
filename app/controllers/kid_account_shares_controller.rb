@@ -9,7 +9,7 @@ class KidAccountSharesController < ApplicationController
     parental_key = generate_unique_key
     ActiveRecord::Base.transaction do
       user = User.includes(:account).find_by(parental_key: account.parental_key) if account.parental_key?
-      user ? unblock_user(user, parental_key) : create_user(parental_key)
+      user ? update_user(user, parental_key) : create_user(parental_key)
       account.update(parental_key: parental_key)
       create_share(email(parental_key), parental_key)
     end
@@ -20,7 +20,6 @@ class KidAccountSharesController < ApplicationController
   def destroy
     ActiveRecord::Base.transaction do
       AccountShare.find(params.fetch(:id)).destroy
-      User.find_by(parental_key: params.fetch(:parental_key)).update!(blocked_at: Time.current)
     end
     respond_to do |format|
       format.html { redirect_to account_shares_url, notice: 'Account share was successfully destroyed.' }
@@ -40,8 +39,8 @@ class KidAccountSharesController < ApplicationController
     account.email.blank? ? "#{parental_key}@budgetingkid.com" : account.email
   end
 
-  def unblock_user(user, parental_key)
-    user.update(email: email(parental_key), password: parental_key, parental_key: parental_key, blocked_at: nil)
+  def update_user(user, parental_key)
+    user.update(email: email(parental_key), password: parental_key, parental_key: parental_key)
     user.account.update(name: account.name, email: email(parental_key))
   end
 

@@ -1,0 +1,8 @@
+.container.is-flex.is-flex-direction-column.is-align-items-center.mb-auto
+  p.mb-5.is-size-4.has-text-centered.for-desktop
+    | Choose Your Role
+  p.mb-5.is-size-5.has-text-centered.for-mobile
+    | Choose Your Role
+  .buttons.is-centered
+    = link_to 'Parent', my_account_path, class: 'button is-primary is-medium is-3'
+    = link_to 'Kid', new_sign_in_kid_path, class: 'button is-primary is-medium is-3'

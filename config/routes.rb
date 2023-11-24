@@ -42,10 +42,13 @@ Rails.application.routes.draw do
   resources :objectives, only: [:destroy]
   resources :public_accounts, param: :token, only: :show, controller: 'public_account_shares'
   resources :feedbacks, only: [:new, :create]
+  resources :sign_in_kids, only: %i[new create]
   resources :archived_accounts, only: %i[index] do
     member do
       get 'restore', action: 'restore'
     end
   end
+
   get '/policy', to: 'policy#show'
+  get '/choose_role', to: 'choose_role#index'
 end

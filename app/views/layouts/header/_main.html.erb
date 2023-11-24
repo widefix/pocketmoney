@@ -2,75 +2,93 @@
       role="navigation"
       aria-label="main navigation">
   <div class="container px-4 container-buttom-border">
-    <div class="navbar-brand">
+    <div class="navbar-brand is-justify-content-space-between is-align-items-center">
       <%= link_to root_path, class: "navbar-item" do %>
         <%= image_tag 'logo.svg', size: "44"%>
         <h2 class='budgeting-kid-logo-font px-4'> BUDGETINGkid </h2>
       <% end %>
-      <a role="button is-primary" class="navbar-burger" aria-label="menu" aria-expanded="true" data-target="navbarMenu">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
+      <% if !current_user&.parent? && user_signed_in? %>
+        <%= link_to destroy_user_session_path, method: :delete, class:"navbar-item for-mobile has-text-budgeting-kid-color" do %>
+          <span class="icon">
+            <i class="fa fa-sign-out fa-lg"></i>
+          </span>
+        <% end %>
+      <% else %>
+        <a role="button is-primary" class="navbar-burger" aria-label="menu" aria-expanded="true" data-target="navbarMenu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      <% end%>
     </div>
     <div id="navbarMenu" class="navbar-menu">
       <div class="navbar-end">
         <div class="navbar-item pb-4">
           <div class="buttons">
             <% if user_signed_in? %>
-              <div class="navbar-item has-dropdown is-hoverable">
-                <a class="button is-rounded for-desktop p-0 m-0" style="width: 72px; height: 72px;" >
-                  <img src=<%= asset_path(avatar_for(current_user)) %> class="rounded-avatar small">
-                </a>
-                <div class="navbar-dropdown is-right is-boxed for-desktop">
-                  <%= link_to edit_user_registration_path, class: "navbar-item"  do %>
-                    <span class="icon">
-                      <i class="fa fa-user-o"></i>
-                    </span>
-                    &nbsp;
-                    My profile
-                  <% end %>
-                  <%= link_to new_feedback_path, class: "navbar-item" do %>
-                    <span class="icon">
-                      <i class="fa fa-comment-o"></i>
-                    </span>
-                    &nbsp;
-                    Feedback
-                  <% end %>
-                  <hr class="navbar-divider">
-                  <%= link_to destroy_user_session_path, method: :delete, class:"navbar-item" do %>
-                    <span class="icon">
-                      <i class="fa fa-sign-out"></i>
-                    </span>
-                    &nbsp;
-                    Log out
-                  <% end %>
+              <% if current_user.parent? %>
+                <div class="navbar-item has-dropdown is-hoverable">
+                  <a class="button is-rounded for-desktop p-0 m-0" style="width: 72px; height: 72px;" >
+                    <img src=<%= asset_path(avatar_for(current_user)) %> class="rounded-avatar small">
+                  </a>
+                  <div class="navbar-dropdown is-right is-boxed for-desktop">
+                    <%= link_to edit_user_registration_path, class: "navbar-item"  do %>
+                      <span class="icon">
+                        <i class="fa fa-user-o"></i>
+                      </span>
+                      &nbsp;
+                      My profile
+                    <% end %>
+                    <%= link_to new_feedback_path, class: "navbar-item" do %>
+                      <span class="icon">
+                        <i class="fa fa-comment-o"></i>
+                      </span>
+                      &nbsp;
+                      Feedback
+                    <% end %>
+                    <hr class="navbar-divider">
+                    <%= link_to destroy_user_session_path, method: :delete, class:"navbar-item" do %>
+                      <span class="icon">
+                        <i class="fa fa-sign-out"></i>
+                      </span>
+                      &nbsp;
+                      Log out
+                    <% end %>
+                  </div>
+                  <div class="navbar-dropdown is-right is-boxed for-mobile">
+                    <%= link_to edit_user_registration_path, class: "navbar-item"  do %>
+                      <span class="icon">
+                        <i class="fa fa-user-o"></i>
+                      </span>
+                      &nbsp;
+                      My profile
+                    <% end %>
+                    <%= link_to new_feedback_path, class: "navbar-item" do %>
+                      <span class="icon">
+                        <i class="fa fa-comment-o"></i>
+                      </span>
+                      &nbsp;
+                      Feedback
+                    <% end %>
+                    <hr class="navbar-divider">
+                    <%= link_to destroy_user_session_path, method: :delete, class:"navbar-item" do %>
+                      <span class="icon">
+                        <i class="fa fa-sign-out"></i>
+                      </span>
+                      &nbsp;
+                      Log out
+                    <% end %>
+                  </div>
                 </div>
-                <div class="navbar-dropdown is-right is-boxed for-mobile">
-                  <%= link_to edit_user_registration_path, class: "navbar-item"  do %>
-                    <span class="icon">
-                      <i class="fa fa-user-o"></i>
-                    </span>
-                    &nbsp;
-                    My profile
-                  <% end %>
-                  <%= link_to new_feedback_path, class: "navbar-item" do %>
-                    <span class="icon">
-                      <i class="fa fa-comment-o"></i>
-                    </span>
-                    &nbsp;
-                    Feedback
-                  <% end %>
-                  <hr class="navbar-divider">
-                  <%= link_to destroy_user_session_path, method: :delete, class:"navbar-item" do %>
-                    <span class="icon">
-                      <i class="fa fa-sign-out"></i>
-                    </span>
-                    &nbsp;
-                    Log out
-                  <% end %>
-                </div>
-              </div>
+              <% else %>
+                <%= link_to destroy_user_session_path, method: :delete, class:"navbar-item has-text-budgeting-kid-color" do %>
+                  <span class="icon">
+                    <i class="fa fa-sign-out fa-lg"></i>
+                  </span>
+                  &nbsp;
+                  Log out
+                <% end %>
+              <% end %>
             <% else %>
               <%= link_to 'Sign up', new_user_registration_path, class: 'button is-primary' %>
               <%= link_to 'Log in', new_user_session_path, class: 'button is-light' %>

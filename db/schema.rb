@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_10_144256) do
+ActiveRecord::Schema.define(version: 2023_11_24_113854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 2023_11_10_144256) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "accepted_at"
+    t.string "parental_key"
+    t.index ["parental_key"], name: "index_account_shares_on_parental_key"
   end
 
   create_table "accounts", force: :cascade do |t|
@@ -123,8 +125,10 @@ ActiveRecord::Schema.define(version: 2023_11_10_144256) do
     t.string "uid"
     t.string "avatar_url"
     t.string "provider"
+    t.string "parental_key"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["parental_key"], name: "index_users_on_parental_key"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

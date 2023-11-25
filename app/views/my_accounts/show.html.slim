@@ -13,19 +13,31 @@
     / common
     .column.is-flex.is-align-items-center.is-justify-content-flex-end
       - if account.children.unarchived.present? || shared_accounts.present?
-        = button_to new_account_path, method: :get, class: 'button is-primary has-text-weight-bold'
-          figure.file-icon.image.is-18x18
-            = image_tag('add_account.svg', alt: 'add-account')
-          | Add account
         - if archived_accounts.present?
-          .dropdown.is-right
+          / desktop
+          .for-desktop.dropdown.is-right
             .dropdown-trigger
-              button.button.is-light
-                span.icon
-                  i.fa.fa-ellipsis-h
+              button.button.is-white.is-bordered.has-text-weight-bold
+                | Actions
+                span.icon.ml-1
+                  i.fa.fa-caret-down
             .dropdown-menu
               .dropdown-content
                 = link_to 'Archived accounts', archived_accounts_path, method: :get, class: 'dropdown-item'
+          / mobile
+          .for-mobile.dropdown.is-left
+            .dropdown-trigger
+              button.button.is-white.is-bordered.has-text-weight-bold
+                | Actions
+                span.icon.ml-1
+                  i.fa.fa-caret-down
+            .dropdown-menu
+              .dropdown-content
+                = link_to 'Archived accounts', archived_accounts_path, method: :get, class: 'dropdown-item'
+        = button_to new_account_path, method: :get, class: 'button mx-2 is-primary has-text-weight-bold'
+          figure.file-icon.image.is-18x18
+            = image_tag('add_account.svg', alt: 'add-account')
+          | Add account
 
   = render partial: 'child', collection: account.children.unarchived
   - if shared_accounts.present?

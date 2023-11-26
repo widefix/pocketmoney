@@ -18,7 +18,7 @@ class Account < ApplicationRecord
   validates :accumulative_balance_timeframe, inclusion: { in: %w[day week month quarter] }
 
   scope :unarchived, -> { where(archived_at: nil) }
-  scope :archived, -> { where.not(archived_at: nil) }
+  scope :archived, -> { where.not(archived_at: nil).order(archived_at: :desc) }
 
   scope :visible_for, lambda { |current_user|
     where(id: [current_user.account_id] +

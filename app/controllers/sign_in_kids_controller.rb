@@ -6,7 +6,7 @@ class SignInKidsController < ApplicationController
   def new; end
 
   def create
-    account_share = AccountShare.includes(:account).find_by(parental_key: ps[:parental_key].upcase)
+    account_share = AccountShare.includes(:account).find_by(parental_key: ps[:parental_key].downcase)
     return unless account_share
 
     sign_in KidsUserService.new(account_share).perform

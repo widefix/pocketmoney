@@ -3,7 +3,9 @@
 class MyAccountsController < ApplicationController
   before_action :authenticate_user!
 
-  def show; end
+  def show
+    redirect_to account_path(shared_accounts.first) unless current_user.parent?
+  end
 
   private
 

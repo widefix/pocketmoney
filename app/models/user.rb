@@ -8,4 +8,8 @@ class User < ApplicationRecord
   belongs_to :account, optional: true
   has_many :feedbacks
   has_one_attached :avatar
+
+  memoize def parent?
+    parental_key.nil?
+  end
 end

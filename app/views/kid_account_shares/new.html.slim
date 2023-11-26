@@ -1,0 +1,13 @@
+.columns.is-centered
+  .column.is-one-third
+    h1.title.is-5.has-text-centered
+      | Share Account for your Kid:
+    .subtitle.is-5.has-text-centered
+      = link_to account.name, account_path(account)
+    = form_with(url: account_share_for_kids_path, method: :post) do |form|
+      .buttons.is-centered
+        = link_to account_shares_path(account), class: 'button is-light' do
+          span.icon
+            i.fa.fa-chevron-left
+          | &nbsp; Back
+        = form.submit 'Create', class: 'button is-primary'

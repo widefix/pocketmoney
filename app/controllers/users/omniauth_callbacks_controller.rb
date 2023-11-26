@@ -9,6 +9,11 @@ module Users
       sign_in_and_redirect user, event: :authentication
     end
 
+    def facebook
+      remember_me user
+      sign_in_and_redirect user, event: :authentication
+    end
+
     private
 
     memoize def user

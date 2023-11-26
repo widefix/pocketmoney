@@ -76,6 +76,7 @@ gem "newrelic_rpm", "~> 9.5"
 # Adds authentification with google
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
 
 gem "rollbar", "~> 3.4"

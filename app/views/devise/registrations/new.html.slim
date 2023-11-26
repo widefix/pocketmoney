@@ -15,6 +15,11 @@
                   figure.image.is-24x24
                     = image_tag('google.svg', class:'is-rounded',  alt: 'G')
                 | &nbsp; Google
+              = button_to user_facebook_omniauth_authorize_path, method: :post, class: 'button has-fixed-width is-outlined is-budgeting-kid-hoverable', id: 'facebook-button' do
+                span
+                  figure.image.is-24x24
+                    = image_tag('facebook.svg', class:'is-rounded',  alt: 'F')
+                | &nbsp; Facebook
           br
           p.text-divider
             | Or continue with
@@ -44,7 +49,7 @@
           br
           .actions.is-flex.is-flex-direction-column.is-align-items-end
           .field.is-fullwidth
-            = button_to registration_path(resource_name), class: 'button is-primary is-fullwidth', id: 'login-button' do
+            = button_to registration_path(resource_name), class: 'button is-primary is-fullwidth', id: 'signup-button' do
               span
               | Signup &nbsp;
               figure.image.is-16x16

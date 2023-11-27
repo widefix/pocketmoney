@@ -11,7 +11,7 @@ class AccountsController < ApplicationController
 
   def update
     attach_avatar_for(account)
-    if account.update(ps[:account])
+    if UpdateAccountService.new(account, ps[:account]).perform
       redirect_to account_path
     else
       render :edit

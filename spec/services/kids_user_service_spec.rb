@@ -7,7 +7,7 @@ RSpec.describe KidsUserService, type: :service do
   let!(:account) { create(:account, :children, parent_id: parent_account.id) }
   let!(:parent_user) { create(:user, account: parent_account) }
   let!(:account_share) { create(:account_share, user: parent_user, account: account, parental_key: parental_key) }
-  let(:parental_key) { SecureRandom.hex(3).upcase }
+  let(:parental_key) { SecureRandom.hex(3) }
 
   subject(:service) { described_class.new(account_share).perform }
 

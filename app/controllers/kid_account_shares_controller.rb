@@ -21,7 +21,7 @@ class KidAccountSharesController < ApplicationController
 
   def generate_unique_key
     loop do
-      key = SecureRandom.hex(3).upcase
+      key = SecureRandom.hex(3)
       return key unless User.exists?(parental_key: key)
     end
   end

@@ -7,7 +7,7 @@ RSpec.describe SignInKidsController, type: :controller do
   let!(:account) { create(:account, :children, parent_id: parent_account.id) }
   let!(:parent_user) { create(:user, account: parent_account) }
 
-  let(:parental_key) { SecureRandom.hex(3).upcase }
+  let(:parental_key) { SecureRandom.hex(3) }
 
   describe '#new' do
     subject(:new) { get :new }

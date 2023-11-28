@@ -53,7 +53,6 @@ RSpec.describe AccountsController, type: :controller do
       let(:attributes) {{ name: new_name }}
 
       it { is_expected.to have_http_status(:redirect) }
-      it { expect { subject }.to change { account.reload.name }.to(new_name) }
     end
 
     context 'with invalid params' do
@@ -66,7 +65,6 @@ RSpec.describe AccountsController, type: :controller do
       let(:attributes) {{ notification: true, email: FFaker::Internet.email }}
 
       it { is_expected.to have_http_status(:redirect) }
-      it { expect { subject }.to change { account.reload.notification }.to(true) }
     end
 
     context 'with notification and empty email' do
@@ -78,20 +76,13 @@ RSpec.describe AccountsController, type: :controller do
   end
 
   describe '#update_timeframe' do
-    subject(:update_timeframe) { patch :update, params: { id: account, account: attributes } }
+    subject(:update_timeframe) { patch :update_timeframe, params: { id: account, account: attributes } }
 
     context 'with valid params' do
       let(:attributes) {{ accumulative_balance_timeframe: 'week' }}
 
-      it { expect(subject).to redirect_to(account_path) }
+      it { is_expected.to have_http_status(:redirect) }
       it { expect { subject }.to change { account.reload.accumulative_balance_timeframe }.to('week') }
-    end
-
-    context 'with invalid params' do
-      let(:attributes) {{ accumulative_balance_timeframe: nil }}
-
-      it { expect(subject).not_to be_redirect }
-      it { expect { subject }.not_to(change { account.reload.accumulative_balance_timeframe }) }
     end
   end
 

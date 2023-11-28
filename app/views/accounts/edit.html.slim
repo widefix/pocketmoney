@@ -22,7 +22,7 @@
         = f.check_box :notification, class: "checkbox mr-2", id: 'notification-check-box'
         = f.label :notification, "Report transactions"
       .field.mb-4
-        = f.email_field :email, disabled: !account.notification, autocomplete: "email", id:"email-input",  placeholder: "email", required: true
+        = f.email_field :email, autocomplete: "email", id:"email-input",  placeholder: "email", required: !!account.notification
         .notification.is-light.mt-1
           - if current_user.parent?
             | You can check the box and specify your kid's email to send them notifications about balance changes.
@@ -50,9 +50,11 @@ javascript:
     const checkbox = document.getElementById('notification-check-box');
     const input = document.getElementById('email-input');
 
-    checkbox.addEventListener('click', function (e) {
-      input.disabled = !checkbox.checked
-      input.focus()
-    })
+    if (checkbox) {
+      checkbox.addEventListener('click', function (e) {
+        input.required = checkbox.checked
+        input.focus()
+      })
+    }
   });
 

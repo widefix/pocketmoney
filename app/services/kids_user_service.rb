@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
 class KidsUserService
+  extend Memoist
+
   def initialize(share)
-    @key = share.parental_key
-    @account = share.account
-    @name = @account.name
-    @email = @account.email.blank? ? "#{@key}@budgetingkid.com" : @account.email
+    @share = share
   end
 
   def perform
-    user = User.includes(:account).find_by(parental_key: @key)
+    user = User.includes(:account).find_by(parental_key: parental_key)
 
     return user if user
 
@@ -20,9 +19,17 @@ class KidsUserService
 
   def create_user
     ActiveRecord::Base.transaction do
-      user = User.create(email: @email, password: @key, parental_key: @key)
-      user.create_account(name: @email, email: @email)
+      user = User.create(email: email, password: parental_key, parental_key: parental_key)
+      user.create_account(name: email, email: email)
       user
     end
+  end
+
+  memoize def email
+    "#{parental_key}@budgetingkid.com"
+  end
+
+  memoize def parental_key
+    @share.parental_key
   end
 end

@@ -23,6 +23,6 @@ class SendNotification
   end
 
   def parent_emails
-    [*@account.account_shares.accepted.pluck(:email), @account.parent.user.email]
+    [*@account.account_shares.accepted.for_parents.pluck(:email), @account.parent.user.email]
   end
 end

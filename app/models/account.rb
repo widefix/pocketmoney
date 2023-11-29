@@ -12,6 +12,7 @@ class Account < ApplicationRecord
   has_many :objectives
   belongs_to :parent, class_name: 'Account', optional: true
   has_one_attached :avatar
+  has_one_attached :background
 
   validates :name, presence: true
   validates :email, presence: true, if: :notification?

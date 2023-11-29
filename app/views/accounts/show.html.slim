@@ -2,7 +2,7 @@
 .columns
   / desktop
   .column.for-desktop.is-two-fifths.box.m-2
-    div.p-4.mb-4
+    .p-4(style="#{"border-radius: 16px; background-size: cover; background-image: url('#{url_for(account.background)}');" if account.background.attached?}")
       - if account.parent.email != current_user.email && current_user.parent?
         .columns
           .column.is-flex.is-justify-content-center.is-align-items-center
@@ -10,13 +10,13 @@
               | Account owner: #{account.parent.email}
       .columns.is-mobile
         .column.is-4.is-flex.is-justify-content-center.is-align-items-center
-          img src=asset_path(avatar_for(account)) class="rounded-avatar" id='image-preview'
+          img src=asset_path(avatar_for(account)) class="rounded-avatar #{'bg-around-image' if account.background.attached?}" id='image-preview'
         .column.is-flex.is-justify-content-flex-start.is-align-items-center
-          .title.is-black-budgeting-kid-color
+          .title.is-black-budgeting-kid-color(class="#{'bg-around-text' if account.background.attached?}")
             = account.name
   / mobile
   .column.for-mobile.is-two-fifths.box
-    div.p-4
+    .p-4(style="#{"border-radius: 16px; background-size: cover; background-image: url('#{url_for(account.background)}');" if account.background.attached?}")
       - if account.parent.email != current_user.email && current_user.parent?
         .columns
           .column.is-flex.is-justify-content-center.is-align-items-center
@@ -24,13 +24,13 @@
               | Account owner: #{account.parent.email}
       .columns.is-mobile
         .column.is-4.px-0.is-flex.is-justify-content-center.is-align-items-center
-          img src=asset_path(avatar_for(account)) class="rounded-avatar" id='image-preview'
+          img src=asset_path(avatar_for(account)) class="rounded-avatar #{'bg-around-image' if account.background.attached?}" id='image-preview'
         .column.p-0.is-flex.is-justify-content-center.is-align-items-center
-          .title.has-text-centered.is-black-budgeting-kid-color
+          .title.has-text-centered.is-black-budgeting-kid-color(class="#{'bg-around-text' if account.background.attached?}")
             = account.name
   / desktop
   .column.for-desktop.box.m-2.is-flex.is-justify-content-center.is-align-items-center
-    .buttons.mb-4
+    .buttons
       - if current_user.parent?
         = link_to account_shares_path(account), class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px; " do
           figure.image.is-16x16.is-budgeting-kid-light-color

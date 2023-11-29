@@ -9,7 +9,6 @@ class KidAccountSharesController < ApplicationController
     parental_key = generate_unique_key
     AccountShare.create!(user_id: current_user.id,
                          account_id: account.id,
-                         token: SecureRandom.urlsafe_base64(32),
                          accepted_at: Time.current,
                          name: account.name,
                          email: "#{parental_key}@budgetingkid.com",

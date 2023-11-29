@@ -15,7 +15,7 @@
                 span.file-icon
                   i.fa.fa-camera
                 span.file-label
-                  | Add photo
+                  | Change Avatar
           .file#background-input.is-light.is-pulled-right
             label.file-label.is-light
               = f.file_field :background, class: 'file-input'
@@ -23,7 +23,7 @@
                 span.file-icon
                   i.fa.fa-picture-o
                 span.file-label
-                  | Add background
+                  | Change Background
       - if current_user.parent?
         .field.mb-4
           = f.text_field :name, autofocus: true, class: "input", placeholder: "Name"

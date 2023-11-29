@@ -9,6 +9,8 @@ document.addEventListener('turbolinks:load', function () {
         const reader = new FileReader();
         reader.onload = function (e) {
           accountBackground.style.backgroundImage = "url('" + e.target.result + "')";
+          accountBackground.style.borderRadius = "16px";
+          accountBackground.style.backgroundSize = "cover";
         };
         reader.readAsDataURL(file);
       }

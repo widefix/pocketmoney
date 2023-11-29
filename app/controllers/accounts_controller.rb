@@ -11,6 +11,7 @@ class AccountsController < ApplicationController
 
   def update
     attach_avatar_for(account)
+    attach_background_for(account)
     if account.update(ps[:account])
       redirect_to account_path
     else
@@ -48,6 +49,11 @@ class AccountsController < ApplicationController
   def attach_avatar_for(account)
     image_params = params.fetch(:avatar, params.dig(:account, :avatar))
     account.avatar.attach(image_params) if image_params.present?
+  end
+
+  def attach_background_for(account)
+    background_params = params.fetch(:background, params.dig(:account, :background))
+    account.background.attach(background_params) if background_params.present?
   end
 
   helper_method memoize def account

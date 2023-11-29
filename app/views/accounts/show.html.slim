@@ -2,7 +2,7 @@
 .columns
   / desktop
   .column.for-desktop.is-two-fifths.box.m-2
-    .p-4(style="#{"border-radius: 16px; background-size: cover; background-image: url('#{background_for(account)}');" if account.background.attached?}")
+    .p-4(style="#{"border-radius: 16px; background-size: cover; background-image: url('#{url_for(account.background)}');" if account.background.attached?}")
       - if account.parent.email != current_user.email && current_user.parent?
         .columns
           .column.is-flex.is-justify-content-center.is-align-items-center
@@ -16,7 +16,7 @@
             = account.name
   / mobile
   .column.for-mobile.is-two-fifths.box
-    .p-4(style="#{"border-radius: 16px; background-size: cover; background-image: url('#{background_for(account)}');" if account.background.attached?}")
+    .p-4(style="#{"border-radius: 16px; background-size: cover; background-image: url('#{url_for(account.background)}');" if account.background.attached?}")
       - if account.parent.email != current_user.email && current_user.parent?
         .columns
           .column.is-flex.is-justify-content-center.is-align-items-center

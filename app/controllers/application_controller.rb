@@ -38,10 +38,4 @@ class ApplicationController < ActionController::Base
       'user.svg'
     end
   end
-
-  helper_method def background_for(account)
-    return unless account.background.attached?
-
-    url_for(account.background)
-  end
 end

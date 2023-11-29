@@ -77,11 +77,10 @@
       | Balance
     p.title.is-2.is-budgeting-kid-color.has-text-centered #{account.balance}
     .buttons.mb-1
-      - if current_user.parent?
-        = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(account) }, class: 'button mx-2 is-plus-color is-medium' do
-          figure.image.is-24x24
-            = image_tag('plus-circle-green.svg', alt: '+')
-          | &nbsp; Increase
+      = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(account) }, class: 'button mx-2 is-plus-color is-medium' do
+        figure.image.is-24x24
+          = image_tag('plus-circle-green.svg', alt: '+')
+        | &nbsp; Increase
       = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(account) }, class: 'button mx-2 is-minus-color is-medium' do
         figure.image.is-24x24
           = image_tag('minus-circle-red.svg', alt: '-')
@@ -93,11 +92,10 @@
       | Balance
     p.title.is-2.is-budgeting-kid-color.has-text-centered #{account.balance}
     .buttons.mb-1
-      - if current_user.parent?
-        = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(account) }, class: 'button mx-1 is-plus-color' do
-          figure.image.is-24x24
-            = image_tag('plus-circle-green.svg', alt: '+')
-          | &nbsp; Increase
+      = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(account) }, class: 'button mx-1 is-plus-color' do
+        figure.image.is-24x24
+          = image_tag('plus-circle-green.svg', alt: '+')
+        | &nbsp; Increase
       = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(account) }, class: 'button mx-1 is-minus-color' do
         figure.image.is-24x24
           = image_tag('minus-circle-red.svg', alt: '-')

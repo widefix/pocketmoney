@@ -8,6 +8,7 @@ class AccountShare < ApplicationRecord
   scope :accepted, -> { where.not(accepted_at: nil).and(where.not(accepted_at: DateTime.new(0))) }
   scope :unaccepted, -> { where(accepted_at: nil) }
   scope :visible, -> { includes(:account).where(accounts: { archived_at: nil }) }
+  scope :for_parents, -> { where(parental_key: nil) }
 
   memoize def public?
     email.nil? && name.nil? && parental_key.nil?

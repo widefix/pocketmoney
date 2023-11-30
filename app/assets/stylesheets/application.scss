@@ -18,7 +18,8 @@
 $text: hsl(0, 0%, 0%);
 $text-light: hsl(270, 50%, 48%);
 $text-strong: hsl(270, 50%, 21%);
-$footer-background-color: white;
+$footer-background-color: transparent;
+$footer-padding: 3rem 1.5rem 3rem;
 $navbar-item-img-max-height: 40px;
 $navbar-item-hover-color: hsl(0, 0%, 0%);
 $file-cta-color: hsl(270, 50%, 48%);
@@ -561,4 +562,27 @@ button.is-gray:hover {
   border-radius: 12px;
   background-size: cover;
   background-position: center;
+}
+
+.footer {
+  border-top: 1px solid hsl(0, 0%, 90%);
+  display: flex;
+  margin-top: 1.5rem;
+
+  p {
+    margin-right: 0.5rem;
+
+    a {
+      color: #adadad;
+
+      &.footer-link {
+        font-weight: 700;
+        color: #333645;
+      }
+    }
+
+    a:hover {
+      color: $text-light;
+    }
+  }
 }

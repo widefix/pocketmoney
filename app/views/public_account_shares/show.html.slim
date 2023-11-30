@@ -1,30 +1,30 @@
 #topup-utc-time data-utc-time= topup_utc_time
 .columns
   / desktop
-  .column.for-desktop.box.m-2
-    .p-4(style="#{"background-image: url('#{url_for(public_account.background)}');" if public_account.background.attached?}", class="#{'account-has-bg' if public_account.background.attached?}")
+  .column.for-desktop.box.m-2(style="#{"background-image: url('#{url_for(public_account.background)}');" if public_account.background.attached?}" class="#{'account-has-bg' if public_account.background.attached?}")
+    .p-4
       .columns
         .column.is-flex.is-justify-content-center.is-align-items-center
-          .has-text-weight-bold(class="bg-around-text" - if public_account.background.attached?)
+          .has-text-weight-bold(class="#{'bg-around-text' if public_account.background.attached?}")
             | Account owner: #{public_account.parent.email}
       .columns.is-mobile
         .column.is-4.is-flex.is-justify-content-center.is-align-items-center
           img src=asset_path(avatar_for(public_account)) class="rounded-avatar #{'bg-around-image' if public_account.background.attached?}" id='image-preview'
         .column.is-flex.is-justify-content-flex-start.is-align-items-center
-          .title.is-black-budgeting-kid-color(class="bg-around-text" - if public_account.background.attached?)
+          .title.is-black-budgeting-kid-color(class="#{'bg-around-text' if public_account.background.attached?}")
             = public_account.name
   / mobile
-  .column.for-mobile.box
-    .p-4(style="#{"background-image: url('#{url_for(public_account.background)}');" if public_account.background.attached?}", class="#{'account-has-bg' if public_account.background.attached?}")
+  .column.for-mobile.box(style="#{"background-image: url('#{url_for(public_account.background)}');" if public_account.background.attached?}" class="#{'account-has-bg' if public_account.background.attached?}")
+    .p-4
       .columns
         .column.is-flex.is-justify-content-center.is-align-items-center
-          .has-text-weight-bold(class="bg-around-text" - if public_account.background.attached?)
+          .has-text-weight-bold(class="#{'bg-around-text' if public_account.background.attached?}")
             | Account owner: #{public_account.parent.email}
       .columns.is-mobile
         .column.is-4.px-0.is-flex.is-justify-content-center.is-align-items-center
           img src=asset_path(avatar_for(public_account)) class="rounded-avatar #{'bg-around-image' if public_account.background.attached?}" id='image-preview'
         .column.p-0.is-flex.is-justify-content-center.is-align-items-center
-          .title.has-text-centered.is-black-budgeting-kid-color(class="bg-around-text" - if public_account.background.attached?)
+          .title.has-text-centered.is-black-budgeting-kid-color(class="#{'bg-around-text' if public_account.background.attached?}")
             = public_account.name
   / desktop
   .column.for-desktop.box.m-2.is-flex.is-justify-content-center.is-align-items-center

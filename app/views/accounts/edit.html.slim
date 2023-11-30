@@ -2,10 +2,10 @@
   .column.is-one-third
     h2.title.is-4.has-text-centered Edit account
     = form_with model: account do |f|
-      .columns.is-mobile.is-justify-content-space-between#account-background(style="background-image: url('#{url_for(account.background)}');", class="account-has-bg" - if account.background.attached?)
+      .columns.is-mobile.is-justify-content-space-between#account-background(style="background-image: url('#{url_for(account.background)}');" class="account-has-bg" - if account.background.attached?)
         .column.is-one-third
           .field
-            .figure.image.is-128x128(class="bg-around-image" - if account.background.attached?)
+            .figure.image.is-128x128(class="#{'bg-around-image' if account.background.attached?}")
               = image_tag(avatar_for(account), id:'account-image', class:"is-rounded",  alt: 'avatar')
         .is-flex.is-flex-direction-column.is-align-items-flex-end.mr-4.for-desktop
           .file#file-input.is-light.is-pulled-right.my-4

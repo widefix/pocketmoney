@@ -1,10 +1,17 @@
-<footer class="footer is-flex-align-items-flex-end mt-auto pb-6">
-  <p>© <%= Time.current.year %> BudgetingKid</p>
-  <p>Designed with love by <%= link_to("WideFix", "https://widefix.com/")%></p>
-  <%= link_to("Privacy Policy", policy_path) %>
+<footer class="footer for-desktop">
+  <p class="has-text-light-gray-budgeting-kid-color">© <%= Time.current.year %>  <%= link_to("WideFix", "https://widefix.com/")%></p>
+  <p><%= link_to("Cookie Settings", policy_path(anchor: 'cookies'), class: "footer-link") %></p>
+  <p><%= link_to("Privacy Policy", policy_path, class: "footer-link") %></p>
+  <p><%= link_to("Term of Service", policy_path(anchor: 'terms'), class: "footer-link") %></p>
 </footer>
 
 <% if current_user&.parent? %>
+  <footer class="footer for-mobile mb-5 mt-0 pt-3 is-flex-direction-column">
+    <p class="has-text-light-gray-budgeting-kid-color">© <%= Time.current.year %>  <%= link_to("WideFix", "https://widefix.com/")%></p>
+    <p><%= link_to("Cookie Settings", policy_path(anchor: 'cookies'), class: "footer-link") %></p>
+    <p><%= link_to("Privacy Policy", policy_path, class: "footer-link") %></p>
+    <p><%= link_to("Term of Service", policy_path(anchor: 'terms'), class: "footer-link") %></p>
+  </footer>
   <nav class="navbar-footer is-fixed-bottom is-flex-align-items-flex-end for-mobile">
     <div class="columns is-mobile is-gapless">
       <div class="column">

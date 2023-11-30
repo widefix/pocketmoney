@@ -2,7 +2,7 @@
 .columns
   / desktop
   .column.for-desktop.box.m-2
-    .p-4(style="background-image: url('#{url_for(public_account.background)}');", class="account-has-bg" - if public_account.background.attached?)
+    .p-4(style="#{"background-image: url('#{url_for(public_account.background)}');" if public_account.background.attached?}", class="#{'account-has-bg' if public_account.background.attached?}")
       .columns
         .column.is-flex.is-justify-content-center.is-align-items-center
           .has-text-weight-bold(class="bg-around-text" - if public_account.background.attached?)
@@ -15,7 +15,7 @@
             = public_account.name
   / mobile
   .column.for-mobile.box
-    .p-4(style="background-image: url('#{url_for(public_account.background)}');", class="account-has-bg" - if public_account.background.attached?)
+    .p-4(style="#{"background-image: url('#{url_for(public_account.background)}');" if public_account.background.attached?}", class="#{'account-has-bg' if public_account.background.attached?}")
       .columns
         .column.is-flex.is-justify-content-center.is-align-items-center
           .has-text-weight-bold(class="bg-around-text" - if public_account.background.attached?)

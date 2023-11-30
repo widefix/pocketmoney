@@ -8,12 +8,12 @@
     .modal-card-body
       = form_with url:false, method: :post, id: 'spend-form-with' do |f|
         .field.mt-2
-          = f.label "Amount to be deducted"
+          = f.label :amount, "Amount to be deducted"
         .field.is-relative
           = f.text_field :amount, autofocus: true, type: 'number', min: '1', class: 'input amount', required: true
-          = link_to 'All Balance', '#', class: 'button is-small is-light all-balance-button', data: { balance: account.balance }
+          = link_to 'All Balance', '#', class: 'button is-small is-light all-balance-button'
         .field
-          = f.label "Description (optional)"
+          = f.label :description, "Description (optional)"
         .field
           = f.text_field :description, class: 'input decscription'
         br

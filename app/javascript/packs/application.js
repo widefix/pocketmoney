@@ -16,7 +16,6 @@ require("image/loadAccountImage")
 require("image/loadAccountBackground")
 require("account/toggleButton")
 require("account/chartSettings")
-require("spends/allBalance")
 require("time_zone/userTimeZone")
 require("signup/agreedToTerms")
 

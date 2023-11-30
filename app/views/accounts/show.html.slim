@@ -81,7 +81,7 @@
         figure.image.is-24x24
           = image_tag('plus-circle-green.svg', alt: '+')
         | &nbsp; Increase
-      = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(account) }, class: 'button mx-2 is-minus-color is-medium' do
+      = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(account), balance: account.balance }, class: 'button mx-2 is-minus-color is-medium' do
         figure.image.is-24x24
           = image_tag('minus-circle-red.svg', alt: '-')
         | &nbsp; Decrease
@@ -96,7 +96,7 @@
         figure.image.is-24x24
           = image_tag('plus-circle-green.svg', alt: '+')
         | &nbsp; Increase
-      = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(account) }, class: 'button mx-1 is-minus-color' do
+      = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(account), balance: account.balance }, class: 'button mx-1 is-minus-color' do
         figure.image.is-24x24
           = image_tag('minus-circle-red.svg', alt: '-')
         | &nbsp; Decrease

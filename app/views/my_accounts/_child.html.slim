@@ -18,7 +18,7 @@
             figure.file-icon.image.is-24x24
               = image_tag('plus-circle-green.svg', alt: '+')
             | Increase
-          = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(child) }, class: 'button mx-2 is-minus-color is-medium'
+          = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(child), balance: child.balance }, class: 'button mx-2 is-minus-color is-medium'
             figure.file-icon.image.is-24x24
               = image_tag('minus-circle-red.svg', alt: '-')
             | Decrease
@@ -46,7 +46,7 @@
         figure.file-icon.image.is-24x24
           = image_tag('plus-circle-green.svg', alt: '+')
         | Increase
-      = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(child) }, class: 'button m-1 is-minus-color' do
+      = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(child), balance: child.balance }, class: 'button m-1 is-minus-color' do
         figure.file-icon.image.is-24x24
           = image_tag('minus-circle-red.svg', alt: '-')
         | Decrease

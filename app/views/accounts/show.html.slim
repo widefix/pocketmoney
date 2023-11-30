@@ -2,31 +2,31 @@
 .columns
   / desktop
   .column.for-desktop.is-two-fifths.box.m-2
-    .p-4(style="#{"border-radius: 16px; background-size: cover; background-image: url('#{url_for(account.background)}');" if account.background.attached?}")
+    .p-4(style="background-image: url('#{url_for(account.background)}');", class="account-has-bg" - if account.background.attached?)
       - if account.parent.email != current_user.email && current_user.parent?
         .columns
           .column.is-flex.is-justify-content-center.is-align-items-center
-            .has-text-weight-bold
+            .has-text-weight-bold(class="bg-around-text" - if account.background.attached?)
               | Account owner: #{account.parent.email}
       .columns.is-mobile
         .column.is-4.is-flex.is-justify-content-center.is-align-items-center
           img src=asset_path(avatar_for(account)) class="rounded-avatar #{'bg-around-image' if account.background.attached?}" id='image-preview'
         .column.is-flex.is-justify-content-flex-start.is-align-items-center
-          .title.is-black-budgeting-kid-color(class="#{'bg-around-text' if account.background.attached?}")
+          .title.is-black-budgeting-kid-color(class="bg-around-text" - if account.background.attached?)
             = account.name
   / mobile
   .column.for-mobile.is-two-fifths.box
-    .p-4(style="#{"border-radius: 16px; background-size: cover; background-image: url('#{url_for(account.background)}');" if account.background.attached?}")
+    .p-4(style="background-image: url('#{url_for(account.background)}');", class="account-has-bg" - if account.background.attached?)
       - if account.parent.email != current_user.email && current_user.parent?
         .columns
           .column.is-flex.is-justify-content-center.is-align-items-center
-            .has-text-weight-bold
+            .has-text-weight-bold(class="bg-around-text" - if account.background.attached?)
               | Account owner: #{account.parent.email}
       .columns.is-mobile
         .column.is-4.px-0.is-flex.is-justify-content-center.is-align-items-center
           img src=asset_path(avatar_for(account)) class="rounded-avatar #{'bg-around-image' if account.background.attached?}" id='image-preview'
         .column.p-0.is-flex.is-justify-content-center.is-align-items-center
-          .title.has-text-centered.is-black-budgeting-kid-color(class="#{'bg-around-text' if account.background.attached?}")
+          .title.has-text-centered.is-black-budgeting-kid-color(class="bg-around-text" - if account.background.attached?)
             = account.name
   / desktop
   .column.for-desktop.box.m-2.is-flex.is-justify-content-center.is-align-items-center

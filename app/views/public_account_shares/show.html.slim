@@ -2,29 +2,29 @@
 .columns
   / desktop
   .column.for-desktop.box.m-2
-    div.p-4.mb-4
+    .p-4(style="background-image: url('#{url_for(public_account.background)}');", class="account-has-bg" - if public_account.background.attached?)
       .columns
         .column.is-flex.is-justify-content-center.is-align-items-center
-          .has-text-weight-bold
+          .has-text-weight-bold(class="bg-around-text" - if public_account.background.attached?)
             | Account owner: #{public_account.parent.email}
       .columns.is-mobile
         .column.is-4.is-flex.is-justify-content-center.is-align-items-center
-          img src=asset_path(avatar_for(public_account)) class="rounded-avatar" id='image-preview'
+          img src=asset_path(avatar_for(public_account)) class="rounded-avatar #{'bg-around-image' if public_account.background.attached?}" id='image-preview'
         .column.is-flex.is-justify-content-flex-start.is-align-items-center
-          .title.is-black-budgeting-kid-color
+          .title.is-black-budgeting-kid-color(class="bg-around-text" - if public_account.background.attached?)
             = public_account.name
   / mobile
   .column.for-mobile.box
-    div.p-4
+    .p-4(style="background-image: url('#{url_for(public_account.background)}');", class="account-has-bg" - if public_account.background.attached?)
       .columns
         .column.is-flex.is-justify-content-center.is-align-items-center
-          .has-text-weight-bold
+          .has-text-weight-bold(class="bg-around-text" - if public_account.background.attached?)
             | Account owner: #{public_account.parent.email}
       .columns.is-mobile
         .column.is-4.px-0.is-flex.is-justify-content-center.is-align-items-center
-          img src=asset_path(avatar_for(public_account)) class="rounded-avatar" id='image-preview'
+          img src=asset_path(avatar_for(public_account)) class="rounded-avatar #{'bg-around-image' if public_account.background.attached?}" id='image-preview'
         .column.p-0.is-flex.is-justify-content-center.is-align-items-center
-          .title.has-text-centered.is-black-budgeting-kid-color
+          .title.has-text-centered.is-black-budgeting-kid-color(class="bg-around-text" - if public_account.background.attached?)
             = public_account.name
   / desktop
   .column.for-desktop.box.m-2.is-flex.is-justify-content-center.is-align-items-center
@@ -44,7 +44,7 @@
 / desktop
 .columns.for-desktop
   .column.transactions.box.m-2
-    div.m-5
+    .m-5
       .title.is-black-budgeting-kid-color
         | Transaction History
       - transactions = public_account.transactions.first(3)
@@ -69,7 +69,7 @@
                 th
                 th
   .column.goals.box.m-2
-    div.m-5
+    .m-5
       .columns
         .column
           .title.is-black-budgeting-kid-color
@@ -147,7 +147,7 @@
 .columns.mb-3.automatic-topup-configs
   / desktop
   .column.box.m-2.for-desktop
-    div.m-5.pb-2 style="border-bottom: 1px solid hsl(0, 0%, 86%)"
+    .m-5.pb-2 style="border-bottom: 1px solid hsl(0, 0%, 86%)"
       .title.is-black-budgeting-kid-color
         | Recurring balance increase
       .subtitle.is-6.is-vcentered.has-text-dark-gray-budgeting-kid-color

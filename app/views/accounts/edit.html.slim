@@ -2,7 +2,7 @@
   .column.is-one-third
     h2.title.is-4.has-text-centered Edit account
     = form_with model: account do |f|
-      .columns.is-mobile.is-justify-content-space-between#account-background(style="#{"border-radius: 16px; background-size: cover; background-image: url('#{url_for(account.background)}');" if account.background.attached?}")
+      .columns.is-mobile.is-justify-content-space-between#account-background(style="background-image: url('#{url_for(account.background)}');" class="account-has-bg" - if account.background.attached?)
         .column.is-one-third
           .field
             .figure.image.is-128x128(class="#{'bg-around-image' if account.background.attached?}")

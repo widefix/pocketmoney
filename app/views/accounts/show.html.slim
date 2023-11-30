@@ -1,12 +1,12 @@
 #topup-utc-time data-utc-time= topup_utc_time
 .columns
   / desktop
-  .column.for-desktop.is-two-fifths.box.m-2
-    .p-4(style="#{"border-radius: 16px; background-size: cover; background-image: url('#{url_for(account.background)}');" if account.background.attached?}")
+  .column.for-desktop.is-two-fifths.box.m-2(style="#{"background-image: url('#{url_for(account.background)}');" if account.background.attached?}" class="#{'account-has-bg' if account.background.attached?}")
+    .p-4
       - if account.parent.email != current_user.email && current_user.parent?
         .columns
           .column.is-flex.is-justify-content-center.is-align-items-center
-            .has-text-weight-bold
+            .has-text-weight-bold(class="#{'bg-around-text' if account.background.attached?}")
               | Account owner: #{account.parent.email}
       .columns.is-mobile
         .column.is-4.is-flex.is-justify-content-center.is-align-items-center
@@ -15,12 +15,12 @@
           .title.is-black-budgeting-kid-color(class="#{'bg-around-text' if account.background.attached?}")
             = account.name
   / mobile
-  .column.for-mobile.is-two-fifths.box
-    .p-4(style="#{"border-radius: 16px; background-size: cover; background-image: url('#{url_for(account.background)}');" if account.background.attached?}")
+  .column.for-mobile.is-two-fifths.box(style="#{"background-image: url('#{url_for(account.background)}');" if account.background.attached?}" class="#{'account-has-bg' if account.background.attached?}")
+    .p-4
       - if account.parent.email != current_user.email && current_user.parent?
         .columns
           .column.is-flex.is-justify-content-center.is-align-items-center
-            .has-text-weight-bold
+            .has-text-weight-bold(class="#{'bg-around-text' if account.background.attached?}")
               | Account owner: #{account.parent.email}
       .columns.is-mobile
         .column.is-4.px-0.is-flex.is-justify-content-center.is-align-items-center

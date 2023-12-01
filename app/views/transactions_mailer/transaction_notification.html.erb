@@ -1,9 +1,11 @@
 <div class="container">
   <h1>Transaction added to <%= @account.name %></h1>
   <h2>About transation:</h3>
-  <p>Amount: <%= @transaction.signed_amount(@account) %> </p>
-  <p>Description: <%= @transaction.description %> </p>
-  <p>Current balance: <%= @account.balance %> </p>
+  <div class="about">
+    <b>Amount: <%= @transaction.signed_amount(@account) %></b>
+    <b>Description: <%= @transaction.description %></b>
+    <b>Current balance: <%= @account.balance %></b>
+  </div>
   <h2>Last 5 transactions:</h2>
   <table>
     <tr>
@@ -19,7 +21,7 @@
       </tr>
     <% end %>
   </table>
-  <p><%= link_to "See More details",  account_url(@account) %></p>
+  <b><%= link_to "See More details",  account_url(@account) %></b>
 </div>
 
 <style>
@@ -41,16 +43,21 @@
     padding: 5rem;
   }
 
-  h1, h2 {
-    color: rebeccapurple;
+  .about {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about b {
+    margin-bottom: 1rem;
   }
 
   h1 {
     margin-bottom: 3rem;
   }
 
-  p {
-    font-weight: 700;
+  h1, h2 {
+    color: rebeccapurple;
   }
 
   table {

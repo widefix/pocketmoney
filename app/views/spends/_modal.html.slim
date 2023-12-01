@@ -10,7 +10,7 @@
         .field.mt-2
           = f.label :amount, "Amount to be deducted"
         .field.is-relative
-          = f.text_field :amount, autofocus: true, type: 'number', min: '1', class: 'input amount', required: true
+          = f.text_field :amount, autofocus: true, type: 'number', step: 0.1, min: 0.1, class: 'input amount', required: true
           = link_to 'All Balance', '#', class: 'button is-small is-light all-balance-button'
         .field
           = f.label :description, "Description (optional)"

@@ -7,7 +7,7 @@ RSpec.describe Account, type: :model do
     let(:parent) { create(:account, :parent) }
     let(:child) { create(:account, :children, parent: parent) }
     let!(:first_transaction) do
-      create(:transaction, to_account: child, from_account: parent, amount: 100.0, created_at: 1.month.ago)
+      create(:transaction, to_account: child, from_account: parent, amount: 100.0, created_at: 40.day.ago)
     end
     let!(:second_transaction) do
       create(:transaction, to_account: parent, from_account: child, amount: 70.0, created_at: 1.week.ago)
@@ -47,6 +47,7 @@ RSpec.describe Account, type: :model do
         expect(child.accumulative_balance_data)
           .to eq({
                    first_transaction.created_at.beginning_of_month.to_date.strftime('%Y-%m-%d') => 100.0,
+                   second_transaction.created_at.beginning_of_month.to_date.strftime('%Y-%m-%d') => 30.0,
                    third_transaction.created_at.beginning_of_month.to_date.strftime('%Y-%m-%d') => 80.0
                  })
       end

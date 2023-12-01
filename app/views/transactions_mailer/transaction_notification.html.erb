@@ -1,21 +1,91 @@
-<h1>New transaction was added in <%= @account.name %>!</h1>
-<h3>About transation:</h3>
-<p>Amount: <%= @transaction.signed_amount(@account) %> </p>
-<p>Description: <%= @transaction.description %> </p>
-<p>Current balance: <%= @account.balance %> </p>
-<br>
-<h3> Last 5 transactions: </h3>
-<table>
-  <tr>
-    <th>Date</th>
-    <th>Amount</th>
-    <th>Description</th>
-  </tr>
-  <% @transactions.each do |transaction|%>
+<div class="container">
+  <h1>Transaction added to <%= @account.name %></h1>
+  <h2>About transation:</h3>
+  <p>Amount: <%= @transaction.signed_amount(@account) %> </p>
+  <p>Description: <%= @transaction.description %> </p>
+  <p>Current balance: <%= @account.balance %> </p>
+  <h2>Last 5 transactions:</h2>
+  <table>
     <tr>
-      <th><%= transaction.date %></th>
-      <th><%= transaction.signed_amount(@account) %></th>
-      <th><%= transaction.description %></th>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Description</th>
     </tr>
-  <% end %>
-</table>
+    <% @transactions.each do |transaction|%>
+      <tr>
+        <th><%= transaction.date %></th>
+        <th><%= transaction.signed_amount(@account) %></th>
+        <th><%= transaction.description %></th>
+      </tr>
+    <% end %>
+  </table>
+  <p><%= link_to "See More details",  account_url(@account) %></p>
+</div>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #FEF9FF;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container {
+    background-color: white;
+    min-width: 60%;
+    box-shadow: 0 0.1em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+    border-radius: 12px;
+    margin: 1.5rem;
+    padding: 5rem;
+  }
+
+  h1, h2 {
+    color: rebeccapurple;
+  }
+
+  h1 {
+    margin-bottom: 3rem;
+  }
+
+  p {
+    font-weight: 700;
+  }
+
+  table {
+    min-width: 100%;
+    border-collapse: collapse;
+        margin: 10px 0 30px;
+  }
+
+  th, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    min-width: 90px;
+  }
+
+  th:first-child, td:first-child,
+  th:nth-child(2), td:nth-child(2) {
+    width: 15%;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #f2f2f2;
+  }
+
+  a {
+    color: rebeccapurple;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #333;
+    text-decoration: none;
+  }
+</style>

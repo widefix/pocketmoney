@@ -53,15 +53,48 @@
           .notification.is-light.mt-3
             | If checked, all users with access to your kid's account, including you, will get email notifications 
             | about balance changes.
-      buttons.is-flex.is-justify-content-flex-end
-        = link_to account_path(account), class: 'button is-light mr-2' do
-          span.file-icon
-            i.fa.fa-chevron-left
-          | Back
-        = button_to account_path, class: 'button is-primary' do
-          span.file-icon
-            i.fa.fa-hdd-o
-          | Save
+      buttons.is-flex.is-justify-content-space-between.for-desktop
+        - if current_user.parent?
+          - if current_user.owner?(account)
+            = link_to archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'button is-budgeting-kid-danger', style: "width: 180px" do
+              span.icon
+                i.fa.fa-archive
+              | &nbsp; Archive Account
+          - else
+            = link_to terminate_shared_account_path(account), method: :patch, data: {confirm: 'Would you like to decline this share?'}, class: 'button is-budgeting-kid-danger' do
+              span.icon
+                i.fa.fa-sign-out
+              | &nbsp; Decline Share
+        div
+          = link_to account_path(account), class: 'button is-white is-bordered mr-2' do
+            span.file-icon
+              i.fa.fa-chevron-left
+            | Back
+          = button_to account_path, class: 'button is-primary' do
+            span.file-icon
+              i.fa.fa-hdd-o
+            | Save
+      buttons.is-flex.is-flex-direction-column.for-mobile
+        - if current_user.parent?
+          - if current_user.owner?(account)
+            = link_to archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'button is-budgeting-kid-danger mb-4', style: "width: 180px" do
+              span.icon
+                i.fa.fa-archive
+              | &nbsp; Archive Account
+          - else
+            = link_to terminate_shared_account_path(account), method: :patch, data: {confirm: 'Would you like to decline this share?'}, class: 'button is-budgeting-kid-danger mb-4' do
+              span.icon
+                i.fa.fa-sign-out
+              | &nbsp; Decline Share
+        .is-flex.is-justify-content-flex-end
+          = link_to account_path(account), class: 'button is-white is-bordered mr-2' do
+            span.file-icon
+              i.fa.fa-chevron-left
+            | Back
+          = button_to account_path, class: 'button is-primary' do
+            span.file-icon
+              i.fa.fa-hdd-o
+            | Save
 
 javascript:
   document.addEventListener('turbolinks:load', function () {

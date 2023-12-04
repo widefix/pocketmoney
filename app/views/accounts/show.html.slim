@@ -1,7 +1,7 @@
 #topup-utc-time data-utc-time= topup_utc_time
 .columns
   / desktop
-  .column.for-desktop.is-two-fifths.box.m-2(style="#{"background-image: url('#{url_for(account.background)}');" if account.background.attached?}" class="#{'account-has-bg' if account.background.attached?}")
+  .column.for-desktop.box.m-2(style="#{"background-image: url('#{url_for(account.background)}');" if account.background.attached?}" class="#{'account-has-bg' if account.background.attached?}")
     .p-4
       - if !current_user.owner?(account) && current_user.parent?
         .columns
@@ -15,7 +15,7 @@
           .title.is-black-budgeting-kid-color(class="#{'bg-around-text' if account.background.attached?}")
             = account.name
   / mobile
-  .column.for-mobile.is-two-fifths.box(style="#{"background-image: url('#{url_for(account.background)}');" if account.background.attached?}" class="#{'account-has-bg' if account.background.attached?}")
+  .column.for-mobile.box(style="#{"background-image: url('#{url_for(account.background)}');" if account.background.attached?}" class="#{'account-has-bg' if account.background.attached?}")
     .p-4
       - if !current_user.owner?(account) && current_user.parent?
         .columns
@@ -40,17 +40,6 @@
         figure.image.is-16x16.is-budgeting-kid-light-color
           = image_tag('edit.svg')
         | &nbsp; Edit Account
-      - if current_user.parent?
-        - if current_user.owner?(account)
-          = link_to archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px" do
-            span.icon
-              i.fa.fa-archive
-            | &nbsp; Archive Account
-        - else
-          = link_to terminate_shared_account_path(account), method: :patch, data: {confirm: 'Would you like to terminate this account?'}, class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4' do
-            span.icon
-              i.fa.fa-sign-out
-            | &nbsp; Terminate Account
   / mobile
   .column.for-mobile.box.mb-5.is-flex.is-justify-content-center.is-align-items-center
     .buttons
@@ -61,15 +50,6 @@
       = link_to edit_account_path(account), class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px; " do
         figure.image.is-16x16.is-budgeting-kid-light-color
           = image_tag('edit.svg')
-      - if current_user.parent?
-        - if current_user.owner?(account)
-          = link_to archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px" do
-            span.icon
-              i.fa.fa-archive
-        - else
-          = link_to terminate_shared_account_path(account), method: :patch, data: {confirm: 'Would you like to terminate this account?'}, class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px" do
-            span.icon
-              i.fa.fa-sign-out
 / desktop
 .box.for-desktop.is-flex.is-justify-content-center.is-align-items-center
   div

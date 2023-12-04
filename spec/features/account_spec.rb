@@ -18,8 +18,6 @@ RSpec.feature 'Account', type: :feature do
     expect(page).to have_http_status(:success)
     expect(page).to have_link('Edit Account', href: edit_account_path(account))
     expect(page).to have_link('Share Account', href: account_shares_path(account))
-    expect(page).to have_link('Archive Account', href: archive_account_path(account))
-      .or(have_link('Terminate Account', href: terminate_shared_account_path(account)))
     expect(page).to have_content(account.name)
     expect(page).to have_content(account.balance)
     expect(page).to have_button('Increase')

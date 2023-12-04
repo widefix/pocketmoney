@@ -22,7 +22,11 @@ class Transaction < ApplicationRecord
   end
 
   def signed_amount(account)
-    sign = from_account == account ? '-' : '+'
+    sign = negative?(account) ? '-' : '+'
     "#{sign}#{amount}"
+  end
+
+  def negative?(account)
+    from_account == account
   end
 end

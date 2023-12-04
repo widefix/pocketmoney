@@ -108,14 +108,14 @@
     div.m-5
       .title.is-black-budgeting-kid-color
         | Transaction History
-      - transactions = account.transactions.first(3)
+      - transactions = account.transactions
       -if transactions.empty?
         .columns.p-1.mb-0.is-flex.is-centered
           figure.image.is-48x48.is-hint-icon-color
             = image_tag('loupe.svg', alt: 'No..., yet')
         p.has-text-centered.mt-2 No transactions yet.
       - else
-        .table-container
+        .table-container.scrollable
           table.table.is-fullwidth
             thead
               tr.has-text-left
@@ -144,14 +144,14 @@
             figure.image.is-16x16.is-budgeting-kid-light-color
               = image_tag('plus-circle-white.svg', alt: '+')
             | &nbsp; Add Goal
-      - objectives = account.objectives.last(2)
+      - objectives = account.objectives
       -if objectives.empty?
         .columns.p-1.mb-0.is-flex.is-centered
           figure.image.is-48x48.is-hint-icon-color
             = image_tag('loupe.svg', alt: 'No..., yet')
         p.has-text-centered.mt-2 No goals yet.
       - else
-        .table-container
+        .table-container.scrollable
           table.table.is-fullwidth
             thead
             tbody
@@ -168,7 +168,7 @@
     div
       .title.is-4.is-black-budgeting-kid-color
         | Transaction History
-      - transactions = account.transactions.first(3)
+      - transactions = account.transactions
       -if transactions.empty?
         .columns.p-1.mb-0.is-flex.is-centered
           figure.image.is-48x48.is-hint-icon-color
@@ -176,7 +176,7 @@
         p.has-text-centered.mt-2 No transactions yet.
 
       - else
-        .table-container
+        .table-container.scrollable
           table.table.is-fullwidth.p-0
             thead
               tr.has-text-left
@@ -205,14 +205,14 @@
             figure.image.is-20x20.is-budgeting-kid-light-color
               = image_tag('plus-circle-white.svg', alt: '+')
             | &nbsp; Add Goal
-      - objectives = account.objectives.last(2)
+      - objectives = account.objectives
       -if objectives.empty?
         .columns.p-1.mb-0.is-flex.is-centered
           figure.image.is-48x48.is-hint-icon-color
             = image_tag('loupe.svg', alt: 'No..., yet')
         p.has-text-centered.mt-2 No goals yet.
       - else
-        .table-container
+        .table-container.scrollable
           table.table.is-fullwidth
             thead
             tbody

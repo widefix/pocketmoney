@@ -3,7 +3,7 @@
   / desktop
   .column.for-desktop.is-two-fifths.box.m-2(style="#{"background-image: url('#{url_for(account.background)}');" if account.background.attached?}" class="#{'account-has-bg' if account.background.attached?}")
     .p-4
-      - if account.parent.email != current_user.email && current_user.parent?
+      - if !current_user.owner?(account) && current_user.parent?
         .columns
           .column.is-flex.is-justify-content-center.is-align-items-center
             .has-text-weight-bold(class="#{'bg-around-text' if account.background.attached?}")
@@ -17,7 +17,7 @@
   / mobile
   .column.for-mobile.is-two-fifths.box(style="#{"background-image: url('#{url_for(account.background)}');" if account.background.attached?}" class="#{'account-has-bg' if account.background.attached?}")
     .p-4
-      - if account.parent.email != current_user.email && current_user.parent?
+      - if !current_user.owner?(account) && current_user.parent?
         .columns
           .column.is-flex.is-justify-content-center.is-align-items-center
             .has-text-weight-bold(class="#{'bg-around-text' if account.background.attached?}")
@@ -41,7 +41,7 @@
           = image_tag('edit.svg')
         | &nbsp; Edit Account
       - if current_user.parent?
-        - if account.parent.email == current_user.email
+        - if current_user.owner?(account)
           = link_to archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px" do
             span.icon
               i.fa.fa-archive
@@ -62,7 +62,7 @@
         figure.image.is-16x16.is-budgeting-kid-light-color
           = image_tag('edit.svg')
       - if current_user.parent?
-        - if account.parent.email == current_user.email
+        - if current_user.owner?(account)
           = link_to archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px" do
             span.icon
               i.fa.fa-archive

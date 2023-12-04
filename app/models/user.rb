@@ -12,4 +12,8 @@ class User < ApplicationRecord
   memoize def parent?
     parental_key.nil?
   end
+
+  memoize def owner?(child_account)
+    child_account.parent_id == account.id
+  end
 end

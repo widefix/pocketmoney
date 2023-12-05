@@ -235,6 +235,11 @@ $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
   border: none;
 }
 
+.button.is-white-budgeting-kid-color {
+  color: $primary-budgeting-kid-color !important;
+  border: none;
+}
+
 .is-bordered {
   border: 2px solid $primary-budgeting-kid-color !important ;
 }
@@ -277,6 +282,16 @@ button.is-minus-color {
   border-radius: 6px;
   border: 2px solid hsl(8, 82%, 41%);
   color: hsl(8, 82%, 41%);
+}
+
+.button.is-budgeting-kid-danger {
+  border-radius: 6px;
+  border: 2px solid hsl(8, 82%, 41%);
+  color: hsl(8, 82%, 41%);
+}
+
+.button.is-budgeting-kid-danger:hover {
+  background-color: hsla(8, 82%, 41%, 0.1);
 }
 
 button.is-plus-color:hover {

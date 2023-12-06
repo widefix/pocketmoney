@@ -7,6 +7,8 @@ class Objective < ApplicationRecord
   validates :name, presence: true
 
   scope :not_archived, -> { joins(:account).where(account: { archived_at: nil }) }
+  scope :accomplished, -> { where.not(accomplished_at: nil) }
+  scope :not_accomplished, -> { where(accomplished_at: nil) }
 
   def weeks_to_achieve
     return -1 if account.balance >= amount
@@ -14,5 +16,9 @@ class Objective < ApplicationRecord
     return 0 if account.automatic_topup_configs.blank?
 
     ([amount - account.balance, 0].max / account.automatic_topup_configs.sum(:amount).+(0.1)).ceil
+  end
+
+  def date
+    accomplished_at.strftime('%b %d, %y')
   end
 end

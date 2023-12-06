@@ -1,0 +1,37 @@
+/ desktop
+tr.for-desktop
+  td.is-vcentered
+    figure.image.is-48x48
+      img src=asset_path("wizard_goal.svg")
+  td.is-vcentered style="max-width: 120px"
+    p.is-black-budgeting-kid-color
+      = accomplished_objective.name
+    p.has-text-light-gray-budgeting-kid-color
+      = accomplished_objective.amount
+  td
+    .has-text-centered
+      p.pt-2.is-black-budgeting-kid-color
+        | #{ accomplished_objective.date }
+  td
+    = link_to objective_path(accomplished_objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
+      figure.image.is-16x16.is-budgeting-kid-light-color
+        = image_tag('delete.svg', alt: '+')
+      | &nbsp; Delete
+
+/ mobile
+tr.for-mobile
+  td.px-0.has-text-centered.is-vcentered style="width: 100px;"
+    .figure.image.is-48x48.ml-5
+      img src=asset_path("wizard_goal.svg")
+    p.is-black-budgeting-kid-color
+      = accomplished_objective.name
+    p.has-text-light-gray-budgeting-kid-color
+      = accomplished_objective.amount
+  td.has-text-centered.is-vcentered
+    .mb-1
+      p.pt-2.is-black-budgeting-kid-color
+        | #{ accomplished_objective.date }
+  td.is-vcentered.pr-0
+    = link_to objective_path(accomplished_objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
+      figure.image.is-20x20.is-budgeting-kid-light-color
+        = image_tag('delete.svg', alt: '+')

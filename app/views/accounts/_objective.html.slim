@@ -1,29 +1,33 @@
+- weeks_to_achieve = objective.weeks_to_achieve
+- index = objective_counter + 1
+
 / desktop
-tr.for-desktop style="height:90px;"
-  td.is-vcentered style="width: 48px"
+tr.for-desktop
+  td.is-vcentered
     figure.image.is-48x48
       img src=asset_path("wizard_goal.svg")
-  td.is-vcentered style="width: 150px"
-    p.span.is-black-budgeting-kid-color
+  td.is-vcentered style="max-width: 120px"
+    p.is-black-budgeting-kid-color
       = objective.name
-    p.span.has-text-light-gray-budgeting-kid-color
+    p.has-text-light-gray-budgeting-kid-color
       = objective.amount
   td
-    .columns.mb-1
-      .column.pb-0.is-pulled-left
-        p.pt-2.is-black-budgeting-kid-color
-          - weeks_to_achieve = objective.weeks_to_achieve
-          | #{ weeks_to_achieve != -1 ? "#{weeks_to_achieve} Weeks to go" : "Achieved"}
-      .column.pb-0.is-pulled-right
+    .is-flex.mb-1.is-justify-content-space-between
+      p.pt-2.is-black-budgeting-kid-color
+        | #{ weeks_to_achieve != -1 ? "#{weeks_to_achieve} Weeks to go" : "Achieved"}
+      .is-flex.is-justify-content-flex-end
+        - if goal_percentage(account, objective) == "100%"
+          = link_to accomplish_objective_path(objective), method: :patch, class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
+            span.icon
+              i.fa.fa-check-circle-o
+            | &nbsp; Done
         = link_to objective_path(objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
           figure.image.is-16x16.is-budgeting-kid-light-color
             = image_tag('delete.svg', alt: '+')
           | &nbsp; Delete
-    - index = objective_counter + 1
-    progress.progress class="is-small #{index.odd? ? 'is-blue' : 'is-orange'}" style="height:8px;" value="#{goal_percentage(account, objective).chomp('%')}" max="100" #{goal_percentage(account, objective)}
-  td.p-0.is-vcentered style="width: 50px"
-    .title.is-6.pt-4.is-black-budgeting-kid-color
-      | #{goal_percentage(account, objective)}
+    progress.progress class="mb-2 is-small #{index.odd? ? 'is-blue' : 'is-orange'}" style="height:8px;" value="#{goal_percentage(account, objective).chomp('%')}" max="100" #{goal_percentage(account, objective)}
+    td.p-0.is-vcentered style="width: 50px"
+      .title.is-6.has-text-centered.is-black-budgeting-kid-color #{goal_percentage(account, objective)}
 
 / mobile
 tr.for-mobile
@@ -36,17 +40,17 @@ tr.for-mobile
     p.span.has-text-light-gray-budgeting-kid-color
       = objective.amount
   td
-    .columns
-      .column.pb-0.is-pulled-left
+    .pt-3.is-flex.is-justify-content-space-between.is-align-items-flex-end
+      .mb-2
         p.is-black-budgeting-kid-color.pt-2
-          - weeks_to_achieve = objective.weeks_to_achieve
           | #{ weeks_to_achieve != -1 ? "#{weeks_to_achieve} Weeks to go" : "Achieved"}
-      .column.pb-0.is-pulled-right
-        = link_to objective_path(objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button pr-0 is-white has-text-weight-bold has-text-budgeting-kid-color' do
+      .is-flex.is-justify-content-flex-end
+        - if goal_percentage(account, objective) == "100%"
+          = link_to objective_path(objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button pr-3 is-white has-text-weight-bold has-text-budgeting-kid-color' do
+            span.icon style="margin-top: 2px"
+              i.fa.fa-lg.fa-check-circle-o
+        = link_to objective_path(objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button pr-2 is-white has-text-weight-bold has-text-budgeting-kid-color' do
           figure.image.is-20x20.is-budgeting-kid-light-color
             = image_tag('delete.svg', alt: '+')
-    - index = objective_counter + 1
     progress.progress class="mb-2 is-small #{index.odd? ? 'is-blue' : 'is-orange'}" style="height:8px;" value="#{goal_percentage(account, objective).chomp('%')}" max="100" #{goal_percentage(account, objective)}
-    .title.is-4.has-text-centered.is-black-budgeting-kid-color
-      | #{goal_percentage(account, objective)}
-
+    .title.is-4.has-text-centered.is-black-budgeting-kid-color #{goal_percentage(account, objective)}

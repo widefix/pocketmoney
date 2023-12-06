@@ -12,6 +12,11 @@ class ObjectivesController < ApplicationController
     redirect_back(fallback_location: account_path(objective.account))
   end
 
+  def accomplish
+    objective.update(accomplished_at: Time.current)
+    redirect_to account_path(objective.account, anchor: 'desktop-goals')
+  end
+
   private
 
   helper_method memoize def objective

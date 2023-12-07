@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
   helper_method memoize def goal_percentage(account, objective)
     percentage = account.balance / objective.amount * 100
-    percentage = 100 if percentage > 100
+    percentage = [percentage, 100].min
     ActionController::Base.helpers.number_to_percentage(percentage, precision: 0)
   end
 

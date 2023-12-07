@@ -11,7 +11,7 @@ tr.for-desktop
   td
     .has-text-centered
       p.pt-2.is-black-budgeting-kid-color
-        | #{ accomplished_objective.date }
+        | #{ accomplished_objective.accomplished_at.strftime('%b %d, %y') }
   td
     = link_to objective_path(accomplished_objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
       figure.image.is-16x16.is-budgeting-kid-light-color
@@ -30,7 +30,7 @@ tr.for-mobile
   td.has-text-centered.is-vcentered
     .mb-1
       p.pt-2.is-black-budgeting-kid-color
-        | #{ accomplished_objective.date }
+        | #{ accomplished_objective.accomplished_at.strftime('%b %d, %y') }
   td.is-vcentered.pr-0
     = link_to objective_path(accomplished_objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
       figure.image.is-20x20.is-budgeting-kid-light-color

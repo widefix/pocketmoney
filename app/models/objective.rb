@@ -17,8 +17,4 @@ class Objective < ApplicationRecord
 
     ([amount - account.balance, 0].max / account.automatic_topup_configs.sum(:amount).+(0.1)).ceil
   end
-
-  def date
-    accomplished_at.strftime('%b %d, %y')
-  end
 end

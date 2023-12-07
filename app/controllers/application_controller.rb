@@ -20,7 +20,9 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method memoize def goal_percentage(account, objective)
-    ActionController::Base.helpers.number_to_percentage(account.balance / objective.amount * 100, precision: 0)
+    percentage = account.balance / objective.amount * 100
+    percentage = [percentage, 100].min
+    ActionController::Base.helpers.number_to_percentage(percentage, precision: 0)
   end
 
   helper_method memoize def topup_utc_time

@@ -16,6 +16,7 @@ require("image/loadAccountImage")
 require("image/loadAccountBackground")
 require("account/toggleButton")
 require("account/chartSettings")
+require("account/accomplishedGoals")
 require("time_zone/userTimeZone")
 require("signup/agreedToTerms")
 

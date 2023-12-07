@@ -39,7 +39,11 @@ Rails.application.routes.draw do
   resources :accept_account_shares, param: :token, only: %i[show update]
   resources :terminate_shared_account, only: %i[update]
   resources :transactions, only: [:show, :destroy]
-  resources :objectives, only: [:destroy]
+  resources :objectives, only: [:destroy] do
+    member do
+      patch 'accomplish', action: 'accomplish'
+    end
+  end
   resources :public_accounts, param: :token, only: :show, controller: 'public_account_shares'
   resources :feedbacks, only: [:new, :create]
   resources :sign_in_kids, only: %i[new create]

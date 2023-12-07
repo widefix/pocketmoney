@@ -1,101 +1,99 @@
-<div class="box">
-  <section class="hero is-small is-halfheight">
+<section class="hero is-small is-halfheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-vcentered normal-columns">
+        <div class="column
+                    is-10-mobile is-offset-0-mobile
+                    is-10-tablet is-offset-1-tablet
+                    is-5-desktop is-offset-1-desktop
+                    is-5-widescreen is-offset-1-widescreen
+                    is-5-fullhd ml-6-budgeting-kid-fullhd">
+          <h1 class="title titled has-text-budgeting-kid-color is-1 mb-6 is-size-3-mobile">
+            Foster good financial habits in your children
+          </h1>
+          <div class="buttons">
+            <%= link_to 'Go!', my_account_path, class: 'button is-large is-fullwidth has-text-weight-bold is-primary ' %>
+          </div>
+        </div>
+        <div class="column
+                    is-10-mobile is-offset-0-mobile
+                    is-10-tablet is-offset-1-tablet
+                    is-4-desktop is-offset-1-desktop
+                    is-4-widescreen is-offset-1-widescreen
+                    is-4-fullhd is-offset-2-fullhd">
+          <figure class="image">
+            <%= image_tag('budgeting_kid_landing_0.jpg', alt: 'Children wallet') %>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<% @budgeting_kid_reasons.each_slice(2) do |reason| %>
+  <section class="hero is-halfheight">
     <div class="hero-body">
       <div class="container">
-        <div class="columns is-vcentered normal-columns">
-          <div class="column
-                      is-10-mobile is-offset-0-mobile
-                      is-10-tablet is-offset-1-tablet
-                      is-5-desktop is-offset-1-desktop
-                      is-5-widescreen is-offset-1-widescreen
-                      is-5-fullhd ml-6-budgeting-kid-fullhd">
-            <h1 class="title titled has-text-budgeting-kid-color is-1 mb-6 is-size-3-mobile">
-              Foster good financial habits in your children
-            </h1>
-            <div class="buttons">
-              <%= link_to 'Go!', my_account_path, class: 'button is-large is-fullwidth has-text-weight-bold is-primary ' %>
-            </div>
-          </div>
+        <div class="columns is-vcentered reverse-columns">
           <div class="column
                       is-10-mobile is-offset-0-mobile
                       is-10-tablet is-offset-1-tablet
                       is-4-desktop is-offset-1-desktop
                       is-4-widescreen is-offset-1-widescreen
-                      is-4-fullhd is-offset-2-fullhd">
+                      is-4-fullhd ml-6-budgeting-kid-fullhd">
             <figure class="image">
-              <%= image_tag('budgeting_kid_landing_0.jpg', alt: 'Children wallet') %>
+              <%= image_tag(reason[0]['image'], alt: reason[0]['name']) %>
             </figure>
+          </div>
+          <div class="column
+                      is-10-mobile is-offset-0-mobile
+                      is-10-tablet is-offset-1-tablet
+                      is-5-desktop is-offset-1-desktop
+                      is-5-widescreen is-offset-1-widescreen
+                      is-5-fullhd is-offset-2-fullhd">
+            <h1 class="titled title has-text-budgeting-kid-color is-2 mb-6 is-size-3-mobile">
+              <%= reason[0]['name'] %>
+            </h1>
+            <h2 class="subtitled subtitle has-text-budgeting-kid-color">  <%= reason[0]['explanation'] %></h2>
+            <div class="buttons">
+              <%= link_to 'Go!', my_account_path, class: 'button is-large is-fullwidth has-text-weight-bold is-primary ' %>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <% @budgeting_kid_reasons.each_slice(2) do |reason| %>
+  <% if reason[1] %>
     <section class="hero is-halfheight">
       <div class="hero-body">
         <div class="container">
-          <div class="columns is-vcentered reverse-columns">
+          <div class="columns is-vcentered normal-columns">
             <div class="column
-                        is-10-mobile is-offset-0-mobile
-                        is-10-tablet is-offset-1-tablet
-                        is-4-desktop is-offset-1-desktop
-                        is-4-widescreen is-offset-1-widescreen
-                        is-4-fullhd ml-6-budgeting-kid-fullhd">
-              <figure class="image">
-                <%= image_tag(reason[0]['image'], alt: reason[0]['name']) %>
-              </figure>
-            </div>
-            <div class="column
-                        is-10-mobile is-offset-0-mobile
-                        is-10-tablet is-offset-1-tablet
-                        is-5-desktop is-offset-1-desktop
-                        is-5-widescreen is-offset-1-widescreen
-                        is-5-fullhd is-offset-2-fullhd">
-              <h1 class="titled title has-text-budgeting-kid-color is-2 mb-6 is-size-3-mobile">
-                <%= reason[0]['name'] %>
+                      is-10-mobile is-offset-0-mobile
+                      is-10-tablet is-offset-1-tablet
+                      is-5-desktop is-offset-1-desktop
+                      is-5-widescreen is-offset-1-widescreen
+                      is-5-fullhd ml-6-budgeting-kid-fullhd">
+              <h1 class="title titled has-text-budgeting-kid-color is-2 mb-6 is-size-3-mobile">
+                <%= reason[1]['name'] %>
               </h1>
-              <h2 class="subtitled subtitle has-text-budgeting-kid-color">  <%= reason[0]['explanation'] %></h2>
+              <h2 class="subtitled subtitle has-text-budgeting-kid-color">  <%= reason[1]['explanation'] %></h2>
               <div class="buttons">
                 <%= link_to 'Go!', my_account_path, class: 'button is-large is-fullwidth has-text-weight-bold is-primary ' %>
               </div>
+            </div>
+            <div class="column
+                      is-10-mobile is-offset-0-mobile
+                      is-10-tablet is-offset-1-tablet
+                      is-4-desktop is-offset-1-desktop
+                      is-4-widescreen is-offset-1-widescreen
+                      is-4-fullhd is-offset-2-fullhd">
+              <figure class="image">
+                <%= image_tag(reason[1]['image'], alt: reason[1]['name']) %>
+              </figure>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <% if reason[1] %>
-      <section class="hero is-halfheight">
-        <div class="hero-body">
-          <div class="container">
-            <div class="columns is-vcentered normal-columns">
-              <div class="column
-                        is-10-mobile is-offset-0-mobile
-                        is-10-tablet is-offset-1-tablet
-                        is-5-desktop is-offset-1-desktop
-                        is-5-widescreen is-offset-1-widescreen
-                        is-5-fullhd ml-6-budgeting-kid-fullhd">
-                <h1 class="title titled has-text-budgeting-kid-color is-2 mb-6 is-size-3-mobile">
-                  <%= reason[1]['name'] %>
-                </h1>
-                <h2 class="subtitled subtitle has-text-budgeting-kid-color">  <%= reason[1]['explanation'] %></h2>
-                <div class="buttons">
-                  <%= link_to 'Go!', my_account_path, class: 'button is-large is-fullwidth has-text-weight-bold is-primary ' %>
-                </div>
-              </div>
-              <div class="column
-                        is-10-mobile is-offset-0-mobile
-                        is-10-tablet is-offset-1-tablet
-                        is-4-desktop is-offset-1-desktop
-                        is-4-widescreen is-offset-1-widescreen
-                        is-4-fullhd is-offset-2-fullhd">
-                <figure class="image">
-                  <%= image_tag(reason[1]['image'], alt: reason[1]['name']) %>
-                </figure>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    <% end %>
   <% end %>
-</div>
+<% end %>

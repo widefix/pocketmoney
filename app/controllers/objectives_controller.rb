@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 class ObjectivesController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
     account.objectives.create!(ps.slice(:name, :amount))
@@ -13,8 +14,8 @@ class ObjectivesController < ApplicationController
   end
 
   def accomplish
-    objective.update(accomplished_at: Time.current)
-    redirect_to account_path(objective.account, anchor: 'desktop-goals')
+    objective.update!(accomplished_at: Time.current)
+    redirect_to account_path(objective.account)
   end
 
   private

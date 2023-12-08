@@ -25,7 +25,7 @@ RSpec.describe TopupsController, type: :controller do
 
     it 'subject must be correct' do
       subject
-      expect(find_mail_to(child.email).subject).to eq("Transaction added.")
+      expect(find_mail_to(child.email).subject).to eq("Transaction added to account - #{child.name}")
     end
 
     it 'originator must be correct' do

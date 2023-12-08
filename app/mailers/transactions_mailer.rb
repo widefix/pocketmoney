@@ -18,6 +18,6 @@ class TransactionsMailer < ApplicationMailer
     @transaction = Transaction.last
     @transactions = @account.transactions.order(created_at: :desc).limit(5)
 
-    mail to: recipients, subject: "Transaction added."
+    mail to: recipients, subject: "Transaction added to account - #{account.name}"
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_12_06_162312) do
+ActiveRecord::Schema.define(version: 2023_12_08_144106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,6 +127,11 @@ ActiveRecord::Schema.define(version: 2023_12_06_162312) do
     t.string "avatar_url"
     t.string "provider"
     t.string "parental_key"
+    t.integer "sign_in_count"
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["parental_key"], name: "index_users_on_parental_key"

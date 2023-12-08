@@ -9,7 +9,7 @@ document.addEventListener('turbolinks:load', function() {
   const mobileAccomplishedGoals = document.getElementById('mobile-accomplished-goals');
   const mobileGoals = document.getElementById('mobile-goals');
 
-  if (desktopGoals) {
+  if (desktopGoals && desktopOpenButton && desktopCloseButton) {
     desktopOpenButton.addEventListener('click', function(event) {
       event.preventDefault();
       desktopGoals.classList.add('is-hidden');
@@ -23,7 +23,7 @@ document.addEventListener('turbolinks:load', function() {
     });
   };
 
-  if (mobileGoals) {
+  if (mobileGoals && mobileOpenButton && mobileCloseButton) {
     mobileOpenButton.addEventListener('click', function(event) {
       event.preventDefault();
       mobileGoals.classList.add('is-hidden');

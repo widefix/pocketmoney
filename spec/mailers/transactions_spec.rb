@@ -22,7 +22,7 @@ RSpec.describe TransactionsMailer, type: :mailer do
       let(:recipients) { [child.email] }
 
       it { expect(mail.to).to eq([child.email]) }
-      it { expect(mail.subject).to eq("Transaction added.") }
+      it { expect(mail.subject).to eq("Transaction added to account - #{child.name}") }
       it { expect(mail.body.encoded).to match(child.name) }
     end
 

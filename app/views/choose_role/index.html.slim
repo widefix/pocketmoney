@@ -1,8 +1,27 @@
-.container.is-flex.is-flex-direction-column.is-align-items-center.mb-auto
-  p.mb-5.is-size-4.has-text-centered.for-desktop
-    | Choose Your Role
-  p.mb-5.is-size-5.has-text-centered.for-mobile
-    | Choose Your Role
-  .buttons.is-centered
-    = link_to 'Parent', my_account_path, class: 'button is-primary is-medium is-3'
-    = link_to 'Kid', new_sign_in_kid_path, class: 'button is-primary is-medium is-3'
+- content_for :title, 'Log In'
+- content_for :description, 'Log in to your BudgetingKid account and start empowering your kids with financial wisdom.'
+
+.columns.is-centered
+  .column
+    .columns.is-centered.is-mobile
+      .column.is-four-fifths
+        h2.title.is-3.has-text-centered.is-budgeting-kid-color.for-desktop Choose your role
+        h2.title.is-4.has-text-centered.is-budgeting-kid-color.for-mobile Choose your role
+        .field 
+          p.is-size-6 If you manage your kid account
+        .field.pb-4
+          = link_to my_account_path, class: 'button is-primary is-3 is-fullwidth' do 
+            | Parent &nbsp;
+            figure.image.is-16x16
+              = image_tag('arrow-right.svg', alt: '->')
+        .field 
+          p.is-size-6 If you have a parental code to manage an account
+        .field
+          = link_to new_sign_in_kid_path, class: 'button is-primary is-3 is-fullwidth' do 
+            | Kid &nbsp;
+            figure.image.is-16x16
+              = image_tag('arrow-right.svg', alt: '->')
+
+  .for-desktop.column.has-background-image.is-flex.is-justify-content-center.is-align-items-center
+    figure.image.is-coins
+      = image_tag('coins.svg')

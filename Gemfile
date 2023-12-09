@@ -80,3 +80,5 @@ gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
 
 gem "rollbar", "~> 3.4"
+
+gem "rack-cors", "~> 2.0"

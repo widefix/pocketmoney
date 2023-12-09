@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   }
   resource :my_account, only: :show
 
+  resources :subscribers, only: %i[create]
+
   resource :wizard, only: [] do
     get 'new_account', on: :member
     post 'create_account', on: :member

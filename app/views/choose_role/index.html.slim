@@ -1,5 +1,5 @@
-- content_for :title, 'Log In'
-- content_for :description, 'Log in to your BudgetingKid account and start empowering your kids with financial wisdom.'
+- content_for :title, 'Choose your role'
+- content_for :description, 'Choose your role in the system. Are you are parent or a kid?'
 
 .columns.is-centered
   .column
@@ -7,17 +7,17 @@
       .column.is-four-fifths
         h2.title.is-3.has-text-centered.is-budgeting-kid-color.for-desktop Choose your role
         h2.title.is-4.has-text-centered.is-budgeting-kid-color.for-mobile Choose your role
-        .field 
+        .field
           p.is-size-6 If you manage your kid account
         .field.pb-4
-          = link_to my_account_path, class: 'button is-primary is-3 is-fullwidth' do 
+          = link_to my_account_path, class: 'button is-primary is-3 is-fullwidth' do
             | Parent &nbsp;
             figure.image.is-16x16
               = image_tag('arrow-right.svg', alt: '->')
-        .field 
+        .field
           p.is-size-6 If you have a parental code to manage an account
         .field
-          = link_to new_sign_in_kid_path, class: 'button is-primary is-3 is-fullwidth' do 
+          = link_to new_sign_in_kid_path, class: 'button is-primary is-3 is-fullwidth' do
             | Kid &nbsp;
             figure.image.is-16x16
               = image_tag('arrow-right.svg', alt: '->')

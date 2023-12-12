@@ -4,7 +4,7 @@ class MyAccountsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    redirect_to account_path(shared_accounts.accepted.first) unless current_user.parent?
+    redirect_to account_path(shared_accounts.first) unless current_user.parent?
   end
 
   private

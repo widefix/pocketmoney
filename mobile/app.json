@@ -1,8 +1,7 @@
 {
   "expo": {
-    "name": "mobile",
-    "slug": "mobile",
-    "version": "1.0.0",
+    "name": "BudgetingKid",
+    "slug": "budgetingkid",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -16,22 +15,23 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "budgetingkid.com"
+      "bundleIdentifier": "com.budgetingkid"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "budgetingkid.com"
+      "package": "com.budgetingkid"
     },
     "web": {
       "favicon": "./assets/icon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "7f0abae7-1c00-41da-9e02-6b02692fa362"
+        "projectId": "a3f4222e-4da6-46cd-a57f-1c3385998228"
       }
-    }
+    },
+    "owner": "widefix"
   }
 }

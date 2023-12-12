@@ -4,8 +4,10 @@
   <div class="container px-4 container-buttom-border">
     <div class="navbar-brand is-justify-content-space-between is-align-items-center">
       <%= link_to "https://get.budgetingkid.com", class: "navbar-item" do %>
-        <%= image_tag 'logo.svg', size: "44"%>
-        <h2 class='budgeting-kid-logo-font px-4'> BUDGETINGkid </h2>
+        <%= image_tag 'logo.svg', size: "32", class: 'for-mobile' %>
+        <%= image_tag 'logo.svg', size: "44", class: 'for-desktop' %>
+        <h2 class='budgeting-kid-logo-font px-4 is-size-3 for-mobile'> BUDGETINGkid </h2>
+        <h2 class='budgeting-kid-logo-font px-4 for-desktop'> BUDGETINGkid </h2>
       <% end %>
       <% if !current_user&.parent? && user_signed_in? %>
         <%= link_to destroy_user_session_path, method: :delete, class:"navbar-item for-mobile has-text-budgeting-kid-color" do %>

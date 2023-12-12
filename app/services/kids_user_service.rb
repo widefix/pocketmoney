@@ -21,6 +21,8 @@ class KidsUserService
     ActiveRecord::Base.transaction do
       user = User.create(email: email, password: parental_key, parental_key: parental_key)
       user.create_account(name: email, email: email)
+      user.remember_me = true
+
       user
     end
   end

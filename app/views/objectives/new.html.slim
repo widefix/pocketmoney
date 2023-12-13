@@ -1,6 +1,6 @@
 .columns.is-centered
   .column.is-one-third
-    h2.title.is-4.has-text-centered Add new objective
+    h2.title.is-4.has-text-centered Add new goal
     = form_with url:account_objectives_path(account), method: :post do |f|
       .field
         = f.text_field :name, autofocus: true, class: "input", placeholder: "Name", required: true

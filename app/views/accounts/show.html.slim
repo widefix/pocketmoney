@@ -135,12 +135,10 @@
                 th
                 th.has-text-light-gray-budgeting-kid-color Goal
                 th.has-text-centered.has-text-light-gray-budgeting-kid-color Accomplished at
-                th.has-text-centered.has-text-light-gray-budgeting-kid-color Action
             tbody
               = render partial: 'accomplished_objective', collection: accomplished_objectives, account: account
             tfoot
               tr
-                th
                 th
                 th
                 th
@@ -229,14 +227,11 @@
             thead
               tr.has-text-left
                 th.has-text-centered.has-text-light-gray-budgeting-kid-color Goal
-                th.has-text-light-gray-budgeting-kid-color Accomplished
-                th.pr-0.has-text-light-gray-budgeting-kid-color Action
+                th.has-text-centered.has-text-light-gray-budgeting-kid-color Accomplished at
             tbody
               = render partial: 'accomplished_objective', collection: accomplished_objectives, account: account
             tfoot
               tr
-                th
-                th
                 th
                 th
   #mobile-goals.column.box

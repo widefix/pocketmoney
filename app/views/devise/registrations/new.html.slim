@@ -55,9 +55,12 @@
               figure.image.is-16x16
                 = image_tag('arrow-right.svg', alt: '->')
           br
-          .is-flex.is-justify-content-center
+          .is-flex.is-justify-content-center.mb-2
             | Already have an account? &nbsp;
             = link_to 'Login now', new_user_session_path, class: 'has-text-weight-bold has-text-budgeting-kid-color'
+          .is-flex.is-justify-content-center
+            | Not a parent and has a parental code? &nbsp;
+            = link_to "Log in as a kid", new_sign_in_kid_path, class: 'has-text-weight-bold has-text-budgeting-kid-color'
   .for-desktop.column.has-background-image.is-flex.is-justify-content-center.is-align-items-center
     figure.image.is-coins
       = image_tag('coins.svg')

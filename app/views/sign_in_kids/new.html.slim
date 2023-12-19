@@ -21,7 +21,9 @@
                 | Login &nbsp;
                 figure.image.is-16x16
                   = image_tag('arrow-right.svg', alt: '->')
-          br
+    .is-flex.is-justify-content-center
+      | Don't have a parental core or a parent? &nbsp;
+      = link_to "Log in as a parent", my_account_path, class: 'has-text-weight-bold has-text-budgeting-kid-color'
   .for-desktop.column.has-background-image.is-flex.is-justify-content-center.is-align-items-center
     figure.image.is-coins
       = image_tag('coins.svg')

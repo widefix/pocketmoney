@@ -4,7 +4,7 @@
     .button.is-white.is-round.top-right-button.close-button
       figure.image.is-20x20
         = image_tag('cross.svg', alt: 'X')
-    .modal-card-body
+    .modal-card-body.mx-3
       = form_with url:false, method: :post, id: 'topup-form-with' do |f|
         .field.mt-2
           = f.label :amount, "Amount to be added"

@@ -2,7 +2,7 @@
 tr.for-desktop
   td.is-size-5.is-vcentered
     = transaction.date
-  td.is-size-5.is-vcentered.has-text-dark-gray-budgeting-kid-color
+  td.is-size-5.is-vcentered.is-dark-grey
     = transaction.description
   - if transaction.from_account == public_account
     td.is-size-5.is-vcentered.is-minus-color= transaction.signed_amount(public_account)
@@ -13,7 +13,7 @@ tr.for-desktop
 tr.for-mobile
   td.is-vcentered.p-0
     = transaction.date
-  td.is-vcentered.has-text-dark-gray-budgeting-kid-color
+  td.is-vcentered.is-dark-grey
     = transaction.description
   - if transaction.from_account == public_account
     td.is-vcentered.is-minus-color= transaction.signed_amount(public_account)

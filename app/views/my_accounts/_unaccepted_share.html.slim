@@ -5,7 +5,7 @@
       .column.is-1.is-flex.px-0.py-4.ml-4.is-justify-content-center.is-align-items-center
         img src=asset_path(avatar_for(unaccepted_share.account)) class="rounded-avatar small" id='image-preview'
       .column.is-3.is-flex.is-justify-content-center.is-align-items-center
-        .subtitle.is-4.has-text-centered.is-black-budgeting-kid-color
+        .subtitle.is-4.has-text-centered.is-black
           p= unaccepted_share.account.name
       .column.is-flex
         p
@@ -19,12 +19,12 @@
             | Accept
 
   / mobile
-  .card-header-title.for-mobile.is-centered.is-black-budgeting-kid-color
+  .card-header-title.for-mobile.is-centered.is-black
     | Account owner: #{unaccepted_share.account.parent.email}
   .card-content.for-mobile.p-4
     .div.is-flex.is-flex-direction-column.is-align-items-center
       img src=asset_path(avatar_for(unaccepted_share.account)) class="rounded-avatar" id='image-preview'
-      h3.title.is-4.has-text-centered.my-2.is-black-budgeting-kid-color
+      h3.title.is-4.has-text-centered.my-2.is-black
         p= unaccepted_share.account.name
     .buttons.is-justify-content-center
       .buttons

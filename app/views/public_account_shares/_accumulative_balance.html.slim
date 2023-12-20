@@ -1,7 +1,7 @@
 /desktop
 .column.box.m-2.for-desktop.is-flex.is-flex-direction-column.is-justify-content-center.is-align-items-center
   - if public_account.accumulative_balance_data.present?
-    p.has-text-dark-gray-budgeting-kid-color.has-text-left style="align-self: flex-start; margin-left: 60px;"
+    p.is-dark-grey.has-text-left style="align-self: flex-start; margin-left: 60px;"
       | Accumulative balance by #{public_account.accumulative_balance_timeframe}
     = area_chart public_account.accumulative_balance_data, colors: ["#DAD7FE", "#DAD7FE"], height: "296px"
   - else
@@ -13,7 +13,7 @@
 / mobile
 .column.box.for-mobile
   - if public_account.accumulative_balance_data.present?
-    p.has-text-dark-gray-budgeting-kid-color.ml-6
+    p.is-dark-grey.ml-6
       | Accumulative balance by #{public_account.accumulative_balance_timeframe}
     = area_chart public_account.accumulative_balance_data, colors: ["#DAD7FE", "#DAD7FE"], height: "267px"
   - else

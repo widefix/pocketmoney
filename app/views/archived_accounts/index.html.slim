@@ -1,6 +1,6 @@
-.for-desktop.title.is-3.is-black-budgeting-kid-color
+.for-desktop.title.is-3.is-black
   | Archived accounts
-.for-mobile.title.is-4.is-black-budgeting-kid-color
+.for-mobile.title.is-4.is-black
   | Archived accounts
 
 .buttons
@@ -19,7 +19,7 @@
             = link_to account_path(account), class:"pt-2" do
               img src=asset_path(avatar_for(account)) class="rounded-avatar small" id='image-preview'
           .column.is-flex.is-justify-content-center.is-align-items-center
-            .subtitle.is-4.has-limit-width.has-text-centered.is-black-budgeting-kid-color
+            .subtitle.is-4.has-limit-width.has-text-centered.is-black
               p= account.name
           .column.is-flex
             p
@@ -36,7 +36,7 @@
         .div.is-flex.is-flex-direction-column.is-align-items-center
           = link_to account_path(account), class:"pt-2" do
             img src=asset_path(avatar_for(account)) class="rounded-avatar" id='image-preview'
-          h3.title.is-4.has-text-centered.mt-2.is-black-budgeting-kid-color
+          h3.title.is-4.has-text-centered.mt-2.is-black
             p= account.name
             p.my-2
               span.subtitle.is-6 Balance:&nbsp;&nbsp;

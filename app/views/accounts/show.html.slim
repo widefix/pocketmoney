@@ -12,7 +12,7 @@
         .column.is-4.is-flex.is-justify-content-center.is-align-items-center
           img src=asset_path(avatar_for(account)) class="rounded-avatar #{'bg-around-image' if account.background.attached?}" id='image-preview'
         .column.is-flex.is-justify-content-flex-start.is-align-items-center
-          .title.is-black-budgeting-kid-color(class="#{'bg-around-text' if account.background.attached?}")
+          .title.is-black(class="#{'bg-around-text' if account.background.attached?}")
             = account.name
   / mobile
   .column.for-mobile.box(style="#{"background-image: url('#{url_for(account.background)}');" if account.background.attached?}" class="#{'account-has-bg' if account.background.attached?}")
@@ -26,7 +26,7 @@
         .column.is-4.px-0.is-flex.is-justify-content-center.is-align-items-center
           img src=asset_path(avatar_for(account)) class="rounded-avatar #{'bg-around-image' if account.background.attached?}" id='image-preview'
         .column.p-0.is-flex.is-justify-content-center.is-align-items-center
-          .title.has-text-centered.is-black-budgeting-kid-color(class="#{'bg-around-text' if account.background.attached?}")
+          .title.has-text-centered.is-black(class="#{'bg-around-text' if account.background.attached?}")
             = account.name
   / desktop
   .column.for-desktop.box.m-2.is-flex.is-justify-content-center.is-align-items-center
@@ -90,7 +90,7 @@
 .columns.for-desktop
   .column.transactions.box.m-2
     div.m-5
-      .title.is-black-budgeting-kid-color
+      .title.is-black
         | Transaction History
       -if transactions.empty?
         .columns.p-1.mb-0.is-flex.is-centered
@@ -102,11 +102,11 @@
           table.table.is-fullwidth
             thead
               tr.has-text-left
-                th.has-text-light-gray-budgeting-kid-color Date
-                th.has-text-light-gray-budgeting-kid-color Description
-                th.has-text-light-gray-budgeting-kid-color Amount
+                th.is-grey Date
+                th.is-grey Description
+                th.is-grey Amount
                 - if current_user.parent?
-                  th.has-text-light-gray-budgeting-kid-color &nbsp;
+                  th.is-grey &nbsp;
             tbody
               = render partial: 'transaction', collection: transactions, account: account
             tfoot
@@ -120,7 +120,7 @@
     .m-5
       .columns
         .column
-          .title.is-black-budgeting-kid-color
+          .title.is-black
             | Accomplished goals
         .is-flex
           .column
@@ -133,8 +133,8 @@
             thead
               tr.has-text-left
                 th
-                th.has-text-light-gray-budgeting-kid-color Goal
-                th.has-text-centered.has-text-light-gray-budgeting-kid-color Accomplished at
+                th.is-grey Goal
+                th.has-text-centered.is-grey Accomplished at
             tbody
               = render partial: 'accomplished_objective', collection: accomplished_objectives, account: account
             tfoot
@@ -147,7 +147,7 @@
     .m-5
       .columns
         .column
-          .title.is-black-budgeting-kid-color
+          .title.is-black
             | Goals
         .is-flex
           - if accomplished_objectives.present?
@@ -183,7 +183,7 @@
 .columns.for-mobile.py-4
   .column.box
     div
-      .title.is-4.is-black-budgeting-kid-color
+      .title.is-4.is-black
         | Transaction History
       -if transactions.empty?
         .columns.p-1.mb-0.is-flex.is-centered
@@ -195,11 +195,11 @@
           table.table.is-fullwidth.p-0
             thead
               tr.has-text-left
-                th.has-text-light-gray-budgeting-kid-color.pl-0 Date
-                th.has-text-light-gray-budgeting-kid-color Description
-                th.has-text-light-gray-budgeting-kid-color Amount
+                th.is-grey.pl-0 Date
+                th.is-grey Description
+                th.is-grey Amount
                 - if current_user.parent?
-                  th.has-text-light-gray-budgeting-kid-color &nbsp;
+                  th.is-grey &nbsp;
             tbody
               = render partial: 'transaction', collection: transactions, account: account
             tfoot
@@ -214,7 +214,7 @@
     div
       .columns.is-mobile.mb-0.is-align-items-center
         .column
-          .title.is-5.is-black-budgeting-kid-color
+          .title.is-5.is-black
             | Accomplished goals
         .is-flex
           .column
@@ -226,8 +226,8 @@
           table.table.is-fullwidth
             thead
               tr.has-text-left
-                th.has-text-centered.has-text-light-gray-budgeting-kid-color Goal
-                th.has-text-centered.has-text-light-gray-budgeting-kid-color Accomplished at
+                th.has-text-centered.is-grey Goal
+                th.has-text-centered.is-grey Accomplished at
             tbody
               = render partial: 'accomplished_objective', collection: accomplished_objectives, account: account
             tfoot
@@ -238,7 +238,7 @@
      div
       .columns.is-mobile.mb-0.is-align-items-center
         .column
-          .title.is-5.is-black-budgeting-kid-color
+          .title.is-5.is-black
             | Goals
         .is-flex
           - if accomplished_objectives.present?
@@ -273,9 +273,9 @@
   / desktop
   .column.box.m-2.for-desktop
     div.m-5.pb-2 style="border-bottom: 1px solid hsl(0, 0%, 86%)"
-      .title.is-black-budgeting-kid-color
+      .title.is-black
         | Recurring balance increase
-      .subtitle.is-6.is-vcentered.has-text-dark-gray-budgeting-kid-color
+      .subtitle.is-6.is-vcentered.is-dark-grey
         br
         | This amount will be automatically added to the account every Friday at&nbsp;
         span#formatted-time
@@ -307,9 +307,9 @@
   / mobile
   .column.box.for-mobile
     div style="border-bottom: 1px solid hsl(0, 0%, 86%)"
-      .title.is-4.is-black-budgeting-kid-color
+      .title.is-4.is-black
         | Recurring balance increase
-      .subtitle.is-6.is-vcentered.has-text-dark-gray-budgeting-kid-color
+      .subtitle.is-6.is-vcentered.is-dark-grey
         br
         | This amount will be automatically added to the account every Friday at
         span#formatted-time

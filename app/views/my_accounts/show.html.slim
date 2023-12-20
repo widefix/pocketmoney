@@ -4,12 +4,12 @@
     .column.for-desktop.is-flex.is-align-items-center
       .image.is-60x60
         = image_tag("waving_hand.svg")
-      span.title.is-3.is-black-budgeting-kid-color &nbsp; Hi, Welcome back
+      span.title.is-3.is-black &nbsp; Hi, Welcome back
     / mobile
     .column.for-mobile.is-flex.is-justify-content-center.is-align-items-center
       .image.is-48x48
         = image_tag("waving_hand.svg")
-      span.title.is-4.is-black-budgeting-kid-color &nbsp; Hi, Welcome back
+      span.title.is-4.is-black &nbsp; Hi, Welcome back
     / common
     .column.is-flex.is-align-items-center.is-justify-content-flex-end
       - if account.children.unarchived.present? || shared_accounts.present?
@@ -41,11 +41,11 @@
 
   = render partial: 'child', collection: account.children.unarchived
   - if shared_accounts.present?
-    p.title.is-4.is-black-budgeting-kid-color.has-text-centered.pt-4 Shared accounts
+    p.title.is-4.is-black.has-text-centered.pt-4 Shared accounts
     = render partial: 'shared_account', collection: shared_accounts
 
   - if unaccepted_shares.present?
-    p.title.is-4.is-black-budgeting-kid-color.has-text-centered.py-4 Unaccepted shares
+    p.title.is-4.is-black.has-text-centered.py-4 Unaccepted shares
     = render partial: 'unaccepted_share', collection: unaccepted_shares.order(created_at: :desc)
 - else
   = render partial: 'accounts_empty'

@@ -1,6 +1,6 @@
 .card.box.shared-accounts.p-0
   / desktop
-  .card-header-title.for-desktop.is-black-budgeting-kid-color.pb-0.mb-3
+  .card-header-title.for-desktop.is-black.pb-0.mb-3
     | Account owner: #{shared_account.parent.email}
   .card-content.p-0.for-desktop
     .columns.is-flex.is-justify-content-center.is-align-items-center
@@ -8,7 +8,7 @@
         = link_to account_path(shared_account), class:"pt-2" do
           img src=asset_path(avatar_for(shared_account)) class="rounded-avatar small" id='image-preview'
       .column.is-flex.is-justify-content-center.is-align-items-center
-        .subtitle.is-4.has-text-centered.is-black-budgeting-kid-color
+        .subtitle.is-4.has-text-centered.is-black
           p= shared_account.name
       .column.is-flex
         p
@@ -26,21 +26,21 @@
             | Decrease
       .column.is-1.is-flex.is-justify-content-center.is-align-items-center
         .buttons.is-justify-content-end
-          = button_to account_path(shared_account), method: :get, class: 'button is-gray ' do
+          = button_to account_path(shared_account), method: :get, class: 'button is-grey ' do
             span.icon
               i.fa.fa-chevron-right
   / mobile
-  .card-header-title.for-mobile.is-centered.is-black-budgeting-kid-color
+  .card-header-title.for-mobile.is-centered.is-black
     | Account owner: #{shared_account.parent.email}
   .card-content.for-mobile.p-4
     .buttons.top-right-shared-account-button
-      = button_to account_path(shared_account), method: :get, class: 'button is-gray mr-3' do
+      = button_to account_path(shared_account), method: :get, class: 'button is-grey mr-3' do
         span.icon
           i.fa.fa-chevron-right
     .div.is-flex.is-flex-direction-column.is-align-items-center
       = link_to account_path(shared_account), class:"pt-2" do
         img src=asset_path(avatar_for(shared_account)) class="rounded-avatar" id='image-preview'
-      h3.title.is-4.has-text-centered.mt-2.is-black-budgeting-kid-color
+      h3.title.is-4.has-text-centered.mt-2.is-black
         p= shared_account.name
         p.my-2
           span.subtitle.is-6.mr-2 Balance:

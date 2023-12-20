@@ -4,20 +4,20 @@ tr.for-desktop style="height:90px;"
     figure.image.is-48x48
       img src=asset_path("wizard_goal.svg")
   td.is-vcentered style="width: 150px"
-    p.span.is-black-budgeting-kid-color
+    p.span.is-black
       = objective.name
-    p.span.has-text-light-gray-budgeting-kid-color
+    p.span.is-grey
       = objective.amount
   td
     .columns.mb-1
       .column.pb-0.is-pulled-left
-        p.pt-2.is-black-budgeting-kid-color
+        p.pt-2.is-black
           - weeks_to_achieve = objective.weeks_to_achieve
           | #{ weeks_to_achieve != -1 ? "#{weeks_to_achieve} Weeks to go" : "Achieved"}
     - index = objective_counter + 1
     progress.progress class="is-small #{index.odd? ? 'is-blue' : 'is-orange'}" style="height:8px;" value="#{goal_percentage(public_account, objective).chomp('%')}" max="100" #{goal_percentage(public_account, objective)}
   td.p-0.is-vcentered style="width: 50px"
-    .title.is-6.pt-1.is-black-budgeting-kid-color
+    .title.is-6.pt-1.is-black
       | #{goal_percentage(public_account, objective)}
 
 / mobile
@@ -26,17 +26,17 @@ tr.for-mobile
     .columns.p-1.mb-0.is-flex.is-centered
       .figure.image.is-48x48.m-2
         img src=asset_path("wizard_goal.svg")
-    p.span.is-black-budgeting-kid-color
+    p.span.is-black
       = objective.name
-    p.span.has-text-light-gray-budgeting-kid-color
+    p.span.is-grey
       = objective.amount
   td
     .columns
       .column.pb-0.is-pulled-left
-        p.is-black-budgeting-kid-color.pt-2
+        p.is-black.pt-2
           - weeks_to_achieve = objective.weeks_to_achieve
           | #{ weeks_to_achieve != -1 ? "#{weeks_to_achieve} Weeks to go" : "Achieved"}
     - index = objective_counter + 1
     progress.progress class="mb-2 is-small #{index.odd? ? 'is-blue' : 'is-orange'}" style="height:8px;" value="#{goal_percentage(public_account, objective).chomp('%')}" max="100" #{goal_percentage(public_account, objective)}
-    .title.is-4.has-text-centered.is-black-budgeting-kid-color
+    .title.is-4.has-text-centered.is-black
       | #{goal_percentage(public_account, objective)}

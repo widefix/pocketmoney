@@ -4,12 +4,12 @@
     #desktop-chart-settings.m-3.ml-5.is-hidden
       .is-flex.is-align-items-center.is-justify-content-space-between.mb-5
         .is-flex
-          .title.is-black-budgeting-kid-color Chart settings
+          .title.is-black Chart settings
         = link_to '#', id: 'close-desktop-chart-setting-button' do
           figure.icon.has-text-budgeting-kid-color
             i.fa.fa-times.fa-lg
       = form_with(model: account, url: update_timeframe_account_path, method: :patch, remote: true) do |f|
-        .field.is-size-5.has-text-dark-gray-budgeting-kid-color.mb-4
+        .field.is-size-5.is-dark-grey.mb-4
           .mb-4.is-size-6
             = f.label :accumulative_balance_timeframe, "Select how to display the chart:"
           .is-flex.is-flex-direction-column
@@ -33,7 +33,7 @@
       #desktop-chart
         .is-flex.is-align-items-center.is-justify-content-space-between.ml-5
           .is-flex
-            .title.is-black-budgeting-kid-color.mb-0
+            .title.is-black.mb-0
               | Accumulative balance by #{account.accumulative_balance_timeframe}
           = link_to '#', id: 'open-desktop-chart-setting-button' do
             figure.icon.mr-2.has-text-budgeting-kid-color
@@ -41,7 +41,7 @@
         = area_chart account.accumulative_balance_data, colors: ["#DAD7FE", "#DAD7FE"], height: "296px"
     - else
       .m-5
-        .title.is-black-budgeting-kid-color Accumulative balance
+        .title.is-black Accumulative balance
         .columns.p-1.mb-0.is-flex.is-centered
           figure.image.is-48x48.is-hint-icon-color
             = image_tag('loupe.svg', alt: 'No..., yet')
@@ -51,12 +51,12 @@
   #mobile-chart-settings.is-hidden
     .is-flex.is-align-items-center.is-justify-content-space-between.mb-5
       .is-flex
-        .title.is-black-budgeting-kid-color.is-4 Chart settings
+        .title.is-black.is-4 Chart settings
       = link_to '#', id: 'close-mobile-chart-setting-button' do
         figure.icon.has-text-budgeting-kid-color
           i.fa.fa-times.is-16x16
     = form_with(model: account, url: update_timeframe_account_path, method: :patch, remote: true) do |f|
-      .field.has-text-dark-gray-budgeting-kid-color.mb-4
+      .field.is-dark-grey.mb-4
         .mb-4
           = f.label :accumulative_balance_timeframe, "Select how to display the chart:"
         .is-flex.is-flex-direction-column
@@ -79,14 +79,14 @@
     #mobile-chart
       .is-flex.is-align-items-center.is-justify-content-space-between
         .is-flex
-          .title.is-black-budgeting-kid-color.is-6
+          .title.is-black.is-6
             | Accumulative balance by #{account.accumulative_balance_timeframe}
         = link_to '#', id: 'open-mobile-chart-setting-button' do
             figure.icon.mr-1.has-text-budgeting-kid-color
               i.fa.fa-cog.is-16x16
       = area_chart account.accumulative_balance_data, colors: ["#DAD7FE", "#DAD7FE"], height: "267px"
   - else
-    .title.is-4.is-black-budgeting-kid-color
+    .title.is-4.is-black
       | Accumulative balance
     .columns.p-1.mb-0.is-flex.is-centered
       figure.image.is-48x48.is-hint-icon-color

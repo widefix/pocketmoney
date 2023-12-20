@@ -1,0 +1,53 @@
+@import "../config/mixins";
+@import "../config/variables";
+
+#sign-in, #sign-up, #sign-in-kids {
+  .columns {
+    .column {
+      h2 {
+        text-align: center;
+
+        span {
+          @include desktop {
+            display: none;
+          }
+        }
+      }
+
+      .field {
+        .buttons {
+          a.button {
+            width: 200px;
+
+            @include tablet {
+              width: 130px;
+            }
+
+            &:hover {
+              border-color: $bk-color;
+            }
+          }
+        }
+      }
+
+      form {
+        .actions {
+          margin: 1.5rem 0;
+
+          button {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  .has-background-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include desktop {
+      display: none;
+    }
+  }
+}

@@ -1,16 +1,14 @@
-<nav class="navbar wrapper is-navbar-budgeting-kid-color"
+<nav class="navbar wrapper"
       role="navigation"
       aria-label="main navigation">
-  <div class="container px-4 container-buttom-border">
-    <div class="navbar-brand is-justify-content-space-between is-align-items-center">
+  <div class="container">
+    <div class="navbar-brand">
       <%= link_to root_path, class: "navbar-item" do %>
-        <%= image_tag 'logo.svg', size: "32", class: 'for-mobile' %>
-        <%= image_tag 'logo.svg', size: "44", class: 'for-desktop' %>
-        <h2 class='budgeting-kid-logo-font px-4 is-size-3 for-mobile'> BUDGETINGkid </h2>
-        <h2 class='budgeting-kid-logo-font px-4 for-desktop'> BUDGETINGkid </h2>
+        <%= image_tag 'logo.svg' %>
+        <h2>BUDGETINGkid</h2>
       <% end %>
       <% if !current_user&.parent? && user_signed_in? %>
-        <%= link_to destroy_user_session_path, method: :delete, class:"navbar-item for-mobile has-text-budgeting-kid-color" do %>
+        <%= link_to destroy_user_session_path, method: :delete, class:"navbar-item logout-button is-light" do %>
           <span class="icon">
             <i class="fa fa-sign-out fa-lg"></i>
           </span>
@@ -30,34 +28,10 @@
             <% if user_signed_in? %>
               <% if current_user.parent? %>
                 <div class="navbar-item has-dropdown is-hoverable">
-                  <a class="button is-rounded for-desktop p-0 m-0" style="width: 72px; height: 72px;" >
+                  <a class="button is-rounded">
                     <img src=<%= asset_path(avatar_for(current_user)) %> class="rounded-avatar small">
                   </a>
-                  <div class="navbar-dropdown is-right is-boxed for-desktop">
-                    <%= link_to edit_user_registration_path, class: "navbar-item"  do %>
-                      <span class="icon">
-                        <i class="fa fa-user-o"></i>
-                      </span>
-                      &nbsp;
-                      My profile
-                    <% end %>
-                    <%= link_to new_feedback_path, class: "navbar-item" do %>
-                      <span class="icon">
-                        <i class="fa fa-comment-o"></i>
-                      </span>
-                      &nbsp;
-                      Feedback
-                    <% end %>
-                    <hr class="navbar-divider">
-                    <%= link_to destroy_user_session_path, method: :delete, class:"navbar-item" do %>
-                      <span class="icon">
-                        <i class="fa fa-sign-out"></i>
-                      </span>
-                      &nbsp;
-                      Log out
-                    <% end %>
-                  </div>
-                  <div class="navbar-dropdown is-right is-boxed for-mobile">
+                  <div class="navbar-dropdown is-right is-boxed">
                     <%= link_to edit_user_registration_path, class: "navbar-item"  do %>
                       <span class="icon">
                         <i class="fa fa-user-o"></i>
@@ -83,7 +57,7 @@
                   </div>
                 </div>
               <% else %>
-                <%= link_to destroy_user_session_path, method: :delete, class:"navbar-item has-text-budgeting-kid-color" do %>
+                <%= link_to destroy_user_session_path, method: :delete, class:"navbar-item is-light" do %>
                   <span class="icon">
                     <i class="fa fa-sign-out fa-lg"></i>
                   </span>

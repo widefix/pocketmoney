@@ -1,9 +1,7 @@
-.container.is-flex.is-flex-direction-column.is-align-items-center.mb-auto
+.container.accounts-empty
   figure.image.mb-5
     = image_tag('empty-accounts-flower.svg', alt: 'empty-accounts')
-  p.mb-5.is-size-4.has-text-centered.for-desktop
-    | We're excited to have you on board! To get started, create your first account
-  p.mb-5.is-size-5.has-text-centered.for-mobile
+  p.has-text-centered
     | We're excited to have you on board! To get started, create your first account
   = link_to new_account_path, class: 'button is-primary has-text-weight-bold'
     figure.file-icon.image.is-18x18

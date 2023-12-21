@@ -1,56 +1,26 @@
-.card.box.shared-accounts.p-0
-  / desktop
-  .card-header-title.for-desktop.is-black.pb-0.mb-3
+.card.box.shared-accounts
+  .card-header-title.is-black.pb-0.mb-3
     | Account owner: #{shared_account.parent.email}
-  .card-content.p-0.for-desktop
-    .columns.is-flex.is-justify-content-center.is-align-items-center
-      .column.is-1.is-flex.px-0.ml-4.is-justify-content-center.is-align-items-center
-        = link_to account_path(shared_account), class:"pt-2" do
-          img src=asset_path(avatar_for(shared_account)) class="rounded-avatar small" id='image-preview'
-      .column.is-flex.is-justify-content-center.is-align-items-center
-        .subtitle.is-4.has-text-centered.is-black
-          p= shared_account.name
-      .column.is-flex
-        p
-          span.subtitle.is-6.pl-6.mr-2  Balance:
-          span.title.is-4.is-budgeting-kid-color #{shared_account.balance}
-      .column.is-4.is-flex.is-justify-content-center.is-align-items-center
-        .buttons
-          = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(shared_account) }, class: 'button mx-2 is-plus-color is-medium' do
-            figure.file-icon.image.is-24x24
-              = image_tag('plus-circle-green.svg', alt: '+')
-            | Increase
-          = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(shared_account), balance: shared_account.balance }, class: 'button mx-2 is-minus-color is-medium' do
-            figure.file-icon.image.is-24x24
-              = image_tag('minus-circle-red.svg', alt: '-')
-            | Decrease
-      .column.is-1.is-flex.is-justify-content-center.is-align-items-center
-        .buttons.is-justify-content-end
-          = button_to account_path(shared_account), method: :get, class: 'button is-grey ' do
-            span.icon
-              i.fa.fa-chevron-right
-  / mobile
-  .card-header-title.for-mobile.is-centered.is-black
-    | Account owner: #{shared_account.parent.email}
-  .card-content.for-mobile.p-4
-    .buttons.top-right-shared-account-button
-      = button_to account_path(shared_account), method: :get, class: 'button is-grey mr-3' do
-        span.icon
-          i.fa.fa-chevron-right
-    .div.is-flex.is-flex-direction-column.is-align-items-center
+  .card-content
+    .px-0.ml-4
       = link_to account_path(shared_account), class:"pt-2" do
-        img src=asset_path(avatar_for(shared_account)) class="rounded-avatar" id='image-preview'
-      h3.title.is-4.has-text-centered.mt-2.is-black
-        p= shared_account.name
-        p.my-2
-          span.subtitle.is-6.mr-2 Balance:
-          span.title.is-4.is-budgeting-kid-color #{shared_account.balance}
-    .buttons.is-justify-content-center
-      = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(shared_account) }, class: 'button m-1 is-plus-color' do
+        img src=asset_path(avatar_for(shared_account)) class="rounded-avatar small" id='image-preview'
+    p.has-text-centered.is-black.my-2
+      = shared_account.name
+    p.has-text-centered.is-black.mb-2
+      span.subtitle.is-6  Balance:&nbsp;&nbsp;
+      span.title.is-4.is-light #{shared_account.balance}
+    .buttons
+      = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(shared_account) }, class: 'button is-plus-color is-medium'
         figure.file-icon.image.is-24x24
           = image_tag('plus-circle-green.svg', alt: '+')
         | Increase
-      = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(shared_account), balance: shared_account.balance }, class: 'button m-1 is-minus-color' do
+      = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(shared_account), balance: shared_account.balance }, class: 'button is-minus-color is-medium'
         figure.file-icon.image.is-24x24
           = image_tag('minus-circle-red.svg', alt: '-')
         | Decrease
+    .show-button
+      .is-flex.is-justify-content-end
+        = button_to account_path(shared_account), method: :get, class: 'button is-grey mr-3' do
+          span.icon
+            i.fa.fa-chevron-right

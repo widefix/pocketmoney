@@ -1,54 +1,38 @@
-- if account.children.unarchived.present? || shared_accounts.present?
-  .columns.mb-5.mx-4
-    / desktop
-    .column.for-desktop.is-flex.is-align-items-center
-      .image.is-60x60
-        = image_tag("waving_hand.svg")
-      span.title.is-3.is-black &nbsp; Hi, Welcome back
-    / mobile
-    .column.for-mobile.is-flex.is-justify-content-center.is-align-items-center
-      .image.is-48x48
-        = image_tag("waving_hand.svg")
-      span.title.is-4.is-black &nbsp; Hi, Welcome back
-    / common
-    .column.is-flex.is-align-items-center.is-justify-content-flex-end
-      - if account.children.unarchived.present? || shared_accounts.present?
-        - if archived_accounts.present?
-          / desktop
-          .for-desktop.dropdown.is-right
-            .dropdown-trigger
-              button.button.is-white.is-bordered.has-text-weight-bold
-                | Actions
-                span.icon.ml-1
-                  i.fa.fa-caret-down
-            .dropdown-menu
-              .dropdown-content
-                = link_to 'Archived accounts', archived_accounts_path, method: :get, class: 'dropdown-item'
-          / mobile
-          .for-mobile.dropdown.is-left
-            .dropdown-trigger
-              button.button.is-white.is-bordered.has-text-weight-bold
-                | Actions
-                span.icon.ml-1
-                  i.fa.fa-caret-down
-            .dropdown-menu
-              .dropdown-content
-                = link_to 'Archived accounts', archived_accounts_path, method: :get, class: 'dropdown-item'
-        = button_to new_account_path, method: :get, class: 'button mx-2 is-primary has-text-weight-bold'
-          figure.file-icon.image.is-18x18
-            = image_tag('add_account.svg', alt: 'add-account')
-          | Add account
+#my-account
+  - if account.children.unarchived.present? || shared_accounts.present?
+    .columns.mb-5
+      .column.waving_hand
+        .image
+          = image_tag("waving_hand.svg")
+        span.title.is-black &nbsp; Hi, Welcome back
+      / common
+      .column.action_buttons
+        - if account.children.unarchived.present? || shared_accounts.present?
+          - if archived_accounts.present?
+            .dropdown
+              .dropdown-trigger
+                button.button.is-white.is-bordered.has-text-weight-bold
+                  | Actions
+                  span.icon.ml-1
+                    i.fa.fa-caret-down
+              .dropdown-menu
+                .dropdown-content
+                  = link_to 'Archived accounts', archived_accounts_path, method: :get, class: 'dropdown-item'
+          = button_to new_account_path, method: :get, class: 'button mx-2 is-primary has-text-weight-bold'
+            figure.file-icon.image.is-18x18
+              = image_tag('add_account.svg', alt: 'add-account')
+            | Add account
 
-  = render partial: 'child', collection: account.children.unarchived
-  - if shared_accounts.present?
-    p.title.is-4.is-black.has-text-centered.pt-4 Shared accounts
-    = render partial: 'shared_account', collection: shared_accounts
+    = render partial: 'child', collection: account.children.unarchived
+    - if shared_accounts.present?
+      p.title.is-4.is-black.has-text-centered.pt-4 Shared accounts
+      = render partial: 'shared_account', collection: shared_accounts
 
-  - if unaccepted_shares.present?
-    p.title.is-4.is-black.has-text-centered.py-4 Unaccepted shares
-    = render partial: 'unaccepted_share', collection: unaccepted_shares.order(created_at: :desc)
-- else
-  = render partial: 'accounts_empty'
+    - if unaccepted_shares.present?
+      p.title.is-4.is-black.has-text-centered.py-4 Unaccepted shares
+      = render partial: 'unaccepted_share', collection: unaccepted_shares.order(created_at: :desc)
+  - else
+    = render partial: 'accounts_empty'
 
-= render partial: "topups/modal"
-= render partial: "spends/modal"
+  = render partial: "topups/modal"
+  = render partial: "spends/modal"

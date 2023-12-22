@@ -1,14 +1,13 @@
-.columns.is-centered
-  .column.is-one-third
+.columns.is-centered.edit-account
+  .column
     h2.title.is-4.has-text-centered Edit account
     = form_with model: account do |f|
-      .columns.is-mobile.is-justify-content-space-between#account-background(style="#{"background-image: url('#{url_for(account.background)}');" if account.background.attached?}" class="#{'account-has-bg' if account.background.attached?}")
-        .column.is-one-third
-          .field
-            .figure.image.is-128x128(class="#{'bg-around-image' if account.background.attached?}")
+      .columns#account-background(style="#{"background-image: url('#{url_for(account.background)}');" if account.background.attached?}" class="#{'account-has-bg' if account.background.attached?}")
+        .field.m-4
+          .figure.image.is-128x128(class="#{'bg-around-image' if account.background.attached?}")
               = image_tag(avatar_for(account), id:'account-image', class:"is-rounded",  alt: 'avatar')
-        .is-flex.is-flex-direction-column.is-align-items-flex-end.mr-4.for-desktop
-          .file#file-input.is-light.is-pulled-right.my-4
+        .image-inputs
+          .file#file-input.is-light.my-4
             label.file-label.is-light
               = f.file_field :avatar, class: 'file-input'
               span.file-cta
@@ -16,7 +15,7 @@
                   i.fa.fa-camera
                 span.file-label
                   | Change Avatar
-          .file#background-input.is-light.is-pulled-right
+          .file#background-input.is-light
             label.file-label.is-light
               = f.file_field :background, class: 'file-input'
               span.file-cta
@@ -24,19 +23,6 @@
                   i.fa.fa-picture-o
                 span.file-label
                   | Change Background
-        .is-flex.is-flex-direction-column.is-align-items-flex-end.mr-4.for-mobile
-          .file#file-input.is-light.is-pulled-right.my-4
-            label.file-label.is-light
-              = f.file_field :avatar, class: 'file-input'
-              span.file-cta
-                span.file-icon.m-0
-                  i.fa.fa-camera
-          .file#background-input.is-light.is-pulled-right
-            label.file-label.is-light
-              = f.file_field :background, class: 'file-input'
-              span.file-cta
-                span.file-icon.m-0
-                  i.fa.fa-picture-o
       - if current_user.parent?
         .field.mb-4
           = f.text_field :name, autofocus: true, class: "input", placeholder: "Name"
@@ -53,7 +39,7 @@
           .notification.is-light.mt-3
             | If checked, all users with access to your kid's account, including you, will get email notifications 
             | about balance changes.
-      buttons.is-flex.is-justify-content-space-between.for-desktop
+      .buttons
         - if current_user.parent?
           - if current_user.owner?(account)
             = link_to archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'button is-budgeting-kid-danger', style: "width: 180px" do
@@ -65,28 +51,7 @@
               span.icon
                 i.fa.fa-sign-out
               | &nbsp; Decline Share
-        div
-          = link_to account_path(account), class: 'button is-white is-bordered mr-2' do
-            span.file-icon
-              i.fa.fa-chevron-left
-            | Back
-          = button_to account_path, class: 'button is-primary' do
-            span.file-icon
-              i.fa.fa-hdd-o
-            | Save
-      buttons.is-flex.is-flex-direction-column.for-mobile
-        - if current_user.parent?
-          - if current_user.owner?(account)
-            = link_to archive_account_path(account), data: { confirm: 'Archive this account?' }, class: 'button is-budgeting-kid-danger mb-4', style: "width: 180px" do
-              span.icon
-                i.fa.fa-archive
-              | &nbsp; Archive Account
-          - else
-            = link_to terminate_shared_account_path(account), method: :patch, data: {confirm: 'Would you like to decline this share?'}, class: 'button is-budgeting-kid-danger mb-4' do
-              span.icon
-                i.fa.fa-sign-out
-              | &nbsp; Decline Share
-        .is-flex.is-justify-content-flex-end
+        .action-buttons
           = link_to account_path(account), class: 'button is-white is-bordered mr-2' do
             span.file-icon
               i.fa.fa-chevron-left

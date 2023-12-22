@@ -6,7 +6,7 @@
     .columns.is-centered.is-mobile
       .column.is-four-fifths
         h2.title.is-4.is-light = t('.sign_up')
-        h2.title.is-3.font-frank-ruhl-libre Get Started for free
+        h2.title.font-frank-ruhl-libre Get Started for free
         - if Devise.omniauth_providers.include?(:google_oauth2)
           .field
             .buttons.is-centered

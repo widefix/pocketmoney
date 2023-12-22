@@ -1,6 +1,6 @@
 h2.title.is-4
   | Account shares
-.buttons.for-desktop.mt-4
+.buttons.mt-4
   = link_to account_path(account), class: 'button is-light' do
     span.icon
       i.fa.fa-chevron-left
@@ -18,27 +18,9 @@ h2.title.is-4
         i.fa.fa-user
       | &nbsp; Share for kid
 
-.buttons.for-mobile.mt-4
-  = link_to account_path(account), class: 'button is-light' do
-    span.icon
-      i.fa.fa-chevron-left
-  = link_to new_account_share_path, class: 'button is-light mr-4' do
-    span.icon
-      i.fa.fa-user
-    | &nbsp; Private share
-  = link_to new_account_public_account_share_path, class: 'button is-light' do
-    span.icon
-      i.fa.fa-users
-    | &nbsp; Public share
-  = link_to new_account_share_for_kid_path, class: 'button is-light' do
-      span.icon
-        i.fa.fa-user
-      | &nbsp; Share for kid
-
 .columns
   .column
     .card
-      .card-header
       .card-header-title.is-centered
         h3.title.is-4= account.name
       .card-content.px-1

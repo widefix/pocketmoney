@@ -428,16 +428,12 @@ button.is-grey:hover {
   background-color: $bk-color;
 }
 
-.is-budgeting-kid-light-color {
+.is-bk-light-color {
   filter: invert(75%) sepia(25%) saturate(4361%) hue-rotate(249deg) brightness(90%) contrast(93%);
 }
 
-.is-budgeting-kid-black-color {
+.is-bk-black-color {
   filter: invert(100%) sepia(100%) hue-rotate(180deg);
-}
-
-.has-limit-height {
-  min-height: 600px;
 }
 
 @media (max-width: 1024px) {

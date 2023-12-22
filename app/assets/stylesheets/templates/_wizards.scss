@@ -1,0 +1,21 @@
+@import "../config/mixins";
+
+.wizard-new-account, .wizard-new-automatic-topup, .wizard-new-objective, .wizard-new-share-account {
+  min-height: 600px;
+
+  h2.title:first-child {
+    @include desktop {
+      display: none;
+    }
+  }
+
+  .has-background-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include desktop {
+      display: none;
+    }
+  }
+}

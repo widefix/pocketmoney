@@ -1,7 +1,7 @@
 @import "../config/mixins";
 @import "../config/variables";
 
-#sign-in, #sign-up, #sign-in-kids {
+.sign-in, .sign-up, .sign-in-kids {
   .columns {
     .column {
       h2 {

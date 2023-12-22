@@ -1,12 +1,11 @@
 - content_for :title, 'Choose your role'
 - content_for :description, 'Choose your role in the system. Are you are parent or a kid?'
 
-.columns.is-centered
+.columns.is-centered.choose_role
   .column
     .columns.is-centered.is-mobile
       .column.is-four-fifths
-        h2.title.is-3.has-text-centered.is-budgeting-kid-color.for-desktop Choose your role
-        h2.title.is-4.has-text-centered.is-budgeting-kid-color.for-mobile Choose your role
+        h2.title.has-text-centered.is-light Choose your role
         .field
           p.is-size-6 If you manage your kid account
         .field.pb-4
@@ -30,6 +29,6 @@
               .column.px-1
                 | Help your kid to manage their budget. Give them a parental code to manage their account.
 
-  .for-desktop.column.has-background-image.is-flex.is-justify-content-center.is-align-items-center
+  .column.has-background-image
     figure.image.is-coins
       = image_tag('coins.svg')

@@ -11,7 +11,7 @@ tr.for-desktop
   - if current_user.parent?
     td.is-size-5.is-vcentered.px-0
       = link_to transaction_path(transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-white-budgeting-kid-color px-0' do
-        figure.image.is-24x24.is-round.is-budgeting-kid-light-color
+        figure.image.is-24x24.is-round.is-bk-light-color
           = image_tag("cross-circle-white.svg")
 
 / mobile
@@ -27,5 +27,5 @@ tr.for-mobile
   - if current_user.parent?
     td.is-vcentered.px-0
       = link_to transaction_path(transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-white-budgeting-kid-color px-0' do
-        figure.image.is-24x24.is-round.is-budgeting-kid-light-color
+        figure.image.is-24x24.is-round.is-bk-light-color
           = image_tag("cross-circle-white.svg")

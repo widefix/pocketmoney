@@ -1,7 +1,6 @@
 @import "../config/mixins";
-@import "../config/variables";
 
-#my-account {
+.my-account {
   .waving_hand {
     display: flex;
     align-items: center;
@@ -34,7 +33,10 @@
     padding: 0;
 
     .card-header-title {
-      @media (min-width: 1024px) {
+      display: none;
+
+      @media (max-width: 1024px) {
+        display: block;
         padding-bottom: 0;
         margin-bottom: 1rem;
       }
@@ -60,6 +62,11 @@
 
         @include desktop {
           font-weight: 700;
+        }
+
+        &.for-desktop{
+          max-width: 400px;
+          width: 400px;
         }
       }
 

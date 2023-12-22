@@ -10,7 +10,7 @@
     p.for-desktop
       span.subtitle.is-6.pl-6.mr-2 Account owner:
       span.title.is-6.is-light #{unaccepted_share.account.parent.email}
-    .buttons
+    .buttons.mx-4
       = button_to accept_account_share_url(token: unaccepted_share.token), method: :get, class: 'button px-6 is-medium is-plus-color' do
         span.icon.mr-1
           i.fa.fa-check-square-o

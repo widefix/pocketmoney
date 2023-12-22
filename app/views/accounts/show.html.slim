@@ -33,11 +33,11 @@
     .buttons
       - if current_user.parent?
         = link_to account_shares_path(account), class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px; " do
-          figure.image.is-16x16.is-budgeting-kid-light-color
+          figure.image.is-16x16.is-bk-light-color
             = image_tag('share.svg')
           | &nbsp; Share Account
       = link_to edit_account_path(account), class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px; " do
-        figure.image.is-16x16.is-budgeting-kid-light-color
+        figure.image.is-16x16.is-bk-light-color
           = image_tag('edit.svg')
         | &nbsp; Edit Account
   / mobile
@@ -45,10 +45,10 @@
     .buttons
       - if current_user.parent?
         = link_to account_shares_path(account), class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px" do
-          figure.image.is-16x16.is-budgeting-kid-light-color
+          figure.image.is-16x16.is-bk-light-color
             = image_tag('share.svg')
       = link_to edit_account_path(account), class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px; " do
-        figure.image.is-16x16.is-budgeting-kid-light-color
+        figure.image.is-16x16.is-bk-light-color
           = image_tag('edit.svg')
 / desktop
 .box.for-desktop.is-flex.is-justify-content-center.is-align-items-center
@@ -158,7 +158,7 @@
                 | &nbsp; Accomplished
           .column
             = link_to new_account_objective_path(account), class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
-              figure.image.is-16x16.is-budgeting-kid-light-color
+              figure.image.is-16x16.is-bk-light-color
                 = image_tag('plus-circle-white.svg', alt: '+')
               | &nbsp; Add Goal
       -if objectives.empty?
@@ -249,7 +249,7 @@
                 | &nbsp; Accomplished
           .column.p-0
             = link_to new_account_objective_path(account), class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
-              figure.image.is-20x20.is-budgeting-kid-light-color
+              figure.image.is-20x20.is-bk-light-color
                 = image_tag('plus-circle-white.svg', alt: '+')
               | &nbsp; Add
       -if objectives.empty?
@@ -286,7 +286,7 @@
             | No weekly automatic topups yet.
           .column.is-flex.is-justify-content-flex-end
             = link_to new_account_account_automatic_topup_config_path(account), class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
-              figure.image.is-16x16.is-budgeting-kid-light-color
+              figure.image.is-16x16.is-bk-light-color
                 = image_tag('plus-circle-white.svg', alt: '+')
               | &nbsp; Add amount
       - else
@@ -297,11 +297,11 @@
             .buttons.is-pulled-right
               - if current_user.parent?
                 = link_to account_account_automatic_topup_config_path(account, automatic_topup_configs), method: :delete, data: { confirm: 'Delete this top up?' }, class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
-                  figure.image.is-16x16.is-budgeting-kid-light-color
+                  figure.image.is-16x16.is-bk-light-color
                     = image_tag('delete.svg', alt: '+')
                   | &nbsp; Delete
                 = link_to edit_account_account_automatic_topup_config_path(account, automatic_topup_configs), class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
-                  figure.image.is-16x16.is-budgeting-kid-light-color
+                  figure.image.is-16x16.is-bk-light-color
                     = image_tag('edit.svg')
                   | &nbsp; Edit
   / mobile
@@ -320,7 +320,7 @@
             | No weekly automatic topups yet.
           .column.is-3.is-pulled-right.px-0
             = link_to new_account_account_automatic_topup_config_path(account), class: 'button pr-0 is-white has-text-weight-bold has-text-budgeting-kid-color' do
-              figure.image.is-20x20.is-budgeting-kid-light-color
+              figure.image.is-20x20.is-bk-light-color
                 = image_tag('plus-circle-white.svg', alt: '+')
               | &nbsp; Add
 
@@ -332,10 +332,10 @@
             .buttons
               - if current_user.parent?
                 = link_to account_account_automatic_topup_config_path(account, automatic_topup_configs), method: :delete, data: { confirm: 'Delete this top up?' }, class: 'button pr-0 is-white has-text-weight-bold has-text-budgeting-kid-color' do
-                  figure.image.is-16x16.is-budgeting-kid-light-color
+                  figure.image.is-16x16.is-bk-light-color
                     = image_tag('delete.svg', alt: '+')
                 = link_to edit_account_account_automatic_topup_config_path(account, automatic_topup_configs), class: 'button pr-0  is-white has-text-weight-bold has-text-budgeting-kid-color' do
-                  figure.image.is-16x16.is-budgeting-kid-light-color
+                  figure.image.is-16x16.is-bk-light-color
                     = image_tag('edit.svg')
 
   = render partial: 'accumulative_balance'

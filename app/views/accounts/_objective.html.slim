@@ -22,7 +22,7 @@ tr.for-desktop
               i.fa.fa-check-circle-o
             | &nbsp; Done
         = link_to objective_path(objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
-          figure.image.is-16x16.is-budgeting-kid-light-color
+          figure.image.is-16x16.is-bk-light-color
             = image_tag('delete.svg', alt: '+')
           | &nbsp; Delete
     progress.progress class="mb-2 is-small #{index.odd? ? 'is-blue' : 'is-orange'}" style="height:8px;" value="#{goal_percentage(account, objective).chomp('%')}" max="100" #{goal_percentage(account, objective)}
@@ -50,7 +50,7 @@ tr.for-mobile
             span.icon style="margin-top: 2px"
               i.fa.fa-lg.fa-check-circle-o
         = link_to objective_path(objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button pr-2 is-white has-text-weight-bold has-text-budgeting-kid-color' do
-          figure.image.is-20x20.is-budgeting-kid-light-color
+          figure.image.is-20x20.is-bk-light-color
             = image_tag('delete.svg', alt: '+')
     progress.progress class="mb-2 is-small #{index.odd? ? 'is-blue' : 'is-orange'}" style="height:8px;" value="#{goal_percentage(account, objective).chomp('%')}" max="100" #{goal_percentage(account, objective)}
     .title.is-4.has-text-centered.is-black #{goal_percentage(account, objective)}

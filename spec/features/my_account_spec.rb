@@ -21,10 +21,13 @@ RSpec.feature 'MyAccount', type: :feature do
 
     expect(page).to have_http_status(:success)
     expect(page).to have_button('Add account')
+    expect(page).to have_content('Hi, Welcome back')
+
     accounts_block = find('.card.box.accounts')
-    expect(accounts_block).to have_link(href: account_path(child), count: 2)
-    expect(accounts_block).to have_content('Balance')
-    expect(accounts_block).to have_content(child.balance)
+    expect(accounts_block).to have_link(href: account_path(child))
+    expect(accounts_block).to have_content(child.name)
+    expect(accounts_block).to have_content("Balance: #{child.balance}", normalize_ws: true)
+    expect(accounts_block).to have_button(count: 3)
     expect(accounts_block).to have_button('Increase')
     expect(accounts_block).to have_button('Decrease')
 
@@ -32,17 +35,17 @@ RSpec.feature 'MyAccount', type: :feature do
 
     shared_accounts_block = find('.card.box.shared-accounts')
     expect(shared_accounts_block).to have_content("Account owner: #{accepted_share.account.parent.email}")
-    expect(shared_accounts_block).to have_link(href: account_path(accepted_share.account), count: 2)
-    expect(shared_accounts_block).to have_content('Balance')
-    expect(shared_accounts_block).to have_content(accepted_share.account.balance)
+    expect(shared_accounts_block).to have_link(href: account_path(accepted_share.account))
+    expect(shared_accounts_block).to have_content("Balance: #{accepted_share.account.balance}", normalize_ws: true)
+    expect(shared_accounts_block).to have_button(count: 3)
     expect(shared_accounts_block).to have_button('Increase')
     expect(shared_accounts_block).to have_button('Decrease')
 
     expect(page).to have_content('Unaccepted shares')
 
     unaccepted_shares_block = find('.card.box.unaccepted_shares')
-    expect(unaccepted_shares_block).to have_content(unaccepted_share.account.name)
+    expect(unaccepted_shares_block).to have_content(unaccepted_share.name)
     expect(unaccepted_shares_block).to have_content(unaccepted_share.account.parent.email)
-    expect(page).to have_button('Accept')
+    expect(unaccepted_shares_block).to have_button('Accept')
   end
 end

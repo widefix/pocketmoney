@@ -43,38 +43,11 @@
   / Transaction History & Goals ----
   - accomplished_objectives = account.objectives.accomplished
   - objectives = account.objectives.not_accomplished
-  - transactions = account.transactions
 
   / desktop
   .columns.for-desktop
-    .column.transactions.box.m-2
-      div.m-5
-        .title.is-black
-          | Transaction History
-        -if transactions.empty?
-          .columns.p-1.mb-0.is-flex.is-centered
-            figure.image.is-48x48.is-hint-icon-color
-              = image_tag('loupe.svg', alt: 'No..., yet')
-          p.has-text-centered.mt-2 No transactions yet.
-        - else
-          .table-container.scrollable
-            table.table.is-fullwidth
-              thead
-                tr.has-text-left
-                  th.is-grey Date
-                  th.is-grey Description
-                  th.is-grey Amount
-                  - if current_user.parent?
-                    th.is-grey &nbsp;
-              tbody
-                = render partial: 'transaction', collection: transactions, account: account
-              tfoot
-                tr
-                  th
-                  th
-                  th
-                  - if current_user.parent?
-                    th
+    = render partial: 'transactions'
+
     #desktop-accomplished-goals.column.box.m-2.is-hidden
       .m-5
         .columns
@@ -140,35 +113,7 @@
 
   / mobile
   .columns.for-mobile.py-4
-    .column.box
-      div
-        .title.is-4.is-black
-          | Transaction History
-        -if transactions.empty?
-          .columns.p-1.mb-0.is-flex.is-centered
-            figure.image.is-48x48.is-hint-icon-color
-              = image_tag('loupe.svg', alt: 'No..., yet')
-          p.has-text-centered.mt-2 No transactions yet.
-        - else
-          .table-container.scrollable
-            table.table.is-fullwidth.p-0
-              thead
-                tr.has-text-left
-                  th.is-grey.pl-0 Date
-                  th.is-grey Description
-                  th.is-grey Amount
-                  - if current_user.parent?
-                    th.is-grey &nbsp;
-              tbody
-                = render partial: 'transaction', collection: transactions, account: account
-              tfoot
-                tr
-                  th
-                  th
-                  th
-                  - if current_user.parent?
-                    th
-
+    = render partial: 'transactions'
     #mobile-accomplished-goals.column.box.m-2.is-hidden
       div
         .columns.is-mobile.mb-0.is-align-items-center

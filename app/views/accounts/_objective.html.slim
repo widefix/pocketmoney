@@ -46,7 +46,7 @@ tr.for-mobile
           | #{ weeks_to_achieve != -1 ? "#{weeks_to_achieve} Weeks to go" : "Achieved"}
       .is-flex.is-justify-content-flex-end
         - if goal_percentage(account, objective) == "100%"
-          = link_to objective_path(objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button pr-3 is-white has-text-weight-bold has-text-budgeting-kid-color' do
+          = link_to accomplish_objective_path(objective), method: :patch, class: 'button pr-3 is-white has-text-weight-bold has-text-budgeting-kid-color' do
             span.icon style="margin-top: 2px"
               i.fa.fa-lg.fa-check-circle-o
         = link_to objective_path(objective), method: :delete, data: {confirm: 'Delete this objective?'}, class: 'button pr-2 is-white has-text-weight-bold has-text-budgeting-kid-color' do

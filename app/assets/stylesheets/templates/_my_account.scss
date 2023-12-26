@@ -102,6 +102,12 @@
     }
   }
 
+  .shared-accounts {
+    .card-header-title {
+      display: block;
+    }
+  }
+
   .accounts-empty {
     display: flex;
     flex-direction: column;

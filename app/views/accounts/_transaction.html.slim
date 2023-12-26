@@ -10,7 +10,7 @@ tr.for-desktop
     td.is-size-5.is-vcentered.is-plus-color= transaction.signed_amount(account)
   - if current_user.parent?
     td.is-size-5.is-vcentered.px-0
-      = link_to transaction_path(transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-white-budgeting-kid-color px-0' do
+      = link_to transaction_path(transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-light-bk-color px-0' do
         figure.image.is-24x24.is-round.is-bk-light-color
           = image_tag("cross-circle-white.svg")
 
@@ -26,6 +26,6 @@ tr.for-mobile
     td.is-vcentered.is-plus-color= transaction.signed_amount(account)
   - if current_user.parent?
     td.is-vcentered.px-0
-      = link_to transaction_path(transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-white-budgeting-kid-color px-0' do
+      = link_to transaction_path(transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-light-bk-color px-0' do
         figure.image.is-24x24.is-round.is-bk-light-color
           = image_tag("cross-circle-white.svg")

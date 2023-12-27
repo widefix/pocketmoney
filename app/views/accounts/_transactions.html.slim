@@ -21,16 +21,16 @@
         tbody
           - transactions.each do |transaction|
             tr
-              td.is-vcentered.p-0
+              td.date.p-0
                 = transaction.date
-              td.is-vcentered.is-dark-grey
+              td.description.is-dark-grey
                 = transaction.description
               - if transaction.from_account == account
-                td.is-vcentered.is-minus-color= transaction.signed_amount(account)
+                td.is-minus-color = transaction.signed_amount(account)
               - else
-                td.is-vcentered.is-plus-color= transaction.signed_amount(account)
+                td.is-plus-color = transaction.signed_amount(account)
               - if current_user.parent?
-                td.is-vcentered.px-0
+                td.px-0
                   = link_to transaction_path(transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-light-bk-color px-0' do
                     figure.image.is-24x24.is-round.is-bk-light-color
                       = image_tag("cross-circle-white.svg")

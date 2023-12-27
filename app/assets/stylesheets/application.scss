@@ -557,5 +557,6 @@ button.is-grey:hover {
 
 .scrollable {
   max-height: 15rem;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: none;
 }

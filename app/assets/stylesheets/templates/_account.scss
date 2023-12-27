@@ -62,19 +62,23 @@
   }
 
   .transactions {
-    padding: 1.5rem 1rem 0.5rem 1.5rem;
+    padding: 1.5rem 1rem 1rem 1.5rem;
 
     @include desktop {
       padding: 0.75rem;
-
-      .title {
-        font-size: 1.5rem;
-      }
     }
 
     @include mobile {
       margin-left: 0 !important;
       margin-right: 0 !important;
+    }
+
+    .title {
+      margin-bottom: 1rem;
+
+      @include desktop {
+        font-size: 1.5rem;
+      }
     }
 
     tr {
@@ -89,16 +93,53 @@
   }
 
   .goals {
-    padding: 1.5rem 1rem 0 1.5rem;
+    padding: 1.5rem 1rem 1rem 1.5rem;
 
     @include desktop {
       padding: 0.75rem;
-      margin-left: 0;
-      margin-right: 0;
     }
 
     @include mobile {
-      min-width: 350px;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+    .column-title {
+      .title {
+        margin-bottom: 1rem;
+  
+        @include desktop {
+          font-size: 1.5rem;
+        }
+      }
+
+      .button {
+        @include desktop {
+          border-radius: 2px;
+          font-size: 0.75rem;
+        }
+      }
+    }
+
+    tr {
+      td {
+        vertical-align: middle;
+
+        .button {
+          @include desktop {
+            padding: 0.25rem;
+          }
+
+          p {
+            @include desktop {
+              display: none;
+            }
+          }
+        }
+
+        progress {
+          height: 8px;
+        }
+      }
     }
   }
 }

@@ -25,14 +25,14 @@ RSpec.feature 'Account', type: :feature do
 
     transactions_block = find('.column.transactions')
     expect(transactions_block).to have_content('Transaction History')
-    expect(transactions_block).to have_selector('table.table tbody tr', count: 2)
+    expect(transactions_block).to have_selector('table.table tbody tr', count: 1)
     expect(transactions_block).to have_text(transaction.date)
     expect(transactions_block).to have_text(transaction.signed_amount(account))
     expect(transactions_block).to have_text(transaction.description)
     expect(transactions_block).to have_link(href: transaction_path(transaction))
 
     objectives_block = find('.column.goals')
-    expect(objectives_block).to have_selector('table.table tbody tr', count: 2)
+    expect(objectives_block).to have_selector('table.table tbody tr', count: 1)
     expect(objectives_block).to have_text(objective.name)
     expect(objectives_block).to have_text(objective.amount)
     expect(objectives_block).to have_link('Delete', href: objective_path(objective))

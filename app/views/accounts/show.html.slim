@@ -1,8 +1,8 @@
 #topup-utc-time data-utc-time= topup_utc_time
 .account
-  .columns.mb-0
-    .column.account-name.box(style="#{"background-image: url('#{url_for(account.background)}');" if account.background.attached?}" class="#{'account-has-bg' if account.background.attached?}")
-      .p-4
+  .columns
+    .column
+      .box(style="#{"background-image: url('#{url_for(account.background)}');" if account.background.attached?}" class="#{'account-has-bg' if account.background.attached?}")
         - if !current_user.owner?(account) && current_user.parent?
           .columns
             .column.is-flex.is-justify-content-center.is-align-items-center
@@ -14,106 +14,39 @@
           .column.p-0.is-flex.is-justify-content-center.is-align-items-center
             .title.has-text-centered.is-black(class="#{'bg-around-text' if account.background.attached?}")
               = account.name
-    / desktop
-    .column.account-buttons.box.is-flex.is-justify-content-center.is-align-items-center
-      .buttons
-        - if current_user.parent?
-          = link_to account_shares_path(account), class: 'button is-light-bk-color is-bordered mx-4' do
+    .column.account-buttons
+      .box
+        .buttons
+          - if current_user.parent?
+            = link_to account_shares_path(account), class: 'button is-light-bk-color is-bordered mx-4' do
+              figure.image.is-16x16.is-bk-light-color
+                = image_tag('share.svg')
+              span &nbsp; Share Account
+          = link_to edit_account_path(account), class: 'button is-light-bk-color is-bordered mx-4' do
             figure.image.is-16x16.is-bk-light-color
-              = image_tag('share.svg')
-            span &nbsp; Share Account
-        = link_to edit_account_path(account), class: 'button is-light-bk-color is-bordered mx-4' do
-          figure.image.is-16x16.is-bk-light-color
-            = image_tag('edit.svg')
-          span &nbsp; Edit Account
-  .account-balance.box
-    p.is-size-5.has-text-centered.mb-1
-      | Balance
-    p.title.is-2.is-budgeting-kid-color.has-text-centered #{account.balance}
-    .buttons.mb-1
-      = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(account) }, class: 'button is-plus-color is-medium' do
-        figure.image.is-24x24
-          = image_tag('plus-circle-green.svg', alt: '+')
-        | &nbsp; Increase
-      = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(account), balance: account.balance }, class: 'button is-minus-color is-medium' do
-        figure.image.is-24x24
-          = image_tag('minus-circle-red.svg', alt: '-')
-        | &nbsp; Decrease
+              = image_tag('edit.svg')
+            span &nbsp; Edit Account
+  .columns
+    .column.account-balance
+      .box
+        p.is-size-5.has-text-centered.mb-1
+          | Balance
+        p.title.is-2.is-budgeting-kid-color.has-text-centered #{account.balance}
+        .buttons.is-flex-wrap-nowrap
+          = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(account) }, class: 'button is-plus-color is-medium' do
+            figure.image.is-24x24
+              = image_tag('plus-circle-green.svg', alt: '+')
+            | &nbsp; Increase
+          = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(account), balance: account.balance }, class: 'button is-minus-color is-medium' do
+            figure.image.is-24x24
+              = image_tag('minus-circle-red.svg', alt: '-')
+            | &nbsp; Decrease
 
-  / Transaction History & Goals ----
   .columns
     = render partial: 'transactions'
     = render partial: 'objectives'
-  / Recurring balance increase & Accumulative balance ----
   .columns.automatic-topup-configs
-    / desktop
-    .column.box.m-2.for-desktop
-      div.m-5.pb-2 style="border-bottom: 1px solid hsl(0, 0%, 86%)"
-        .title.is-black
-          | Recurring balance increase
-        .subtitle.is-6.is-vcentered.is-dark-grey
-          br
-          | This amount will be automatically added to the account every Friday at&nbsp;
-          span#formatted-time
-        - automatic_topup_configs = account.automatic_topup_configs.first
-        - if automatic_topup_configs.nil?
-          .columns
-            .column.is-flex.is-justify-content-flex-start.is-align-items-center
-              | No weekly automatic topups yet.
-            .column.is-flex.is-justify-content-flex-end
-              = link_to new_account_account_automatic_topup_config_path(account), class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
-                figure.image.is-16x16.is-bk-light-color
-                  = image_tag('plus-circle-white.svg', alt: '+')
-                | &nbsp; Add amount
-        - else
-          .columns
-            .column
-              .title #{automatic_topup_configs.amount}
-            .column
-              .buttons.is-pulled-right
-                - if current_user.parent?
-                  = link_to account_account_automatic_topup_config_path(account, automatic_topup_configs), method: :delete, data: { confirm: 'Delete this top up?' }, class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
-                    figure.image.is-16x16.is-bk-light-color
-                      = image_tag('delete.svg', alt: '+')
-                    | &nbsp; Delete
-                  = link_to edit_account_account_automatic_topup_config_path(account, automatic_topup_configs), class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
-                    figure.image.is-16x16.is-bk-light-color
-                      = image_tag('edit.svg')
-                    | &nbsp; Edit
-    / mobile
-    .column.box.for-mobile
-      div style="border-bottom: 1px solid hsl(0, 0%, 86%)"
-        .title.is-4.is-black
-          | Recurring balance increase
-        .subtitle.is-6.is-vcentered.is-dark-grey
-          br
-          | This amount will be automatically added to the account every Friday at
-          span#formatted-time
-        - automatic_topup_configs = account.automatic_topup_configs.first
-        - if automatic_topup_configs.nil?
-          .columns.is-mobile
-            .column.is-flex.is-justify-content-flex-start.is-align-items-center
-              | No weekly automatic topups yet.
-            .column.is-3.is-pulled-right.px-0
-              = link_to new_account_account_automatic_topup_config_path(account), class: 'button pr-0 is-white has-text-weight-bold has-text-budgeting-kid-color' do
-                figure.image.is-20x20.is-bk-light-color
-                  = image_tag('plus-circle-white.svg', alt: '+')
-                | &nbsp; Add
-
-        - else
-          .columns.is-mobile
-            .column
-              .title #{automatic_topup_configs.amount}
-            .column.is-4
-              .buttons
-                - if current_user.parent?
-                  = link_to account_account_automatic_topup_config_path(account, automatic_topup_configs), method: :delete, data: { confirm: 'Delete this top up?' }, class: 'button pr-0 is-white has-text-weight-bold has-text-budgeting-kid-color' do
-                    figure.image.is-16x16.is-bk-light-color
-                      = image_tag('delete.svg', alt: '+')
-                  = link_to edit_account_account_automatic_topup_config_path(account, automatic_topup_configs), class: 'button pr-0  is-white has-text-weight-bold has-text-budgeting-kid-color' do
-                    figure.image.is-16x16.is-bk-light-color
-                      = image_tag('edit.svg')
-
+    = render partial: 'automatic_top_up'
     = render partial: 'accumulative_balance'
 = render partial: "topups/modal"
 = render partial: "spends/modal"

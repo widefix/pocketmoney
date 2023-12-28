@@ -1,0 +1,31 @@
+.automatic-top-up.column.is-6-desktop.is-12-mobile
+  .box
+    .title.is-black
+      | Recurring balance increase
+    .subtitle.is-6.is-vcentered.is-dark-grey
+      br
+      | This amount will be automatically added to the account every Friday at&nbsp;
+      span#formatted-time
+    - automatic_topup_configs = account.automatic_topup_configs.first
+    - if automatic_topup_configs.nil?
+      .columns
+        .column.is-flex.is-justify-content-flex-start.is-align-items-center
+          | No weekly automatic topups yet.
+        .column.is-flex.is-justify-content-flex-end
+          = link_to new_account_account_automatic_topup_config_path(account), class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
+            figure.image.is-16x16.is-bk-light-color
+              = image_tag('plus-circle-white.svg', alt: '+')
+            | &nbsp; Add amount
+    - else
+      .is-flex.is-justify-content-space-between.is-align-items-center
+        .title.m-0 #{automatic_topup_configs.amount}
+        .buttons.is-pulled-right.is-flex-wrap-nowrap
+          - if current_user.parent?
+            = link_to account_account_automatic_topup_config_path(account, automatic_topup_configs), method: :delete, data: { confirm: 'Delete this top up?' }, class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
+              figure.image.is-16x16.is-bk-light-color
+                = image_tag('delete.svg', alt: '+')
+              | &nbsp; Delete
+            = link_to edit_account_account_automatic_topup_config_path(account, automatic_topup_configs), class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
+              figure.image.is-16x16.is-bk-light-color
+                = image_tag('edit.svg')
+              | &nbsp; Edit

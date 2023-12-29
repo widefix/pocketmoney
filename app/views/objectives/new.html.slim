@@ -7,7 +7,7 @@
       .field
         = f.text_field :amount, class: "input", placeholder: "Amount", required: true
       .buttons.is-flex.is-justify-content-flex-end
-        = link_to account_path(account), class: 'button is-light' do
+        = link_to account_path(account, anchor: 'goals'), class: 'button is-light' do
           span.icon
             i.fa.fa-chevron-left
           | &nbsp; Back

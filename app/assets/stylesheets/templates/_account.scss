@@ -103,12 +103,26 @@
     }
   }
 
-  .automatic-top-up, .goals, .accomplished-goals, .transactions, .accumulative-balance {
+  .automatic-top-up, .goals, .accomplished-goals, .transactions, .accumulative-balance-settings {
     .title.is-black {
       margin-bottom: 1rem;
 
       @include desktop {
         font-size: 1.5rem;
+      }
+    }
+  }
+
+  .accumulative-balance {
+    .title.is-black {
+      margin-bottom: 1rem;
+
+      @include fullhd {
+        font-size: 1.5rem;
+      }
+
+      @include desktop {
+        font-size: 1rem;
       }
     }
   }

@@ -1,0 +1,35 @@
+@import "../config/mixins";
+@import "../config/variables";
+
+footer.footer {
+  border-top: 1px solid hsl(0, 0%, 90%);
+  display: flex;
+  margin-top: 1.5rem;
+
+  p {
+    margin-right: 0.5rem;
+
+    a {
+      color: #adadad;
+
+      &.footer-link {
+        font-weight: 700;
+        color: #333645;
+      }
+    }
+
+    a:hover {
+      color: $text-light;
+    }
+  }
+
+  @include desktop {
+    display: none;
+  }
+}
+
+nav.navbar-footer {
+  @media (min-width: 1024px) {
+    display: none;
+  }
+}

@@ -10,7 +10,7 @@
           span#formatted-time
           |. You will receive an email notification about that
       .buttons.is-flex.is-justify-content-flex-end
-        = link_to account_path(account), class: 'button is-light' do
+        = link_to account_path(account, anchor: 'automatic-top-up'), class: 'button is-light' do
           span.icon
             i.fa.fa-chevron-left
           | &nbsp; Back

@@ -44,7 +44,7 @@ RSpec.describe ObjectivesController, type: :controller do
     subject(:destroy) { delete :destroy, params: { id: objective.id } }
 
     it { is_expected.to have_http_status(:redirect) }
-    it { is_expected.to redirect_to(account_path(account)) }
+    it { is_expected.to redirect_to(account_path(account, anchor: 'goals')) }
     it { expect { subject }.to change { Objective.count }.by(-1) }
   end
 
@@ -59,7 +59,7 @@ RSpec.describe ObjectivesController, type: :controller do
 
     context 'when params is valid' do
       it { is_expected.to have_http_status(:redirect) }
-      it { is_expected.to redirect_to(account_path(account)) }
+      it { is_expected.to redirect_to(account_path(account, anchor: 'goals')) }
       it { expect { subject }.to change { objective.reload.accomplished_at }.from(nil) }
     end
   end

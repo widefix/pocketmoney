@@ -5,17 +5,17 @@ class ObjectivesController < ApplicationController
 
   def create
     account.objectives.create!(ps.slice(:name, :amount))
-    redirect_to account_path(account)
+    redirect_to account_path(account, anchor: 'goals')
   end
 
   def destroy
     objective.destroy
-    redirect_back(fallback_location: account_path(objective.account))
+    redirect_back(fallback_location: account_path(objective.account, anchor: 'goals'))
   end
 
   def accomplish
     objective.update!(accomplished_at: Time.current)
-    redirect_to account_path(objective.account)
+    redirect_to account_path(objective.account, anchor: 'goals')
   end
 
   private

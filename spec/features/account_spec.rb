@@ -38,7 +38,7 @@ RSpec.feature 'Account', type: :feature do
     expect(objectives_block).to have_link('Delete', href: objective_path(objective))
     expect(objectives_block).to have_link('Add Goal', href: new_account_objective_path(account))
 
-    automatic_topup_config_block = find('.columns.automatic-topup-configs')
+    automatic_topup_config_block = find('.automatic-top-up')
     expect(automatic_topup_config_block).to have_text(automatic_topup_config.amount)
     expect(automatic_topup_config_block)
       .to have_link('Edit', href: edit_account_account_automatic_topup_config_path(account, automatic_topup_config))
@@ -52,7 +52,7 @@ RSpec.feature 'Account', type: :feature do
     automatic_topup_config.destroy
     visit account_path(account)
 
-    automatic_topup_config_block = find('.columns.automatic-topup-configs')
+    automatic_topup_config_block = find('.automatic-top-up')
     expect(automatic_topup_config_block)
       .to have_link('Add', href: new_account_account_automatic_topup_config_path(account))
   end

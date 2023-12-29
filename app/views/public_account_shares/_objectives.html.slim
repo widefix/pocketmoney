@@ -1,0 +1,42 @@
+- objectives = public_account.objectives
+
+.column.goals.is-6-desktop.is-12-mobile#goals
+  .box
+    .column-title.is-flex.is-justify-content-space-between.mb-2
+      .title.is-black.m-0
+        | Goals
+    -if objectives.empty?
+      .columns.p-1.mb-0.is-flex.is-centered
+        figure.image.is-48x48.is-hint-icon-color
+          = image_tag('loupe.svg', alt: 'No..., yet')
+      p.has-text-centered.mt-2 No goals yet.
+    - else
+      .table-container.scrollable
+        table.table.is-fullwidth
+          thead
+          tbody
+            - objectives.each_with_index do |objective, index|
+              tr
+                td.px-0
+                  figure.image.is-48x48
+                    img src=asset_path("wizard_goal.svg")
+                td.px-2
+                  p.is-black
+                    = objective.name
+                  p.is-grey
+                    = objective.amount
+                td.px-0
+                  div
+                    .is-flex.is-justify-content-space-between
+                      - weeks_to_achieve = objective.weeks_to_achieve
+                      p.is-black
+                        | #{ weeks_to_achieve != -1 ? "#{weeks_to_achieve} Weeks to go" : "Achieved"}
+                      .is-flex.is-justify-content-flex-end
+                    - index += 1
+                    progress.progress class="mb-2 is-small #{index.odd? ? 'is-blue' : 'is-orange'}" value="#{goal_percentage(public_account, objective).chomp('%')}" max="100" #{goal_percentage(public_account, objective)}
+                  .is-size-7.has-text-weight-bold.has-text-centered.is-black #{goal_percentage(public_account, objective)}
+            tfoot
+              tr
+                th
+                th
+                th

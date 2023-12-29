@@ -1,185 +1,27 @@
 #topup-utc-time data-utc-time= topup_utc_time
-.columns
-  / desktop
-  .column.for-desktop.box.m-2(style="#{"background-image: url('#{url_for(public_account.background)}');" if public_account.background.attached?}" class="#{'account-has-bg' if public_account.background.attached?}")
-    .p-4
-      .columns
-        .column.is-flex.is-justify-content-center.is-align-items-center
-          .has-text-weight-bold(class="#{'bg-around-text' if public_account.background.attached?}")
-            | Account owner: #{public_account.parent.email}
-      .columns.is-mobile
-        .column.is-4.is-flex.is-justify-content-center.is-align-items-center
-          img src=asset_path(avatar_for(public_account)) class="rounded-avatar #{'bg-around-image' if public_account.background.attached?}" id='image-preview'
-        .column.is-flex.is-justify-content-flex-start.is-align-items-center
-          .title.is-black(class="#{'bg-around-text' if public_account.background.attached?}")
-            = public_account.name
-  / mobile
-  .column.for-mobile.box(style="#{"background-image: url('#{url_for(public_account.background)}');" if public_account.background.attached?}" class="#{'account-has-bg' if public_account.background.attached?}")
-    .p-4
-      .columns
-        .column.is-flex.is-justify-content-center.is-align-items-center
-          .has-text-weight-bold(class="#{'bg-around-text' if public_account.background.attached?}")
-            | Account owner: #{public_account.parent.email}
-      .columns.is-mobile
-        .column.is-4.px-0.is-flex.is-justify-content-center.is-align-items-center
-          img src=asset_path(avatar_for(public_account)) class="rounded-avatar #{'bg-around-image' if public_account.background.attached?}" id='image-preview'
-        .column.p-0.is-flex.is-justify-content-center.is-align-items-center
-          .title.has-text-centered.is-black(class="#{'bg-around-text' if public_account.background.attached?}")
-            = public_account.name
-  / desktop
-  .column.for-desktop.box.m-2.is-flex.is-justify-content-center.is-align-items-center
-    div
-      p.is-size-5.has-text-centered.mb-1
-        | Balance
-      p.title.is-2.is-budgeting-kid-color.has-text-centered #{public_account.balance}
-
-/ mobile
-.columns.box.for-mobile.p-2.is-flex.is-justify-content-center.is-align-items-center
-  div
-    p.is-size-5.has-text-centered.mb-1
-      | Balance
-    p.title.is-2.is-budgeting-kid-color.has-text-centered #{public_account.balance}
-
-/ Transaction History & Goals ----
-/ desktop
-.columns.for-desktop
-  .column.transactions.box.m-2
-    .m-5
-      .title.is-black
-        | Transaction History
-      - transactions = public_account.transactions
-      -if transactions.empty?
-        .columns.p-1.mb-0.is-flex.is-centered
-          figure.image.is-48x48.is-hint-icon-color
-            = image_tag('loupe.svg', alt: 'No..., yet')
-        p.has-text-centered.mt-2 No transactions yet.
-      - else
-        .table-container.scrollable
-          table.table.is-fullwidth
-            thead
-              tr.has-text-left
-                th.is-grey Date
-                th.is-grey Description
-                th.is-grey Amount
-            tbody
-              = render partial: 'transaction', collection: transactions, account: public_account
-            tfoot
-              tr
-                th
-                th
-                th
-  .column.goals.box.m-2
-    .m-5
-      .columns
-        .column
-          .title.is-black
-            | Goals
-      - objectives = public_account.objectives
-      -if objectives.empty?
-        .columns.p-1.mb-0.is-flex.is-centered
-          figure.image.is-48x48.is-hint-icon-color
-            = image_tag('loupe.svg', alt: 'No..., yet')
-        p.has-text-centered.mt-2 No goals yet.
-      - else
-        .table-container.scrollable
-          table.table.is-fullwidth
-            thead
-            tbody
-              = render partial: 'objective', collection: objectives, account: public_account
-            tfoot
-              tr
-                th
-                th
-                th
-                th
-/ mobile
-.columns.for-mobile.py-4
-  .column.box
-    div
-      .title.is-4.is-black
-        | Transaction History
-      - transactions = public_account.transactions
-      -if transactions.empty?
-        .columns.p-1.mb-0.is-flex.is-centered
-          figure.image.is-48x48.is-hint-icon-color
-            = image_tag('loupe.svg', alt: 'No..., yet')
-        p.has-text-centered.mt-2 No transactions yet.
-
-      - else
-        .table-container.scrollable
-          table.table.is-fullwidth.p-0
-            thead
-              tr.has-text-left
-                th.is-grey.pl-0 Date
-                th.is-grey Description
-                th.is-grey Amount
-            tbody
-              = render partial: 'transaction', collection: transactions, account: public_account
-            tfoot
-              tr
-                th
-                th
-                th
-  .column.box
-     div
-      .columns.is-mobile
-        .column
-          .title.is-4.is-black
-            | Goals
-      - objectives = public_account.objectives
-      -if objectives.empty?
-        .columns.p-1.mb-0.is-flex.is-centered
-          figure.image.is-48x48.is-hint-icon-color
-            = image_tag('loupe.svg', alt: 'No..., yet')
-        p.has-text-centered.mt-2 No goals yet.
-      - else
-        .table-container.scrollable
-          table.table.is-fullwidth
-            thead
-            tbody
-              = render partial: 'objective', collection: objectives, account: public_account
-            tfoot
-              tr
-                th
-                th
-
-/ Recurring balance increase & Accumulative balance ----
-.columns.mb-3.automatic-topup-configs
-  / desktop
-  .column.box.m-2.for-desktop
-    .m-5.pb-2 style="border-bottom: 1px solid hsl(0, 0%, 86%)"
-      .title.is-black
-        | Recurring balance increase
-      .subtitle.is-6.is-vcentered.is-dark-grey
-        br
-        | This amount will be automatically added to the account every Friday at&nbsp;
-        span#formatted-time
-      - automatic_topup_configs = public_account.automatic_topup_configs.first
-      - if automatic_topup_configs.nil?
+.public-account
+  .columns
+    .column
+      .box(style="#{"background-image: url('#{url_for(public_account.background)}');" if public_account.background.attached?}" class="#{'account-has-bg' if public_account.background.attached?}")
         .columns
-          .column.is-flex.is-justify-content-flex-start.is-align-items-center
-            | No weekly automatic topups yet.
-      - else
-        .columns
-          .column
-            .title #{automatic_topup_configs.amount}
-  / mobile
-  .column.box.for-mobile
-    div style="border-bottom: 1px solid hsl(0, 0%, 86%)"
-      .title.is-4.is-black
-        | Recurring balance increase
-      .subtitle.is-6.is-vcentered.is-dark-grey
-        br
-        | This amount will be automatically added to the account every Friday at
-        span#formatted-time
-      - automatic_topup_configs = public_account.automatic_topup_configs.first
-      - if automatic_topup_configs.nil?
+          .column.is-flex.is-justify-content-center.is-align-items-center
+            .has-text-weight-bold(class="#{'bg-around-text' if public_account.background.attached?}")
+              | Account owner: #{public_account.parent.email}
         .columns.is-mobile
+          .column.is-4.is-flex.is-justify-content-center.is-align-items-center
+            img src=asset_path(avatar_for(public_account)) class="rounded-avatar #{'bg-around-image' if public_account.background.attached?}" id='image-preview'
           .column.is-flex.is-justify-content-flex-start.is-align-items-center
-            | No weekly automatic topups yet.
-      - else
-        .columns.is-mobile
-          .column
-            .title #{automatic_topup_configs.amount}
+            .title.is-black(class="#{'bg-around-text' if public_account.background.attached?}")
+              = public_account.name
+    .column
+      .box.is-flex.is-justify-content-center.is-align-items-center.is-flex-direction-column
+        p.is-size-5.has-text-centered.mb-1
+          | Balance
+        p.title.is-2.is-budgeting-kid-color.has-text-centered #{public_account.balance}
 
-  = render partial: 'accumulative_balance'
+  .columns
+    = render partial: 'transactions'
+    = render partial: 'objectives'
+  .columns
+    = render partial: 'automatic_top_up'
+    = render partial: 'accumulative_balance'

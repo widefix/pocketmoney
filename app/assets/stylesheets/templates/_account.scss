@@ -60,6 +60,12 @@
 
   .transactions {
     tr {
+      th {
+        @include desktop {
+          font-size: 0.75rem;
+        }
+      }
+
       td {
         vertical-align: middle;
 
@@ -81,12 +87,18 @@
     }
 
     tr {
+      th {
+        @include desktop {
+          font-size: 0.75rem;
+        }
+      }
+
       td {
         vertical-align: middle;
 
         .button {
           @include desktop {
-            padding: 0.25rem;
+            padding: 0.25rem;padding: 0.25rem;
           }
 
           p {

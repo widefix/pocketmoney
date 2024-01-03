@@ -1,0 +1,18 @@
+.automatic-top-up.column.is-6-desktop.is-12-mobile
+  .box
+    div style="border-bottom: 1px solid hsl(0, 0%, 86%)"
+      .title.is-black
+        | Recurring balance increase
+      .subtitle.is-6.is-vcentered.is-dark-grey
+        br
+        | This amount will be automatically added to the account every Friday at&nbsp;
+        span#formatted-time
+      - automatic_topup_config = public_account.automatic_topup_configs.first
+      - if automatic_topup_config.nil?
+        .columns
+          .column.is-flex.is-justify-content-flex-start.is-align-items-center
+            | No weekly automatic topups yet.
+      - else
+        .columns
+          .column
+            .title #{automatic_topup_config.amount}

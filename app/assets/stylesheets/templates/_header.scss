@@ -1,0 +1,90 @@
+@import "../config/mixins";
+@import "../config/variables";
+
+.navbar {
+  background-color: white !important ;
+
+  .container {
+    border-bottom: 1px solid #e6e6e6;
+
+    @include desktop {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .navbar-brand {
+      align-items: center;
+      justify-content: space-between;
+
+      img {
+        width: 44px;
+        height: 44px;
+
+        @include tablet {
+          width: 32px;
+          height: 32px;
+        }
+      }
+
+      h2 {
+        font-family: "Reenie Beanie", sans-serif;
+        font-size: 40px;
+        color: $bk-color;
+        padding-left: 1rem;
+        padding-right: 1rem;
+
+        @include tablet {
+          font-size: 2rem;
+        }
+      }
+
+      .logout-button {
+        display: none;
+
+        @include tablet {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .navbar-menu .navbar-end .navbar-item {
+    .button {
+      width: 72px;
+      height: 72px;
+      padding: 0;
+      margin: 0;
+
+      @include desktop {
+        display: none;
+      }
+    }
+
+    .navbar-dropdown {
+      @media (min-width: 1024px) {
+        top: calc(100% + (11px));
+        border: 1px solid #ddd;
+        box-shadow: none;
+      
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          right: 25px;
+        }
+      
+        &::before {
+          top: -20px;
+          border: 10px solid transparent;
+          border-bottom-color: #ddd;
+        }
+      
+        &::after {
+          top: -19px;
+          border: 10px solid transparent;
+          border-bottom-color: #fff;
+        }
+      }
+    }
+  }
+}

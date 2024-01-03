@@ -1,0 +1,120 @@
+@import "../config/mixins";
+
+.my-account {
+  .waving_hand {
+    display: flex;
+    align-items: center;
+
+    @include tablet {
+      justify-content: center;
+
+      .image {
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    .title {
+      font-size: 2rem;
+
+      @include desktop {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  
+  .action_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .accounts, .shared-accounts, .unaccepted_shares {
+    padding: 0;
+
+    .card-header-title {
+      display: none;
+
+      @media (max-width: 1024px) {
+        display: block;
+        padding-bottom: 0;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .card-content {
+      padding: 0;
+      display: flex;
+      align-items: center;
+      padding: 1.5rem 0;
+      flex-direction: row;
+      justify-content: space-between;
+
+      @include desktop {
+        flex-direction: column;
+      }
+
+      p {
+        max-width: 200px;
+        width: 200px;
+        margin: 0;
+        font-size: 1.5rem;
+
+        @include desktop {
+          font-weight: 700;
+        }
+
+        &.for-desktop{
+          max-width: 400px;
+          width: 400px;
+        }
+      }
+
+      @include desktop {
+        padding: 1rem;
+      }
+
+      .buttons {
+        margin: 0;
+
+        .button {
+          margin-bottom: 0;
+
+          @include mobile {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+          }
+        }
+      }
+
+      .show-button {
+        @include desktop {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+        }
+      }
+    }
+  }
+
+  .shared-accounts {
+    .card-header-title {
+      display: block;
+    }
+  }
+
+  .accounts-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+
+      @include desktop {
+        font-size: 1.25rem;
+      }
+    }
+  }
+}

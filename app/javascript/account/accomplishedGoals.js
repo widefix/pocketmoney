@@ -1,39 +1,20 @@
 document.addEventListener('turbolinks:load', function() {
-  const desktopOpenButton = document.getElementById('open-desktop-accomplished-goals-button');
-  const desktopCloseButton = document.getElementById('close-desktop-accomplished-goals-button');
-  const desktopAccomplishedGoals = document.getElementById('desktop-accomplished-goals');
-  const desktopGoals = document.getElementById('desktop-goals');
+  const openButton = document.querySelector('.account .goals .open-accomplished-goals')
+  const closeButton = document.querySelector('.account .accomplished-goals .close-accomplished-goals')
+  const accomplishedGoals = document.querySelector('.account .accomplished-goals');
+  const goals = document.querySelector('.account .goals');
 
-  const mobileOpenButton = document.getElementById('open-mobile-accomplished-goals-button');
-  const mobileCloseButton = document.getElementById('close-mobile-accomplished-goals-button');
-  const mobileAccomplishedGoals = document.getElementById('mobile-accomplished-goals');
-  const mobileGoals = document.getElementById('mobile-goals');
-
-  if (desktopGoals && desktopOpenButton && desktopCloseButton) {
-    desktopOpenButton.addEventListener('click', function(event) {
+  if (goals && openButton && closeButton) {
+    openButton.addEventListener('click', function(event) {
       event.preventDefault();
-      desktopGoals.classList.add('is-hidden');
-      desktopAccomplishedGoals.classList.remove('is-hidden');
+      goals.classList.add('is-hidden');
+      accomplishedGoals.classList.remove('is-hidden');
     });
 
-    desktopCloseButton.addEventListener('click', function(event) {
+    closeButton.addEventListener('click', function(event) {
       event.preventDefault();
-      desktopAccomplishedGoals.classList.add('is-hidden');
-      desktopGoals.classList.remove('is-hidden');
-    });
-  };
-
-  if (mobileGoals && mobileOpenButton && mobileCloseButton) {
-    mobileOpenButton.addEventListener('click', function(event) {
-      event.preventDefault();
-      mobileGoals.classList.add('is-hidden');
-      mobileAccomplishedGoals.classList.remove('is-hidden');
-    });
-
-    mobileCloseButton.addEventListener('click', function(event) {
-      event.preventDefault();
-      mobileAccomplishedGoals.classList.add('is-hidden');
-      mobileGoals.classList.remove('is-hidden');
+      accomplishedGoals.classList.add('is-hidden');
+      goals.classList.remove('is-hidden');
     });
   };
 });

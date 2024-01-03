@@ -14,57 +14,32 @@
  *= require_self
  */
 
-// bulma variables
-$text: hsl(0, 0%, 0%);
-$text-light: hsl(270, 50%, 48%);
-$text-strong: hsl(270, 50%, 21%);
-$footer-background-color: transparent;
-$footer-padding: 3rem 1.5rem 3rem;
-$navbar-item-img-max-height: 40px;
-$navbar-item-hover-color: hsl(0, 0%, 0%);
-$file-cta-color: hsl(270, 50%, 48%);
-$family-primary: "Inter", sans-serif;
-$navbar-item-img-max-height: 70px;
-$card-radius: 12px;
-$box-radius: 12px;
-$table-head-cell-border-width: 0 0 0;
-$table-cell-border-width: 0px 0px 1px;
-$table-foot-cell-border-width: 1px 0px 0px;
-$modal-content-width: 432px;
-
+@import "config/variables";
+@import "config/mixins";
 @import "bulma";
 @import "font-awesome";
-@import url("https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre&family=Inter&family=Reenie+Beanie&display=swap");
-
-// BudgetingKid variables
-$primary-budgeting-kid-color: rgb(102, 51, 153);
-$primary-budgeting-kid-strong-color: hsl(270, 50%, 21%);
-$primary-budgeting-kid-background-color: hsl(270, 95%, 98%);
-$primary-budgeting-kid-black-color: hsl(0, 0%, 0%);
-$primary-budgeting-kid-dark-gray-color: hsla(0, 0%, 35%, 1);
-$primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
 
 .is-budgeting-kid-color {
-  color: $primary-budgeting-kid-color !important;
+  color: $bk-color !important;
 }
 
-.is-black-budgeting-kid-color {
-  color: $primary-budgeting-kid-black-color !important;
+.is-black {
+  color: black !important;
 }
 
 .budgeting-kid-logo-font {
   font-family: "Reenie Beanie", sans-serif;
   font-size: 40px;
-  color: $primary-budgeting-kid-color;
+  color: $bk-color;
 }
 
 .font-frank-ruhl-libre {
   font-family: "Frank Ruhl Libre", sans-serif;
-  color: $primary-budgeting-kid-strong-color;
+  color: $text-strong;
 }
 
 .is-budgeting-kid-hoverable:hover {
-  border-color: $primary-budgeting-kid-color;
+  border-color: $bk-color;
 }
 
 .has-background-image {
@@ -126,10 +101,6 @@ $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
   top: 5px;
 }
 
-.is-navbar-budgeting-kid-color {
-  background-color: white !important ;
-}
-
 .vcentered-columns {
   flex: 1;
   display: flex;
@@ -154,7 +125,7 @@ $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
 }
 
 // mobile
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .normal-columns {
     flex-direction: column;
     display: flex;
@@ -182,9 +153,6 @@ $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
 
 // desktop
 @media (min-width: 1024px) {
-  .for-mobile {
-    display: none !important;
-  }
   .has-fixed-width {
     width: 200px;
   }
@@ -206,42 +174,42 @@ $primary-budgeting-kid-light-gray-color: hsla(0, 0%, 68%, 1);
 }
 
 .is-primary {
-  background-color: $primary-budgeting-kid-color !important ;
-  color: $primary-budgeting-kid-color;
+  background-color: $bk-color !important ;
+  color: $bk-color;
 }
 
 .has-text-budgeting-kid-color {
-  color: $primary-budgeting-kid-color !important;
+  color: $bk-color !important;
 }
 
-.has-text-light-gray-budgeting-kid-color {
-  color: $primary-budgeting-kid-light-gray-color !important;
+.is-grey {
+  color: $bk-grey !important;
 }
 
-.has-text-dark-gray-budgeting-kid-color {
-  color: $primary-budgeting-kid-dark-gray-color !important;
+.is-dark-grey {
+  color: $bk-dark-grey !important;
 }
 
 .is-light {
-  color: $primary-budgeting-kid-color !important;
+  color: $bk-color !important;
 }
 
 .is-white {
-  color: $primary-budgeting-kid-color !important;
+  color: $bk-color !important;
 }
 
-.button.is-white-budgeting-kid-color {
-  color: $primary-budgeting-kid-color !important;
+.button.is-light-bk-color {
+  color: $bk-color !important;
   border: none;
 }
 
-.button.is-white-budgeting-kid-color {
-  color: $primary-budgeting-kid-color !important;
+.button.is-light-bk-color {
+  color: $bk-color !important;
   border: none;
 }
 
 .is-bordered {
-  border: 2px solid $primary-budgeting-kid-color !important ;
+  border: 2px solid $bk-color !important ;
 }
 
 .is-footer-light {
@@ -297,22 +265,22 @@ button.is-minus-color {
 button.is-plus-color:hover {
   color: hsla(145, 73%, 38%, 1);
   border: 2px solid hsla(145, 73%, 38%, 1);
-  background-color: $primary-budgeting-kid-background-color !important ;
+  background-color: $bk-background-color !important ;
 }
 
 button.is-minus-color:hover {
   color: hsl(8, 82%, 41%);
   border: 2px solid hsl(8, 82%, 41%);
-  background-color: $primary-budgeting-kid-background-color !important ;
+  background-color: $bk-background-color !important ;
 }
 
-button.is-gray {
-  color: $primary-budgeting-kid-light-gray-color;
+button.is-grey {
+  color: $bk-grey;
   border: none;
 }
 
-button.is-gray:hover {
-  color: $primary-budgeting-kid-color;
+button.is-grey:hover {
+  color: $bk-color;
   border: none;
 }
 
@@ -385,11 +353,11 @@ button.is-gray:hover {
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  border: 2px solid $primary-budgeting-kid-color;
+  border: 2px solid $bk-color;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $primary-budgeting-kid-color;
+  background-color: $bk-color;
   margin: 10px 40px;
 }
 
@@ -403,7 +371,7 @@ button.is-gray:hover {
 }
 
 .wizard-passed-step-circle.solid::before {
-  border-bottom: 2px solid $primary-budgeting-kid-color;
+  border-bottom: 2px solid $bk-color;
 }
 
 .wizard-current-step-circle {
@@ -411,7 +379,7 @@ button.is-gray:hover {
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  border: 2px solid $primary-budgeting-kid-color;
+  border: 2px solid $bk-color;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -428,7 +396,7 @@ button.is-gray:hover {
 }
 
 .wizard-current-step-circle.solid::before {
-  border-bottom: 2px solid $primary-budgeting-kid-color;
+  border-bottom: 2px solid $bk-color;
 }
 
 .wizard-future-step-circle {
@@ -436,7 +404,7 @@ button.is-gray:hover {
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  border: 2px solid $primary-budgeting-kid-black-color;
+  border: 2px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -450,23 +418,19 @@ button.is-gray:hover {
   width: 80px;
   height: 1px;
   vertical-align: middle;
-  border-bottom: 2px dashed $primary-budgeting-kid-black-color;
+  border-bottom: 2px dashed black;
 }
 
 .is-solid-budgeting-kid-color {
-  background-color: $primary-budgeting-kid-color;
+  background-color: $bk-color;
 }
 
-.is-budgeting-kid-light-color {
+.is-bk-light-color {
   filter: invert(75%) sepia(25%) saturate(4361%) hue-rotate(249deg) brightness(90%) contrast(93%);
 }
 
-.is-budgeting-kid-black-color {
+.is-bk-black-color {
   filter: invert(100%) sepia(100%) hue-rotate(180deg);
-}
-
-.has-limit-height {
-  min-height: 600px;
 }
 
 @media (max-width: 1024px) {
@@ -500,7 +464,7 @@ button.is-gray:hover {
   width: 93px;
   height: 93px;
   border-radius: 50%;
-  box-shadow: 0px 0px 0px 3px $primary-budgeting-kid-color;
+  box-shadow: 0px 0px 0px 3px $bk-color;
 }
 
 .rounded-avatar.small {
@@ -525,31 +489,7 @@ button.is-gray:hover {
 }
 
 .radio_color {
-  accent-color: $primary-budgeting-kid-color;
-}
-
-.navbar-dropdown.for-desktop {
-  top: calc(100% + (11px)) !important;
-  border: 1px solid #ddd !important;
-  box-shadow: none !important;
-}
-
-.navbar-dropdown.for-desktop::before {
-  content: "";
-  position: absolute;
-  top: -20px;
-  right: 25px;
-  border: 10px solid transparent;
-  border-bottom-color: #ddd;
-}
-
-.navbar-dropdown.for-desktop::after {
-  content: "";
-  position: absolute;
-  top: -19px;
-  right: 25px;
-  border: 10px solid transparent;
-  border-bottom-color: #fff;
+  accent-color: $bk-color;
 }
 
 .image.is-18x18 {
@@ -589,30 +529,14 @@ button.is-gray:hover {
   background-position: center;
 }
 
-.footer {
-  border-top: 1px solid hsl(0, 0%, 90%);
-  display: flex;
-  margin-top: 1.5rem;
-
-  p {
-    margin-right: 0.5rem;
-
-    a {
-      color: #adadad;
-
-      &.footer-link {
-        font-weight: 700;
-        color: #333645;
-      }
-    }
-
-    a:hover {
-      color: $text-light;
-    }
-  }
-}
-
 .scrollable {
   max-height: 15rem;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: none;
+}
+
+.section {
+  @media (max-width: 1023px) {
+    padding-bottom: 5rem !important;
+  }
 }

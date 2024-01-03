@@ -1,343 +1,52 @@
 #topup-utc-time data-utc-time= topup_utc_time
-.columns
-  / desktop
-  .column.for-desktop.box.m-2(style="#{"background-image: url('#{url_for(account.background)}');" if account.background.attached?}" class="#{'account-has-bg' if account.background.attached?}")
-    .p-4
-      - if !current_user.owner?(account) && current_user.parent?
-        .columns
-          .column.is-flex.is-justify-content-center.is-align-items-center
-            .has-text-weight-bold(class="#{'bg-around-text' if account.background.attached?}")
-              | Account owner: #{account.parent.email}
-      .columns.is-mobile
-        .column.is-4.is-flex.is-justify-content-center.is-align-items-center
-          img src=asset_path(avatar_for(account)) class="rounded-avatar #{'bg-around-image' if account.background.attached?}" id='image-preview'
-        .column.is-flex.is-justify-content-flex-start.is-align-items-center
-          .title.is-black-budgeting-kid-color(class="#{'bg-around-text' if account.background.attached?}")
-            = account.name
-  / mobile
-  .column.for-mobile.box(style="#{"background-image: url('#{url_for(account.background)}');" if account.background.attached?}" class="#{'account-has-bg' if account.background.attached?}")
-    .p-4
-      - if !current_user.owner?(account) && current_user.parent?
-        .columns
-          .column.is-flex.is-justify-content-center.is-align-items-center
-            .has-text-weight-bold(class="#{'bg-around-text' if account.background.attached?}")
-              | Account owner: #{account.parent.email}
-      .columns.is-mobile
-        .column.is-4.px-0.is-flex.is-justify-content-center.is-align-items-center
-          img src=asset_path(avatar_for(account)) class="rounded-avatar #{'bg-around-image' if account.background.attached?}" id='image-preview'
-        .column.p-0.is-flex.is-justify-content-center.is-align-items-center
-          .title.has-text-centered.is-black-budgeting-kid-color(class="#{'bg-around-text' if account.background.attached?}")
-            = account.name
-  / desktop
-  .column.for-desktop.box.m-2.is-flex.is-justify-content-center.is-align-items-center
-    .buttons
-      - if current_user.parent?
-        = link_to account_shares_path(account), class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px; " do
-          figure.image.is-16x16.is-budgeting-kid-light-color
-            = image_tag('share.svg')
-          | &nbsp; Share Account
-      = link_to edit_account_path(account), class: 'button is-white-budgeting-kid-color is-bordered py-5 mx-4', style: "width: 180px; " do
-        figure.image.is-16x16.is-budgeting-kid-light-color
-          = image_tag('edit.svg')
-        | &nbsp; Edit Account
-  / mobile
-  .column.for-mobile.box.mb-5.is-flex.is-justify-content-center.is-align-items-center
-    .buttons
-      - if current_user.parent?
-        = link_to account_shares_path(account), class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px" do
-          figure.image.is-16x16.is-budgeting-kid-light-color
-            = image_tag('share.svg')
-      = link_to edit_account_path(account), class: 'button is-white-budgeting-kid-color is-bordered mx-2', style: "width: 80px; " do
-        figure.image.is-16x16.is-budgeting-kid-light-color
-          = image_tag('edit.svg')
-/ desktop
-.box.for-desktop.is-flex.is-justify-content-center.is-align-items-center
-  div
-    p.is-size-5.has-text-centered.mb-1
-      | Balance
-    p.title.is-2.is-budgeting-kid-color.has-text-centered #{account.balance}
-    .buttons.mb-1
-      = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(account) }, class: 'button mx-2 is-plus-color is-medium' do
-        figure.image.is-24x24
-          = image_tag('plus-circle-green.svg', alt: '+')
-        | &nbsp; Increase
-      = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(account), balance: account.balance }, class: 'button mx-2 is-minus-color is-medium' do
-        figure.image.is-24x24
-          = image_tag('minus-circle-red.svg', alt: '-')
-        | &nbsp; Decrease
-/ mobile
-.columns.box.for-mobile.p-2.mb-5.is-flex.is-justify-content-center.is-align-items-center
-  div
-    p.is-size-5.has-text-centered.mb-1
-      | Balance
-    p.title.is-2.is-budgeting-kid-color.has-text-centered #{account.balance}
-    .buttons.mb-1
-      = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(account) }, class: 'button mx-1 is-plus-color' do
-        figure.image.is-24x24
-          = image_tag('plus-circle-green.svg', alt: '+')
-        | &nbsp; Increase
-      = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(account), balance: account.balance }, class: 'button mx-1 is-minus-color' do
-        figure.image.is-24x24
-          = image_tag('minus-circle-red.svg', alt: '-')
-        | &nbsp; Decrease
-
-/ Transaction History & Goals ----
-- accomplished_objectives = account.objectives.accomplished
-- objectives = account.objectives.not_accomplished
-- transactions = account.transactions
-
-/ desktop
-.columns.for-desktop
-  .column.transactions.box.m-2
-    div.m-5
-      .title.is-black-budgeting-kid-color
-        | Transaction History
-      -if transactions.empty?
-        .columns.p-1.mb-0.is-flex.is-centered
-          figure.image.is-48x48.is-hint-icon-color
-            = image_tag('loupe.svg', alt: 'No..., yet')
-        p.has-text-centered.mt-2 No transactions yet.
-      - else
-        .table-container.scrollable
-          table.table.is-fullwidth
-            thead
-              tr.has-text-left
-                th.has-text-light-gray-budgeting-kid-color Date
-                th.has-text-light-gray-budgeting-kid-color Description
-                th.has-text-light-gray-budgeting-kid-color Amount
-                - if current_user.parent?
-                  th.has-text-light-gray-budgeting-kid-color &nbsp;
-            tbody
-              = render partial: 'transaction', collection: transactions, account: account
-            tfoot
-              tr
-                th
-                th
-                th
-                - if current_user.parent?
-                  th
-  #desktop-accomplished-goals.column.box.m-2.is-hidden
-    .m-5
-      .columns
-        .column
-          .title.is-black-budgeting-kid-color
-            | Accomplished goals
-        .is-flex
-          .column
-          = link_to '#', id: 'close-desktop-accomplished-goals-button' do
-            figure.icon.has-text-budgeting-kid-color
-              i.fa.fa-times.fa-lg
-      - if accomplished_objectives.present?
-        .table-container.scrollable
-          table.table.is-fullwidth
-            thead
-              tr.has-text-left
-                th
-                th.has-text-light-gray-budgeting-kid-color Goal
-                th.has-text-centered.has-text-light-gray-budgeting-kid-color Accomplished at
-            tbody
-              = render partial: 'accomplished_objective', collection: accomplished_objectives, account: account
-            tfoot
-              tr
-                th
-                th
-                th
-
-  #desktop-goals.column.goals.box.m-2
-    .m-5
-      .columns
-        .column
-          .title.is-black-budgeting-kid-color
-            | Goals
-        .is-flex
-          - if accomplished_objectives.present?
-            .column
-              = link_to '#', id: 'open-desktop-accomplished-goals-button', class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
-                span.icon
-                  i.fa.fa-list
-                | &nbsp; Accomplished
-          .column
-            = link_to new_account_objective_path(account), class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
-              figure.image.is-16x16.is-budgeting-kid-light-color
-                = image_tag('plus-circle-white.svg', alt: '+')
-              | &nbsp; Add Goal
-      -if objectives.empty?
-        .columns.p-1.mb-0.is-flex.is-centered
-          figure.image.is-48x48.is-hint-icon-color
-            = image_tag('loupe.svg', alt: 'No..., yet')
-        p.has-text-centered.mt-2 No goals yet.
-      - else
-        .table-container.scrollable
-          table.table.is-fullwidth
-            thead
-            tbody
-              = render partial: 'objective', collection: objectives, account: account
-            tfoot
-              tr
-                th
-                th
-                th
-                th
-
-/ mobile
-.columns.for-mobile.py-4
-  .column.box
-    div
-      .title.is-4.is-black-budgeting-kid-color
-        | Transaction History
-      -if transactions.empty?
-        .columns.p-1.mb-0.is-flex.is-centered
-          figure.image.is-48x48.is-hint-icon-color
-            = image_tag('loupe.svg', alt: 'No..., yet')
-        p.has-text-centered.mt-2 No transactions yet.
-      - else
-        .table-container.scrollable
-          table.table.is-fullwidth.p-0
-            thead
-              tr.has-text-left
-                th.has-text-light-gray-budgeting-kid-color.pl-0 Date
-                th.has-text-light-gray-budgeting-kid-color Description
-                th.has-text-light-gray-budgeting-kid-color Amount
-                - if current_user.parent?
-                  th.has-text-light-gray-budgeting-kid-color &nbsp;
-            tbody
-              = render partial: 'transaction', collection: transactions, account: account
-            tfoot
-              tr
-                th
-                th
-                th
-                - if current_user.parent?
-                  th
-
-  #mobile-accomplished-goals.column.box.m-2.is-hidden
-    div
-      .columns.is-mobile.mb-0.is-align-items-center
-        .column
-          .title.is-5.is-black-budgeting-kid-color
-            | Accomplished goals
-        .is-flex
-          .column
-            = link_to '#', id: 'close-mobile-accomplished-goals-button' do
-              figure.icon.has-text-budgeting-kid-color
-                i.fa.fa-times.fa-lg
-      - if accomplished_objectives.present?
-        .table-container.scrollable
-          table.table.is-fullwidth
-            thead
-              tr.has-text-left
-                th.has-text-centered.has-text-light-gray-budgeting-kid-color Goal
-                th.has-text-centered.has-text-light-gray-budgeting-kid-color Accomplished at
-            tbody
-              = render partial: 'accomplished_objective', collection: accomplished_objectives, account: account
-            tfoot
-              tr
-                th
-                th
-  #mobile-goals.column.box
-     div
-      .columns.is-mobile.mb-0.is-align-items-center
-        .column
-          .title.is-5.is-black-budgeting-kid-color
-            | Goals
-        .is-flex
-          - if accomplished_objectives.present?
-            .column.p-0
-              = link_to '#', id: 'open-mobile-accomplished-goals-button', class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
-                span.icon
-                  i.fa.fa-list
-                | &nbsp; Accomplished
-          .column.p-0
-            = link_to new_account_objective_path(account), class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
-              figure.image.is-20x20.is-budgeting-kid-light-color
-                = image_tag('plus-circle-white.svg', alt: '+')
-              | &nbsp; Add
-      -if objectives.empty?
-        .columns.p-1.mb-0.is-flex.is-centered
-          figure.image.is-48x48.is-hint-icon-color
-            = image_tag('loupe.svg', alt: 'No..., yet')
-        p.has-text-centered.mt-2 No goals yet.
-      - else
-        .table-container.scrollable
-          table.table.is-fullwidth
-            thead
-            tbody
-              = render partial: 'objective', collection: objectives, account: account
-            tfoot
-              tr
-                th
-                th
-
-/ Recurring balance increase & Accumulative balance ----
-.columns.automatic-topup-configs
-  / desktop
-  .column.box.m-2.for-desktop
-    div.m-5.pb-2 style="border-bottom: 1px solid hsl(0, 0%, 86%)"
-      .title.is-black-budgeting-kid-color
-        | Recurring balance increase
-      .subtitle.is-6.is-vcentered.has-text-dark-gray-budgeting-kid-color
-        br
-        | This amount will be automatically added to the account every Friday at&nbsp;
-        span#formatted-time
-      - automatic_topup_configs = account.automatic_topup_configs.first
-      - if automatic_topup_configs.nil?
-        .columns
-          .column.is-flex.is-justify-content-flex-start.is-align-items-center
-            | No weekly automatic topups yet.
-          .column.is-flex.is-justify-content-flex-end
-            = link_to new_account_account_automatic_topup_config_path(account), class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
-              figure.image.is-16x16.is-budgeting-kid-light-color
-                = image_tag('plus-circle-white.svg', alt: '+')
-              | &nbsp; Add amount
-      - else
-        .columns
-          .column
-            .title #{automatic_topup_configs.amount}
-          .column
-            .buttons.is-pulled-right
-              - if current_user.parent?
-                = link_to account_account_automatic_topup_config_path(account, automatic_topup_configs), method: :delete, data: { confirm: 'Delete this top up?' }, class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
-                  figure.image.is-16x16.is-budgeting-kid-light-color
-                    = image_tag('delete.svg', alt: '+')
-                  | &nbsp; Delete
-                = link_to edit_account_account_automatic_topup_config_path(account, automatic_topup_configs), class: 'button is-white has-text-weight-bold has-text-budgeting-kid-color' do
-                  figure.image.is-16x16.is-budgeting-kid-light-color
-                    = image_tag('edit.svg')
-                  | &nbsp; Edit
-  / mobile
-  .column.box.for-mobile
-    div style="border-bottom: 1px solid hsl(0, 0%, 86%)"
-      .title.is-4.is-black-budgeting-kid-color
-        | Recurring balance increase
-      .subtitle.is-6.is-vcentered.has-text-dark-gray-budgeting-kid-color
-        br
-        | This amount will be automatically added to the account every Friday at
-        span#formatted-time
-      - automatic_topup_configs = account.automatic_topup_configs.first
-      - if automatic_topup_configs.nil?
+.account
+  .columns
+    .column
+      .box(style="#{"background-image: url('#{url_for(account.background)}');" if account.background.attached?}" class="#{'account-has-bg' if account.background.attached?}")
+        - if !current_user.owner?(account) && current_user.parent?
+          .columns
+            .column.is-flex.is-justify-content-center.is-align-items-center
+              .has-text-weight-bold(class="#{'bg-around-text' if account.background.attached?}")
+                | Account owner: #{account.parent.email}
         .columns.is-mobile
-          .column.is-flex.is-justify-content-flex-start.is-align-items-center
-            | No weekly automatic topups yet.
-          .column.is-3.is-pulled-right.px-0
-            = link_to new_account_account_automatic_topup_config_path(account), class: 'button pr-0 is-white has-text-weight-bold has-text-budgeting-kid-color' do
-              figure.image.is-20x20.is-budgeting-kid-light-color
-                = image_tag('plus-circle-white.svg', alt: '+')
-              | &nbsp; Add
+          .column.is-4.px-0.is-flex.is-justify-content-center.is-align-items-center
+            img src=asset_path(avatar_for(account)) class="rounded-avatar #{'bg-around-image' if account.background.attached?}" id='image-preview'
+          .column.p-0.is-flex.is-justify-content-center.is-align-items-center
+            .title.has-text-centered.is-black(class="#{'bg-around-text' if account.background.attached?}")
+              = account.name
+    .column.account-buttons
+      .box
+        .buttons
+          - if current_user.parent?
+            = link_to account_shares_path(account), class: 'button is-light-bk-color is-bordered mx-4' do
+              figure.image.is-16x16.is-bk-light-color
+                = image_tag('share.svg')
+              span &nbsp; Share Account
+          = link_to edit_account_path(account), class: 'button is-light-bk-color is-bordered mx-4' do
+            figure.image.is-16x16.is-bk-light-color
+              = image_tag('edit.svg')
+            span &nbsp; Edit Account
+  .columns
+    .column.account-balance
+      .box
+        p.is-size-5.has-text-centered.mb-1
+          | Balance
+        p.title.is-2.is-budgeting-kid-color.has-text-centered #{account.balance}
+        .buttons.is-flex-wrap-nowrap
+          = button_tag type:"button", id:"increase-button", data: { url: account_topup_path(account) }, class: 'button is-plus-color is-medium' do
+            figure.image.is-24x24
+              = image_tag('plus-circle-green.svg', alt: '+')
+            | &nbsp; Increase
+          = button_tag type:"button", id:"decrease-button", data: { url: account_spend_path(account), balance: account.balance }, class: 'button is-minus-color is-medium' do
+            figure.image.is-24x24
+              = image_tag('minus-circle-red.svg', alt: '-')
+            | &nbsp; Decrease
 
-      - else
-        .columns.is-mobile
-          .column
-            .title #{automatic_topup_configs.amount}
-          .column.is-4
-            .buttons
-              - if current_user.parent?
-                = link_to account_account_automatic_topup_config_path(account, automatic_topup_configs), method: :delete, data: { confirm: 'Delete this top up?' }, class: 'button pr-0 is-white has-text-weight-bold has-text-budgeting-kid-color' do
-                  figure.image.is-16x16.is-budgeting-kid-light-color
-                    = image_tag('delete.svg', alt: '+')
-                = link_to edit_account_account_automatic_topup_config_path(account, automatic_topup_configs), class: 'button pr-0  is-white has-text-weight-bold has-text-budgeting-kid-color' do
-                  figure.image.is-16x16.is-budgeting-kid-light-color
-                    = image_tag('edit.svg')
-
-  = render partial: 'accumulative_balance'
+  .columns
+    = render partial: 'transactions'
+    = render partial: 'objectives'
+  .columns
+    = render partial: 'automatic_top_up'
+    = render partial: 'accumulative_balance'
 = render partial: "topups/modal"
 = render partial: "spends/modal"

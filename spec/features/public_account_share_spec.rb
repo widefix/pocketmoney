@@ -18,18 +18,18 @@ RSpec.feature 'PublicAccountShare', type: :feature do
     expect(page).to have_content(account.name)
     expect(page).to have_content(account.balance)
 
-    transactions_block = find('.column.transactions.box')
-    expect(transactions_block).to have_selector('table.table tbody tr', count: 2)
+    transactions_block = find('.transactions')
+    expect(transactions_block).to have_selector('table.table tbody tr', count: 1)
     expect(transactions_block).to have_text(transaction.date)
     expect(transactions_block).to have_text(transaction.signed_amount(account))
     expect(transactions_block).to have_text(transaction.description)
 
-    objectives_block = find('.column.goals.box')
-    expect(objectives_block).to have_selector('table.table tbody tr', count: 2)
+    objectives_block = find('.goals')
+    expect(objectives_block).to have_selector('table.table tbody tr', count: 1)
     expect(objectives_block).to have_text(objective.name)
     expect(objectives_block).to have_text(objective.amount)
 
-    automatic_topup_config_block = find('.columns.automatic-topup-configs')
+    automatic_topup_config_block = find('.automatic-top-up')
     expect(automatic_topup_config_block).to have_text(automatic_topup_config.amount)
   end
 end

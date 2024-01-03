@@ -1,0 +1,44 @@
+- transactions = account.transactions
+
+.column.transactions.is-6-desktop.is-12-mobile
+  .box
+    .title.is-black
+      | Transaction History
+    -if transactions.empty?
+      .columns.p-1.mb-0.is-flex.is-centered
+        figure.image.is-48x48.is-hint-icon-color
+          = image_tag('loupe.svg', alt: 'No..., yet')
+      p.has-text-centered.mt-2 No transactions yet.
+    - else
+      .table-container.scrollable
+        table.table.is-fullwidth
+          thead
+            tr.has-text-left
+              th.is-grey Date
+              th.is-grey Description
+              th.is-grey Amount
+              - if current_user.parent?
+                th.is-grey &nbsp;
+          tbody
+            - transactions.each do |transaction|
+              tr
+                td.p-0
+                  = transaction.date
+                td.is-dark-grey
+                  = transaction.description
+                - if transaction.from_account == account
+                  td.is-minus-color = transaction.signed_amount(account)
+                - else
+                  td.is-plus-color = transaction.signed_amount(account)
+                - if current_user.parent?
+                  td.px-0
+                    = link_to transaction_path(transaction), method: :delete, data: {confirm: 'Cancel this transaction?'}, class: 'button is-light-bk-color px-0' do
+                      figure.image.is-24x24.is-round.is-bk-light-color
+                        = image_tag("cross-circle-white.svg")
+          tfoot
+            tr
+              th
+              th
+              th
+              - if current_user.parent?
+                th

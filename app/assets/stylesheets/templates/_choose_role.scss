@@ -1,0 +1,19 @@
+@import "../config/mixins";
+
+.choose_role {
+  h2.title {
+    @include desktop {
+      font-size: 1.5rem;
+    }
+  }
+
+  .has-background-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include desktop {
+      display: none;
+    }
+  }
+}

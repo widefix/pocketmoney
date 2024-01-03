@@ -1,28 +1,28 @@
-.columns.is-centered.has-limit-height
+.columns.is-centered.wizard-new-account
   .column
     .columns.is-centered.is-mobile
       .column.is-four-fifths
-        h2.title.for-desktop.is-4.has-text-centered.has-text-budgeting-kid-color Setup Kid's Account
-        h2.title.is-3.has-text-centered.font-frank-ruhl-libre  Set up account name
+        h2.title.is-4.has-text-centered.is-light Setup Kid's Account
+        h2.title.has-text-centered.font-frank-ruhl-libre  Set up account name
         .wizard-container
           .wizard-step-container
             .wizard-current-step-circle.is-first
-              .image.is-24x24.is-round.is-budgeting-kid-light-color
+              .image.is-24x24.is-round.is-bk-light-color
                 = image_tag("wizard_1.svg")
             .subtitle.is-7.is-light Set name
           .wizard-step-container
             .wizard-future-step-circle
-              .image.is-24x24.is-round.is-budgeting-kid-black-color
+              .image.is-24x24.is-round.is-bk-black-color
                 = image_tag("wizard_2.svg")
             .subtitle.is-7.has-text-centered Set Recurring Payment
           .wizard-step-container
             .wizard-future-step-circle
-              .image.is-24x24.is-round.is-budgeting-kid-black-color
+              .image.is-24x24.is-round.is-bk-black-color
                 = image_tag("wizard_3.svg")
             .subtitle.is-7 Set Goals
           .wizard-step-container
             .wizard-future-step-circle
-              .image.is-24x24.is-round.is-budgeting-kid-black-color
+              .image.is-24x24.is-round.is-bk-black-color
                 = image_tag("wizard_4.svg")
             .subtitle.is-7 Share Account
         br
@@ -39,6 +39,6 @@
               | Next &nbsp;
               figure.image.is-16x16
                 = image_tag('arrow-right.svg', alt: '->')
-  .for-desktop.column.has-background-image.is-flex.is-justify-content-center.is-align-items-center
+  .column.has-background-image
     figure.image
       = image_tag('wizard_account_name.svg')

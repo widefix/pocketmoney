@@ -7,17 +7,17 @@ class AccountAutomaticTopupConfigsController < ApplicationController
 
   def create
     account.automatic_topup_configs.create!(from_account: current_user.account, amount: amount)
-    redirect_to account_path(account)
+    redirect_to account_path(account, anchor: 'automatic-top-up')
   end
 
   def update
     automatic_topup_config.update!(amount: amount)
-    redirect_to account_path(account)
+    redirect_to account_path(account, anchor: 'automatic-top-up')
   end
 
   def destroy
     automatic_topup_config.destroy
-    redirect_to account_path(account)
+    redirect_to account_path(account, anchor: 'automatic-top-up')
   end
 
   private

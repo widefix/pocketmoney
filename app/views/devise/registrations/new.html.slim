@@ -1,21 +1,21 @@
 - content_for :title, 'Sign Up'
 - content_for :description, 'Sign up for a BudgetingKid account and begin the journey to empower your kids with financial wisdom.'
 
-.columns.is-centered
+.columns.is-centered.sign-up
   .column
     .columns.is-centered.is-mobile
       .column.is-four-fifths
-        h2.title.for-desktop.is-4.has-text-centered.has-text-budgeting-kid-color = t('.sign_up')
-        h2.title.is-3.has-text-centered.font-frank-ruhl-libre Get Started for free
+        h2.title.is-4.is-light = t('.sign_up')
+        h2.title.font-frank-ruhl-libre Get Started for free
         - if Devise.omniauth_providers.include?(:google_oauth2)
           .field
             .buttons.is-centered
-              = button_to user_google_oauth2_omniauth_authorize_path, method: :post, class: 'button has-fixed-width is-outlined is-budgeting-kid-hoverable', id: 'google-button' do
+              = button_to user_google_oauth2_omniauth_authorize_path, method: :post, class: 'button is-outlined', id: 'google-button' do
                 span
                   figure.image.is-24x24
                     = image_tag('google.svg', class:'is-rounded',  alt: 'G')
                 | &nbsp; Google
-              = button_to user_facebook_omniauth_authorize_path, method: :post, class: 'button has-fixed-width is-outlined is-budgeting-kid-hoverable', id: 'facebook-button' do
+              = button_to user_facebook_omniauth_authorize_path, method: :post, class: 'button is-outlined', id: 'facebook-button' do
                 span
                   figure.image.is-24x24
                     = image_tag('facebook.svg', class:'is-rounded',  alt: 'F')
@@ -46,21 +46,19 @@
             = f.label :agreed_to_terms, class: 'ml-2' do
               | I've read and accepted the&nbsp;
               = link_to("Privacy Policy", policy_path)
-          br
-          .actions.is-flex.is-flex-direction-column.is-align-items-end
-          .field.is-fullwidth
-            = button_to registration_path(resource_name), class: 'button is-primary is-fullwidth', id: 'signup-button' do
-              span
-              | Signup &nbsp;
-              figure.image.is-16x16
-                = image_tag('arrow-right.svg', alt: '->')
-          br
-          .is-flex.is-justify-content-center.mb-2
-            | Already have an account? &nbsp;
-            = link_to 'Login now', new_user_session_path, class: 'has-text-weight-bold has-text-budgeting-kid-color'
-          .is-flex.is-justify-content-center
-            | Not a parent and has a parental code? &nbsp;
-            = link_to "Log in as a kid", new_sign_in_kid_path, class: 'has-text-weight-bold has-text-budgeting-kid-color'
-  .for-desktop.column.has-background-image.is-flex.is-justify-content-center.is-align-items-center
+          .actions
+            .field.is-fullwidth
+              = button_to registration_path(resource_name), class: 'button is-primary is-fullwidth', id: 'signup-button' do
+                span
+                | Signup &nbsp;
+                figure.image.is-16x16
+                  = image_tag('arrow-right.svg', alt: '->')
+            .is-flex.is-justify-content-center.mb-2
+              | Already have an account? &nbsp;
+              = link_to 'Login now', new_user_session_path, class: 'has-text-weight-bold has-text-budgeting-kid-color'
+            .is-flex.is-justify-content-center
+              | Not a parent and has a parental code? &nbsp;
+              = link_to "Log in as a kid", new_sign_in_kid_path, class: 'has-text-weight-bold has-text-budgeting-kid-color'
+  .column.has-background-image
     figure.image.is-coins
       = image_tag('coins.svg')

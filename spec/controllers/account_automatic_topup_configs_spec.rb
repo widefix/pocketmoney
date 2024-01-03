@@ -35,14 +35,14 @@ RSpec.describe AccountAutomaticTopupConfigsController, type: :controller do
   describe '#update' do
     subject(:update) { patch :update, params: params }
 
-    it { is_expected.to redirect_to(account_path(account)) }
+    it { is_expected.to redirect_to(account_path(account, anchor: 'automatic-top-up')) }
     it { expect { update }.to change { automatic_topup_config.reload.amount }.to(50) }
   end
 
   describe '#destroy' do
     subject(:destroy) { delete :destroy, params: params }
   
-    it { is_expected.to redirect_to(account_path(account)) }
+    it { is_expected.to redirect_to(account_path(account, anchor: 'automatic-top-up')) }
     it { expect { destroy }.to change { AccountAutomaticTopupConfig.count }.by(-1) }
   end
 end

@@ -1,13 +1,13 @@
 #modal-topup-form.modal
   .modal-background
   .modal-card
-    .button.is-white.is-round.top-right-button.close-button
-      figure.image.is-20x20
-        = image_tag('cross.svg', alt: 'X')
-    .modal-card-body.mx-3
+    .modal-card-body.mx-3.pt-2
       = form_with url:false, method: :post, id: 'topup-form-with' do |f|
-        .field.mt-2
+        .field.is-flex.is-align-items-flex-end.is-justify-content-space-between
           = f.label :amount, "Amount to be added"
+          .button.is-white.is-round.close-button.p-0
+            figure.image.is-20x20
+              = image_tag('cross.svg', alt: 'X')
         .field
           = f.text_field :amount, autofocus: true, type: 'number', step: 0.1, min: 0.1, class: "input", required: true
         .field

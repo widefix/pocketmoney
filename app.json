@@ -4,7 +4,11 @@
   "cron": [
     {
       "command": "rake top_up_accounts",
-      "schedule": "0 14 * * *"
+      "schedule": "0 14 * * 5"
+    },
+    {
+      "command": "rake check_objectives",
+      "schedule": "0 9-21/2 * * *"
     }
   ],
   "scripts": {

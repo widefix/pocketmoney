@@ -9,6 +9,7 @@ class Objective < ApplicationRecord
   scope :not_archived, -> { joins(:account).where(account: { archived_at: nil }) }
   scope :accomplished, -> { where.not(accomplished_at: nil) }
   scope :not_accomplished, -> { where(accomplished_at: nil) }
+  scope :for, ->(account) { where(account: account) }
 
   def weeks_to_achieve
     return -1 if account.balance >= amount

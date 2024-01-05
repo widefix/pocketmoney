@@ -13,7 +13,7 @@ RSpec.describe ObjectiveNotificationService, type: :service do
   let(:params) { { from_account: parent, to_account: account, amount: 10 } }
   let(:amount) { 10 }
 
-  subject(:service) { described_class.new.perform }
+  subject(:service) { described_class.new(account).perform }
 
   describe '#perform' do
     context 'when goal is achieved' do

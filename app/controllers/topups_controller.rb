@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TopupsController < ApplicationController
   def create
     Transaction.create!(
@@ -9,6 +11,7 @@ class TopupsController < ApplicationController
       access_token: Devise.friendly_token
     )
     SendNotification.call(account)
+    ObjectiveNotificationService.new(account).perform
 
     redirect_to request.referrer
   end

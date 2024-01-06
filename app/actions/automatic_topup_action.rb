@@ -16,5 +16,6 @@ class AutomaticTopupAction < ApplicationAction
     )
 
     TransactionsMailer.automatic_top_up_done(transaction).deliver_now
+    ObjectiveNotificationService.new(to).perform
   end
 end

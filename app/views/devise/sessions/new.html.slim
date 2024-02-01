@@ -8,22 +8,23 @@
         h2.title.is-4.is-light = t('.login')
         h2.title.font-frank-ruhl-libre Login to your account
         - if Devise.omniauth_providers.include?(:google_oauth2)
-          .field
-            .buttons.is-centered
-              = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: 'button is-outlined' do
-                span
-                  figure.image.is-24x24
-                    = image_tag('google.svg', class:'is-rounded',  alt: 'G')
-                | &nbsp; Google
-              = link_to user_facebook_omniauth_authorize_path, method: :post, class: 'button is-outlined' do
-                span
-                  figure.image.is-24x24
-                    = image_tag('facebook.svg', class:'is-rounded',  alt: 'F')
-                | &nbsp; Facebook
-          br
-          p.text-divider
-            | Or continue with
-          br
+          .social-login-block
+            .field
+              .buttons.is-centered
+                = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: 'button is-outlined' do
+                  span
+                    figure.image.is-24x24
+                      = image_tag('google.svg', class:'is-rounded',  alt: 'G')
+                  | &nbsp; Google
+                = link_to user_facebook_omniauth_authorize_path, method: :post, class: 'button is-outlined' do
+                  span
+                    figure.image.is-24x24
+                      = image_tag('facebook.svg', class:'is-rounded',  alt: 'F')
+                  | &nbsp; Facebook
+            br
+            p.text-divider
+              | Or continue with
+            br
         = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
           .field
             = f.label :email
@@ -57,3 +58,14 @@
   .column.has-background-image
     figure.image.is-coins
       = image_tag('coins.svg')
+
+javascript:
+  document.addEventListener('turbolinks:load', function() {
+    const isWebView = navigator.userAgent.match(/(Android|iPhone|iPad|iPod)(.*wv)/gi) !== null;
+
+    console.log(isWebView)
+
+    if (isWebView) {
+      document.querySelector('.social-login-block').style.display = 'none';
+    }
+  });

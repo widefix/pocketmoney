@@ -5,3 +5,10 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+namespace :assets do
+  task :precompile do
+    puts 'nothing'
+  end
+end
+

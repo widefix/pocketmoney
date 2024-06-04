@@ -4,7 +4,8 @@ import Config from './config';
 export default function App() {
   return (
     <WebView
-      source={{ uri: Config.apiUrl }} 
+      style={{ marginTop: 25 }}
+      source={{ uri: Config.apiUrl }}
     />
   );
 }

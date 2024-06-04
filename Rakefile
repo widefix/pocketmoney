@@ -11,4 +11,3 @@ namespace :assets do
     puts 'nothing'
   end
 end
-

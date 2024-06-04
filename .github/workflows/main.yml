@@ -20,5 +20,5 @@ jobs:
         with:
           # specify `--force` as a flag for git pushes
           git_push_flags: '--force'
-          git_remote_url: 'ssh://dokku@dokku.widefix.com/money'
+          git_remote_url: 'ssh://dokku@budgetingkid.com/budgetingkid'
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}

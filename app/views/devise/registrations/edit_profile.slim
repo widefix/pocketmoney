@@ -9,7 +9,7 @@
         .column
           .file#file-input.is-light.is-pulled-right
             label.file-label.is-light
-              = f.file_field :avatar, class: 'file-input'
+              = f.file_field :avatar, class: 'file-input', accept: "image/*"
               span.file-cta
                 span.file-icon
                   i.fa.fa-camera

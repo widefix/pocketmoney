@@ -16,13 +16,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  protected
+  def edit_profile
+    authenticate_scope!
+    render :edit_profile
+  end
+
+  private
+
+  def update_resource(resource, params)
+    resource.update(params)
+  end
 
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
-
-  private
 
   def after_sign_up_path_for(resource)
     after_sign_in_url = session.delete(:after_sign_in_url)

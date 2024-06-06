@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :subscribers, only: %i[create]
 
+  get '/users/edit_profile', to: 'users/registrations#edit_profile', as: 'edit_profile'
+
   resource :wizard, only: [] do
     get 'new_account', on: :member
     post 'create_account', on: :member

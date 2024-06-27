@@ -13,7 +13,10 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.budgetingkid"
+      "bundleIdentifier": "com.budgetingkid",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to upload pofile photo"
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -29,6 +32,14 @@
         "projectId": "a3f4222e-4da6-46cd-a57f-1c3385998228"
       }
     },
-    "owner": "widefix"
+    "owner": "widefix",
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+        }
+      ]
+    ]
   }
 }

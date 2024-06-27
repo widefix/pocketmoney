@@ -3070,6 +3070,13 @@ expo-asset@~8.10.1:
     path-browserify "^1.0.0"
     url-parse "^1.5.9"
 
+expo-camera@^15.0.11:
+  version "15.0.11"
+  resolved "https://registry.yarnpkg.com/expo-camera/-/expo-camera-15.0.11.tgz#146207a943c177747d5f58081fadf3d203de4371"
+  integrity sha512-UU1YwIazDkI0MJNnoDuhUDLYTZ0BEHaW4iqFQm8ItLEEga7a6VaVUpnOuXtpChtOb046wzGAb4WdW84S+oCK1Q==
+  dependencies:
+    invariant "^2.2.4"
+
 expo-constants@~14.4.2:
   version "14.4.2"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-14.4.2.tgz#cac5e8b524069545739b8d8595ce96cc5be6578c"

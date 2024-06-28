@@ -24,6 +24,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def update_resource(resource, params)
+    if params[:password].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
     resource.update(params)
   end
 

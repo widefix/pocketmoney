@@ -23,6 +23,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
+  def update_resource(resource, params)
+    resource.update(params)
+  end
+
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end

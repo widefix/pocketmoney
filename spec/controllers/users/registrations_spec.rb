@@ -22,12 +22,20 @@ RSpec.describe Users::RegistrationsController, type: :controller do
     before { sign_in user }
 
     let(:password) { FFaker::Internet.password }
+    let(:new_password) { FFaker::Internet.password }
     let(:user) { create(:user, password: password) }
     let(:new_email) { FFaker::Internet.email }
 
-    subject { put :update, params: { id: user.id, user: { email: new_email, current_password: password } } }
+    subject { put :update, params: { id: user.id, user: { email: new_email } } }
 
     it { expect(subject).to have_http_status(:redirect) }
     it { expect { subject }.to change { user.reload.email }.to(new_email) }
+
+    it { expect { put :update, params: { id: user.id, user: { name: new_email } } }.to change { user.reload.name }.to(new_email) }
+    it {
+      expect {
+        put :update, params: { id: user.id, user: { password: new_password, password_confirmation: new_password } }
+      }.to change { user.reload.valid_password?(new_password) }.from(false).to(true)
+    }
   end
 end

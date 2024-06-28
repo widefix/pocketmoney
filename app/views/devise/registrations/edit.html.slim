@@ -19,10 +19,6 @@
             | (#{@minimum_password_length} characters minimum)
       .field
         = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "password confirmation"
-      .field
-        = f.password_field :current_password, autocomplete: "current-password", placeholder: "current password"
-        p.help
-          | (we need your current password to confirm your changes)
       div.buttons.is-flex.is-justify-content-flex-end
         = link_to request.referer.present? && request.referer != edit_user_registration_path ? request.referer : root_path, class: 'button is-light' do
           span.icon

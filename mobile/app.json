@@ -34,17 +34,12 @@
     },
     "owner": "widefix",
     "plugins": [
-      [
-        "expo-camera",
-        {
-          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
-        }
-      ],
+
       [
         "expo-build-properties",
         {
           "ios": {
-            "deploymentTarget": "10"
+            "deploymentTarget": "13.4"
           }
         }        
       ]

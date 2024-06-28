@@ -33,9 +33,9 @@ RSpec.describe Users::RegistrationsController, type: :controller do
 
     it { expect { put :update, params: { id: user.id, user: { name: new_email } } }.to change { user.reload.name }.to(new_email) }
     it {
-      expect {
+      expect do
         put :update, params: { id: user.id, user: { password: new_password, password_confirmation: new_password } }
-      }.to change { user.reload.valid_password?(new_password) }.from(false).to(true)
+      end.to change { user.reload.valid_password?(new_password) }.from(false).to(true)
     }
   end
 end

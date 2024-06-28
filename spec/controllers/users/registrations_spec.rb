@@ -17,4 +17,17 @@ RSpec.describe Users::RegistrationsController, type: :controller do
     it { subject; expect(created_account).to have_attributes(name: email, email: email) }
     it { subject; expect(created_user.account).to eq(created_account) }
   end
+
+  describe '#update' do
+    before { sign_in user }
+
+    let(:password) { FFaker::Internet.password }
+    let(:user) { create(:user, password: password) }
+    let(:new_email) { FFaker::Internet.email }
+
+    subject { put :update, params: { id: user.id, user: { email: new_email, current_password: password } } }
+
+    it { expect(subject).to have_http_status(:redirect) }
+    it { expect { subject }.to change { user.reload.email }.to(new_email) }
+  end
 end

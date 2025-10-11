@@ -7,7 +7,6 @@ RSpec.describe TerminateSharedAccountController, type: :controller do
     let(:account) { create(:account, :parent) }
     let(:user) { create(:user, account: account) }
     let(:another_user) { create(:user, account: account) }
-    let(:terminating_account) { AccountShare.find(shared_account.id) }
 
     let!(:shared_account) do
       create(:account_share,
@@ -25,7 +24,7 @@ RSpec.describe TerminateSharedAccountController, type: :controller do
 
     it 'terminates the account' do
       subject
-      expect(terminating_account.terminated?).to eq(true)
+      expect(shared_account.reload.terminated?).to eq(true)
     end
 
     it { is_expected.to have_http_status(302) }

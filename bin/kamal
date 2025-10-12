@@ -1,0 +1,3 @@
+#!/bin/bash
+# Kamal wrapper script to fix Logger compatibility with Ruby 3.1.7
+ruby -r logger -S kamal "$@"

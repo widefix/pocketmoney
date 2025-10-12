@@ -60,4 +60,5 @@ Rails.application.routes.draw do
 
   get '/policy', to: 'policy#show'
   get '/choose_role', to: 'choose_role#index'
+  get '/health', to: 'health#show'
 end

@@ -1,0 +1,75 @@
+# Git
+.git
+.gitignore
+
+# Documentation
+README.md
+doc/
+*.md
+
+# Development and test files
+.rspec
+spec/
+test/
+coverage/
+
+# Logs
+log/*
+tmp/*
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment files
+.env*
+.local
+
+# Node modules (will be installed in container)
+node_modules/
+
+# Compiled assets (will be compiled in container)
+public/assets/
+public/packs/
+
+# Storage
+storage/
+
+# Dependencies that will be installed
+vendor/bundle/
+
+# Cache
+tmp/cache/
+.sass-cache/
+
+# PID files
+tmp/pids/
+
+# Socket files
+tmp/sockets/
+
+# Spring files
+spring/
+
+# Webpacker
+public/packs-test/
+
+# Yarn integrity file
+.yarn-integrity
+
+# Ignore master key for decrypting credentials and more.
+config/master.key
+config/credentials.yml.enc

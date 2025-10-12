@@ -15,6 +15,6 @@ class AccountShare < ApplicationRecord
   end
 
   def terminated?
-    accepted_at == DateTime.new(0)
+    accepted_at&.utc&.to_i == DateTime.new(0).utc.to_i
   end
 end

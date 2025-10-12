@@ -59,6 +59,7 @@ RSpec.describe Account, type: :model do
       it do
         expect(child.accumulative_balance_data)
           .to eq({
+                   first_transaction.created_at.beginning_of_quarter.to_date.strftime('%Y-%m-%d') => 100.0,
                    second_transaction.created_at.beginning_of_quarter.to_date.strftime('%Y-%m-%d') => 30.0,
                    third_transaction.created_at.beginning_of_quarter.to_date.strftime('%Y-%m-%d') => 80.0
                  })

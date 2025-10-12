@@ -1,26 +1,41 @@
-// Signup functionality
+// Terms agreement functionality
 document.addEventListener('turbolinks:load', function() {
-  // Terms agreement functionality
-  const termsCheckbox = document.getElementById('terms-agreement');
-  const submitButton = document.querySelector('input[type="submit"], button[type="submit"]');
+  const agreedToTermsCheckbox = document.getElementById("user_agreed_to_terms");
 
-  if (termsCheckbox && submitButton) {
-    function updateSubmitButton() {
-      submitButton.disabled = !termsCheckbox.checked;
-      submitButton.classList.toggle('is-disabled', !termsCheckbox.checked);
-    }
+  if (agreedToTermsCheckbox) {
+    const signupButton = document.getElementById("signup-button");
+    const googleButton = document.getElementById("google-button");
+    const facebookButton = document.getElementById("facebook-button");
 
-    termsCheckbox.addEventListener('change', updateSubmitButton);
-    updateSubmitButton(); // Initial state
+    agreedToTermsCheckbox.addEventListener("change", function() {
+      var isCheckboxChecked = agreedToTermsCheckbox.checked;
+      if (signupButton) {
+        signupButton.disabled = !isCheckboxChecked;
+      }
+      if (googleButton) {
+        googleButton.disabled = !isCheckboxChecked;
+      }
+      if (facebookButton) {
+        facebookButton.disabled = !isCheckboxChecked;
+      }
+    });
   }
+});
 
-  // Time zone detection
-  if (typeof Intl !== 'undefined' && Intl.DateTimeFormat) {
-    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const timeZoneInput = document.getElementById('user_time_zone');
+// Time zone functionality
+document.addEventListener('turbolinks:load', function() {
+    const topUpUtcElement = document.getElementById("topup-utc-time")
+    if (!topUpUtcElement) {
+        return
+      }
+    const topUpUtcTime = topUpUtcElement.getAttribute("data-utc-time");
+    const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-    if (timeZoneInput && !timeZoneInput.value) {
-      timeZoneInput.value = timeZone;
-    }
-  }
+    const userLocalTime = new Date(topUpUtcTime.toLocaleString("auto", { timeZone: userTimeZone }));
+
+    const hours = userLocalTime.getHours();
+    const minutes = userLocalTime.getMinutes();
+    const formattedTime = hours.toString().padStart(2, "0") + ":" + minutes.toString().padStart(2, "0");
+
+    document.getElementById("formatted-time").textContent = formattedTime;
 });

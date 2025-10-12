@@ -1,44 +1,72 @@
-// Account functionality
+// Toggle button functionality
 document.addEventListener('turbolinks:load', function() {
-  // Toggle button functionality
-  const toggleButtons = document.querySelectorAll('[data-toggle]');
+  var toggleButton = document.getElementById('toggle-button');
+  if (!toggleButton) {
+    return
+  }
+  var elementsHidden = true;
+  var tbodyRows = Array.from(document.querySelectorAll('tbody.toggleable tr'));
 
-  toggleButtons.forEach(function(button) {
-    button.addEventListener('click', function() {
-      const targetId = button.getAttribute('data-target');
-      const target = document.getElementById(targetId);
-
-      if (target) {
-        target.classList.toggle('is-hidden');
-        button.classList.toggle('is-active');
-      }
-    });
-  });
-
-  // Chart settings
-  if (typeof Chartkick !== 'undefined') {
-    Chartkick.options = {
-      colors: ['#3273dc', '#23d160', '#ffdd57', '#ff3860'],
-      library: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
-    };
+  if (tbodyRows.length > 10) {
+    toggleRows();
   }
 
-  // Accomplished goals functionality
-  const accomplishedGoals = document.querySelectorAll('.accomplished-goal');
+  function toggleRows() {
+    for (var i = 10; i < tbodyRows.length; i++) {
+      var row = tbodyRows[i];
+      row.style.display = (row.style.display === 'none') ? '' : 'none';
+    }
+  };
 
-  accomplishedGoals.forEach(function(goal) {
-    goal.addEventListener('click', function() {
-      goal.classList.toggle('is-completed');
-    });
+  toggleButton.addEventListener('click', function(e) {
+    e.preventDefault();
+    toggleRows();
+
+    toggleButton.textContent = elementsHidden ? 'Hide' : 'Show all'; 
+    elementsHidden = !elementsHidden;
   });
+});
+
+// Chart settings functionality
+document.addEventListener('turbolinks:load', function() {
+  const openButton = document.querySelector('.account .accumulative-balance .open-chart-settings')
+  const closeButton = document.querySelector('.account .accumulative-balance-settings .close-chart-settings')
+  const chartSettings = document.querySelector('.account .accumulative-balance-settings');
+  const chart = document.querySelector('.account .accumulative-balance');
+
+  if (chart && chartSettings && openButton && closeButton) {
+    openButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      chart.classList.add('is-hidden');
+      chartSettings.classList.remove('is-hidden');
+    });
+
+    closeButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      chartSettings.classList.add('is-hidden');
+      chart.classList.remove('is-hidden');
+    });
+  };
+});
+
+// Accomplished goals functionality
+document.addEventListener('turbolinks:load', function() {
+  const openButton = document.querySelector('.account .goals .open-accomplished-goals')
+  const closeButton = document.querySelector('.account .accomplished-goals .close-accomplished-goals')
+  const accomplishedGoals = document.querySelector('.account .accomplished-goals');
+  const goals = document.querySelector('.account .goals');
+
+  if (goals && openButton && closeButton) {
+    openButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      goals.classList.add('is-hidden');
+      accomplishedGoals.classList.remove('is-hidden');
+    });
+
+    closeButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      accomplishedGoals.classList.add('is-hidden');
+      goals.classList.remove('is-hidden');
+    });
+  };
 });

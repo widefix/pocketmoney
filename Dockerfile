@@ -27,12 +27,6 @@ ENV BUNDLE_DEPLOYMENT="1" \
 
 RUN bundle install
 
-# Copy package.json and yarn.lock if they exist
-COPY package*.json yarn.lock* ./
-
-# Install JavaScript dependencies
-RUN if [ -f "package.json" ]; then yarn install; fi
-
 # Copy application code
 COPY . .
 

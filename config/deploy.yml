@@ -41,12 +41,16 @@ builder:
   #   RUBY_VERSION: <%= ENV["RBENV_VERSION"] || ENV["rvm_ruby_string"] || "#{RUBY_ENGINE}-#{RUBY_ENGINE_VERSION}" %>
 
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
-#
-# env:
-#   clear:
-#     DB_HOST: 192.168.0.2
-#   secret:
-#     - RAILS_MASTER_KEY
+env:
+  clear:
+    RAILS_ENV: production
+    DB_HOST: 144.126.196.2
+    DB_PORT: 5432
+    DB_NAME: budgetingkid_production
+    DB_USER: budgetingkid
+  secret:
+    - RAILS_MASTER_KEY
+    - DB_PASSWORD
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal app logs -r job" will tail logs from the first server in the job section.
@@ -77,25 +81,18 @@ builder:
 #   wait: 2
 
 # Use accessory services (secrets come from .kamal/secrets).
-#
-# accessories:
-#   db:
-#     image: mysql:8.0
-#     host: 192.168.0.2
-#     port: 3306
-#     env:
-#       clear:
-#         MYSQL_ROOT_HOST: '%'
-#       secret:
-#         - MYSQL_ROOT_PASSWORD
-#     files:
-#       - config/mysql/production.cnf:/etc/mysql/my.cnf
-#       - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
-#     directories:
-#       - data:/var/lib/mysql
-#   redis:
-#     image: valkey/valkey:8
-#     host: 192.168.0.2
-#     port: 6379
-#     directories:
-#       - data:/data
+accessories:
+  db:
+    image: postgres:15
+    host: 144.126.196.2
+    port: 5432
+    env:
+      clear:
+        POSTGRES_DB: budgetingkid_production
+        POSTGRES_USER: budgetingkid
+      secret:
+        - POSTGRES_PASSWORD
+    directories:
+      - data:/var/lib/postgresql/data
+    files:
+      - db/init.sql:/docker-entrypoint-initdb.d/init.sql

@@ -8,11 +8,11 @@ RUN apt-get update -qq && \
       libpq-dev \
       nodejs \
       npm \
-      yarn \
       git \
       curl \
       libvips \
-      && rm -rf /var/lib/apt/lists/*
+      && rm -rf /var/lib/apt/lists/* \
+      && npm install -g yarn
 
 # Set working directory
 WORKDIR /rails

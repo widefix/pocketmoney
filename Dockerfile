@@ -31,7 +31,7 @@ RUN bundle install
 COPY package*.json yarn.lock* ./
 
 # Install JavaScript dependencies
-RUN if [ -f "package.json" ]; then yarn install --frozen-lockfile; fi
+RUN if [ -f "package.json" ]; then yarn install; fi
 
 # Copy application code
 COPY . .

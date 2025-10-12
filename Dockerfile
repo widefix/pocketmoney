@@ -23,7 +23,8 @@ COPY Gemfile Gemfile.lock ./
 # Configure bundler and install gems
 ENV BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development:test"
+    BUNDLE_WITHOUT="development:test" \
+    RAILS_ENV="production"
 
 RUN bundle install
 
@@ -31,7 +32,7 @@ RUN bundle install
 COPY . .
 
 # Precompile assets
-RUN bundle exec rails assets:precompile
+RUN RAILS_ENV=production SECRET_KEY_BASE=dummy bundle exec rails assets:precompile
 
 # Create a non-root user
 RUN groupadd --system --gid 1000 rails && \

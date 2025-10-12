@@ -62,6 +62,18 @@ Rails.application.configure do
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
-  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  # Only use EventedFileUpdateChecker if listen gem is available and not precompiling assets
+  if defined?(Rails::Console) || Rails.env.development?
+    begin
+      require 'listen'
+      config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+    rescue LoadError
+      # Fallback to polling file watcher if listen gem is not available
+      config.file_watcher = ActiveSupport::FileUpdateChecker
+    end
+  else
+    # Use simple file watcher for asset precompilation and other non-console tasks
+    config.file_watcher = ActiveSupport::FileUpdateChecker
+  end
   config.action_mailer.default_url_options = { host: 'localhost', port: ENV.fetch('PORT', 3000) }
 end

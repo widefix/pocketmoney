@@ -31,6 +31,9 @@ RUN bundle install
 # Copy application code
 COPY . .
 
+# Create database.yml from example for asset precompilation
+RUN cp config/database.yml.example config/database.yml
+
 # Precompile assets
 RUN RAILS_ENV=production SECRET_KEY_BASE=dummy bundle exec rails assets:precompile
 

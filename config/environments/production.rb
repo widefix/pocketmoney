@@ -118,7 +118,7 @@ Rails.application.configure do
     password: ENV['SMTP_PASSWORD'],
     domain: ENV['SMTP_DOMAIN'],
     authentication: :plain,
-    enable_starttls_auto: true
+    enable_starttls_auto: false
   }
   config.action_mailer.delivery_method = :smtp
 end

@@ -17,14 +17,14 @@ class ObjectiveNotificationService
   def send_almost_achieved_notification(objective)
     return if !goal_almost_achieved?(objective) || objective.goal_almost_achieved_notified_at
 
-    ObjectivesMailer.goal_almost_achieved(objective, recipients).deliver
+    SafeDelivery.call(ObjectivesMailer.goal_almost_achieved(objective, recipients))
     objective.update!(goal_almost_achieved_notified_at: Time.current)
   end
 
   def send_achieved_notification(objective)
     return if !goal_achieved?(objective) || objective.goal_achieved_notified_at
 
-    ObjectivesMailer.goal_achieved(objective, recipients).deliver
+    SafeDelivery.call(ObjectivesMailer.goal_achieved(objective, recipients))
     objective.update!(goal_achieved_notified_at: Time.current)
   end
 

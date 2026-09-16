@@ -2,7 +2,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
-  config.cache_classes = true
+  config.enable_reloading = false
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
@@ -117,8 +117,8 @@ Rails.application.configure do
     user_name: ENV['SMTP_LOGIN'],
     password: ENV['SMTP_PASSWORD'],
     domain: ENV['SMTP_DOMAIN'],
-    authentication: nil,
-    enable_starttls_auto: false
+    authentication: :plain,
+    enable_starttls_auto: true
   }
   config.action_mailer.delivery_method = :smtp
 end

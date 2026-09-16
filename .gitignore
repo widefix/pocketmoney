@@ -42,3 +42,6 @@ yarn-debug.log*
 
 # Ignore Mac OS attributes files
 .DS_Store
+
+# Kamal deployment secrets
+.env.production

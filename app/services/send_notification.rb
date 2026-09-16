@@ -10,7 +10,7 @@ class SendNotification
   end
 
   def execute
-    TransactionsMailer.transaction_notification(@account, recipients).deliver
+    SafeDelivery.call(TransactionsMailer.transaction_notification(@account, recipients))
   end
 
   private

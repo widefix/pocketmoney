@@ -96,3 +96,21 @@ accessories:
     cmd: >-
       postgres -c wal_level=logical -c max_replication_slots=10
       -c max_logical_replication_workers=10 -c max_worker_processes=16
+
+  metabase:
+    # Pinned to the version the application database was created by (0.49.9);
+    # a newer image would migrate that schema irreversibly.
+    image: metabase/metabase:v0.49.9
+    host: 46.225.238.176
+    env:
+      clear:
+        MB_DB_TYPE: postgres
+        MB_DB_HOST: budgetingkid-db
+        MB_DB_PORT: "5432"
+        MB_DB_DBNAME: metabase
+        MB_DB_USER: metabase
+        MB_JETTY_PORT: "3000"
+        # The host has 3.7 GB RAM shared with the app and Postgres.
+        JAVA_OPTS: -Xmx1024m
+      secret:
+        - MB_DB_PASS

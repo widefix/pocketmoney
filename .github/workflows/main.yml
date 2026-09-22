@@ -1,24 +1,66 @@
 ---
 name: 'deploy'
 
+# Deploys only after "Ruby on Rails CI" passes on master, so a red build never
+# reaches production. workflow_dispatch allows a manual deploy or a re-run.
 on:
-  push:
-    branches:
-      - master
+  workflow_run:
+    workflows: ["Ruby on Rails CI"]
+    branches: [master]
+    types: [completed]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
 
 jobs:
   deploy:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Cloning repo
+      - name: Checkout the commit that passed CI
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          ref: ${{ github.event.workflow_run.head_sha || github.ref }}
 
-      - name: Push to dokku
-        uses: dokku/github-action@master
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          # specify `--force` as a flag for git pushes
-          git_push_flags: '--force'
-          git_remote_url: 'ssh://dokku@budgetingkid.com/budgetingkid'
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ruby-version: '3.4.6'
+
+      - name: Install Kamal
+        run: gem install kamal -v 2.12.0 --no-document
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # config/deploy.yml points Kamal at ~/.ssh/id_hetzner, both for the
+      # deploy itself and for the remote amd64 builder.
+      - name: Install the deploy SSH key
+        run: |
+          mkdir -p ~/.ssh
+          install -m 600 /dev/null ~/.ssh/id_hetzner
+          echo "${{ secrets.HETZNER_SSH_PRIVATE_KEY }}" > ~/.ssh/id_hetzner
+          ssh-keyscan -H 46.225.238.176 >> ~/.ssh/known_hosts
+
+      - name: Deploy
+        env:
+          KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+          SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          FACEBOOK_APP_SECRET: ${{ secrets.FACEBOOK_APP_SECRET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_ACCESS_SECRET_KEY_ID: ${{ secrets.AWS_ACCESS_SECRET_KEY_ID }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          ROLLBAR_ACCESS_TOKEN: ${{ secrets.ROLLBAR_ACCESS_TOKEN }}
+          NEW_RELIC_LICENSE_KEY: ${{ secrets.NEW_RELIC_LICENSE_KEY }}
+          METABASE_DB_PASSWORD: ${{ secrets.METABASE_DB_PASSWORD }}
+        run: kamal deploy
+
+      - name: Release the deploy lock if the deploy failed
+        if: failure()
+        env:
+          KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+        run: kamal lock release || true

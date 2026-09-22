@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Rails 7.0+ derives cookie keys with SHA256; the previous app (load_defaults 6.0)
 # used SHA1. Accept SHA1 signed/encrypted cookies and transparently re-issue them
 # with SHA256 so existing sessions (and Devise remember-me) survive the upgrade.

@@ -10,7 +10,9 @@ servers:
 ssh:
   user: root
   keys:
-    - ~/.ssh/id_hetzner
+    # Override with KAMAL_SSH_KEY when your key for this server lives elsewhere
+    # (each teammate names it differently; CI writes it to the default path).
+    - <%= ENV.fetch("KAMAL_SSH_KEY", "~/.ssh/id_hetzner") %>
 
 proxy:
   ssl: true

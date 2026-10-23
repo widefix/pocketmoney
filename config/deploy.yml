@@ -21,8 +21,6 @@ proxy:
   hosts:
     - budgetingkid.com
     - app.budgetingkid.com
-    - clickclaw.cc
-    - www.clickclaw.cc
   app_port: 3000
   healthcheck:
     path: /health

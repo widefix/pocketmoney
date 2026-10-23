@@ -1,11 +1,12 @@
-# Use Ruby 3.1.7 as base image
-FROM ruby:3.1.7-slim
+# Use Ruby 3.4.6 as base image
+FROM ruby:3.4.6-slim
 
 # Install system dependencies
 RUN apt-get update -qq && \
     apt-get install -y \
       build-essential \
       libpq-dev \
+      libyaml-dev \
       nodejs \
       npm \
       git \

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :send_email do |options = {}|
   match do |actual|
     @before_count = ActionMailer::Base.deliveries.count

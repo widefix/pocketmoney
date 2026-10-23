@@ -43,7 +43,7 @@ class Account < ApplicationRecord
 
   memoize def accumulative_balance_data
     result = ActiveRecord::Base.connection.execute(balance_sql)
-    result.to_h { |transaction| [transaction['date'], transaction['sum']] }
+    result.to_h { |transaction| [transaction['date'].to_s, transaction['sum']] }
   end
 
   private

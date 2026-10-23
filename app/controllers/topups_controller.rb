@@ -13,6 +13,6 @@ class TopupsController < ApplicationController
     SendNotification.call(account)
     ObjectiveNotificationService.new(account).perform
 
-    redirect_to request.referrer
+    redirect_to request.referrer, allow_other_host: true
   end
 end

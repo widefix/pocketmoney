@@ -13,7 +13,7 @@ class AccountSharesController < ApplicationController
                                                   account_id: account.id,
                                                   token: SecureRandom.urlsafe_base64(32),
                                                   **account_share_params)
-    AccountShareMailer.account_share(personal_account_share).deliver
+    SafeDelivery.call(AccountShareMailer.account_share(personal_account_share))
     redirect_to account_shares_path account
   end
 

@@ -5,8 +5,8 @@ It's a debt management app that creates a formalised record of debts between you
 ## Requirements
 
 - postgresql
-- ruby 2.7.4
-- rails 6.1.4
+- Ruby 3.4.6
+- Rails 7.2
 
 ## Installation
 

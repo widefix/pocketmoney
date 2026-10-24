@@ -10,6 +10,6 @@ class SpendsController < ApplicationController
     )
     SendNotification.call(account)
 
-    redirect_to request.referrer
+    redirect_to request.referrer, allow_other_host: true
   end
 end

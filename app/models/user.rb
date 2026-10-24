@@ -16,4 +16,9 @@ class User < ApplicationRecord
   memoize def owner?(child_account)
     child_account.parent_id == account.id
   end
+
+  # Keep password-reset and other Devise emails from raising on SMTP failures.
+  def send_devise_notification(notification, *args)
+    SafeDelivery.call(devise_mailer.send(notification, self, *args))
+  end
 end

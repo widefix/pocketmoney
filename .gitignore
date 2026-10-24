@@ -42,3 +42,9 @@ yarn-debug.log*
 
 # Ignore Mac OS attributes files
 .DS_Store
+
+# Kamal deployment secrets: the encrypted vault is committed, everything
+# derived from it is not.
+/.kamal/secrets
+/config/deploy/.production-vault-password
+/.env.production

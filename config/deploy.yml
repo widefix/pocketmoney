@@ -1,86 +1,92 @@
-# Name of your application. Used to uniquely configure containers.
+# Kamal deployment for BudgetingKid (Rails 7.2 / Ruby 3.4.6)
 service: budgetingkid
 
-# Name of the container image.
 image: ka8725/budgetingkid
 
-# Deploy to these servers.
 servers:
   web:
-    - 144.126.196.2
-  # job:
-  #   hosts:
-  #     - 192.168.0.1
-  #   cmd: bin/jobs
+    - 46.225.238.176
 
-# Enable SSL auto certification via Let's Encrypt and allow for multiple apps on a single web server.
-# Remove this section when using multiple web servers and ensure you terminate SSL at your load balancer.
-#
-# Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
+ssh:
+  # Non-root deploy user (member of the docker group). Root stays available
+  # for administration but is not used by Kamal or CI.
+  user: deploy
+  keys:
+    # Override with KAMAL_SSH_KEY when your key for this server lives elsewhere
+    # (each teammate names it differently; CI writes it to the default path).
+    - <%= ENV.fetch("KAMAL_SSH_KEY", "~/.ssh/id_hetzner") %>
+
 proxy:
   ssl: true
-  host: budgetingkid.com
-  # Proxy connects to your container on port 80 by default.
-  # app_port: 3000
+  hosts:
+    - budgetingkid.com
+    - app.budgetingkid.com
+  app_port: 3000
+  healthcheck:
+    path: /health
+    interval: 5
+    timeout: 60
 
-# Credentials for your image host.
 registry:
+  server: ghcr.io
   username: ka8725
-  password: <%= ENV["KAMAL_REGISTRY_PASSWORD"] %>
+  password:
+    - KAMAL_REGISTRY_PASSWORD
 
-# Configure builder setup.
 builder:
   arch: amd64
-  # Pass in additional build args needed for your Dockerfile.
-  # args:
-  #   RUBY_VERSION: <%= ENV["RBENV_VERSION"] || ENV["rvm_ruby_string"] || "#{RUBY_ENGINE}-#{RUBY_ENGINE_VERSION}" %>
+  # Build from the working tree instead of a clean git clone of HEAD.
+  context: .
+  # The workstation is arm64; building on the amd64 target host avoids QEMU.
+  remote: ssh://deploy@46.225.238.176
 
-# Inject ENV variables into containers (secrets come from .kamal/secrets).
 env:
   clear:
     RAILS_ENV: production
-    DB_HOST: 144.126.196.2
-    DB_PORT: 5432
+    RAILS_LOG_TO_STDOUT: "true"
+    # kamal-proxy does not serve static files, so Rails must.
+    RAILS_SERVE_STATIC_FILES: "true"
+    RAILS_MAX_THREADS: "5"
+    PORT: "3000"
+
+    DB_HOST: budgetingkid-db
+    DB_PORT: "5432"
     DB_NAME: budgetingkid_production
     DB_USER: budgetingkid
+
+    GOOGLE_CLIENT_ID: 233724073796-kopenm87gf9ulm02s0vt2kj0rr0vl1dt.apps.googleusercontent.com
+    GOOGLE_TAG_ID: G-Q4122NBV14
+    FACEBOOK_APP_ID: "310779685135114"
+
+    AWS_BUCKET: budgetingkid
+    AWS_REGION: us-east-1
+
+    SMTP_SERVER: smtp.mailgun.org
+    SMTP_PORT: "587"
+    SMTP_DOMAIN: sandbox6244ce40ef994f79a6c2e5a25aaace04.mailgun.org
+    SMTP_LOGIN: app@sandbox6244ce40ef994f79a6c2e5a25aaace04.mailgun.org
+    SMTP_DEFAULT_FROM: BudgetingKid <no-reply@budgetingkid.com>
   secret:
-    - RAILS_MASTER_KEY
+    - SECRET_KEY_BASE
     - DB_PASSWORD
+    - GOOGLE_CLIENT_SECRET
+    - FACEBOOK_APP_SECRET
+    - AWS_ACCESS_KEY_ID
+    - AWS_ACCESS_SECRET_KEY_ID
+    - SMTP_PASSWORD
+    - ROLLBAR_ACCESS_TOKEN
+    - NEW_RELIC_LICENSE_KEY
 
-# Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
-# "bin/kamal app logs -r job" will tail logs from the first server in the job section.
-#
-# aliases:
-#   shell: app exec --interactive --reuse "bash"
+aliases:
+  console: app exec --interactive --reuse "bin/rails console"
+  shell: app exec --interactive --reuse "bash"
+  dbc: accessory exec db --interactive --reuse "psql -U budgetingkid budgetingkid_production"
 
-# Use a different ssh user than root
-#
-# ssh:
-#   user: app
-
-# Use a persistent storage volume.
-#
-# volumes:
-#   - "app_storage:/app/storage"
-
-# Bridge fingerprinted assets, like JS and CSS, between versions to avoid
-# hitting 404 on in-flight requests. Combines all files from new and old
-# version inside the asset_path.
-#
-# asset_path: /app/public/assets
-
-# Configure rolling deploys by setting a wait time between batches of restarts.
-#
-# boot:
-#   limit: 10 # Can also specify as a percentage of total hosts, such as "25%"
-#   wait: 2
-
-# Use accessory services (secrets come from .kamal/secrets).
 accessories:
   db:
-    image: postgres:15
-    host: 144.126.196.2
-    port: 5432
+    # Must stay on PG 16 to match the publisher (144.126.196.2 runs 16.2).
+    image: postgres:16.2
+    host: 46.225.238.176
     env:
       clear:
         POSTGRES_DB: budgetingkid_production
@@ -88,6 +94,27 @@ accessories:
       secret:
         - POSTGRES_PASSWORD
     directories:
-      - data:/var/lib/postgresql/data
-    files:
-      - db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      # Absolute path on purpose: a relative one resolves inside the SSH user's
+      # home, so changing `ssh.user` would silently boot an empty database.
+      - /var/lib/budgetingkid/postgres:/var/lib/postgresql/data
+    cmd: >-
+      postgres -c wal_level=logical -c max_replication_slots=10
+      -c max_logical_replication_workers=10 -c max_worker_processes=16
+
+  metabase:
+    # Pinned to the version the application database was created by (0.49.9);
+    # a newer image would migrate that schema irreversibly.
+    image: metabase/metabase:v0.49.9
+    host: 46.225.238.176
+    env:
+      clear:
+        MB_DB_TYPE: postgres
+        MB_DB_HOST: budgetingkid-db
+        MB_DB_PORT: "5432"
+        MB_DB_DBNAME: metabase
+        MB_DB_USER: metabase
+        MB_JETTY_PORT: "3000"
+        # The host has 3.7 GB RAM shared with the app and Postgres.
+        JAVA_OPTS: -Xmx1024m
+      secret:
+        - MB_DB_PASS

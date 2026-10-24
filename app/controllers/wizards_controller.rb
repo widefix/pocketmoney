@@ -38,7 +38,7 @@ class WizardsController < ApplicationController
                                          token: SecureRandom.urlsafe_base64(32),
                                          **ps.slice(:name, :email))
 
-    AccountShareMailer.account_share(account_share).deliver
+    SafeDelivery.call(AccountShareMailer.account_share(account_share))
 
     redirect_to account_path(account)
   end

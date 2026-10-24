@@ -15,7 +15,7 @@ class AutomaticTopupAction < ApplicationAction
       description: 'Automatic Top-up'
     )
 
-    TransactionsMailer.automatic_top_up_done(transaction).deliver_now
+    SafeDelivery.call(TransactionsMailer.automatic_top_up_done(transaction))
     ObjectiveNotificationService.new(to).perform
   end
 end

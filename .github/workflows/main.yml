@@ -37,12 +37,17 @@ jobs:
 
       # config/deploy.yml points Kamal at ~/.ssh/id_hetzner, both for the
       # deploy itself and for the remote amd64 builder.
+      # No `-H`: SSHKit 1.25.1, which Kamal uses for SSH, only reads the first
+      # hashed entry per host, and ssh-keyscan writes one line per key type in
+      # an order that varies between runs, so hashed output fails with
+      # Net::SSH::HostKeyMismatch whenever ED25519 is not the first line.
       - name: Install the deploy SSH key
         run: |
           mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
           install -m 600 /dev/null ~/.ssh/id_hetzner
           echo "${{ secrets.HETZNER_SSH_PRIVATE_KEY }}" > ~/.ssh/id_hetzner
-          ssh-keyscan -H 46.225.238.176 >> ~/.ssh/known_hosts
+          ssh-keyscan 46.225.238.176 >> ~/.ssh/known_hosts
 
       # Every other credential lives in the committed, encrypted vault, so the
       # vault password is the only secret CI needs besides the SSH key.
@@ -57,6 +62,11 @@ jobs:
 
       - name: Decrypt secrets
         run: bin/sync-production-secrets
+
+      # Goes through the same SSHKit code path as the deploy, so a host key or
+      # SSH key problem fails here with a short, readable error.
+      - name: Verify SSH access to the server
+        run: kamal server exec --quiet "echo connected as \$(whoami)"
 
       - name: Deploy
         run: kamal deploy

@@ -12,6 +12,10 @@ Rollbar.configure do |config|
   # Here we'll disable in 'test':
   config.enabled = !Rails.env.test?
 
+  # Unmatched URLs (including automated secret-file scans) are ordinary 404s.
+  # Keep serving the Rails 404 response without sending them to Rollbar.
+  config.exception_level_filters.merge!('ActionController::RoutingError' => 'ignore')
+
   # By default, Rollbar will try to call the `current_user` controller method
   # to fetch the logged-in user object, and then call that object's `id`
   # method to fetch this property. To customize:

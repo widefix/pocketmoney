@@ -11,6 +11,10 @@ module BudgetingKid
     # Initialize configuration defaults for Rails 7.2.
     config.load_defaults 7.2
 
+    # Resolve the client IP before throttling, and reject scans before the
+    # exception-reporting middleware or application controllers run.
+    config.middleware.move_after ActionDispatch::RemoteIp, Rack::Attack
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

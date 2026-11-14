@@ -34,7 +34,7 @@ RSpec.describe ObjectivesController, type: :controller do
       let(:amount) { '' }
       let(:name) { '' }
 
-      it { expect { subject }.not_to change { Objective.count } }
+      it { expect { subject }.not_to(change { Objective.count }) }
       it { is_expected.to have_http_status(:unprocessable_entity) }
       it { is_expected.to render_template(:new) }
 
@@ -48,7 +48,7 @@ RSpec.describe ObjectivesController, type: :controller do
       let(:name) { '800' }
       let(:amount) { 'Helmet' }
 
-      it { expect { subject }.not_to change { Objective.count } }
+      it { expect { subject }.not_to(change { Objective.count }) }
       it { is_expected.to have_http_status(:unprocessable_entity) }
 
       it 'preserves the input and explains the error' do

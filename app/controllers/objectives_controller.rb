@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
 class ObjectivesController < ApplicationController
-  def new; end
+  def new
+    @objective = Objective.new
+  end
 
   def create
-    account.objectives.create!(ps.slice(:name, :amount))
-    redirect_to account_path(account, anchor: 'goals')
+    @objective = account.objectives.build(ps.slice(:name, :amount))
+    if @objective.save
+      redirect_to account_path(account, anchor: 'goals')
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy

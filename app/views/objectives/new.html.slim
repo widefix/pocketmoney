@@ -2,16 +2,22 @@
   .column.is-one-third
     h2.title.is-4.has-text-centered Add new goal
     = form_with url:account_objectives_path(account), method: :post do |f|
+      - if @objective.errors.any?
+        .notification.is-danger role="alert"
+          - @objective.errors.full_messages.each do |message|
+            p = message
       .field
-        = f.text_field :name, autofocus: true, class: "input", placeholder: "Name", required: true
+        = f.label :name, 'Name', class: 'label'
+        = f.text_field :name, value: @objective.name, autofocus: true, class: "input", placeholder: "Name", required: true
       .field
-        = f.text_field :amount, class: "input", placeholder: "Amount", required: true
+        = f.label :amount, 'Amount', class: 'label'
+        = f.number_field :amount, value: @objective.amount_before_type_cast, min: 0, step: 'any', class: "input", placeholder: "Amount", required: true
       .buttons.is-flex.is-justify-content-flex-end
         = link_to account_path(account, anchor: 'goals'), class: 'button is-light' do
           span.icon
             i.fa.fa-chevron-left
           | &nbsp; Back
-        = button_to account_objectives_path(account), class: 'button is-primary' do
+        = button_tag type: 'submit', class: 'button is-primary' do
           span.icon
             i.fa.fa-hdd-o
           | &nbsp; Save

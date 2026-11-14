@@ -14,6 +14,7 @@ RSpec.describe ObjectivesController, type: :controller do
   end
 
   describe '#create' do
+    render_views
     let(:account) { create(:account, :parent) }
     let(:user) { create(:user, account: account) }
 
@@ -29,11 +30,34 @@ RSpec.describe ObjectivesController, type: :controller do
       it { expect { subject }.to change { Objective.count }.by(1) }
     end
 
-    context 'when params is not valind' do
+    context 'when params are blank' do
       let(:amount) { '' }
       let(:name) { '' }
 
-      it { expect { subject }.to raise_error(ActiveRecord::RecordInvalid) }
+      it { expect { subject }.not_to change { Objective.count } }
+      it { is_expected.to have_http_status(:unprocessable_entity) }
+      it { is_expected.to render_template(:new) }
+
+      it 'shows validation errors' do
+        subject
+        expect(response.body).to include('Name can&#39;t be blank', 'Amount is not a number')
+      end
+    end
+
+    context 'when the amount is not numeric' do
+      let(:name) { '800' }
+      let(:amount) { 'Helmet' }
+
+      it { expect { subject }.not_to change { Objective.count } }
+      it { is_expected.to have_http_status(:unprocessable_entity) }
+
+      it 'preserves the input and explains the error' do
+        subject
+        expect(response.body).to include('Amount is not a number', 'value="800"', 'value="Helmet"')
+        forms = Nokogiri::HTML(response.body).css("form[action='#{account_objectives_path(account)}']")
+        expect(forms.size).to eq(1)
+        expect(forms.first.at_css('button[type="submit"]')).to be_present
+      end
     end
   end
 
